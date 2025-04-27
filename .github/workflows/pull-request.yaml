@@ -32,4 +32,4 @@ jobs:
           node-version: "22.14.0"
       - uses: pnpm/action-setup@v4
       - run: pnpm install
-      - run: pnpm  --filter ${{ matrix.package }} test:ci
+      - run: pnpm --filter ${{ matrix.package }} test:ci
