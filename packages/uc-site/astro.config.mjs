@@ -1,5 +1,13 @@
 // @ts-check
 import { defineConfig } from "astro/config";
+import { ucTheme } from "uc-theme";
 
-// https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  site: "https://uc-site-beta.netlify.app/",
+  integrations: [
+    ucTheme({
+      siteTitle: "Unity Catalog",
+      defaultImage: "/images/default-image.jpg",
+    }),
+  ],
+});
