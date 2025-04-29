@@ -24,6 +24,7 @@ jobs:
       matrix:
         package:
           - uc-site
+          - uc-theme
     steps:
       - uses: actions/checkout@v4
       - name: Use Node.js
