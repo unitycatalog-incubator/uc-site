@@ -40,6 +40,15 @@ importers:
       astro:
         specifier: ^5.7.5
         version: 5.7.5(rollup@4.40.0)(typescript@5.8.3)(yaml@2.7.1)
+      uc-theme:
+        specifier: workspace:*
+        version: link:../uc-theme
+
+  packages/uc-theme:
+    dependencies:
+      astro:
+        specifier: ^5.7.5
+        version: 5.7.5(rollup@4.40.0)(typescript@5.8.3)(yaml@2.7.1)
 
 packages:
   "@astrojs/compiler@2.11.0":

@@ -1,5 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
+import { ucTheme } from "uc-theme";
 
-// https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  integrations: [ucTheme()],
+});
