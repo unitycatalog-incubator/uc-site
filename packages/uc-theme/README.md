@@ -15,13 +15,13 @@ import { defineConfig } from "astro/config";
 import { ucTheme } from "uc-theme";
 
 export default defineConfig({
-	site: "https://example.com",
-	integrations: [
-		ucTheme({
-			siteTitle: "Unity Catalog",
-			defaultImage: "/images/default-image.jpg",
-		}),
-	],
+  site: "https://example.com",
+  integrations: [
+    ucTheme({
+      siteTitle: "Unity Catalog",
+      defaultImage: "/images/default-image.jpg",
+    }),
+  ],
 });
 ```
 
@@ -35,8 +35,8 @@ import PageLayout from "uc-theme/components/PageLayout.astro";
 ---
 
 <PageLayout title="My awesome page!">
-	<h1>My awesome page!</h1>
-	<p>Lorem ipsum dolor sit amet...</p>
+  <h1>My awesome page!</h1>
+  <p>Lorem ipsum dolor sit amet...</p>
 </PageLayout>
 ```
 
