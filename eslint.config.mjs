@@ -5,7 +5,14 @@ import importPlugin from "eslint-plugin-import";
 
 export default [
   {
-    ignores: ["pnpm-lock.yaml", "pnpm-workspace.yaml"],
+    ignores: [
+      "coverage",
+      "**/public",
+      "**/dist",
+      "**/.astro",
+      "pnpm-lock.yaml",
+      "pnpm-workspace.yaml",
+    ],
   },
   { files: ["**/*.{js,mjs,cjs}"] },
   { languageOptions: { globals: globals.browser } },
