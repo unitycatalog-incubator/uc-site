@@ -17,30 +17,27 @@ const imageUrl =
 ---
 
 <html lang="en">
-	<head>
+  <head>
     <slot name="head-first" />
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
     <title>{title ? `${title} | ${config.siteTitle}` : config.siteTitle}</title>
     {description && <meta name="description" content={description} />}
     <meta
       name="image"
       property="og:image"
-      content={new URL(
-        imageUrl ? imageUrl : config.defaultImage,
-        Astro.site,
-      )}
+      content={new URL(imageUrl ? imageUrl : config.defaultImage, Astro.site)}
     />
     <slot name="head-last" />
-	</head>
-	<body>
+  </head>
+  <body>
     <slot name="body-first" />
     <main>
       <slot />
     </main>
     <slot name="body-last" />
-	</body>
+  </body>
 </html>
