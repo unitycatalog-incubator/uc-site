@@ -127,3 +127,19 @@ Here are some of the things to look forward to and help us build:
 - More exciting ML features!
 
 The [complete roadmap](https://github.com/unitycatalog/unitycatalog/discussions/411) is available in the GitHub repo discussions. The project is currently targeting a quarterly release cadence, starting with this 0.2 release. As always, features may move into/out of milestones depending on the available resources and priorities.
+
+## Join the Team!
+
+Unity Catalog is built and maintained by an open and friendly community that values kind communication and creates a productive environment for maximum collaboration and fun. We welcome contributions from all developers, regardless of their experience or programming background. You can write Java, Scala, or Python code, create documentation, submit bugs, or give talks to the community. 
+
+To join the Unity Catalog project:
+
+- [Star the repo](https://github.com/unitycatalog/unitycatalog) on GitHub
+- ‍[Join our Slack](https://go.unitycatalog.io/slack) to meet the team
+- Check out the [Good First Issues](https://github.com/unitycatalog/unitycatalog/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22) in the GitHub repo
+
+You can also:
+
+- Build integrations with your favorite engines and tools
+- Contribute documentation pages to help other developers use Unity Catalog
+- Write a blog about your Unity Catalog use case and publish it on [unitycatalog.io/blog](http://unitycatalog.io/blog) to share it with fellow developers and industry experts
