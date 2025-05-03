@@ -1,0 +1,22 @@
+---
+import { getCollection, render, getEntries } from "astro:content";
+import PageLayout from "uc-theme/components/PageLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const authors = await getEntries(post.data.authors);
+const { Content } = await render(post);
+---
+
+<PageLayout title={post.data.title}>
+  <h1>{post.data.title}</h1>
+  <p>Published by {authors.map((author) => author.data.name).join(", ")}</p>
+  <Content />
+</PageLayout>

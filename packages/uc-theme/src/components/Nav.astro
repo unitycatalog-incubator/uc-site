@@ -1,0 +1,19 @@
+---
+import type { MenuItem } from "../types";
+
+interface Props {
+  items: MenuItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav>
+  {items.map((item) => <a href={item.url}>{item.label}</a>)}
+</nav>
+<style>
+  nav {
+    display: flex;
+    gap: 1rem;
+  }
+</style>

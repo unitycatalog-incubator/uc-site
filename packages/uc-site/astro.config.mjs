@@ -8,6 +8,32 @@ export default defineConfig({
     ucTheme({
       siteTitle: "Unity Catalog",
       defaultImage: "/images/default-image.jpg",
+      menus: {
+        header: [
+          { label: "Features", url: "/#features" },
+          { label: "Partner Ecosystem", url: "/#partner-ecosystem" },
+          { label: "API", url: "https://go.unitycatalog.io/apidocs" },
+          { label: "Documentation", url: "https://go.unitycatalog.io/docs" },
+          { label: "Blogs", url: "/blog" },
+        ],
+        headerCtas: [
+          {
+            label: "View GitHub",
+            url: "https://github.com/unitycatalog/unitycatalog",
+          },
+          { label: "Join Slack", url: "https://go.unitycatalog.io/slack" },
+          {
+            label: "Join LinkedIn",
+            url: "https://www.linkedin.com/company/unitycatalog/",
+          },
+        ],
+        footer: [
+          { label: "Features", url: "/#features" },
+          { label: "Partner Ecosystem", url: "/#partner-ecosystem" },
+          { label: "API", url: "https://go.unitycatalog.io/apidocs" },
+          { label: "Documentation", url: "https://go.unitycatalog.io/docs" },
+        ],
+      },
     }),
   ],
 });

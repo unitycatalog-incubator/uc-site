@@ -42,7 +42,11 @@ import PageLayout from "uc-theme/components/PageLayout.astro";
 
 ## Configuration
 
-| Property       | Type     | Required | Description                                                    |
-| -------------- | -------- | -------- | -------------------------------------------------------------- |
-| `siteTitle`    | `string` | Yes      | Site title.                                                    |
-| `defaultImage` | `string` | Yes      | Default image to display on pages which don't have an `image`. |
+| Property           | Type       | Required | Description                                                   |
+| ------------------ | ---------- | -------- | ------------------------------------------------------------- |
+| `siteTitle`        | `string`   | Yes      | Site title                                                    |
+| `defaultImage`     | `string`   | Yes      | Default image to display on pages which don't have an `image` |
+| `menus`            | `object[]` | Yes      | Site menus                                                    |
+| `menus.header`     | `object[]` | Yes      | Header menu                                                   |
+| `menus.headerCtas` | `object[]` | Yes      | Header menu - CTAs                                            |
+| `menus.footer`     | `object[]` | Yes      | Footer menu                                                   |
