@@ -1,5 +1,5 @@
 import type { AstroIntegration } from "astro";
-import type { ThemeConfig } from "./themeConfig";
+import type { ThemeConfig } from "./types";
 import { makeViteVirtualImportPlugin } from "./utils/makeViteVirtualImportPlugin";
 
 export const themePlugin = (config: ThemeConfig): AstroIntegration => {
