@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import type { GetStaticPaths, Page } from "astro";
+import type { CollectionEntry } from "astro:content";
+import PageLayout from "uc-theme/components/PageLayout.astro";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = await getCollection("blog");
+
+  return paginate(posts, { pageSize: 12 });
+}) satisfies GetStaticPaths;
+
+type Props = {
+  page: Page<CollectionEntry<"blog">>;
+};
+
+const { page } = Astro.props;
+---
+
+<PageLayout title="Blog">
+  <h1>Blog</h1>
+  <ol>
+    {
+      page.data.map((post) => (
+        <li>
+          <a href={`/blog/${post.id}`}>{post.data.title}</a>
+        </li>
+      ))
+    }
+  </ol>
+</PageLayout>
