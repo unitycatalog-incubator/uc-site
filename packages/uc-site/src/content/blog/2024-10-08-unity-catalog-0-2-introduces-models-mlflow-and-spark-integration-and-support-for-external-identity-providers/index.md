@@ -1,5 +1,6 @@
 ---
 title: Unity Catalog 0.2 Introduces Models, MLflow and Apache Spark™ Integration, and support for External Identity Providers
+category: guide
 authors:
   - tathagata-das
   - denny-lee

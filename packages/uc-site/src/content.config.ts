@@ -12,6 +12,7 @@ const blog = defineCollection({
       description: z.string().optional(),
       thumbnail: image().optional(),
       authors: z.array(reference("profiles")),
+      category: z.enum(["guide"]),
     }),
 });
 
