@@ -22,5 +22,29 @@
   {
     "id": "avril-aysha",
     "name": "Avril Aysha"
+  },
+  {
+    "id": "ben-wilson",
+    "name": "Ben Wilson",
+    "title": "Software Engineer"
+  },
+  {
+    "id": "jules-damji",
+    "name": "Jules S. Damji",
+    "title": "Technical Staff"
+  },
+  {
+    "id": "vladimir-kolovski",
+    "name": "Vladimir Kolovski",
+    "title": "Senior Staff Software Engineer"
+  },
+  {
+    "id": "sida-shen",
+    "name": "Sida Shen",
+    "title": "Product Manager, CelerData"
+  },
+  {
+    "id": "dipankar-kushari",
+    "name": "Dipankar Kushari"
   }
 ]
