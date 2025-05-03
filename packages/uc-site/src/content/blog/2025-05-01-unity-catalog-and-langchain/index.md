@@ -203,7 +203,7 @@ Excellent, now you’re all set to use this function in LangChain. You can confi
 ├────────────────────┼──────────────────────────────────────────────────────────────────────────────────────────┤
 │ROUTINE_DEFINITION  │import random challenges = [ "Steal a golden egg from a dragon", "Outswim a lake full of  │
 │                    │merpeople", "Solve the riddle of the Sphinx", "Sing lullabies to a Giant", "Tame a wild   │
-│                    │Hippogriff", "Host a Centaur picknick in the Forbidden Forest" ] # Convert the string of  │
+│                    │Hippogriff", "Host a Centaur picnic in the Forbidden Forest" ] # Convert the string of    │
 │                    │names into a list and clean up whitespace name_list = [name.strip() for name in           │
 │                    │names.split(",") if name.strip()] unique_names = list(set(name_list)) # Remove duplicates │
 │                    │selected_champions = sorted(random.sample(unique_names, min(num_champions,                │
