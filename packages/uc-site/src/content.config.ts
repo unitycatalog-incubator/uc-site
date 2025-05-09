@@ -1,8 +1,9 @@
 import { defineCollection, z, reference } from "astro:content";
-import { glob, file } from "astro/loaders";
+import { file } from "astro/loaders";
+import { blogLoader } from "uc-theme/blog";
 
 const blog = defineCollection({
-  loader: glob({
+  loader: blogLoader({
     pattern: "**/index.md",
     base: "./src/content/blog",
   }),

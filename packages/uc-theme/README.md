@@ -25,9 +25,22 @@ export default defineConfig({
 });
 ```
 
-## Usage
+## Configuration
 
-Import components found in `/src/components`:
+| Property           | Type       | Required | Description                                                   |
+| ------------------ | ---------- | -------- | ------------------------------------------------------------- |
+| `siteTitle`        | `string`   | Yes      | Site title                                                    |
+| `defaultImage`     | `string`   | Yes      | Default image to display on pages which don't have an `image` |
+| `menus`            | `object[]` | Yes      | Site menus                                                    |
+| `menus.header`     | `object[]` | Yes      | Header menu                                                   |
+| `menus.headerCtas` | `object[]` | Yes      | Header menu - CTAs                                            |
+| `menus.footer`     | `object[]` | Yes      | Footer menu                                                   |
+
+## Modules
+
+### Components
+
+The `uc-theme/components` module includes different components for your pages.
 
 ```astro
 ---
@@ -40,13 +53,45 @@ import PageLayout from "uc-theme/components/PageLayout.astro";
 </PageLayout>
 ```
 
-## Configuration
+### Blogs
 
-| Property           | Type       | Required | Description                                                   |
-| ------------------ | ---------- | -------- | ------------------------------------------------------------- |
-| `siteTitle`        | `string`   | Yes      | Site title                                                    |
-| `defaultImage`     | `string`   | Yes      | Default image to display on pages which don't have an `image` |
-| `menus`            | `object[]` | Yes      | Site menus                                                    |
-| `menus.header`     | `object[]` | Yes      | Header menu                                                   |
-| `menus.headerCtas` | `object[]` | Yes      | Header menu - CTAs                                            |
-| `menus.footer`     | `object[]` | Yes      | Footer menu                                                   |
+The `uc-theme/blogs` module includes utilties for working with blogs.
+
+We expect blogs to follow the file naming convention: `YYYY-MM-DD-*`. This gives us two benefits:
+
+1. The published date is built into the filename.
+2. This format allows us to keep the blogs directory organized by publish date.
+
+#### How to use
+
+In your `content.config.ts` file:
+
+```ts
+import { blogLoader } from "uc-theme/blog";
+
+const blog = defineCollection({
+  loader: blogLoader({
+    pattern: "**/index.md",
+    base: "./src/content/blog",
+  }),
+});
+
+export const collections = { blog };
+```
+
+This will ensure that blogs are imported properly using the proper naming convention.
+
+Then, in your pages:
+
+```ts
+import { getBlogPublishedAt } from "uc-theme/blog";
+
+// Look up post named 2025-05-08-hello-world
+const post = await getEntry("blog", "hello-world");
+
+// this will be "hello-world"
+console.log(post.id);
+
+// this will be a Date set to 2025-05-08
+const publishedAt = getBlogPublishedAt(post);
+```
