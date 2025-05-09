@@ -12,7 +12,7 @@
   "exports": {
     ".": "./src/index.ts",
     "./blog": "./src/blog/index.ts",
-    "./components/*": "./src/components/*"
+    "./components": "./src/components/index.ts"
   },
   "keywords": [],
   "author": "jakebellacera",

@@ -38,13 +38,15 @@ export default defineConfig({
 
 ## Modules
 
+The `uc-theme` package exports multiple modules.
+
 ### Components
 
 The `uc-theme/components` module includes different components for your pages.
 
 ```astro
 ---
-import PageLayout from "uc-theme/components/PageLayout.astro";
+import { PageLayout } from "uc-theme/components";
 ---
 
 <PageLayout title="My awesome page!">

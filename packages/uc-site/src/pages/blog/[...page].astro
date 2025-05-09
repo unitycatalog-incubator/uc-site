@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import type { GetStaticPaths, Page } from "astro";
 import type { CollectionEntry } from "astro:content";
-import PageLayout from "uc-theme/components/PageLayout.astro";
+import { PageLayout } from "uc-theme/components";
 import { getBlogPublishedAt } from "uc-theme/blog";
 
 export const getStaticPaths = (async ({ paginate }) => {
