@@ -11,7 +11,8 @@
   },
   "exports": {
     ".": "./src/index.ts",
-    "./components/*": "./src/components/*"
+    "./blog": "./src/blog/index.ts",
+    "./components": "./src/components/index.ts"
   },
   "keywords": [],
   "author": "jakebellacera",

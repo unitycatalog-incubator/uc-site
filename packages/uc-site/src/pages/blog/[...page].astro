@@ -2,7 +2,8 @@
 import { getCollection } from "astro:content";
 import type { GetStaticPaths, Page } from "astro";
 import type { CollectionEntry } from "astro:content";
-import PageLayout from "uc-theme/components/PageLayout.astro";
+import { PageLayout } from "uc-theme/components";
+import { getBlogPublishedAt } from "uc-theme/blog";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const posts = await getCollection("blog");
@@ -21,11 +22,16 @@ const { page } = Astro.props;
   <h1>Blog</h1>
   <ol>
     {
-      page.data.map((post) => (
-        <li>
-          <a href={`/blog/${post.id}`}>{post.data.title}</a>
-        </li>
-      ))
+      page.data.map((post) => {
+        const publishedAt = getBlogPublishedAt(post);
+
+        return (
+          <li>
+            {publishedAt.toLocaleDateString()}{" "}
+            <a href={`/blog/${post.id}`}>{post.data.title}</a>
+          </li>
+        );
+      })
     }
   </ol>
 </PageLayout>
