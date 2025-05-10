@@ -2,6 +2,7 @@
 import { getImage } from "astro:assets";
 import { config } from "virtual:uc-theme/config";
 import Nav from "./Nav.astro";
+import "../theme.css";
 
 interface Props {
   title?: string | undefined;
@@ -34,7 +35,7 @@ const imageUrl =
     />
     <slot name="head-last" />
   </head>
-  <body>
+  <body class="text-neutral-0 bg-neutral-950">
     <slot name="body-first" />
     <main>
       <header>

@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+/*
+ * Astro pages are included by default, but we need to explicitly include the
+ * theme's components directory
+ */
+@source "./components";
+
+@theme {
+  /*
+   * Font families
+   */
+
+  --font-sans: "Inter", "Helvetica Neue", "Arial", "sans-serif";
+  --font-display: "Poppins", "Helvetica Neue", "Arial", "sans-serif";
+
+  /*
+   * Colors
+   */
+
+  /* Primary – Pink (#FF6EC7) */
+  --color-primary-50: #fff4fa;
+  --color-primary-100: #ffe1f2;
+  --color-primary-200: #ffc9e9;
+  --color-primary-300: #ff9fd8;
+  --color-primary-400: #ff7dcb;
+  --color-primary-500: #ff6ec7;
+  --color-primary-600: #e85db3;
+  --color-primary-700: #cc499b;
+  --color-primary-800: #a83c81;
+  --color-primary-900: #843065;
+  --color-primary-950: #511b3d;
+
+  /* Secondary – Gold (#FFD700) */
+  --color-secondary-50: #fffbe5;
+  --color-secondary-100: #fff5b8;
+  --color-secondary-200: #ffe97d;
+  --color-secondary-300: #ffde44;
+  --color-secondary-400: #ffd414;
+  --color-secondary-500: #ffd700;
+  --color-secondary-600: #e6bf00;
+  --color-secondary-700: #cca600;
+  --color-secondary-800: #a38200;
+  --color-secondary-900: #7a5f00;
+  --color-secondary-950: #4c3900;
+
+  /* Accent – Sky Blue (#00BFFF) */
+  --color-accent-50: #e5f9ff;
+  --color-accent-100: #b3edff;
+  --color-accent-200: #80e0ff;
+  --color-accent-300: #4dd3ff;
+  --color-accent-400: #1ac6ff;
+  --color-accent-500: #00bfff;
+  --color-accent-600: #00a9e6;
+  --color-accent-700: #008cbd;
+  --color-accent-800: #00719a;
+  --color-accent-900: #005776;
+  --color-accent-950: #002f40;
+
+  /* Neutral */
+  --color-neutral-0: #ffffff;
+  --color-neutral-50: #f7f9fc;
+  --color-neutral-100: #eef2f7;
+  --color-neutral-200: #d9e1ec;
+  --color-neutral-300: #c0d0e0;
+  --color-neutral-400: #9ab2c9;
+  --color-neutral-500: #7495b2;
+  --color-neutral-600: #4f789b;
+  --color-neutral-700: #345c81;
+  --color-neutral-800: #204160;
+  --color-neutral-900: #122a42;
+  --color-neutral-950: #071a2e;
+}
