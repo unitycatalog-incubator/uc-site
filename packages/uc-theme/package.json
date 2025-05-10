@@ -19,5 +19,9 @@
   "license": "Apache-2.0",
   "peerDependencies": {
     "astro": "^5.7.5"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.6",
+    "tailwindcss": "^4.1.6"
   }
 }

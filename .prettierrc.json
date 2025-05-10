@@ -1,7 +1,8 @@
 {
   "tabWidth": 2,
   "useTabs": false,
-  "plugins": ["prettier-plugin-astro"],
+  "plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
+  "tailwindStylesheet": "./packages/uc-theme/src/theme.css",
   "overrides": [
     {
       "files": "*.astro",
