@@ -11,7 +11,8 @@
    * Font families
    */
 
-  --font-sans: "Inter", "Helvetica Neue", "Arial", "sans-serif";
+  --font-sans:
+    "Plus Jakarta Sans", "Inter", "Helvetica Neue", "Arial", sans-serif;
   --font-display: "Poppins", "Helvetica Neue", "Arial", "sans-serif";
 
   /*
@@ -70,4 +71,10 @@
   --color-neutral-800: #204160;
   --color-neutral-900: #122a42;
   --color-neutral-950: #071a2e;
+}
+
+body,
+main,
+.markdown-content {
+  font-family: var(--font-sans);
 }

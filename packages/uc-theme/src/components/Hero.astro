@@ -1,0 +1,102 @@
+---
+import Button from "./Button.astro";
+interface ButtonType {
+  label: string;
+  url: string;
+  style: string; // e.g., 'github', 'slack'
+}
+
+interface Props {
+  title: string;
+  subtitle: string;
+  buttons: ButtonType[];
+}
+
+const { title, subtitle, buttons } = Astro.props;
+---
+
+<section class="hero">
+  <div class="hero-logo-title">
+    <img src="/logo.svg" alt="Unity Catalog Logo" class="hero-logo" />
+    <h1 class="hero-title">{title}</h1>
+  </div>
+  <p class="hero-subtitle">{subtitle}</p>
+  <div class={`hero-ctas${buttons.length === 2 ? " hero-ctas-two" : ""}`}>
+    {
+      buttons.map((btn) => (
+        <Button label={btn.label} url={btn.url} style={btn.style} size="2" />
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem;
+    background: none;
+  }
+  .hero-logo-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero-logo {
+    height: 80px;
+    width: 80px;
+    min-width: 64px;
+  }
+  .hero-title {
+    font-size: 3.75rem;
+    font-weight: 500;
+    color: var(--color-neutral-0);
+    margin: 0;
+    letter-spacing: 1px;
+  }
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-neutral-200);
+    margin-bottom: 2.5rem;
+    margin-top: 0;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+  }
+  .hero-btn.github:hover {
+    background: var(--color-neutral-200);
+  }
+  .hero-btn.slack:hover {
+    background: var(--color-secondary-500);
+  }
+  @media (max-width: 700px) {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+    .hero-logo {
+      height: 64px;
+      width: 64px;
+    }
+    .hero-subtitle {
+      font-size: 1.2rem;
+    }
+    .hero-ctas {
+      flex-direction: column;
+    }
+    .hero-ctas-two > * {
+      width: 100%;
+      min-width: 0;
+      flex: none;
+    }
+  }
+</style>

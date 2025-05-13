@@ -1,14 +1,15 @@
 ---
 layout: ../components/Markdown.astro
+heroTitle: Unity Catalog
+heroSubtitle: Industry's only universal catalog for data and AI
+heroButtons:
+  - label: View GitHub
+    url: https://github.com/unitycatalog/unitycatalog
+    style: github
+  - label: Join Slack Community
+    url: https://go.unitycatalog.io/slack
+    style: slack
 ---
-
-# Unity Catalog
-
-Industry’s only universal catalog for data and AI
-
-[View GitHub](https://github.com/unitycatalog/unitycatalog)
-
-[Join Slack Community](https://go.unitycatalog.io/slack)
 
 - **Interoperability:** Multimodal interface provides interoperability across lakehouse formats like Delta Lake, Apache IcebergTM, major cloud platforms, and various compute engines.
 
@@ -40,15 +41,15 @@ Unity Catalog OSS, with its Universal interface, provides broad interoperability
 
 ## Endorsed by industry leaders and innovators
 
-> “Microsoft is committed to the open-source community and empowering customers with choice. Databricks has been a strategic partner for years and it's great to see them open-sourcing Unity Catalog. We believe truly open standards with broad industry participation are in customers' best interests. Our collaboration with Databricks continues to elevate Microsoft Azure as the best choice for data and AI workloads.”
+> "Microsoft is committed to the open-source community and empowering customers with choice. Databricks has been a strategic partner for years and it's great to see them open-sourcing Unity Catalog. We believe truly open standards with broad industry participation are in customers' best interests. Our collaboration with Databricks continues to elevate Microsoft Azure as the best choice for data and AI workloads."
 
-<cite>— Jessica Hawk, CVP Data, AI and Digital Applications, Microsoft</cite>
+<cite>— Jessica Hawk, CVP Data, AI and Digital Applications, Microsoft</cite>
 
-> "AWS welcomes Databricks' move to open source Unity Catalog. AWS is committed to working with the industry on open source solutions that enable choice and interoperability for customers.”
+> "AWS welcomes Databricks' move to open source Unity Catalog. AWS is committed to working with the industry on open source solutions that enable choice and interoperability for customers."
 
-<cite>— Chris Grusz, Managing Director of Technology Partnerships, AWS</cite>
+<cite>— Chris Grusz, Managing Director of Technology Partnerships, AWS</cite>
 
-> "Google is committed to open, flexible solutions that empower customers to maximize the value of their data. Databricks’ strategy to open up the Unity Catalog standard for data and AI aligns very well with our strategy"
+> "Google is committed to open, flexible solutions that empower customers to maximize the value of their data. Databricks' strategy to open up the Unity Catalog standard for data and AI aligns very well with our strategy"
 
 <cite>— Ritika Suri, Director, Data and AI Technology Partnerships, Google Cloud</cite>
 
@@ -64,19 +65,19 @@ Unity Catalog OSS, with its Universal interface, provides broad interoperability
 
 <cite>— Harrison Chase, CEO & Founder, LangChain</cite>
 
-> “Unstructured is the leading unstructured data ETL solution for LLMs - helping organizations transform their data from raw to RAG-ready. Our partnership with Unity Catalog OSS makes perfect sense, as we break down data silos and accelerate AI/ML development in enterprises. We are excited to partner with Databricks to develop this open standard for AI use cases and to standardize metadata for unstructured data – helping our customers operate at the cutting edge of AI.”
+> "Unstructured is the leading unstructured data ETL solution for LLMs - helping organizations transform their data from raw to RAG-ready. Our partnership with Unity Catalog OSS makes perfect sense, as we break down data silos and accelerate AI/ML development in enterprises. We are excited to partner with Databricks to develop this open standard for AI use cases and to standardize metadata for unstructured data – helping our customers operate at the cutting edge of AI."
 
 <cite>— Brian Raymond, CEO & Founder, UnstructuredIO</cite>
 
-> “At Eventual, we have built Daft, the leading open source distributed query engine for multimodal data. We believe that unifying compute for tabular and unstructured data is not enough and that a multimodal catalog is crucial to build GenAI data lakehouses. We are excited to partner with Databricks and other AI innovators to develop the Unity Catalog open standard for modern data+AI workloads.”
+> "At Eventual, we have built Daft, the leading open source distributed query engine for multimodal data. We believe that unifying compute for tabular and unstructured data is not enough and that a multimodal catalog is crucial to build GenAI data lakehouses. We are excited to partner with Databricks and other AI innovators to develop the Unity Catalog open standard for modern data+AI workloads."
 
 <cite>— Sammy Sidhu, CEO & Founder, Eventual Computing</cite>
 
-> “At Granica, we champion data democratization and freedom from vendor lock-in. Our Safe Room technology ensures privacy, trust, and safety in generative AI workflows while supporting open standards like Unity Catalog, Delta Lake, and Apache Iceberg. Unity Catalog's vendor-neutral architecture and robust governance solutions align with our vision of providing customers with flexibility and control over their data. We are excited to contribute to this open ecosystem, driving innovation and enabling customers to seamlessly work with their data across best-of-breed platforms”
+> "At Granica, we champion data democratization and freedom from vendor lock-in. Our Safe Room technology ensures privacy, trust, and safety in generative AI workflows while supporting open standards like Unity Catalog, Delta Lake, and Apache Iceberg. Unity Catalog's vendor-neutral architecture and robust governance solutions align with our vision of providing customers with flexibility and control over their data. We are excited to contribute to this open ecosystem, driving innovation and enabling customers to seamlessly work with their data across best-of-breed platforms"
 
 <cite>— Rahul Ponnala, CEO & Co-Founder, Granica</cite>
 
-> “Open sourcing Unity Catalog is a pivotal step towards a more collaborative and innovative data ecosystem. By making this technology accessible, Databricks is fostering an environment where the entire community can contribute to and benefit from enhanced data governance and management capabilities. This move aligns with our vision at Onehouse and Apache XTable (Incubating) to support open format interoperability that drives progress and innovation for all.”
+> "Open sourcing Unity Catalog is a pivotal step towards a more collaborative and innovative data ecosystem. By making this technology accessible, Databricks is fostering an environment where the entire community can contribute to and benefit from enhanced data governance and management capabilities. This move aligns with our vision at Onehouse and Apache XTable (Incubating) to support open format interoperability that drives progress and innovation for all."
 
 <cite>—Vinoth Chandar, CEO & Co-Founder, Onehouse</cite>
 
@@ -90,15 +91,15 @@ Unity Catalog OSS, with its Universal interface, provides broad interoperability
 
 > "We are thrilled to see Databricks open source Unity Catalog as an open standard for data and AI. This move will provide our customers with greater choice and flexibility in their data ecosystem, ensuring seamless integration and maximizing interoperability with Fivetran's platform as they ingest critical data to Databricks."
 
-<cite>— Anjan Kundavaram, CPO, Fivetran</cite>
+<cite>— Anjan Kundavaram, CPO, Fivetran</cite>
 
 > "The exposure of native access patterns within Unity Catalog has transformed how our business is able to streamline access to data and apply governance rules at scale - with no performance impact. Databricks continued investment in a community to accelerate services to make data controls easier to build allows our customers to govern with greater ease and manage the massive volume of new data consumers being onboarded in the age of AI."
 
-<cite>— Matthew Carroll, CEO, Immuta</cite>
+<cite>— Matthew Carroll, CEO, Immuta</cite>
 
 > "We are excited to see the opportunity for our joint customers as Databricks open-sources Unity Catalog as an open standard for data and AI. With Unity Catalog OSS and the Informatica intelligent Data Management Cloud, customers can gain greater choice, flexibility and interoperability in their data ecosystems."
 
-<cite>— Brett Roscoe, GM and SVP Cloud Data Governance and Cloud Operations, Informatica</cite>
+<cite>— Brett Roscoe, GM and SVP Cloud Data Governance and Cloud Operations, Informatica</cite>
 
 ## Get started today!
 
