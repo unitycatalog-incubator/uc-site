@@ -18,39 +18,41 @@ const { items, logo, buttons = [] } = Astro.props;
 ---
 
 <nav class="navbar" x-data="{ open: false }">
-  <div class="nav-left">
-    {logo ? logo : <slot name="logo" />}
-  </div>
-  <div class="nav-center">
-    {
-      items.map((item) => (
-        <a class="nav-link" href={item.url}>
-          {item.label}
-        </a>
-      ))
-    }
-  </div>
-  <div class="nav-right">
-    {
-      buttons.length > 0 ? (
-        buttons.map((btn) => (
-          <Button
-            label={btn.label}
-            url={btn.url}
-            style={btn.style}
-            size="many"
-          />
+  <div class="navbar-content">
+    <div class="nav-left">
+      {logo ? logo : <slot name="logo" />}
+    </div>
+    <div class="nav-center">
+      {
+        items.map((item) => (
+          <a class="nav-link" href={item.url}>
+            {item.label}
+          </a>
         ))
-      ) : (
-        <slot name="buttons" />
-      )
-    }
+      }
+    </div>
+    <div class="nav-right">
+      {
+        buttons.length > 0 ? (
+          buttons.map((btn) => (
+            <Button
+              label={btn.label}
+              url={btn.url}
+              style={btn.style}
+              size="many"
+            />
+          ))
+        ) : (
+          <slot name="buttons" />
+        )
+      }
+    </div>
+    <button class="nav-hamburger" aria-label="Open menu" @click="open = true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
-  <button class="nav-hamburger" aria-label="Open menu" @click="open = true">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
 
   <!-- Mobile Menu Overlay -->
   <div
@@ -106,15 +108,23 @@ const { items, logo, buttons = [] } = Astro.props;
 
 <style>
   .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: var(--color-neutral-950);
+    z-index: 10;
+  }
+  .navbar-content {
+    max-width: 100rem;
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--color-neutral-950);
-    padding: 0.75rem 3rem;
-    min-height: 64px;
-    position: relative;
-    z-index: 10;
-    margin-bottom: 2rem;
+    padding: 0.75rem 2rem;
+    min-height: 5rem;
   }
   .nav-left {
     display: flex;
@@ -151,30 +161,6 @@ const { items, logo, buttons = [] } = Astro.props;
     gap: 1rem;
     flex: 1 1 1;
     justify-content: flex-end;
-  }
-  .nav-btn {
-    border-radius: 6px;
-    padding: 0.75rem 1.15vw;
-    font-weight: 500;
-    font-size: 1.125rem;
-    text-decoration: none;
-    display: inline-block;
-    transition:
-      background 0.2s,
-      color 0.2s;
-    border: none;
-  }
-  .nav-btn.github {
-    background: var(--color-neutral-0);
-    color: var(--color-neutral-950);
-  }
-  .nav-btn.slack {
-    background: var(--color-secondary-500);
-    color: var(--color-neutral-950);
-  }
-  .nav-btn.linkedin {
-    background: var(--color-primary-500);
-    color: var(--color-neutral-0);
   }
   .nav-btn.github:hover {
     background: var(--color-neutral-200);
