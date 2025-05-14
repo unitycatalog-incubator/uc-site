@@ -13,6 +13,51 @@ interface Props {
 }
 
 const { title, subtitle, buttons } = Astro.props;
+
+const leftLogos = [
+  "puppygraph.svg",
+  "fivetran.svg",
+  "starrocks.svg",
+  "nvidia.svg",
+  "aws.svg",
+  "salesforce.svg",
+  "tecton.svg",
+  "langchain.svg",
+  "confluence.svg",
+  "dataframe.svg",
+  "Informatica.svg",
+];
+const rightLogos = [
+  "azure.svg",
+  "llama-index-logo.svg",
+  "granica.svg",
+  "dbt-labs.svg",
+  "duckdb.svg",
+  "databricks.svg",
+  "google.svg",
+  "unstructured.svg",
+  "immuta.svg",
+  "lancedb.svg",
+  "apache.svg",
+];
+
+const leftLogoPositions = [
+  { top: "5%", left: "100%" },
+  { top: "10%", left: "80%" },
+  { top: "15%", left: "50%" },
+  { top: "35%", left: "90%" },
+  { top: "30%", left: "65%" },
+  { top: "55%", left: "79%" },
+  { top: "65%", left: "32%" },
+  { top: "75%", left: "60%" },
+  { top: "30%", left: "28%" },
+  { top: "50%", left: "50%" },
+  { top: "5%", left: "18%" },
+];
+const rightLogoPositions = leftLogoPositions.map((pos) => ({
+  top: pos.top,
+  right: pos.left,
+}));
 ---
 
 <section class="hero">
@@ -28,75 +73,238 @@ const { title, subtitle, buttons } = Astro.props;
       ))
     }
   </div>
-</section>
 
-<style>
-  .hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 4rem;
-    margin-top: 5rem;
-  }
-  .hero-logo-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  .hero-logo {
-    height: 80px;
-    width: 80px;
-    min-width: 64px;
-  }
-  .hero-title {
-    font-size: 3.75rem;
-    font-weight: 500;
-    color: var(--color-neutral-0);
-    margin: 0;
-    letter-spacing: 1px;
-  }
-  .hero-subtitle {
-    font-size: 1.25rem;
-    color: var(--color-neutral-200);
-    margin-bottom: 2.5rem;
-    margin-top: 0;
-  }
-  .hero-ctas {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 600px;
-  }
-  .hero-btn.github:hover {
-    background: var(--color-neutral-200);
-  }
-  .hero-btn.slack:hover {
-    background: var(--color-secondary-500);
-  }
-  @media (max-width: 700px) {
-    .hero-title {
-      font-size: 2.5rem;
+  <div class="hero-grid">
+    <div
+      class="hero-grid-left"
+      style="position: relative; width: 100%; height: 400px; min-width: 120px;"
+    >
+      <div
+        class="hero-logos hero-logos-left"
+        style="position: relative; width: 100%; height: 100%;"
+      >
+        {
+          leftLogos.map((logo, i) => (
+            <img
+              src={`/logos/${logo}`}
+              alt=""
+              class="hero-logo-cloud"
+              loading="lazy"
+              style={`position: absolute; top: ${leftLogoPositions[i].top}; left: ${leftLogoPositions[i].left};`}
+            />
+          ))
+        }
+      </div>
+    </div>
+    <div class="hero-grid-middle">
+      <div class="hero-image-stack">
+        <img
+          src="/images/hero_background.svg"
+          alt=""
+          class="hero-bg-svg"
+          aria-hidden="true"
+        />
+        <img
+          src="/images/hero_background.svg"
+          alt=""
+          class="hero-bg-svg-2"
+          aria-hidden="true"
+        />
+        <img
+          src="/images/uc-hero-image.webp"
+          alt="Tables, AI Assets, Unstructured Data"
+          class="uc-hero-image"
+        />
+      </div>
+    </div>
+    <div
+      class="hero-grid-right"
+      style="position: relative; width: 100%; height: 400px; min-width: 120px;"
+    >
+      <div
+        class="hero-logos hero-logos-right"
+        style="position: relative; width: 100%; height: 100%;"
+      >
+        {
+          rightLogos.map((logo, i) => (
+            <img
+              src={`/logos/${logo}`}
+              alt=""
+              class="hero-logo-cloud"
+              loading="lazy"
+              style={`position: absolute; top: ${rightLogoPositions[i].top}; right: ${rightLogoPositions[i].right};`}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem;
+      margin-top: 10rem;
+    }
+    .hero-logo-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
     }
     .hero-logo {
-      height: 64px;
-      width: 64px;
+      height: 80px;
+      width: 80px;
+      min-width: 64px;
+    }
+    .hero-title {
+      font-size: 3.75rem;
+      font-weight: 500;
+      color: var(--color-neutral-0);
+      margin: 0;
+      letter-spacing: 1px;
     }
     .hero-subtitle {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
+      color: var(--color-neutral-200);
+      margin: 0 0 2.5rem;
     }
     .hero-ctas {
-      flex-direction: column;
-    }
-    .hero-ctas-two > * {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
       width: 100%;
-      min-width: 0;
-      flex: none;
+      max-width: 600px;
     }
-  }
-</style>
+
+    /* Grid */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: center;
+      justify-items: center;
+      margin-top: 10rem;
+      margin-bottom: 5rem;
+      width: 100%;
+    }
+
+    .hero-grid-middle {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 400px;
+    }
+
+    .hero-image-stack {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-bg-svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300%;
+      height: 200%;
+      max-width: 70rem;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      pointer-events: none;
+      user-select: none;
+      opacity: 0.7;
+    }
+
+    .hero-bg-svg-2 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 200%;
+      height: 200%;
+      max-width: 70rem;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      pointer-events: none;
+      user-select: none;
+      filter: blur(0px) brightness(1.7);
+      opacity: 0.7;
+    }
+
+    .uc-hero-image {
+      position: relative;
+      max-width: 400px;
+      z-index: 2;
+      border-radius: 50%;
+      box-shadow: 0 0 50px 50px rgba(255, 217, 0, 0.2);
+    }
+
+    .hero-grid-left,
+    .hero-grid-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    .hero-logos {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 80%;
+      gap: 1.2rem;
+    }
+    .hero-logo-cloud {
+      width: 54px;
+      height: 54px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 2px 12px 0 #0002;
+      object-fit: contain;
+      padding: 6px;
+      transition: transform 0.2s;
+      position: absolute;
+    }
+    .hero-logo-cloud:hover {
+      transform: scale(1.12) rotate(-6deg);
+      box-shadow: 0 4px 24px 0 #0004;
+    }
+    .hero-logos-left {
+      left: 0;
+    }
+    .hero-logos-right {
+      right: 0;
+    }
+
+    @media (max-width: 700px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      .hero-logo {
+        height: 64px;
+        width: 64px;
+      }
+      .hero-subtitle {
+        font-size: 1.2rem;
+      }
+      .hero-ctas {
+        flex-direction: column;
+      }
+      .hero-ctas-two > * {
+        width: 100%;
+        min-width: 0;
+        flex: none;
+      }
+    }
+  </style>
+</section>
