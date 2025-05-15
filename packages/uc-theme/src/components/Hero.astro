@@ -42,7 +42,7 @@ const rightLogos = [
 ];
 
 const leftLogoPositions = [
-  { top: "5%", left: "100%" },
+  { top: "0%", left: "95%" },
   { top: "10%", left: "80%" },
   { top: "15%", left: "50%" },
   { top: "35%", left: "90%" },
@@ -87,7 +87,7 @@ const rightLogoPositions = leftLogoPositions.map((pos) => ({
           leftLogos.map((logo, i) => (
             <img
               src={`/logos/${logo}`}
-              alt=""
+              alt="hero_logo"
               class="hero-logo-cloud"
               loading="lazy"
               style={`position: absolute; top: ${leftLogoPositions[i].top}; left: ${leftLogoPositions[i].left};`}
@@ -100,13 +100,13 @@ const rightLogoPositions = leftLogoPositions.map((pos) => ({
       <div class="hero-image-stack">
         <img
           src="/images/hero_background.svg"
-          alt=""
+          alt="hero_background"
           class="hero-bg-svg"
           aria-hidden="true"
         />
         <img
           src="/images/hero_background.svg"
-          alt=""
+          alt="hero_background"
           class="hero-bg-svg-2"
           aria-hidden="true"
         />
@@ -270,7 +270,7 @@ const rightLogoPositions = leftLogoPositions.map((pos) => ({
       background: #fff;
       border-radius: 50%;
       box-shadow: 0 2px 12px 0 #0002;
-      object-fit: contain;
+      object-fit: cover;
       padding: 6px;
       transition: transform 0.2s;
       position: absolute;
