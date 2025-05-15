@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import logo from "../../../uc-site/public/logo.svg";
 import Button from "./Button.astro";
+import "../theme.css";
 
 interface ButtonType {
   label: string;
@@ -17,7 +18,7 @@ interface Props {
 
 const { title, subtitle, buttons } = Astro.props;
 
-const leftLogos = [
+const logos = [
   "puppygraph.svg",
   "fivetran.svg",
   "starrocks.svg",
@@ -29,8 +30,6 @@ const leftLogos = [
   "confluence.svg",
   "dataframe.svg",
   "Informatica.svg",
-];
-const rightLogos = [
   "azure.svg",
   "llama-index-logo.svg",
   "granica.svg",
@@ -44,23 +43,39 @@ const rightLogos = [
   "apache.svg",
 ];
 
-const leftLogoPositions = [
-  { top: "0%", left: "95%" },
-  { top: "10%", left: "70%" },
-  { top: "5%", left: "45%" },
-  { top: "35%", left: "90%" },
-  { top: "30%", left: "65%" },
-  { top: "55%", left: "79%" },
-  { top: "65%", left: "32%" },
-  { top: "60%", left: "50%" },
-  { top: "30%", left: "10%" },
-  { top: "30%", left: "40%" },
-  { top: "5%", left: "15%" },
+const logoPositions = [
+  // Top left quadrant
+  { top: "30%", left: "15%", size: 70 }, // puppygraph.svg
+  { top: "25%", left: "8%", size: 60 }, // fivetran.svg
+  { top: "30%", left: "25%", size: 60 }, // starrocks.svg
+  { top: "20%", left: "20%", size: 60 }, // nvidia.svg
+  { top: "40%", left: "10%", size: 60 }, // aws.svg
+
+  // Top right quadrant
+  { top: "45%", right: "15%", size: 70 }, // salesforce.svg
+  { top: "25%", right: "8%", size: 60 }, // tecton.svg
+  { top: "30%", right: "25%", size: 60 }, // langchain.svg
+  { top: "20%", right: "20%", size: 60 }, // confluence.svg
+  { top: "35%", right: "12%", size: 60 }, // dataframe.svg
+
+  // Bottom left quadrant
+  { top: "70%", left: "15%", size: 70 }, // Informatica.svg
+  { top: "50%", left: "18%", size: 60 }, // azure.svg
+  { top: "65%", left: "25%", size: 60 }, // llama-index-logo.svg
+  { top: "60%", left: "10%", size: 60 }, // granica.svg
+  { top: "45%", left: "25%", size: 60 }, // dbt-labs.svg
+
+  // Bottom right quadrant
+  { top: "45%", right: "25%", size: 70 }, // duckdb.svg
+  { top: "55%", right: "8%", size: 60 }, // databricks.svg
+  { top: "65%", right: "25%", size: 60 }, // google.svg
+  { top: "60%", right: "18%", size: 60 }, // unstructured.svg
+  { top: "68%", right: "12%", size: 60 }, // immuta.svg
+
+  // Center left and right
+  { top: "45%", left: "0%", size: 70 }, // lancedb.svg
+  { top: "45%", right: "0%", size: 70 }, // apache.svg
 ];
-const rightLogoPositions = leftLogoPositions.map((pos) => ({
-  top: pos.top,
-  right: pos.left,
-}));
 ---
 
 <section class="hero">
@@ -85,83 +100,49 @@ const rightLogoPositions = leftLogoPositions.map((pos) => ({
   </div>
 
   <div class="hero-grid">
-    <div
-      class="hero-grid-left"
-      style="position: relative; width: 100%; height: 400px; min-width: 120px;"
-    >
-      <div
-        class="hero-logos hero-logos-left"
-        style="position: relative; width: 100%; height: 100%;"
-      >
-        {
-          leftLogos.map((logo, i) => (
-            <Image
-              src={`/logos/${logo}`}
-              alt="hero_logo"
-              class="hero-logo-cloud"
-              loading="lazy"
-              style={`position: absolute; top: ${leftLogoPositions[i].top}; left: ${leftLogoPositions[i].left};`}
-              width={54}
-              height={54}
-              loading="eager"
-            />
-          ))
-        }
-      </div>
+    <div class="hero-logos">
+      {
+        logos.map((logo, i) => (
+          <Image
+            src={`/logos/${logo}`}
+            alt="hero_logo"
+            class="hero-logo-cloud"
+            loading="lazy"
+            style={`position: absolute; top: ${logoPositions[i].top}; ${logoPositions[i].left ? `left: ${logoPositions[i].left};` : `right: ${logoPositions[i].right};`}`}
+            width={logoPositions[i].size}
+            height={logoPositions[i].size}
+            loading="eager"
+          />
+        ))
+      }
     </div>
-    <div class="hero-grid-middle">
-      <div class="hero-image-stack">
-        <Image
-          src="/images/hero_background.svg"
-          alt="hero_background"
-          class="hero-bg-svg"
-          width={800}
-          height={600}
-          aria-hidden="true"
-          loading="eager"
-        />
-        <Image
-          src="/images/hero_background.svg"
-          alt="hero_background"
-          class="hero-bg-svg-2"
-          width={800}
-          height={600}
-          aria-hidden="true"
-          loading="eager"
-        />
-        <Image
-          src="/images/uc-hero-image.webp"
-          alt="Tables, AI Assets, Unstructured Data"
-          class="uc-hero-image"
-          width={400}
-          height={400}
-          loading="eager"
-        />
-      </div>
-    </div>
-    <div
-      class="hero-grid-right"
-      style="position: relative; width: 100%; height: 400px; min-width: 120px;"
-    >
-      <div
-        class="hero-logos hero-logos-right"
-        style="position: relative; width: 100%; height: 100%;"
-      >
-        {
-          rightLogos.map((logo, i) => (
-            <Image
-              src={`/logos/${logo}`}
-              alt="hero_logo"
-              class="hero-logo-cloud"
-              loading="lazy"
-              style={`position: absolute; top: ${rightLogoPositions[i].top}; right: ${rightLogoPositions[i].right};`}
-              width={54}
-              height={54}
-              loading="eager"
-            />
-          ))
-        }
-      </div>
+    <div class="hero-image-stack">
+      <Image
+        src="/images/hero_background.svg"
+        alt="hero_background"
+        class="hero-bg-svg"
+        width={800}
+        height={600}
+        aria-hidden="true"
+        loading="eager"
+      />
+      <Image
+        src="/images/hero_background.svg"
+        alt="hero_background"
+        class="hero-bg-svg-2"
+        width={800}
+        height={600}
+        aria-hidden="true"
+        loading="eager"
+      />
+      <Image
+        src="/images/uc-hero-image.webp"
+        alt="Tables, AI Assets, Unstructured Data"
+        class="uc-hero-image"
+        width={400}
+        height={400}
+        loading="eager"
+      />
     </div>
   </div>
 
@@ -172,8 +153,11 @@ const rightLogoPositions = leftLogoPositions.map((pos) => ({
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 4rem;
+      padding: 4rem 1rem;
       margin-top: 10rem;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
     }
     .hero-logo-title {
       display: flex;
@@ -210,22 +194,15 @@ const rightLogoPositions = leftLogoPositions.map((pos) => ({
 
     /* Grid */
     .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      align-items: center;
-      justify-items: center;
-      margin-top: 10rem;
-      margin-bottom: 5rem;
-      width: 100%;
-    }
-
-    .hero-grid-middle {
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
-      min-height: 400px;
+      max-width: 1200px;
+      margin-top: 3rem;
+      padding: 0 1rem;
+      min-height: 600px;
     }
 
     .hero-image-stack {
@@ -235,6 +212,8 @@ const rightLogoPositions = leftLogoPositions.map((pos) => ({
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 1;
+      margin: 2rem 0;
     }
 
     .hero-bg-svg {
@@ -259,7 +238,7 @@ const rightLogoPositions = leftLogoPositions.map((pos) => ({
       height: 200%;
       max-width: 70rem;
       transform: translate(-50%, -50%);
-      z-index: 1;
+      z-index: 2;
       pointer-events: none;
       user-select: none;
       filter: blur(0px) brightness(1.7);
@@ -269,38 +248,63 @@ const rightLogoPositions = leftLogoPositions.map((pos) => ({
     .uc-hero-image {
       position: relative;
       max-width: 400px;
-      z-index: 2;
+      z-index: 3;
       border-radius: 50%;
-      box-shadow: 0 0 50px 50px rgba(255, 217, 0, 0.2);
+      box-shadow: 0 0 50px 50px rgba(255, 215, 0, 0.1);
     }
 
-    .hero-grid-left,
-    .hero-grid-right {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-    }
     .hero-logos {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 80%;
-      gap: 1.2rem;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
     }
+
     .hero-logo-cloud {
-      width: 54px;
-      height: 54px;
-      background: #fff;
+      background: var(--color-neutral-0);
       border-radius: 50%;
-      box-shadow: 0 2px 12px 0 #0002;
+      box-shadow: 0 2px 12px 0 var(--color-neutral-900);
       object-fit: cover;
       padding: 6px;
       transition: transform 0.2s;
       position: absolute;
       animation: float 15s linear infinite;
       transform-origin: center center;
+      opacity: 0.9;
+    }
+
+    .hero-logo-cloud:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 24px 0 var(--color-neutral-800);
+      animation-play-state: paused;
+    }
+
+    @media (max-width: 1024px) {
+      .hero {
+        padding: 4rem 1rem;
+        margin-top: 10rem;
+      }
+
+      .hero-grid {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 1200px;
+        margin: 1rem auto;
+        padding: 0 1rem;
+        min-height: 500px;
+      }
+
+      .hero-image-stack {
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .hero-logo-cloud {
+        transform: scale(0.7);
+      }
     }
 
     @keyframes float {
@@ -309,65 +313,6 @@ const rightLogoPositions = leftLogoPositions.map((pos) => ({
       }
       to {
         transform: rotate(360deg) translateX(12px) rotate(-360deg);
-      }
-    }
-
-    /* Add different animation durations for variety */
-    .hero-logos-left img:nth-child(3n) {
-      animation-duration: 15s;
-      --start-rotation: 0deg;
-    }
-    .hero-logos-left img:nth-child(3n + 1) {
-      animation-duration: 18s;
-      --start-rotation: 120deg;
-    }
-    .hero-logos-left img:nth-child(3n + 2) {
-      animation-duration: 16s;
-      --start-rotation: 240deg;
-    }
-    .hero-logos-right img:nth-child(3n) {
-      animation-duration: 16s;
-      --start-rotation: 60deg;
-    }
-    .hero-logos-right img:nth-child(3n + 1) {
-      animation-duration: 15s;
-      --start-rotation: 180deg;
-    }
-    .hero-logos-right img:nth-child(3n + 2) {
-      animation-duration: 18s;
-      --start-rotation: 300deg;
-    }
-
-    .hero-logo-cloud:hover {
-      transform: scale(1.1);
-      box-shadow: 0 4px 24px 0 #0004;
-      animation-play-state: paused;
-    }
-    .hero-logos-left {
-      left: 0;
-    }
-    .hero-logos-right {
-      right: 0;
-    }
-
-    @media (max-width: 700px) {
-      .hero-title {
-        font-size: 2.5rem;
-      }
-      .hero-logo {
-        height: 64px;
-        width: 64px;
-      }
-      .hero-subtitle {
-        font-size: 1.2rem;
-      }
-      .hero-ctas {
-        flex-direction: column;
-      }
-      .hero-ctas-two > * {
-        width: 100%;
-        min-width: 0;
-        flex: none;
       }
     }
   </style>
