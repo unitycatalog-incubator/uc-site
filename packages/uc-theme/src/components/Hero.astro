@@ -274,10 +274,52 @@ const rightLogoPositions = leftLogoPositions.map((pos) => ({
       padding: 6px;
       transition: transform 0.2s;
       position: absolute;
+      animation: float 15s linear infinite;
+      transform-origin: center center;
     }
+
+    @keyframes float {
+      from {
+        transform: rotate(var(--start-rotation, 0deg)) translateX(20px)
+          rotate(calc(-1 * var(--start-rotation, 0deg)));
+      }
+      to {
+        transform: rotate(calc(360deg + var(--start-rotation, 0deg)))
+          translateX(20px)
+          rotate(calc(-1 * (360deg + var(--start-rotation, 0deg))));
+      }
+    }
+
+    /* Add different animation durations for variety */
+    .hero-logos-left img:nth-child(3n) {
+      animation-duration: 15s;
+      --start-rotation: 0deg;
+    }
+    .hero-logos-left img:nth-child(3n + 1) {
+      animation-duration: 18s;
+      --start-rotation: 120deg;
+    }
+    .hero-logos-left img:nth-child(3n + 2) {
+      animation-duration: 16s;
+      --start-rotation: 240deg;
+    }
+    .hero-logos-right img:nth-child(3n) {
+      animation-duration: 16s;
+      --start-rotation: 60deg;
+    }
+    .hero-logos-right img:nth-child(3n + 1) {
+      animation-duration: 15s;
+      --start-rotation: 180deg;
+    }
+    .hero-logos-right img:nth-child(3n + 2) {
+      animation-duration: 18s;
+      --start-rotation: 300deg;
+    }
+
     .hero-logo-cloud:hover {
-      transform: scale(1.12) rotate(-6deg);
+      transform: scale(1.1);
       box-shadow: 0 4px 24px 0 #0004;
+      animation-play-state: paused;
     }
     .hero-logos-left {
       left: 0;
