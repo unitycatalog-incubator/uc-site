@@ -46,16 +46,16 @@ const rightLogos = [
 
 const leftLogoPositions = [
   { top: "0%", left: "95%" },
-  { top: "10%", left: "80%" },
-  { top: "15%", left: "50%" },
+  { top: "10%", left: "70%" },
+  { top: "5%", left: "45%" },
   { top: "35%", left: "90%" },
   { top: "30%", left: "65%" },
   { top: "55%", left: "79%" },
   { top: "65%", left: "32%" },
-  { top: "75%", left: "60%" },
-  { top: "30%", left: "28%" },
-  { top: "50%", left: "50%" },
-  { top: "5%", left: "18%" },
+  { top: "60%", left: "50%" },
+  { top: "30%", left: "10%" },
+  { top: "30%", left: "40%" },
+  { top: "5%", left: "15%" },
 ];
 const rightLogoPositions = leftLogoPositions.map((pos) => ({
   top: pos.top,
@@ -305,13 +305,10 @@ const rightLogoPositions = leftLogoPositions.map((pos) => ({
 
     @keyframes float {
       from {
-        transform: rotate(var(--start-rotation, 0deg)) translateX(20px)
-          rotate(calc(-1 * var(--start-rotation, 0deg)));
+        transform: rotate(0deg) translateX(12px) rotate(0deg);
       }
       to {
-        transform: rotate(calc(360deg + var(--start-rotation, 0deg)))
-          translateX(20px)
-          rotate(calc(-1 * (360deg + var(--start-rotation, 0deg))));
+        transform: rotate(360deg) translateX(12px) rotate(-360deg);
       }
     }
 
