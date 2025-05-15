@@ -1,5 +1,8 @@
 ---
+import { Image } from "astro:assets";
+import logo from "../../../uc-site/public/logo.svg";
 import Button from "./Button.astro";
+
 interface ButtonType {
   label: string;
   url: string;
@@ -62,7 +65,14 @@ const rightLogoPositions = leftLogoPositions.map((pos) => ({
 
 <section class="hero">
   <div class="hero-logo-title">
-    <img src="/logo.svg" alt="Unity Catalog Logo" class="hero-logo" />
+    <Image
+      src={logo}
+      alt="Unity Catalog Logo"
+      class="hero-logo"
+      width={80}
+      height={80}
+      loading="eager"
+    />
     <h1 class="hero-title">{title}</h1>
   </div>
   <p class="hero-subtitle">{subtitle}</p>
@@ -85,12 +95,15 @@ const rightLogoPositions = leftLogoPositions.map((pos) => ({
       >
         {
           leftLogos.map((logo, i) => (
-            <img
+            <Image
               src={`/logos/${logo}`}
               alt="hero_logo"
               class="hero-logo-cloud"
               loading="lazy"
               style={`position: absolute; top: ${leftLogoPositions[i].top}; left: ${leftLogoPositions[i].left};`}
+              width={54}
+              height={54}
+              loading="eager"
             />
           ))
         }
@@ -98,22 +111,31 @@ const rightLogoPositions = leftLogoPositions.map((pos) => ({
     </div>
     <div class="hero-grid-middle">
       <div class="hero-image-stack">
-        <img
+        <Image
           src="/images/hero_background.svg"
           alt="hero_background"
           class="hero-bg-svg"
+          width={800}
+          height={600}
           aria-hidden="true"
+          loading="eager"
         />
-        <img
+        <Image
           src="/images/hero_background.svg"
           alt="hero_background"
           class="hero-bg-svg-2"
+          width={800}
+          height={600}
           aria-hidden="true"
+          loading="eager"
         />
-        <img
+        <Image
           src="/images/uc-hero-image.webp"
           alt="Tables, AI Assets, Unstructured Data"
           class="uc-hero-image"
+          width={400}
+          height={400}
+          loading="eager"
         />
       </div>
     </div>
@@ -127,12 +149,15 @@ const rightLogoPositions = leftLogoPositions.map((pos) => ({
       >
         {
           rightLogos.map((logo, i) => (
-            <img
+            <Image
               src={`/logos/${logo}`}
-              alt=""
+              alt="hero_logo"
               class="hero-logo-cloud"
               loading="lazy"
               style={`position: absolute; top: ${rightLogoPositions[i].top}; right: ${rightLogoPositions[i].right};`}
+              width={54}
+              height={54}
+              loading="eager"
             />
           ))
         }
