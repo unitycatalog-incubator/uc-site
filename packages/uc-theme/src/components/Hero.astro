@@ -46,31 +46,31 @@ const logos = [
 const logoPositions = [
   // Top left quadrant
   { top: "30%", left: "15%", size: 70 }, // puppygraph.svg
-  { top: "25%", left: "8%", size: 60 }, // fivetran.svg
-  { top: "30%", left: "25%", size: 60 }, // starrocks.svg
-  { top: "20%", left: "20%", size: 60 }, // nvidia.svg
-  { top: "40%", left: "10%", size: 60 }, // aws.svg
+  { top: "25%", left: "8%", size: 50 }, // fivetran.svg
+  { top: "30%", left: "25%", size: 50 }, // starrocks.svg
+  { top: "20%", left: "20%", size: 50 }, // nvidia.svg
+  { top: "40%", left: "10%", size: 50 }, // aws.svg
 
   // Top right quadrant
   { top: "45%", right: "15%", size: 70 }, // salesforce.svg
-  { top: "25%", right: "8%", size: 60 }, // tecton.svg
-  { top: "30%", right: "25%", size: 60 }, // langchain.svg
-  { top: "20%", right: "20%", size: 60 }, // confluence.svg
-  { top: "35%", right: "12%", size: 60 }, // dataframe.svg
+  { top: "25%", right: "8%", size: 50 }, // tecton.svg
+  { top: "30%", right: "25%", size: 50 }, // langchain.svg
+  { top: "20%", right: "20%", size: 50 }, // confluence.svg
+  { top: "35%", right: "12%", size: 50 }, // dataframe.svg
 
   // Bottom left quadrant
   { top: "70%", left: "15%", size: 70 }, // Informatica.svg
-  { top: "50%", left: "18%", size: 60 }, // azure.svg
-  { top: "65%", left: "25%", size: 60 }, // llama-index-logo.svg
-  { top: "60%", left: "10%", size: 60 }, // granica.svg
-  { top: "45%", left: "25%", size: 60 }, // dbt-labs.svg
+  { top: "50%", left: "18%", size: 50 }, // azure.svg
+  { top: "65%", left: "25%", size: 50 }, // llama-index-logo.svg
+  { top: "60%", left: "10%", size: 50 }, // granica.svg
+  { top: "45%", left: "25%", size: 50 }, // dbt-labs.svg
 
   // Bottom right quadrant
   { top: "45%", right: "25%", size: 70 }, // duckdb.svg
-  { top: "55%", right: "8%", size: 60 }, // databricks.svg
-  { top: "65%", right: "25%", size: 60 }, // google.svg
-  { top: "60%", right: "18%", size: 60 }, // unstructured.svg
-  { top: "68%", right: "12%", size: 60 }, // immuta.svg
+  { top: "55%", right: "8%", size: 50 }, // databricks.svg
+  { top: "65%", right: "25%", size: 50 }, // google.svg
+  { top: "60%", right: "18%", size: 50 }, // unstructured.svg
+  { top: "68%", right: "12%", size: 50 }, // immuta.svg
 
   // Center left and right
   { top: "45%", left: "0%", size: 70 }, // lancedb.svg
@@ -78,7 +78,7 @@ const logoPositions = [
 ];
 ---
 
-<section class="hero">
+<header class="hero">
   <div class="hero-logo-title">
     <Image
       src={logo}
@@ -144,6 +144,11 @@ const logoPositions = [
         loading="eager"
       />
     </div>
+  </div>
+  <div class="heroheader_background">
+    <div class="heroheader_grain-bg"></div>
+    <div class="heroheader_grid-bg"></div>
+    <div class="heroheader_bottom-gradient"></div>
   </div>
 
   <style>
@@ -250,7 +255,7 @@ const logoPositions = [
       max-width: 400px;
       z-index: 3;
       border-radius: 50%;
-      box-shadow: 0 0 50px 50px rgba(255, 215, 0, 0.1);
+      box-shadow: 0 0 100px#ffbc004d;
     }
 
     .hero-logos {
@@ -280,6 +285,43 @@ const logoPositions = [
       animation-play-state: paused;
     }
 
+    .heroheader_background {
+      z-index: -1;
+      background-color: var(--base-color-brand--dark-blue);
+      position: absolute;
+      inset: 0%;
+    }
+
+    .heroheader_grain-bg {
+      z-index: 1;
+      opacity: 0.08;
+      mix-blend-mode: normal;
+      background-image: url(/images/hero-star-background.png);
+      background-position: 100% 100%;
+      background-repeat: repeat;
+      background-size: auto;
+      position: absolute;
+      inset: 0%;
+    }
+    .heroheader_grid-bg {
+      background-image: url(/images/hero_background_with_grid.svg);
+      background-position: 50% 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: absolute;
+      inset: 0%;
+    }
+
+    .heroheader_bottom-gradient {
+      background-image: linear-gradient(
+        180deg,
+        transparent,
+        var(--color-neutral-950)
+      );
+      height: 5rem;
+      position: absolute;
+      inset: auto 0% 0%;
+    }
     @media (max-width: 1024px) {
       .hero {
         padding: 4rem 1rem;
@@ -316,4 +358,4 @@ const logoPositions = [
       }
     }
   </style>
-</section>
+</header>
