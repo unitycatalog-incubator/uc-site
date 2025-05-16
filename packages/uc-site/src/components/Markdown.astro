@@ -1,6 +1,6 @@
 ---
 import type { MarkdownLayoutProps } from "astro";
-import { PageLayout, Hero } from "uc-theme/components";
+import { PageLayout, Hero, Benefits } from "uc-theme/components";
 
 type Props = MarkdownLayoutProps<{
   title: string;
@@ -8,6 +8,7 @@ type Props = MarkdownLayoutProps<{
   heroTitle: string;
   heroSubtitle: string;
   heroButtons: { label: string; url: string; style: string }[];
+  benefits: { title: string; body: string }[];
 }>;
 
 const { frontmatter } = Astro.props;
@@ -19,5 +20,6 @@ const { frontmatter } = Astro.props;
     subtitle={frontmatter.heroSubtitle}
     buttons={frontmatter.heroButtons}
   />
+  <Benefits benefits={frontmatter.benefits} />
   <slot />
 </PageLayout>
