@@ -46,17 +46,17 @@ const logos = [
 const logoPositions = [
   // Top left quadrant
   { top: "30%", left: "15%", size: 70 }, // puppygraph.svg
-  { top: "25%", left: "8%", size: 50 }, // fivetran.svg
+  { top: "25%", left: "0%", size: 50 }, // fivetran.svg
   { top: "30%", left: "25%", size: 50 }, // starrocks.svg
   { top: "20%", left: "20%", size: 50 }, // nvidia.svg
   { top: "40%", left: "10%", size: 50 }, // aws.svg
 
   // Top right quadrant
-  { top: "45%", right: "15%", size: 70 }, // salesforce.svg
+  { top: "20%", right: "15%", size: 70 }, // salesforce.svg
   { top: "25%", right: "8%", size: 50 }, // tecton.svg
-  { top: "30%", right: "25%", size: 50 }, // langchain.svg
-  { top: "20%", right: "20%", size: 50 }, // confluence.svg
-  { top: "35%", right: "12%", size: 50 }, // dataframe.svg
+  { top: "25%", right: "25%", size: 50 }, // langchain.svg
+  { top: "20%", right: "0%", size: 50 }, // confluence.svg
+  { top: "40%", right: "12%", size: 50 }, // dataframe.svg
 
   // Bottom left quadrant
   { top: "70%", left: "15%", size: 70 }, // Informatica.svg
@@ -66,7 +66,7 @@ const logoPositions = [
   { top: "45%", left: "25%", size: 50 }, // dbt-labs.svg
 
   // Bottom right quadrant
-  { top: "45%", right: "25%", size: 70 }, // duckdb.svg
+  { top: "40%", right: "20%", size: 70 }, // duckdb.svg
   { top: "55%", right: "8%", size: 50 }, // databricks.svg
   { top: "65%", right: "25%", size: 50 }, // google.svg
   { top: "60%", right: "18%", size: 50 }, // unstructured.svg
@@ -76,6 +76,16 @@ const logoPositions = [
   { top: "45%", left: "0%", size: 70 }, // lancedb.svg
   { top: "45%", right: "0%", size: 70 }, // apache.svg
 ];
+
+function seededRandom(seed: number): number {
+  var x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+const logoAnimations = logos.map((_, i) => ({
+  duration: "15s",
+  delay: "1s",
+  direction: seededRandom(i + 200) > 0.5 ? "normal" : "reverse",
+}));
 ---
 
 <header class="hero">
@@ -102,18 +112,27 @@ const logoPositions = [
   <div class="hero-grid">
     <div class="hero-logos">
       {
-        logos.map((logo, i) => (
-          <Image
-            src={`/logos/${logo}`}
-            alt="hero_logo"
-            class="hero-logo-cloud"
-            loading="lazy"
-            style={`position: absolute; top: ${logoPositions[i].top}; ${logoPositions[i].left ? `left: ${logoPositions[i].left};` : `right: ${logoPositions[i].right};`}`}
-            width={logoPositions[i].size}
-            height={logoPositions[i].size}
-            loading="eager"
-          />
-        ))
+        logos.map((logo, i) => {
+          const pos = logoPositions[i];
+          const anim = logoAnimations[i] || {
+            duration: "15s",
+            delay: "0s",
+            direction: "normal",
+          };
+          if (!pos) return null;
+          return (
+            <Image
+              src={`/logos/${logo}`}
+              alt="hero_logo"
+              class="hero-logo-cloud"
+              loading="lazy"
+              style={`position: absolute; top: ${pos.top}; ${pos.left ? `left: ${pos.left};` : `right: ${pos.right};`} width: ${pos.size ?? 50}px; height: ${pos.size ?? 50}px; animation-duration: ${anim.duration}; animation-delay: ${anim.delay}; animation-direction: ${anim.direction};`}
+              width={pos.size ?? 50}
+              height={pos.size ?? 50}
+              loading="eager"
+            />
+          );
+        })
       }
     </div>
     <div class="hero-image-stack">
@@ -333,7 +352,7 @@ const logoPositions = [
         align-items: center;
         justify-content: center;
         width: 100%;
-        max-width: 1200px;
+        max-width: 1400px;
         margin: 1rem auto;
         padding: 0 1rem;
         min-height: 500px;

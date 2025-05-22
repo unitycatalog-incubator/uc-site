@@ -1,0 +1,166 @@
+---
+interface Feature {
+  title: string;
+  body: string;
+  icon: string;
+  image: string;
+}
+const { features } = Astro.props;
+import { Image } from "astro:assets";
+---
+
+<section class="feature-details-section">
+  <div class="feature-details-grid">
+    {
+      features.map((feature: Feature, idx: number) => (
+        <div class="feature-row">
+          {idx === 1 ? (
+            <>
+              <div class="feature-right">
+                <img
+                  src="/images/blur200.svg"
+                  alt="blur background"
+                  class="feature-blur-bg"
+                />
+                <Image
+                  src={`/${feature.image}`}
+                  alt={feature.title + " visual"}
+                  class="feature-image"
+                  width="528"
+                  height="528"
+                  loading="lazy"
+                />
+              </div>
+              <div class="feature-left">
+                <Image
+                  src={`/${feature.icon}`}
+                  alt={feature.title + " icon"}
+                  class="feature-icon"
+                  width="56"
+                  height="56"
+                />
+                <h3 class="feature-title">{feature.title}</h3>
+                <p class="feature-body">{feature.body}</p>
+              </div>
+            </>
+          ) : (
+            <>
+              <div class="feature-left">
+                <Image
+                  src={`/${feature.icon}`}
+                  alt={feature.title + " icon"}
+                  class="feature-icon"
+                  width="56"
+                  height="56"
+                />
+                <h3 class="feature-title">{feature.title}</h3>
+                <p class="feature-body">{feature.body}</p>
+              </div>
+              <div class="feature-right">
+                <img
+                  src="/images/blur200.svg"
+                  alt="blur background"
+                  class="feature-blur-bg"
+                />
+                <Image
+                  src={`/${feature.image}`}
+                  alt={feature.title + " visual"}
+                  class="feature-image"
+                  width="528"
+                  height="528"
+                  loading="lazy"
+                />
+              </div>
+            </>
+          )}
+        </div>
+      ))
+    }
+  </div>
+  <style>
+    .feature-details-section {
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+      background: var(--color-neutral-950);
+    }
+    .feature-details-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--color-neutral-0);
+    }
+    .feature-details-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14rem;
+      max-width: 1260px;
+      margin: 0 auto;
+    }
+    .feature-row {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+    }
+    .feature-left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+      overflow: visible;
+      text-align: left;
+    }
+    .feature-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--color-neutral-0);
+      line-height: 1.2;
+      margin: 0;
+    }
+    .feature-body {
+      font-size: 1rem;
+      color: var(--color-neutral-1000);
+      margin: 0;
+      font-size: 1.125rem;
+    }
+    .feature-right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      position: relative;
+      z-index: 1;
+      text-align: right;
+    }
+    .feature-image {
+      width: 528px !important;
+      height: 528px !important;
+      object-fit: cover;
+      display: block;
+      position: relative;
+      z-index: 2;
+    }
+    .feature-blur-bg {
+      max-width: 62rem;
+      right: -6.75vw;
+      width: 70vw;
+      min-width: 40rem;
+      position: absolute;
+      inset: auto -5vw -5vw auto;
+      pointer-events: none;
+      user-select: none;
+      z-index: 1;
+    }
+    @media (max-width: 900px) {
+      .feature-row {
+        flex-direction: column;
+        text-align: center;
+      }
+      .feature-left,
+      .feature-right {
+        align-items: center;
+        text-align: center;
+      }
+    }
+  </style>
+</section>
