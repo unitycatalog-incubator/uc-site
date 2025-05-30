@@ -91,17 +91,22 @@ main,
   --conic-gradient: conic-gradient(from 0deg, #f43ba6, #ffbc00, #f43ba6);
 }
 
-/* Global scrollbar styling */
-::-webkit-scrollbar {
+/* Only style the main page scrollbar */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
   width: 12px;
 }
-::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
   background: var(--color-box-shadow-yellow);
   border-radius: 6px;
 }
-::-webkit-scrollbar-track {
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  display: none;
   background: var(--color-neutral-950);
 }
-html {
-  scrollbar-color: var(--color-box-shadow-yellow) var(--color-neutral-950);
+
+*:not(html):not(body)::-webkit-scrollbar {
+  display: none;
 }
