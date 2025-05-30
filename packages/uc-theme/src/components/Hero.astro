@@ -1,14 +1,9 @@
 ---
 import { Image } from "astro:assets";
+import type { ButtonType } from "../types";
 import logo from "../../../uc-site/public/logo.svg";
 import Button from "./Button.astro";
 import "../theme.css";
-
-interface ButtonType {
-  label: string;
-  url: string;
-  style: string; // e.g., 'github', 'slack'
-}
 
 interface Props {
   title: string;
@@ -103,8 +98,13 @@ const logoAnimations = logos.map((_, i) => ({
   <p class="hero-subtitle">{subtitle}</p>
   <div class={`hero-ctas${buttons.length === 2 ? " hero-ctas-two" : ""}`}>
     {
-      buttons.map((btn) => (
-        <Button label={btn.label} url={btn.url} style={btn.style} size="2" />
+      buttons.map((btn, i) => (
+        <Button
+          label={btn.label}
+          url={btn.url}
+          style={i === 0 ? "github" : "slack"}
+          size="2"
+        />
       ))
     }
   </div>

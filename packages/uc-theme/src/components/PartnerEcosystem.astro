@@ -1,0 +1,131 @@
+---
+import { Image } from "astro:assets";
+import bgTop from "../../../uc-site/public/images/ecosystem_section_top-gradient.svg";
+import bg from "../../../uc-site/public/images/ecosystem-image.png";
+import Button from "./Button.astro";
+
+interface ButtonType {
+  label: string;
+  url: string;
+}
+interface Props {
+  title: string;
+  body: string;
+  button: ButtonType;
+}
+const { title, body, button } = Astro.props;
+---
+
+<section class="partner-ecosystem" id="partner-ecosystem">
+  <Image
+    src={bgTop}
+    alt="section background"
+    class="partner-ecosystem-bg"
+    width={1400}
+    loading="lazy"
+  />
+  <div class="partner-ecosystem-header">
+    <h2 class="partner-ecosystem-title">{title}</h2>
+    <p class="partner-ecosystem-body">{body}</p>
+  </div>
+  <div class="partner-ecosystem-content">
+    <div class="partner-ecosystem-image-wrap">
+      <Image
+        src={bg}
+        alt="ecosystem visual"
+        class="partner-ecosystem-image"
+        width={1400}
+        loading="lazy"
+      />
+    </div>
+  </div>
+  <div class="partner-ecosystem-btn-wrap">
+    <Button label={button.label} url={button.url} style="slack" size="1" />
+  </div>
+  <style>
+    .partner-ecosystem-section {
+      position: relative;
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+      background: var(--color-neutral-950, #0a0e1a);
+      overflow: hidden;
+    }
+    .partner-ecosystem-bg {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100vw;
+      max-width: 1800px;
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+    .partner-ecosystem-header {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto 3rem auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .partner-ecosystem-title {
+      color: var(--color-neutral-0);
+      margin: 0 0 1.5rem 0;
+      font-size: 2.25rem;
+      font-weight: 600;
+      line-height: 1.2;
+      max-width: 560px;
+    }
+    .partner-ecosystem-body {
+      font-size: 1.25rem;
+      color: var(--color-neutral-1000);
+      margin: 0 0 2.5rem 0;
+      line-height: 1.5;
+      font-weight: 400;
+      max-width: 768px;
+    }
+    .partner-ecosystem-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .partner-ecosystem-image-wrap {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .partner-ecosystem-image {
+      max-width: 1400px;
+      width: 100%;
+      border-radius: 1.5rem;
+    }
+    .partner-ecosystem-btn-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 2.5rem;
+      z-index: 2;
+      position: relative;
+      margin-bottom: 7rem;
+    }
+    @media (max-width: 900px) {
+      .partner-ecosystem-header {
+        padding: 0 1rem;
+      }
+      .partner-ecosystem-content {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+      }
+    }
+  </style>
+</section>

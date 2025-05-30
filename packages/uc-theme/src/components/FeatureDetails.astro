@@ -1,15 +1,10 @@
 ---
-interface Feature {
-  title: string;
-  body: string;
-  icon: string;
-  image: string;
-}
-const { features } = Astro.props;
 import { Image } from "astro:assets";
+import type { Feature } from "../types";
+const { features } = Astro.props;
 ---
 
-<section class="feature-details-section">
+<section class="feature-details-section" id="features">
   <div class="feature-details-grid">
     {
       features.map((feature: Feature, idx: number) => (
@@ -57,10 +52,13 @@ import { Image } from "astro:assets";
                 <p class="feature-body">{feature.body}</p>
               </div>
               <div class="feature-right">
-                <img
+                <Image
                   src="/images/blur200.svg"
                   alt="blur background"
                   class="feature-blur-bg"
+                  width={100}
+                  height={100}
+                  loading="lazy"
                 />
                 <Image
                   src={`/${feature.image}`}

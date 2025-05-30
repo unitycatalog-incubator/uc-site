@@ -81,3 +81,7 @@ main,
 .markdown-content {
   font-family: var(--font-sans);
 }
+
+:root {
+  --conic-gradient: conic-gradient(from 0deg, #f43ba6, #ffbc00, #f43ba6);
+}

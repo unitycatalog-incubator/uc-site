@@ -1,0 +1,195 @@
+---
+import type { Endorsement } from "../types";
+interface Props {
+  pageTitle: string;
+  endorsements: Endorsement[];
+}
+const { pageTitle, endorsements } = Astro.props;
+---
+
+<section class="endorsements-section" id="endorsements-section">
+  <h2 class="endorsements-title">{pageTitle}</h2>
+  <div class="endorsements-grid" id="endorsements-grid">
+    {
+      endorsements.map((card, i) => (
+        <div
+          class="endorsement-card"
+          data-index={i}
+          style={i < 3 ? "" : "display:none;"}
+        >
+          {card.icon ? (
+            <img
+              src={card.icon}
+              alt={card.name + " logo"}
+              class="endorsement-icon"
+            />
+          ) : (
+            <div class="endorsement-icon-placeholder" />
+          )}
+          <p class="endorsement-quote">"{card.testimonial}"</p>
+          <div class="endorsement-meta">
+            <div class="endorsement-name">{card.name}</div>
+            <div class="endorsement-title">{card.title}</div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <div class="endorsements-pagination">
+    <button id="endorsements-prev" aria-label="Previous">
+      <img src="/icons/arrow-left.svg" alt="Previous" />
+    </button>
+    <button id="endorsements-next" aria-label="Next">
+      <img src="/icons/arrow-right.svg" alt="Next" />
+    </button>
+  </div>
+  <style>
+    .endorsements-section {
+      background: var(--color-neutral-950);
+      padding: 5rem 2rem 3rem 2rem;
+      max-height: 120vh;
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .endorsements-title {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--color-neutral-0);
+      margin-bottom: 3rem;
+      max-width: 500px;
+    }
+    .endorsements-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      grid-auto-rows: 1fr;
+    }
+    .endorsement-card {
+      background: #fff;
+      border-radius: 1.25rem;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      box-shadow: 0 4px 24px 0 #0002;
+      min-height: 350px;
+      position: relative;
+      height: 700px;
+    }
+    .endorsement-icon-placeholder {
+      max-width: 8rem;
+      height: 3.125rem;
+      border-radius: 50%;
+      background: #e5e7eb;
+      margin-bottom: 1.5rem;
+    }
+    .endorsement-quote {
+      font-size: 1rem;
+      color: var(--color-neutral-900);
+      flex: 1;
+      font-weight: 500;
+      line-height: 1.75;
+    }
+    .endorsement-meta {
+      margin-top: auto;
+    }
+    .endorsement-name {
+      font-weight: 600;
+      color: var(--color-neutral-900);
+      margin-bottom: 0.25rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    .endorsement-title {
+      color: var(--color-neutral-500);
+      font-size: 0.875rem;
+    }
+    .endorsements-pagination {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .endorsements-pagination button {
+      background: none;
+      border: 2px solid #e5e7eb;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      font-size: 2rem;
+      color: #e5e7eb;
+      cursor: pointer;
+      transition:
+        border-color 0.2s,
+        color 0.2s;
+      border: 1px solid var(--color-primary-500);
+      border-radius: 100%;
+      width: 3.5rem;
+      height: 3.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .endorsements-pagination button img {
+      width: 1.5rem;
+      height: 1.5rem;
+      display: block;
+    }
+    .endorsements-pagination button:hover {
+      background: var(--conic-gradient);
+      transition: opacity 0.3s ease-out;
+    }
+    @media (max-width: 900px) {
+      .endorsements-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .endorsement-icon {
+      max-width: 8rem;
+      height: 3.125rem;
+      object-fit: contain;
+      margin-bottom: 1.5rem;
+      border-radius: 0.5rem;
+    }
+  </style>
+  <script type="module" is:inline>
+    let currentStart = 0;
+    const cardsPerPage = 3;
+    const cards = Array.from(document.querySelectorAll(".endorsement-card"));
+    const totalPages = cards.length - 1;
+
+    function showWindow(start) {
+      cards.forEach((card, i) => {
+        card.style.display =
+          i >= start && i < start + cardsPerPage ? "" : "none";
+      });
+    }
+
+    showWindow(currentStart);
+
+    document.getElementById("endorsements-prev").onclick = () => {
+      if (currentStart === 0) {
+        currentStart = totalPages; // Jump to last testimonial
+      } else {
+        currentStart = currentStart - 1;
+      }
+      showWindow(currentStart);
+    };
+    document.getElementById("endorsements-next").onclick = () => {
+      if (currentStart === totalPages) {
+        currentStart = 0; // Jump to first testimonial
+      } else {
+        currentStart = currentStart + 1;
+      }
+      showWindow(currentStart);
+    };
+
+    window.addEventListener("resize", () => showWindow(currentStart));
+  </script>
+</section>

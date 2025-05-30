@@ -1,10 +1,6 @@
 ---
 import { Image } from "astro:assets";
-interface Benefit {
-  title: string;
-  body: string;
-  icon?: string;
-}
+import type { Benefit } from "../types";
 const { benefits } = Astro.props;
 ---
 
