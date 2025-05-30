@@ -18,3 +18,43 @@ export interface ThemeConfig {
     footer: MenuItem[];
   };
 }
+
+export interface Logo {
+  src: string;
+  alt: string;
+}
+
+export interface Link {
+  label: string;
+  url: string;
+}
+
+export interface Copyright {
+  text: string;
+}
+
+export interface ButtonType {
+  label: string;
+  url: string;
+  style?: string;
+}
+
+export interface Benefit {
+  title: string;
+  body: string;
+  icon?: string;
+}
+
+export interface Endorsement {
+  testimonial: string;
+  name: string;
+  title: string;
+  icon?: string;
+}
+
+export interface Feature {
+  title: string;
+  body: string;
+  icon: string;
+  image: string;
+}

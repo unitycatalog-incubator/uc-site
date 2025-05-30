@@ -1,0 +1,197 @@
+---
+import { Image } from "astro:assets";
+import type { Feature } from "../types";
+const { features } = Astro.props;
+---
+
+<section class="feature-details-section" id="features">
+  <div class="feature-details-grid">
+    {
+      features.map((feature: Feature, idx: number) => (
+        <div class="feature-row">
+          {idx === 1 ? (
+            <>
+              <div class="feature-right">
+                <Image
+                  src="/images/blur200.svg"
+                  alt="blur background"
+                  class="feature-blur-bg"
+                  width={100}
+                  height={100}
+                  loading="lazy"
+                />
+                <Image
+                  src={`/${feature.image}`}
+                  alt={feature.title + " visual"}
+                  class="feature-image"
+                  width="528"
+                  height="528"
+                  loading="lazy"
+                />
+              </div>
+              <div class="feature-left">
+                <Image
+                  src={`/${feature.icon}`}
+                  alt={feature.title + " icon"}
+                  class="feature-icon"
+                  width="56"
+                  height="56"
+                  loading="lazy"
+                />
+                <h3 class="feature-title feature-animate">{feature.title}</h3>
+                <p class="feature-body feature-animate">{feature.body}</p>
+              </div>
+            </>
+          ) : (
+            <>
+              <div class="feature-left">
+                <Image
+                  src={`/${feature.icon}`}
+                  alt={feature.title + " icon"}
+                  class="feature-icon"
+                  width="56"
+                  height="56"
+                  loading="lazy"
+                />
+                <h3 class="feature-title feature-animate">{feature.title}</h3>
+                <p class="feature-body feature-animate">{feature.body}</p>
+              </div>
+              <div class="feature-right">
+                <Image
+                  src="/images/blur200.svg"
+                  alt="blur background"
+                  class="feature-blur-bg"
+                  width={100}
+                  height={100}
+                  loading="lazy"
+                />
+                <Image
+                  src={`/${feature.image}`}
+                  alt={feature.title + " visual"}
+                  class="feature-image"
+                  width="528"
+                  height="528"
+                  loading="lazy"
+                />
+              </div>
+            </>
+          )}
+        </div>
+      ))
+    }
+  </div>
+  <style>
+    .feature-details-section {
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+      background: var(--color-neutral-950);
+    }
+    .feature-details-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--color-neutral-0);
+    }
+    .feature-details-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14rem;
+      max-width: 1260px;
+      margin: 0 auto;
+    }
+    .feature-row {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+    }
+    .feature-left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+      overflow: visible;
+      text-align: left;
+    }
+    .feature-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--color-neutral-0);
+      line-height: 1.2;
+      margin: 0;
+    }
+    .feature-body {
+      font-size: 1rem;
+      color: var(--color-neutral-1000);
+      margin: 0;
+      font-size: 1.125rem;
+    }
+    .feature-right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      position: relative;
+      z-index: 1;
+      text-align: right;
+    }
+    .feature-image {
+      width: 528px !important;
+      height: 528px !important;
+      object-fit: cover;
+      display: block;
+      position: relative;
+      z-index: 2;
+    }
+    .feature-blur-bg {
+      max-width: 62rem;
+      right: -6.75vw;
+      width: 70vw;
+      min-width: 40rem;
+      position: absolute;
+      inset: auto -5vw -5vw auto;
+      pointer-events: none;
+      user-select: none;
+      z-index: 1;
+    }
+    .feature-animate {
+      opacity: 0;
+      transform: translateY(80px);
+      transition:
+        opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .feature-animate.visible {
+      opacity: 1;
+      transform: none;
+    }
+    @media (max-width: 1050px) {
+      .feature-row {
+        flex-direction: column;
+        text-align: center;
+      }
+      .feature-left,
+      .feature-right {
+        align-items: center;
+        text-align: center;
+      }
+    }
+  </style>
+  <script is:inline>
+    window.addEventListener("DOMContentLoaded", function () {
+      const featureTexts = document.querySelectorAll(".feature-animate");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2 },
+      );
+      featureTexts.forEach((el) => observer.observe(el));
+    });
+  </script>
+</section>
