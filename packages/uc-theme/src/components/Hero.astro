@@ -84,6 +84,7 @@ const logoAnimations = logos.map((_, i) => ({
 ---
 
 <header class="hero">
+  <div class="hero-gradient-top"></div>
   <div class="hero-logo-title">
     <Image
       src={logo}
@@ -191,11 +192,13 @@ const logoAnimations = logos.map((_, i) => ({
       margin-bottom: 1.5rem;
     }
     .hero-logo {
+      z-index: 3;
       height: 80px;
       width: 80px;
       min-width: 64px;
     }
     .hero-title {
+      z-index: 3;
       font-size: 3.75rem;
       font-weight: 500;
       color: var(--color-neutral-0);
@@ -203,6 +206,7 @@ const logoAnimations = logos.map((_, i) => ({
       letter-spacing: 1px;
     }
     .hero-subtitle {
+      z-index: 3;
       font-size: 1.25rem;
       color: var(--color-neutral-200);
       margin: 0 0 2.5rem;
@@ -274,7 +278,7 @@ const logoAnimations = logos.map((_, i) => ({
       max-width: 400px;
       z-index: 3;
       border-radius: 50%;
-      box-shadow: 0 0 100px#ffbc004d;
+      box-shadow: 0 0 100px rgba(var(--color-box-shadow-yellow), 0.3);
     }
 
     .hero-logos {
@@ -366,6 +370,20 @@ const logoAnimations = logos.map((_, i) => ({
       .hero-logo-cloud {
         transform: scale(0.7);
       }
+    }
+    .hero-gradient-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 30rem;
+      z-index: 2;
+      pointer-events: none;
+      background: linear-gradient(
+        180deg,
+        var(--color-neutral-950) 40%,
+        transparent 100%
+      );
     }
 
     @keyframes float {

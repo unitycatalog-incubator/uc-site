@@ -1,5 +1,6 @@
 ---
 import type { Endorsement } from "../types";
+import { Image } from "astro:assets";
 interface Props {
   pageTitle: string;
   endorsements: Endorsement[];
@@ -18,10 +19,13 @@ const { pageTitle, endorsements } = Astro.props;
           style={i < 3 ? "" : "display:none;"}
         >
           {card.icon ? (
-            <img
+            <Image
               src={card.icon}
               alt={card.name + " logo"}
               class="endorsement-icon"
+              width={100}
+              height={100}
+              loading="lazy"
             />
           ) : (
             <div class="endorsement-icon-placeholder" />
@@ -37,19 +41,29 @@ const { pageTitle, endorsements } = Astro.props;
   </div>
   <div class="endorsements-pagination">
     <button id="endorsements-prev" aria-label="Previous">
-      <img src="/icons/arrow-left.svg" alt="Previous" />
+      <Image
+        src="/icons/arrow-left.svg"
+        alt="Previous"
+        width={24}
+        height={24}
+        loading="lazy"
+      />
     </button>
     <button id="endorsements-next" aria-label="Next">
-      <img src="/icons/arrow-right.svg" alt="Next" />
+      <Image
+        src="/icons/arrow-right.svg"
+        alt="Next"
+        width={24}
+        height={24}
+        loading="lazy"
+      />
     </button>
   </div>
   <style>
     .endorsements-section {
       background: var(--color-neutral-950);
-      padding: 5rem 2rem 3rem 2rem;
+      padding: 7rem 2rem;
       max-height: 120vh;
-      padding-top: 7rem;
-      padding-bottom: 7rem;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -71,7 +85,7 @@ const { pageTitle, endorsements } = Astro.props;
       grid-auto-rows: 1fr;
     }
     .endorsement-card {
-      background: #fff;
+      background: var(--color-neutral-0);
       border-radius: 1.25rem;
       padding: 2rem;
       display: flex;
@@ -82,12 +96,12 @@ const { pageTitle, endorsements } = Astro.props;
       position: relative;
       height: 700px;
     }
-    .endorsement-icon-placeholder {
+    .endorsement-icon {
       max-width: 8rem;
       height: 3.125rem;
-      border-radius: 50%;
-      background: #e5e7eb;
+      object-fit: contain;
       margin-bottom: 1.5rem;
+      border-radius: 0.5rem;
     }
     .endorsement-quote {
       font-size: 1rem;
@@ -100,7 +114,6 @@ const { pageTitle, endorsements } = Astro.props;
       margin-top: auto;
     }
     .endorsement-name {
-      font-weight: 600;
       color: var(--color-neutral-900);
       margin-bottom: 0.25rem;
       font-size: 0.875rem;
@@ -115,47 +128,64 @@ const { pageTitle, endorsements } = Astro.props;
       justify-content: center;
       gap: 1.5rem;
       margin-top: 2rem;
+      gap: 3rem;
     }
     .endorsements-pagination button {
-      background: none;
-      border: 2px solid #e5e7eb;
-      border-radius: 50%;
-      width: 48px;
-      height: 48px;
-      font-size: 2rem;
-      color: #e5e7eb;
-      cursor: pointer;
-      transition:
-        border-color 0.2s,
-        color 0.2s;
-      border: 1px solid var(--color-primary-500);
+      background: var(--color-neutral-950);
+      border: 1.5px solid var(--color-primary-600);
       border-radius: 100%;
       width: 3.5rem;
       height: 3.5rem;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
       display: flex;
       justify-content: center;
       align-items: center;
+      position: relative;
+      z-index: 1;
     }
-    .endorsements-pagination button img {
-      width: 1.5rem;
-      height: 1.5rem;
-      display: block;
-    }
-    .endorsements-pagination button:hover {
+    .endorsements-pagination button::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
       background: var(--conic-gradient);
+      border-radius: 50%;
+      z-index: -1;
       transition: opacity 0.3s ease-out;
+      opacity: 0;
+      animation: spin 4s linear infinite;
     }
-    @media (max-width: 900px) {
-      .endorsements-grid {
-        grid-template-columns: 1fr;
+    .endorsements-pagination button:hover::before {
+      opacity: 1;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
       }
     }
-    .endorsement-icon {
-      max-width: 8rem;
-      height: 3.125rem;
-      object-fit: contain;
-      margin-bottom: 1.5rem;
-      border-radius: 0.5rem;
+
+    @media (max-width: 900px) {
+      .endorsements-section {
+        max-height: none;
+        padding: 3rem 1rem;
+      }
+      .endorsements-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .endorsement-card {
+        height: auto !important;
+        min-height: 120px;
+        padding: 1rem;
+      }
     }
   </style>
   <script type="module" is:inline>

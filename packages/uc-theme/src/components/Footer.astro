@@ -10,11 +10,9 @@ const { logos, links, copyright } = Astro.props;
 
 <footer class="footer">
   <div class="footer-logos">
-    {
-      logos.map((logo) => (
-        <img src={logo.src} alt={logo.alt} class="footer-logo" />
-      ))
-    }
+    <img src={logos[0].src} alt={logos[0].alt} class="footer-logo" />
+    <div class="footer-logo-divider"></div>
+    <img src={logos[1].src} alt={logos[1].alt} class="footer-logo" />
   </div>
   <nav class="footer-nav">
     {
@@ -29,7 +27,7 @@ const { logos, links, copyright } = Astro.props;
   <div class="footer-copyright">{copyright.text}</div>
   <style>
     .footer {
-      background: var(--color-neutral-950);
+      background: var(--color-black);
       color: var(--color-neutral-0);
       display: flex;
       flex-direction: column;
@@ -56,9 +54,15 @@ const { logos, links, copyright } = Astro.props;
       object-fit: contain;
       background: none;
     }
+    .footer-logo-divider {
+      width: 2px;
+      height: 56px;
+      background: var(--color-neutral-0);
+      margin: 0 2rem;
+    }
     .footer-nav {
       display: flex;
-      gap: 2.5rem;
+      gap: 3rem;
       justify-content: center;
       margin-bottom: 2.5rem;
     }
@@ -76,7 +80,7 @@ const { logos, links, copyright } = Astro.props;
     .footer-divider {
       width: 100%;
       max-width: 98vw;
-      border-bottom: 1px solid var(--color-neutral-100);
+      border-bottom: 1px solid var(--color-neutral-0);
       margin-bottom: 2rem;
     }
     .footer-copyright {
@@ -85,9 +89,16 @@ const { logos, links, copyright } = Astro.props;
       text-align: center;
     }
     @media (max-width: 700px) {
+      .footer {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
       .footer-logos {
         flex-direction: column;
         gap: 1.5rem;
+      }
+      .footer-logo-divider {
+        display: none;
       }
       .footer-nav {
         flex-direction: column;

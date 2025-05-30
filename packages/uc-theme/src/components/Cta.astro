@@ -1,6 +1,7 @@
 ---
 import type { ButtonType } from "../types";
 import Button from "./Button.astro";
+import { Image } from "astro:assets";
 
 interface Props {
   title: string;
@@ -11,6 +12,7 @@ const { title, body, buttons } = Astro.props;
 ---
 
 <section class="cta-section">
+  <div class="cta-gradient-top"></div>
   <h2 class="cta-title">{title}</h2>
   <p class="cta-body">{body}</p>
   <div class="cta-buttons">
@@ -25,11 +27,14 @@ const { title, body, buttons } = Astro.props;
       ))
     }
   </div>
-  <img
+  <Image
     src="/images/cta-section_underlay.svg"
     alt=""
     class="cta-underlay"
     aria-hidden="true"
+    width={100}
+    height={100}
+    loading="lazy"
   />
   <style>
     .cta-section {
@@ -37,7 +42,7 @@ const { title, body, buttons } = Astro.props;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 4rem 1rem 6rem 1rem;
+      padding: 10rem 1rem 10rem 1rem;
       background: none;
       position: relative;
       overflow: hidden;
@@ -58,7 +63,7 @@ const { title, body, buttons } = Astro.props;
       color: var(--color-neutral-0);
       margin-bottom: 1.5rem;
       text-align: center;
-      z-index: 1;
+      z-index: 3;
     }
     .cta-body {
       color: var(--color-neutral-1000);
@@ -93,7 +98,7 @@ const { title, body, buttons } = Astro.props;
         box-shadow 0.2s,
         background 0.2s,
         color 0.2s;
-      box-shadow: 0 2px 16px 0 #0002;
+      box-shadow: 0 2px 16px 0 var(--color-neutral-900);
       border: none;
       outline: none;
       text-align: center;
@@ -107,10 +112,27 @@ const { title, body, buttons } = Astro.props;
       color: var(--color-neutral-900);
     }
     .cta-btn:hover {
-      box-shadow: 0 4px 24px 0 #0003;
+      box-shadow: 0 4px 24px 0 var(--color-neutral-900);
       filter: brightness(0.97);
     }
+    .cta-gradient-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8rem;
+      z-index: 2;
+      pointer-events: none;
+      background: linear-gradient(
+        180deg,
+        var(--color-neutral-950) 40%,
+        transparent 100%
+      );
+    }
     @media (max-width: 600px) {
+      .cta-section {
+        padding: 3rem 1rem 3rem 1rem;
+      }
       .cta-title {
         font-size: 2rem;
       }

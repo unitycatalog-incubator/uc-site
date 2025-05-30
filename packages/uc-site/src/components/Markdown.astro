@@ -36,6 +36,15 @@ type Props = MarkdownLayoutProps<{
     links: { label: string; url: string }[];
     copyright: { text: string };
   };
+  endorsements: {
+    pageTitle: string;
+    items: {
+      name: string;
+      image: string;
+      testimonial: string;
+      title: string;
+    }[];
+  };
 }>;
 
 const { frontmatter } = Astro.props;
