@@ -121,9 +121,9 @@ footer:
     - label: Partner Ecosystem
       url: /#partner-ecosystem
     - label: API
-      url: /#api
+      url: https://github.com/unitycatalog/unitycatalog/tree/main/api
     - label: Documentation
-      url: /#documentation
+      url: https://docs.unitycatalog.io/
   copyright:
     text: "© 2025 Unity Catalog. All rights reserved."
 ---

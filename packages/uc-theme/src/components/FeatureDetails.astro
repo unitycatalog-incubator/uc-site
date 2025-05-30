@@ -38,8 +38,8 @@ const { features } = Astro.props;
                   height="56"
                   loading="lazy"
                 />
-                <h3 class="feature-title">{feature.title}</h3>
-                <p class="feature-body">{feature.body}</p>
+                <h3 class="feature-title feature-animate">{feature.title}</h3>
+                <p class="feature-body feature-animate">{feature.body}</p>
               </div>
             </>
           ) : (
@@ -53,8 +53,8 @@ const { features } = Astro.props;
                   height="56"
                   loading="lazy"
                 />
-                <h3 class="feature-title">{feature.title}</h3>
-                <p class="feature-body">{feature.body}</p>
+                <h3 class="feature-title feature-animate">{feature.title}</h3>
+                <p class="feature-body feature-animate">{feature.body}</p>
               </div>
               <div class="feature-right">
                 <Image
@@ -154,6 +154,17 @@ const { features } = Astro.props;
       user-select: none;
       z-index: 1;
     }
+    .feature-animate {
+      opacity: 0;
+      transform: translateY(80px);
+      transition:
+        opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .feature-animate.visible {
+      opacity: 1;
+      transform: none;
+    }
     @media (max-width: 1050px) {
       .feature-row {
         flex-direction: column;
@@ -166,4 +177,21 @@ const { features } = Astro.props;
       }
     }
   </style>
+  <script is:inline>
+    window.addEventListener("DOMContentLoaded", function () {
+      const featureTexts = document.querySelectorAll(".feature-animate");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2 },
+      );
+      featureTexts.forEach((el) => observer.observe(el));
+    });
+  </script>
 </section>

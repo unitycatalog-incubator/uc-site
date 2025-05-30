@@ -32,7 +32,6 @@ const { benefits } = Astro.props;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding-top: 10rem;
       padding: 10rem 5rem;
       background: var(--color-neutral-950);
     }
@@ -56,6 +55,15 @@ const { benefits } = Astro.props;
       align-items: flex-start;
       justify-content: flex-start;
       overflow: hidden;
+      opacity: 0;
+      transform: translateY(80px);
+      transition:
+        opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .benefit-card.visible {
+      opacity: 1;
+      transform: none;
     }
     .benefit-icon {
       margin-bottom: 1.5rem;
@@ -107,4 +115,22 @@ const { benefits } = Astro.props;
       }
     }
   </style>
+  <script is:inline>
+    const cards = document.querySelectorAll(".benefit-card");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add("visible");
+            }, i * 150); // stagger effect
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 },
+    );
+
+    cards.forEach((card) => observer.observe(card));
+  </script>
 </section>

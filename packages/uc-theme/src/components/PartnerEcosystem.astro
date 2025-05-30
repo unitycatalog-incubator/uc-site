@@ -17,6 +17,7 @@ const { title, body, button } = Astro.props;
 ---
 
 <section class="partner-ecosystem" id="partner-ecosystem">
+  <div class="partner-ecosystem-gradient-top"></div>
   <Image
     src={bgTop}
     alt="section background"
@@ -25,8 +26,8 @@ const { title, body, button } = Astro.props;
     loading="lazy"
   />
   <div class="partner-ecosystem-header">
-    <h2 class="partner-ecosystem-title">{title}</h2>
-    <p class="partner-ecosystem-body">{body}</p>
+    <h2 class="partner-ecosystem-title feature-animate">{title}</h2>
+    <p class="partner-ecosystem-body feature-animate">{body}</p>
   </div>
   <div class="partner-ecosystem-content">
     <div class="partner-ecosystem-image-wrap">
@@ -65,7 +66,7 @@ const { title, body, button } = Astro.props;
       position: relative;
       z-index: 1;
       max-width: 900px;
-      margin: 0 auto 3rem auto;
+      margin: 7rem auto 3rem auto;
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -117,6 +118,32 @@ const { title, body, button } = Astro.props;
       position: relative;
       margin-bottom: 7rem;
     }
+    .feature-animate {
+      opacity: 0;
+      transform: translateY(80px);
+      transition:
+        opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .feature-animate.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .partner-ecosystem-gradient-top {
+      z-index: -1;
+      background-image: url(/images/ecosystem_section_top-gradient.svg);
+      background-position: 50%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 30%;
+      position: absolute;
+      inset: 0% 0% auto;
+    }
+    .partner-ecosystem {
+      position: relative;
+      overflow: hidden;
+    }
+
     @media (max-width: 900px) {
       .partner-ecosystem-header {
         padding: 0 1rem;
@@ -128,4 +155,21 @@ const { title, body, button } = Astro.props;
       }
     }
   </style>
+  <script is:inline>
+    window.addEventListener("DOMContentLoaded", function () {
+      const featureTexts = document.querySelectorAll(".feature-animate");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.2 },
+      );
+      featureTexts.forEach((el) => observer.observe(el));
+    });
+  </script>
 </section>

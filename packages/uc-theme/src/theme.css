@@ -33,6 +33,7 @@
   --color-primary-800: #a83c81;
   --color-primary-900: #843065;
   --color-primary-950: #511b3d;
+  --color-primary-1000: #f43ba6;
 
   /* Secondary – Gold (#FFD700) */
   --color-secondary-50: #fffbe5;
@@ -85,5 +86,22 @@ main,
 }
 
 :root {
+  --padding-left: 5%;
+  --padding-right: 5%;
   --conic-gradient: conic-gradient(from 0deg, #f43ba6, #ffbc00, #f43ba6);
+}
+
+/* Global scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-box-shadow-yellow);
+  border-radius: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-neutral-950);
+}
+html {
+  scrollbar-color: var(--color-box-shadow-yellow) var(--color-neutral-950);
 }
