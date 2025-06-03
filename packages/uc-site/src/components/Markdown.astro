@@ -1,81 +1,15 @@
 ---
 import type { MarkdownLayoutProps } from "astro";
-import {
-  PageLayout,
-  Hero,
-  Benefits,
-  FeatureDetails,
-  PartnerEcosystem,
-  Endorsements,
-  Cta,
-  Footer,
-} from "uc-theme/components";
+import { PageLayout } from "uc-theme/components";
 
 type Props = MarkdownLayoutProps<{
   title: string;
   description?: string;
-  heroTitle: string;
-  heroSubtitle: string;
-  heroButtons: { label: string; url: string; style: string }[];
-  benefits: { title: string; body: string }[];
-  partnerEcosystem: {
-    title: string;
-    body: string;
-    button: {
-      label: string;
-      url: string;
-    };
-  };
-  cta: {
-    title: string;
-    body: string;
-    buttons: { label: string; url: string }[];
-  };
-  footer: {
-    logos: { src: string; alt: string }[];
-    links: { label: string; url: string }[];
-    copyright: { text: string };
-  };
-  endorsements: {
-    pageTitle: string;
-    items: {
-      name: string;
-      image: string;
-      testimonial: string;
-      title: string;
-    }[];
-  };
 }>;
 
 const { frontmatter } = Astro.props;
 ---
 
 <PageLayout title={frontmatter.title} description={frontmatter.description}>
-  <Hero
-    title={frontmatter.heroTitle}
-    subtitle={frontmatter.heroSubtitle}
-    buttons={frontmatter.heroButtons}
-  />
-  <Benefits benefits={frontmatter.benefits} />
-  <FeatureDetails features={frontmatter.features} />
-  <PartnerEcosystem
-    title={frontmatter["partnerEcosystem"].title}
-    body={frontmatter["partnerEcosystem"].body}
-    button={frontmatter["partnerEcosystem"].button}
-  />
-  <Endorsements
-    pageTitle={frontmatter.endorsements.pageTitle}
-    endorsements={frontmatter.endorsements.items}
-  />
-  <Cta
-    title={frontmatter.cta.title}
-    body={frontmatter.cta.body}
-    buttons={frontmatter.cta.buttons}
-  />
-  <Footer
-    logos={frontmatter.footer.logos}
-    links={frontmatter.footer.links}
-    copyright={frontmatter.footer.copyright}
-  />
   <slot />
 </PageLayout>

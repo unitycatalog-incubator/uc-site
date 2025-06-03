@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import type { Logo, Link, Copyright } from "../types";
 interface Props {
   logos: Logo[];
@@ -10,9 +11,21 @@ const { logos, links, copyright } = Astro.props;
 
 <footer class="footer">
   <div class="footer-logos">
-    <img src={logos[0].src} alt={logos[0].alt} class="footer-logo" />
-    <div class="footer-logo-divider"></div>
-    <img src={logos[1].src} alt={logos[1].alt} class="footer-logo" />
+    {
+      logos.map((logo, idx) => (
+        <>
+          <Image
+            src={logo.src}
+            alt={logo.alt}
+            class="footer-logo"
+            width={220}
+            height={56}
+            loading="lazy"
+          />
+          {idx < logos.length - 1 && <div class="footer-logo-divider" />}
+        </>
+      ))
+    }
   </div>
   <nav class="footer-nav">
     {

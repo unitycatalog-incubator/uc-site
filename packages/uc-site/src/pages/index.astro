@@ -1,0 +1,43 @@
+---
+import {
+  PageLayout,
+  Hero,
+  Benefits,
+  FeatureDetails,
+  PartnerEcosystem,
+  Endorsements,
+  Cta,
+  Footer,
+} from "uc-theme/components";
+
+import homeData from "../content/home.json";
+---
+
+<PageLayout title={homeData.title} description={homeData.description}>
+  <Hero
+    title={homeData.heroTitle}
+    subtitle={homeData.heroSubtitle}
+    buttons={homeData.heroButtons}
+  />
+  <Benefits benefits={homeData.benefits} />
+  <FeatureDetails features={homeData.features} />
+  <PartnerEcosystem
+    title={homeData.partnerEcosystem.title}
+    body={homeData.partnerEcosystem.body}
+    button={homeData.partnerEcosystem.button}
+  />
+  <Endorsements
+    pageTitle={homeData.endorsements.pageTitle}
+    endorsements={homeData.endorsements.items}
+  />
+  <Cta
+    title={homeData.cta.title}
+    body={homeData.cta.body}
+    buttons={homeData.cta.buttons}
+  />
+  <Footer
+    logos={homeData.footer.logos}
+    links={homeData.footer.links}
+    copyright={homeData.footer.copyright}
+  />
+</PageLayout>
