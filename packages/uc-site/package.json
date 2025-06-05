@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "astro": "^5.8.2",
-    "sharp": "^0.34.1",
+    "sharp": "^0.34.2",
     "uc-theme": "workspace:*"
   }
 }
