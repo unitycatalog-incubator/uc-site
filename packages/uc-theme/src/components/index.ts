@@ -1,1 +1,10 @@
 export { default as PageLayout } from "./PageLayout.astro";
+export { default as Nav } from "./Nav.astro";
+export { default as Hero } from "./Hero.astro";
+export { default as Button } from "./Button.astro";
+export { default as Benefits } from "./Benefits.astro";
+export { default as FeatureDetails } from "./FeatureDetails.astro";
+export { default as PartnerEcosystem } from "./PartnerEcosystem.astro";
+export { default as Endorsements } from "./Endorsements.astro";
+export { default as Cta } from "./Cta.astro";
+export { default as Footer } from "./Footer.astro";

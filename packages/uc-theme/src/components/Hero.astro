@@ -1,0 +1,383 @@
+---
+import { Image } from "astro:assets";
+import type { ButtonType } from "../types";
+import logo from "../../../uc-site/public/logo.svg";
+import Button from "./Button.astro";
+import "../theme.css";
+
+interface Props {
+  title: string;
+  subtitle: string;
+  buttons: ButtonType[];
+}
+
+const { title, subtitle, buttons } = Astro.props;
+
+const logos = [
+  "puppygraph.svg",
+  "fivetran.svg",
+  "starrocks.svg",
+  "nvidia.svg",
+  "aws.svg",
+  "salesforce.svg",
+  "tecton.svg",
+  "langchain.svg",
+  "confluence.svg",
+  "dataframe.svg",
+  "Informatica.svg",
+  "azure.svg",
+  "llama-index-logo.svg",
+  "granica.svg",
+  "dbt-labs.svg",
+  "duckdb.svg",
+  "databricks.svg",
+  "google.svg",
+  "unstructured.svg",
+  "immuta.svg",
+  "lancedb.svg",
+  "apache.svg",
+];
+
+const logoPositions = [
+  // Top left quadrant
+  { top: "30%", left: "15%", size: 70 }, // puppygraph.svg
+  { top: "25%", left: "0%", size: 50 }, // fivetran.svg
+  { top: "30%", left: "25%", size: 50 }, // starrocks.svg
+  { top: "20%", left: "20%", size: 50 }, // nvidia.svg
+  { top: "40%", left: "10%", size: 50 }, // aws.svg
+
+  // Top right quadrant
+  { top: "20%", right: "15%", size: 70 }, // salesforce.svg
+  { top: "25%", right: "8%", size: 50 }, // tecton.svg
+  { top: "25%", right: "25%", size: 50 }, // langchain.svg
+  { top: "20%", right: "0%", size: 50 }, // confluence.svg
+  { top: "40%", right: "12%", size: 50 }, // dataframe.svg
+
+  // Bottom left quadrant
+  { top: "70%", left: "15%", size: 70 }, // Informatica.svg
+  { top: "50%", left: "18%", size: 50 }, // azure.svg
+  { top: "65%", left: "25%", size: 50 }, // llama-index-logo.svg
+  { top: "60%", left: "10%", size: 50 }, // granica.svg
+  { top: "45%", left: "25%", size: 50 }, // dbt-labs.svg
+
+  // Bottom right quadrant
+  { top: "40%", right: "20%", size: 70 }, // duckdb.svg
+  { top: "55%", right: "8%", size: 50 }, // databricks.svg
+  { top: "65%", right: "25%", size: 50 }, // google.svg
+  { top: "60%", right: "18%", size: 50 }, // unstructured.svg
+  { top: "68%", right: "12%", size: 50 }, // immuta.svg
+
+  // Center left and right
+  { top: "45%", left: "0%", size: 70 }, // lancedb.svg
+  { top: "45%", right: "0%", size: 70 }, // apache.svg
+];
+
+function seededRandom(seed: number): number {
+  var x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+const logoAnimations = logos.map((_, i) => ({
+  duration: "15s",
+  delay: "1s",
+  direction: seededRandom(i + 200) > 0.5 ? "normal" : "reverse",
+}));
+---
+
+<header class="hero">
+  <div class="hero-logo-title">
+    <Image
+      src={logo}
+      alt="Unity Catalog Logo"
+      class="hero-logo"
+      width={80}
+      height={80}
+      loading="eager"
+    />
+    <h1 class="hero-title">{title}</h1>
+  </div>
+  <p class="hero-subtitle">{subtitle}</p>
+  <div class={`hero-ctas${buttons.length === 2 ? " hero-ctas-two" : ""}`}>
+    {
+      buttons.map((btn, i) => (
+        <Button
+          label={btn.label}
+          url={btn.url}
+          style={i === 0 ? "github" : "slack"}
+          size="2"
+        />
+      ))
+    }
+  </div>
+
+  <div class="hero-grid">
+    <div class="hero-logos">
+      {
+        logos.map((logo, i) => {
+          const pos = logoPositions[i];
+          const anim = logoAnimations[i] || {
+            duration: "15s",
+            delay: "0s",
+            direction: "normal",
+          };
+          if (!pos) return null;
+          return (
+            <Image
+              src={`/logos/${logo}`}
+              alt="hero_logo"
+              class="hero-logo-cloud"
+              loading="lazy"
+              style={`position: absolute; top: ${pos.top}; ${pos.left ? `left: ${pos.left};` : `right: ${pos.right};`} width: ${pos.size ?? 50}px; height: ${pos.size ?? 50}px; animation-duration: ${anim.duration}; animation-delay: ${anim.delay}; animation-direction: ${anim.direction};`}
+              width={pos.size ?? 50}
+              height={pos.size ?? 50}
+              loading="eager"
+            />
+          );
+        })
+      }
+    </div>
+    <div class="hero-image-stack">
+      <Image
+        src="/images/hero_background.svg"
+        alt="hero_background"
+        class="hero-bg-svg"
+        width={800}
+        height={600}
+        aria-hidden="true"
+        loading="eager"
+      />
+      <Image
+        src="/images/hero_background.svg"
+        alt="hero_background"
+        class="hero-bg-svg-2"
+        width={800}
+        height={600}
+        aria-hidden="true"
+        loading="eager"
+      />
+      <Image
+        src="/images/uc-hero-image.webp"
+        alt="Tables, AI Assets, Unstructured Data"
+        class="uc-hero-image"
+        width={400}
+        height={400}
+        loading="eager"
+      />
+    </div>
+  </div>
+  <div class="heroheader_background">
+    <div class="heroheader_grain-bg"></div>
+    <div class="heroheader_grid-bg"></div>
+    <div class="heroheader_bottom-gradient"></div>
+  </div>
+
+  <style>
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 1rem;
+      margin-top: 10rem;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    .hero-logo-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero-logo {
+      z-index: 3;
+      height: 80px;
+      width: 80px;
+      min-width: 64px;
+    }
+    .hero-title {
+      z-index: 3;
+      font-size: 3.75rem;
+      font-weight: 500;
+      color: var(--color-neutral-0);
+      margin: 0;
+      letter-spacing: 1px;
+    }
+    .hero-subtitle {
+      z-index: 3;
+      font-size: 1.25rem;
+      color: var(--color-neutral-200);
+      margin: 0 0 2.5rem;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    /* Grid */
+    .hero-grid {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 1200px;
+      margin-top: 3rem;
+      padding: 0 1rem;
+      min-height: 600px;
+    }
+
+    .hero-image-stack {
+      position: relative;
+      width: 400px;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      margin: 2rem 0;
+    }
+
+    .hero-bg-svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300%;
+      height: 200%;
+      max-width: 70rem;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      pointer-events: none;
+      user-select: none;
+      opacity: 0.7;
+    }
+
+    .hero-bg-svg-2 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 200%;
+      height: 200%;
+      max-width: 70rem;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      pointer-events: none;
+      user-select: none;
+      filter: blur(0px) brightness(1.7);
+      opacity: 0.7;
+    }
+
+    .uc-hero-image {
+      position: relative;
+      max-width: 400px;
+      z-index: 3;
+      border-radius: 50%;
+      box-shadow: 0 0 100px rgba(var(--color-box-shadow-yellow), 0.3);
+    }
+
+    .hero-logos {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    .hero-logo-cloud {
+      background: var(--color-neutral-0);
+      border-radius: 50%;
+      box-shadow: 0 2px 12px 0 var(--color-neutral-900);
+      object-fit: cover;
+      padding: 6px;
+      transition: transform 0.2s;
+      position: absolute;
+      animation: float 15s linear infinite;
+      transform-origin: center center;
+      opacity: 0.9;
+    }
+
+    .hero-logo-cloud:hover {
+      transform: scale(1.1);
+      box-shadow: 0 4px 24px 0 var(--color-neutral-800);
+      animation-play-state: paused;
+    }
+
+    .heroheader_background {
+      z-index: -1;
+      background-color: var(--base-color-brand--dark-blue);
+      position: absolute;
+      inset: 0%;
+    }
+
+    .heroheader_grain-bg {
+      z-index: 1;
+      opacity: 0.08;
+      mix-blend-mode: normal;
+      background-image: url(/images/hero-star-background.png);
+      background-position: 100% 100%;
+      background-repeat: repeat;
+      background-size: auto;
+      position: absolute;
+      inset: 0%;
+    }
+    .heroheader_grid-bg {
+      background-image: url(/images/hero_background_with_grid.svg);
+      background-position: 50% 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: absolute;
+      inset: 0%;
+    }
+
+    .heroheader_bottom-gradient {
+      background-image: linear-gradient(
+        180deg,
+        transparent,
+        var(--color-neutral-950)
+      );
+      height: 5rem;
+      position: absolute;
+      inset: auto 0% 0%;
+    }
+    @keyframes float {
+      from {
+        transform: rotate(0deg) translateX(12px) rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg) translateX(12px) rotate(-360deg);
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .hero {
+        padding: 4rem 1rem;
+        margin-top: 10rem;
+      }
+
+      .hero-grid {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 1400px;
+        margin: 1rem auto;
+        padding: 0 1rem;
+        min-height: 500px;
+      }
+
+      .hero-image-stack {
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .hero-logo-cloud {
+        transform: scale(0.7);
+      }
+    }
+  </style>
+</header>
