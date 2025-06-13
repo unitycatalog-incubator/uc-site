@@ -4,6 +4,10 @@ import { ucTheme } from "uc-theme";
 
 export default defineConfig({
   site: "https://uc-site-beta.netlify.app/",
+  redirects: {
+    "/blog": "/blogs",
+    "/blog/*": "/blogs/:splat",
+  },
   integrations: [
     ucTheme({
       siteTitle: "Unity Catalog",
@@ -14,7 +18,7 @@ export default defineConfig({
           { label: "Partner Ecosystem", url: "/#partner-ecosystem" },
           { label: "API", url: "https://go.unitycatalog.io/apidocs" },
           { label: "Documentation", url: "https://go.unitycatalog.io/docs" },
-          { label: "Blogs", url: "/blog" },
+          { label: "Blogs", url: "/blogs" },
         ],
         headerCtas: [
           {

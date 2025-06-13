@@ -5,6 +5,7 @@ authors:
   - ben-wilson
   - jules-damji
 thumbnail: ./thumbnail.jpg
+date: April 22, 2025
 ---
 
 As part of our continued steadfast commitment to build a robust, flexible, and developer-friendly data catalog platform, we are excited to announce the release of Unity Catalog AI 0.3.0.

@@ -1,0 +1,93 @@
+---
+const {
+  title,
+  date,
+  excerpt,
+  url = "#",
+  thumbnail,
+  badge = "GUIDE",
+} = Astro.props;
+---
+
+<div class="blog-card-container">
+  <a href={url || "#"}>
+    {thumbnail && <img class="blog-image" src={thumbnail?.src} alt={title} />}
+    <div class="blog-content">
+      <h3>{title}</h3>
+      <p>{excerpt}</p>
+      <div class="blog-meta-row">
+        <span class="blog-label">{badge}</span>
+        <span class="blog-date">{date}</span>
+      </div>
+    </div>
+  </a>
+
+  <style>
+    .blog-card-container {
+      display: flex;
+      flex-direction: column;
+      background: var(--color-accent-1000);
+      border-radius: 1rem;
+      overflow: hidden;
+      color: var(--color-neutral-0);
+      text-decoration: none;
+      transition: transform 0.15s;
+      height: 100%;
+    }
+    .blog-card-container a {
+      color: inherit;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .blog-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+      display: block;
+    }
+    .blog-content {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+    }
+    .blog-content h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+    .blog-content p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      color: var(--color-neutral-200);
+      flex: 1 1 auto;
+    }
+    .blog-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+    .blog-label {
+      font-size: 0.8rem;
+      color: var(--color-neutral-0);
+      background: var(--color-accent-1100);
+      border-radius: 0.5rem;
+      padding: 0.3rem 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-right: 0.5rem;
+    }
+    .blog-date {
+      font-size: 0.95rem;
+      color: var(--color-neutral-400);
+      font-weight: 500;
+    }
+  </style>
+</div>

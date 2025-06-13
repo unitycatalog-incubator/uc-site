@@ -7,11 +7,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:ci": "echo \"Error: no test specified\" && exit 0",
-    "build": "echo \"Error: no build specified\" && exit 0"
+    "build": "tsc"
   },
   "exports": {
     ".": "./src/index.ts",
     "./blog": "./src/blog/index.ts",
+    "./blogs": "./src/blogs/index.ts",
     "./components": "./src/components/index.ts"
   },
   "keywords": [],

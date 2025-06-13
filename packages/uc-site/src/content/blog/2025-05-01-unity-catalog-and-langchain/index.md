@@ -4,6 +4,7 @@ category: guide
 authors:
   - avril-aysha
 thumbnail: ./thumbnail.jpg
+date: May 1, 2025
 ---
 
 The Unity Catalog AI library is built to integrate Unity Catalog with popular GenAI tools like [LangChain](https://www.langchain.com/), [LlamaIndex](https://www.llamaindex.ai/enterprise), [OpenAI,](https://openai.com/) [Anthropic](https://www.anthropic.com/), and many others to make it easy to manage data, functions, and access control across AI platforms. This way you only have to define your functions, models, and security protocols once and then you can use them in multiple different AI applications and contexts.
@@ -28,7 +29,7 @@ Unity Catalog makes sure only the right people and systems can access your data 
 
 With Unity Catalog, you don’t have to rewrite functions or move data manually. Define your AI tools once and use them across all supported platforms like  LangChain, OpenAI, LlamaIndex, Anthropic, and more. This makes it easy to compare performance between AI models or to switch platforms when needed, e.g., for compliance with region-specific regulations.
 
-![Unity Catalog and LangChain](./unity-catalog-and-langchain)
+![Unity Catalog and LangChain](./unity-catalog-and-langchain.png)
 
 ## How to use LangChain with Unity Catalog
 

@@ -6,6 +6,7 @@ authors:
   - denny-lee
   - vladimir-kolovski
 thumbnail: ./thumbnail.jpg
+date: January 15, 2025
 ---
 
 This article explains how to build an ML and AI data catalog. You will learn the importance of model governance in machine learning (ML), MLOps, and MLOps for large language models (LLMOps) workflows, as well as how to implement a governance architecture with Unity Catalog and MLflow.

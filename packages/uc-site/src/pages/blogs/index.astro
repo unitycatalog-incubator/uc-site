@@ -1,0 +1,87 @@
+---
+import { PageLayout, FeaturedBlogCard, BlogCard } from "uc-theme/components";
+import { getCollection } from "astro:content";
+
+function getExcerpt(content: string) {
+  if (!content) return "";
+  // Remove markdown images/links for cleaner excerpt
+  const clean = content.replace(/!?\[.*?\]\(.*?\)/g, "");
+  const sentences = clean.match(/[^.!?]+[.!?]+/g) || [];
+  return sentences.slice(0, 3).join(" ").trim();
+}
+
+const posts = await getCollection("blog");
+
+posts.sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+);
+const featured = posts.find((post) => post.data.featured === true);
+const rest = posts.filter((post) => post !== featured);
+---
+
+<PageLayout title="Blog">
+  <div class="blog-hero">
+    <h1>Blog</h1>
+    <p>The first multimodal open catalog for data and AI</p>
+  </div>
+  <section>
+    {
+      featured && (
+        <FeaturedBlogCard
+          title={featured.data.title}
+          excerpt={getExcerpt(featured.body || "")}
+          date={featured.data.date}
+          url={featured.id ? `/blogs/${featured.id}` : "#"}
+          thumbnail={featured.data.thumbnail}
+          badge="GUIDE"
+          featured={featured.data.featured}
+        />
+      )
+    }
+  </section>
+  <section>
+    <div class="blog-grid">
+      {
+        rest.map((post) => (
+          <BlogCard
+            title={post.data.title}
+            excerpt={getExcerpt(post.body || "")}
+            date={post.data.date}
+            url={post.id ? `/blogs/${post.id}` : "#"}
+            thumbnail={post.data.thumbnail}
+            badge="GUIDE"
+            featured={post.data.featured}
+          />
+        ))
+      }
+    </div>
+  </section>
+  <style>
+    .blog-hero {
+      text-align: center;
+      margin-top: 15rem;
+    }
+    .blog-hero h1 {
+      font-size: 3.75rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      color: var(--color-neutral-0);
+    }
+    .blog-hero p {
+      color: var(--color-neutral-400);
+      margin-top: 2rem;
+      font-size: 1.25rem;
+    }
+    .blog-grid {
+      max-width: 1440px;
+      margin-left: auto;
+      margin-right: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+      margin-bottom: 10rem;
+    }
+  </style>
+</PageLayout>

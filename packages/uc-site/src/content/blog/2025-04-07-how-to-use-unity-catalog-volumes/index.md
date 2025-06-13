@@ -4,6 +4,7 @@ category: guide
 authors:
   - avril-aysha
 thumbnail: ./thumbnail.jpg
+date: April 07, 2025
 ---
 
 This article explains how to use Unity Catalog volumes.

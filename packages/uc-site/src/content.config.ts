@@ -1,6 +1,6 @@
 import { defineCollection, z, reference } from "astro:content";
 import { file } from "astro/loaders";
-import { blogLoader } from "uc-theme/blog";
+import { blogLoader } from "uc-theme/blogs";
 
 const blog = defineCollection({
   loader: blogLoader({
@@ -14,6 +14,8 @@ const blog = defineCollection({
       thumbnail: image().optional(),
       authors: z.array(reference("profiles")),
       category: z.enum(["guide"]),
+      date: z.string(),
+      featured: z.boolean().optional(),
     }),
 });
 
