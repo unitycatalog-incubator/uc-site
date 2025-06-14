@@ -1,6 +1,6 @@
 ---
-import { PageLayout } from "uc-theme/components";
-import { Button } from "uc-theme/components";
+import { PageLayout, Button, Footer } from "uc-theme/components";
+import homeData from "../content/home.json";
 ---
 
 <PageLayout title="Not Found">
@@ -15,6 +15,11 @@ import { Button } from "uc-theme/components";
     </p>
     <Button url="/" size="1" style="slack" label="Go Home" />
   </div>
+  <Footer
+    logos={homeData.footer.logos}
+    links={homeData.footer.links}
+    copyright={homeData.footer.copyright}
+  />
 </PageLayout>
 
 <style>

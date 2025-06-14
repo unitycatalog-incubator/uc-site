@@ -7,12 +7,6 @@ const {
   thumbnail,
   badge = "GUIDE",
 } = Astro.props;
-
-console.log("FeaturedBlogCard props:", {
-  excerpt,
-  thumbnail,
-  date,
-});
 ---
 
 <div class="featured-hero">
@@ -159,17 +153,6 @@ console.log("FeaturedBlogCard props:", {
     height: 100%;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
-  }
-  .featured-badge {
-    background: gold;
-    color: #222;
-    padding: 0.3rem 1rem;
-    border-radius: 1rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    display: inline-block;
-    font-size: 1rem;
-    letter-spacing: 1px;
   }
   @media (max-width: 900px) {
     .featured-hero-card {

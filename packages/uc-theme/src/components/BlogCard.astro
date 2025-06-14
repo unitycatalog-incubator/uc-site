@@ -20,6 +20,7 @@ const {
         <span class="blog-date">{date}</span>
       </div>
     </div>
+    <div class="blog-gradient"></div>
   </a>
 
   <style>
@@ -33,6 +34,7 @@ const {
       text-decoration: none;
       transition: transform 0.15s;
       height: 100%;
+      position: relative;
     }
     .blog-card-container a {
       color: inherit;
@@ -42,12 +44,11 @@ const {
       height: 100%;
     }
     .blog-image {
-      width: 100%;
-      height: 200px;
+      border-radius: 1rem;
       object-fit: cover;
-      border-top-left-radius: 1rem;
-      border-top-right-radius: 1rem;
-      display: block;
+      height: 200px;
+      min-height: 15rem;
+      width: 100%;
     }
     .blog-content {
       padding: 1.25rem;
@@ -56,7 +57,7 @@ const {
       flex: 1 1 auto;
     }
     .blog-content h3 {
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       font-weight: 700;
       margin-bottom: 0.75rem;
       line-height: 1.2;
@@ -64,13 +65,18 @@ const {
     .blog-content p {
       font-size: 1rem;
       margin-bottom: 1.5rem;
-      color: var(--color-neutral-200);
+      color: var(--color-neutral-1000);
       flex: 1 1 auto;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .blog-meta-row {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
       margin-top: auto;
     }
     .blog-label {
@@ -88,6 +94,15 @@ const {
       font-size: 0.95rem;
       color: var(--color-neutral-400);
       font-weight: 500;
+    }
+    .blog-gradient {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 6px;
+      border-radius: 0 0 1rem 1rem;
+      background: var(--conic-gradient);
     }
   </style>
 </div>
