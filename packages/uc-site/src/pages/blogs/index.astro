@@ -4,6 +4,7 @@ import {
   FeaturedBlogCard,
   BlogCard,
   Footer,
+  Subscribe,
 } from "uc-theme/components";
 import { getCollection } from "astro:content";
 
@@ -63,6 +64,7 @@ const rest = posts.filter((post) => post !== featured);
       }
     </div>
     <div id="pagination"></div>
+    <Subscribe />
     <Footer
       logos={homeData.footer.logos}
       links={homeData.footer.links}

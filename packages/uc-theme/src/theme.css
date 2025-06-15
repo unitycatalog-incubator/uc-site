@@ -47,6 +47,7 @@
   --color-secondary-800: #a38200;
   --color-secondary-900: #7a5f00;
   --color-secondary-950: #4c3900;
+  --color-box-shadow-yellow: #ffbc00;
 
   /* Accent – Sky Blue (#00BFFF) */
   --color-accent-50: #e5f9ff;
@@ -77,7 +78,6 @@
   --color-neutral-900: #122a42;
   --color-neutral-950: #071a2e;
   --color-neutral-1000: #b6b6b6;
-  --color-box-shadow-yellow: #ffbc00;
   --color-black: #000000;
 }
 
