@@ -70,125 +70,125 @@ const rest = posts.filter((post) => post !== featured);
       links={homeData.footer.links}
       copyright={homeData.footer.copyright}
     />
-    <script type="module">
-      const POSTS_PER_PAGE = 9;
-      const posts = Array.from(document.querySelectorAll("#blog-grid > *"));
-      const pagination = document.getElementById("pagination");
-      let currentPage = 1;
-      const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
-
-      function renderPage(page) {
-        posts.forEach((el, i) => {
-          el.style.display =
-            i >= (page - 1) * POSTS_PER_PAGE && i < page * POSTS_PER_PAGE
-              ? ""
-              : "none";
-        });
-        pagination.innerHTML = "";
-
-        // Previous arrow
-        if (page > 1) {
-          const prev = document.createElement("button");
-          prev.type = "button";
-          prev.innerHTML = "&larr;";
-          prev.className = "pagination-arrow";
-          prev.onclick = () => {
-            currentPage = page - 1;
-            renderPage(currentPage);
-          };
-          pagination.appendChild(prev);
-        }
-
-        // Page numbers
-        for (let i = 1; i <= totalPages; i++) {
-          const btn = document.createElement("button");
-          btn.textContent = i;
-          btn.type = "button";
-          btn.className = "pagination-link" + (i === page ? " active" : "");
-          btn.disabled = i === page;
-          btn.onclick = () => {
-            currentPage = i;
-            renderPage(currentPage);
-          };
-          pagination.appendChild(btn);
-        }
-
-        // Next arrow
-        if (page < totalPages) {
-          const next = document.createElement("button");
-          next.type = "button";
-          next.innerHTML = "&rarr;";
-          next.className = "pagination-arrow";
-          next.onclick = () => {
-            currentPage = page + 1;
-            renderPage(currentPage);
-          };
-          pagination.appendChild(next);
-        }
-      }
-      renderPage(currentPage);
-    </script>
   </section>
-  <style is:global>
-    .blog-hero {
-      text-align: center;
-      margin-top: 15rem;
+  <script type="module">
+    const POSTS_PER_PAGE = 9;
+    const posts = Array.from(document.querySelectorAll("#blog-grid > *"));
+    const pagination = document.getElementById("pagination");
+    let currentPage = 1;
+    const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+
+    function renderPage(page) {
+      posts.forEach((el, i) => {
+        el.style.display =
+          i >= (page - 1) * POSTS_PER_PAGE && i < page * POSTS_PER_PAGE
+            ? ""
+            : "none";
+      });
+      pagination.innerHTML = "";
+
+      // Previous arrow
+      if (page > 1) {
+        const prev = document.createElement("button");
+        prev.type = "button";
+        prev.innerHTML = "&larr;";
+        prev.className = "pagination-arrow";
+        prev.onclick = () => {
+          currentPage = page - 1;
+          renderPage(currentPage);
+        };
+        pagination.appendChild(prev);
+      }
+
+      // Page numbers
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.textContent = i;
+        btn.type = "button";
+        btn.className = "pagination-link" + (i === page ? " active" : "");
+        btn.disabled = i === page;
+        btn.onclick = () => {
+          currentPage = i;
+          renderPage(currentPage);
+        };
+        pagination.appendChild(btn);
+      }
+
+      // Next arrow
+      if (page < totalPages) {
+        const next = document.createElement("button");
+        next.type = "button";
+        next.innerHTML = "&rarr;";
+        next.className = "pagination-arrow";
+        next.onclick = () => {
+          currentPage = page + 1;
+          renderPage(currentPage);
+        };
+        pagination.appendChild(next);
+      }
     }
-    .blog-hero h1 {
-      font-size: 3.75rem;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 0.5rem;
-      color: var(--color-neutral-0);
-    }
-    .blog-hero p {
-      color: var(--color-neutral-400);
-      margin-top: 2rem;
-      font-size: 1.25rem;
-    }
-    #blog-grid {
-      max-width: 1440px;
-      margin-left: auto;
-      margin-right: auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-top: 2rem;
-      margin-bottom: 2rem;
-    }
-    #pagination {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 10rem;
-      gap: 1.5rem;
-    }
-    #pagination .pagination-link,
-    #pagination .pagination-arrow {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 3rem;
-      height: 3rem;
-      font-size: 1rem;
-      border-radius: 0.25rem;
-      background: var(--color-neutral-0);
-      color: var(--color-black);
-      border: 1.5px solid var(--color-neutral-200);
-      cursor: pointer;
-      text-decoration: none;
-      font-weight: 400;
-      transition:
-        background 0.2s,
-        color 0.2s,
-        border 0.2s;
-      padding: 0;
-    }
-    #pagination .pagination-link.active {
-      background: var(--color-neutral-900);
-      color: var(--color-neutral-0);
-      border: none;
-      font-weight: 600;
-      pointer-events: none;
-    }
-  </style>
+    renderPage(currentPage);
+  </script>
 </PageLayout>
+<style is:global>
+  .blog-hero {
+    text-align: center;
+    margin-top: 15rem;
+  }
+  .blog-hero h1 {
+    font-size: 3.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    color: var(--color-neutral-0);
+  }
+  .blog-hero p {
+    color: var(--color-neutral-400);
+    margin-top: 2rem;
+    font-size: 1.25rem;
+  }
+  #blog-grid {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  #pagination {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10rem;
+    gap: 1.5rem;
+  }
+  #pagination .pagination-link,
+  #pagination .pagination-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    background: var(--color-neutral-0);
+    color: var(--color-black);
+    border: 1.5px solid var(--color-neutral-200);
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 400;
+    transition:
+      background 0.2s,
+      color 0.2s,
+      border 0.2s;
+    padding: 0;
+  }
+  #pagination .pagination-link.active {
+    background: var(--color-neutral-900);
+    color: var(--color-neutral-0);
+    border: none;
+    font-weight: 600;
+    pointer-events: none;
+  }
+</style>
