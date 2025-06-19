@@ -55,9 +55,9 @@ import { PageLayout } from "uc-theme/components";
 </PageLayout>
 ```
 
-### Blogs
+### Blog
 
-The `uc-theme/blogs` module includes utilities for working with blogs.
+The `uc-theme/blog` module includes utilities for working with blogs.
 
 We expect blogs to follow the file naming convention: `YYYY-MM-DD-*`. This gives us two benefits:
 

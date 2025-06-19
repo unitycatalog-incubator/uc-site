@@ -12,7 +12,6 @@
   "exports": {
     ".": "./src/index.ts",
     "./blog": "./src/blog/index.ts",
-    "./blogs": "./src/blogs/index.ts",
     "./components": "./src/components/index.ts"
   },
   "keywords": [],
