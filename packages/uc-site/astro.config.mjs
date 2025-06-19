@@ -8,7 +8,6 @@ export default defineConfig({
   site: "https://uc-site-beta.netlify.app/",
   redirects: {
     "/blog": "/blogs",
-    "/blog/*": "/blogs/:splat",
   },
   adapter: netlify(),
   integrations: [
