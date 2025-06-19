@@ -23,3 +23,9 @@ pnpm --filter uc-site preview
 ### Updating production
 
 Changes merged to the `main` git branch automatically deploy to https://uc-site-beta.netlify.app/
+
+## Upgrading dependencies
+
+It's a best practice to make sure that our dependencies are always up to date. You can run `scripts/upgrade-dependencies` to automatically install upgrades across all packages.
+
+Do note that you will still need to verify that things work as expected.
