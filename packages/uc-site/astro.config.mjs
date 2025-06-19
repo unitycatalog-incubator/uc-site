@@ -2,12 +2,15 @@
 import { defineConfig } from "astro/config";
 import { ucTheme } from "uc-theme";
 
+import netlify from "@astrojs/netlify";
+
 export default defineConfig({
   site: "https://uc-site-beta.netlify.app/",
   redirects: {
     "/blog": "/blogs",
     "/blog/*": "/blogs/:splat",
   },
+  adapter: netlify(),
   integrations: [
     ucTheme({
       siteTitle: "Unity Catalog",
