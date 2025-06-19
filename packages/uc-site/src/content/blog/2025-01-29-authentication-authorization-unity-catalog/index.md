@@ -4,6 +4,7 @@ category: guide
 authors:
   - avril-aysha
 thumbnail: ./thumbnail.jpg
+date: January 29, 2025
 ---
 
 This article explains authentication and authorization in Unity Catalog. You will learn the fundamental importance of these two processes to modern data governance and how to implement them in Unity Catalog.

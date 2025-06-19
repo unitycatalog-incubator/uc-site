@@ -8,3 +8,6 @@ export { default as PartnerEcosystem } from "./PartnerEcosystem.astro";
 export { default as Endorsements } from "./Endorsements.astro";
 export { default as Cta } from "./Cta.astro";
 export { default as Footer } from "./Footer.astro";
+export { default as FeaturedBlogCard } from "./FeaturedBlogCard.astro";
+export { default as BlogCard } from "./BlogCard.astro";
+export { default as Subscribe } from "./Subscribe.astro";

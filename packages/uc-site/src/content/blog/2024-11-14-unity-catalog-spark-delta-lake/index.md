@@ -4,6 +4,7 @@ category: guide
 authors:
   - avril-aysha
 thumbnail: ./thumbnail.jpg
+date: November 11, 2024
 ---
 
 This article explains how to use Unity Catalog with Apache Spark™ and Delta Lake. You will learn how to use these popular open source technologies to store, query, transform, and govern tabular datasets at scale.

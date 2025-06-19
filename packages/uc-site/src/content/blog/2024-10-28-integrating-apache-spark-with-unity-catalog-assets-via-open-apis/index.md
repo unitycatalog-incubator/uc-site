@@ -4,6 +4,7 @@ category: guide
 authors:
   - dipankar-kushari
 thumbnail: ./thumbnail.jpg
+date: October 28, 2024
 ---
 
 [Unity Catalog (UC)](https://www.unitycatalog.io/) is the industry’s first open source catalog for data and AI governance across clouds, data formats, and data platforms. It is built on the OpenAPI spec and an open source server implementation under Apache 2.0 license. It is also compatible with Apache Hive’s metastore API and Apache Iceberg’s REST catalog API. 
@@ -192,7 +193,7 @@ You can see the locally created delta log folder in your file explorer after the
   INSERT INTO demo_table VALUES (5, "test 5");
   ```
 
-  ```SQL
+  ```sql
   select * from demo_table;
   ```
 

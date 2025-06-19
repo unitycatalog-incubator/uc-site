@@ -4,6 +4,7 @@ category: guide
 authors:
   - sida-shen
 thumbnail: ./thumbnail.jpg
+date: December 11, 2024
 ---
 
 Whether for [business-facing martech](https://starrocks.medium.com/demandbase-ditches-denormalization-by-switching-off-clickhouse-44195d795a83), [real-time dashboards for content creators](https://medium.com/pinterest-engineering/delivering-faster-analytics-at-pinterest-a639cdfad374), or [real-time fraud detection](https://celerdata.com/blog/verisoul-enables-real-time-analytics-by-transitioning-off-bigquery), customer-facing analytics has become an ever-increasing priority for businesses everywhere. These use cases demand stringent performance service level agreements (SLAs), such as low latency and high concurrency, and to meet these performance needs, many organizations rely on proprietary data warehouses. This approach can deliver the desired speed and efficiency, but not without introducing a new set of costs and operational challenges.
