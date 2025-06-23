@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 const {
   title,
   date,
@@ -11,7 +12,18 @@ const {
 
 <div class="blog-card-container">
   <a href={url || "#"}>
-    {thumbnail && <img class="blog-image" src={thumbnail?.src} alt={title} />}
+    {
+      thumbnail && (
+        <Image
+          class="blog-image"
+          src={thumbnail}
+          alt={title}
+          width={1239}
+          height={720}
+          loading="lazy"
+        />
+      )
+    }
     <div class="blog-content">
       <h3>{title}</h3>
       <p>{excerpt}</p>
