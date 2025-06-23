@@ -46,5 +46,20 @@
   {
     "id": "dipankar-kushari",
     "name": "Dipankar Kushari"
+  },
+  {
+    "id": "matthew-powers",
+    "name": "Matthew Powers",
+    "title": "CFA, Staff Developer Advocate"
+  },
+  {
+    "id": "matt-tanner",
+    "name": "Matt Tanner",
+    "title": "Advisor at Puppygraph"
+  },
+  {
+    "id": "danfeng-xu",
+    "name": "Danfeng Xu",
+    "title": "Co-Founder, CTO at Puppygraph"
   }
 ]

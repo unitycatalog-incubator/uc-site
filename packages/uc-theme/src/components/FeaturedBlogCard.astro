@@ -127,7 +127,7 @@ const {
     line-height: 1.15;
   }
   .featured-hero-desc {
-    color: var(--color-neutral-0);
+    color: var(--color-neutral-1000);
     font-size: 1.15rem;
     margin-bottom: 2.5rem;
     line-height: 1.5;
@@ -135,7 +135,7 @@ const {
     opacity: 0.9;
   }
   .featured-hero-date {
-    color: var(--color-neutral-0);
+    color: var(--color-neutral-1000);
     font-size: 1rem;
     margin-top: auto;
     margin-bottom: 0.5rem;
@@ -158,9 +158,10 @@ const {
     border-top-left-radius: 1rem;
     border-bottom-left-radius: 1rem;
   }
-  @media (max-width: 900px) {
+  @media (max-width: 1200px) {
     .featured-hero-card {
-      flex-direction: column;
+      margin: 2rem;
+      flex-direction: column-reverse;
       min-height: unset;
     }
     .featured-hero-content,
