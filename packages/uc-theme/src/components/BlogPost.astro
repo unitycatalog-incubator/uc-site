@@ -69,6 +69,38 @@ const tocItems = lines
   <Footer logos={logos} links={links} copyright={copyright} />
 </div>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("pre").forEach((pre) => {
+      // Avoid adding multiple buttons
+      if (!pre.parentElement || !pre.parentNode) return;
+      if (pre.parentElement.classList.contains("code-block-container")) return;
+
+      // Create a wrapper div
+      const wrapper = document.createElement("div");
+      wrapper.className = "code-block-container";
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+
+      // Create the button
+      const btn = document.createElement("button");
+      btn.textContent = "Copy Code";
+      btn.className = "copy-btn";
+      btn.addEventListener("click", () => {
+        const code = pre.querySelector("code");
+        if (code) {
+          navigator.clipboard.writeText(code.innerText);
+          btn.textContent = "Copied!";
+          setTimeout(() => (btn.textContent = "Copy Code"), 1200);
+        }
+      });
+
+      // Insert the button after the <pre>
+      wrapper.appendChild(btn);
+    });
+  });
+</script>
+
 <style>
   .blog-post {
     padding-top: 10rem;
@@ -87,8 +119,6 @@ const tocItems = lines
   }
 
   .blog-content-container {
-    grid-column-gap: 4rem;
-    grid-row-gap: 4rem;
     grid-template-rows: auto;
     grid-template-columns: 0.5fr 1fr;
     grid-auto-columns: 1fr;
@@ -285,5 +315,29 @@ const tocItems = lines
     .blog-article :global(h3) {
       font-size: 1.75rem;
     }
+  }
+  :global(.code-block-container) {
+    margin-bottom: 2.5rem;
+  }
+  :global(.copy-btn) {
+    width: 100%;
+    max-width: 300px;
+    background: var(--color-box-shadow-yellow);
+    color: var(--color-black);
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.8rem 0;
+    font-weight: 500;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px 0 var(--color-neutral-100);
+    font-family: inherit;
+    transition:
+      background 0.2s,
+      color 0.2s;
+  }
+  :global(.copy-btn:hover) {
+    background: var(--color-secondary-700);
+    color: var(--color-black);
   }
 </style>
