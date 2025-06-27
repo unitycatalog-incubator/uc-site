@@ -13,3 +13,6 @@ export { default as BlogCard } from "./BlogCard.astro";
 export { default as Subscribe } from "./Subscribe.astro";
 export { default as BlogPost } from "./BlogPost.astro";
 export { default as HeroBlogPost } from "./HeroBlogPost.astro";
+export { default as TableOfContents } from "./TableOfContents.astro";
+export { default as Contributors } from "./Contributors.astro";
+export { default as ctaSocial } from "./HeroBlogPost.astro";

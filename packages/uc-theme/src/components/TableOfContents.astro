@@ -14,7 +14,7 @@ interface TocItem {
 ---
 
 <nav class="toc">
-  <h3>Table of Contents</h3>
+  <h3 class="toc-title">Table of Contents</h3>
   <ul>
     {
       (items as TocItem[]).map((item) => (
@@ -63,6 +63,35 @@ interface TocItem {
   </ul>
 </nav>
 
+<script is:inline>
+  window.addEventListener("DOMContentLoaded", () => {
+    const tocLinks = Array.from(document.querySelectorAll(".toc a"));
+    const headings = tocLinks.map((link) =>
+      document.querySelector(link.getAttribute("href")),
+    );
+
+    function onScroll() {
+      let activeIndex = 0;
+      for (let i = 0; i < headings.length; i++) {
+        const rect = headings[i]?.getBoundingClientRect();
+        if (rect && rect.top < window.innerHeight / 4) {
+          activeIndex = i;
+        }
+      }
+      tocLinks.forEach((link, i) => {
+        if (i === activeIndex) {
+          link.classList.add("active");
+        } else {
+          link.classList.remove("active");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  });
+</script>
+
 <style>
   .toc {
     margin-bottom: 2.5rem;
@@ -71,11 +100,12 @@ interface TocItem {
     border-bottom: 1px solid var(--color-black-icon);
     border-top: 1px solid var(--color-black-icon);
   }
-  .toc h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #222;
+  .toc-title {
+    font-size: 1.2rem;
+    line-height: 24px;
+    font-weight: 600;
+    color: var(--color-accent-1000);
+    padding-bottom: 1.5rem;
   }
   .toc ul {
     list-style: none;
@@ -110,5 +140,10 @@ interface TocItem {
   .toc ul ul {
     margin-left: 1.25rem;
     margin-top: 0.25rem;
+  }
+  .toc a.active {
+    font-weight: bold;
+    color: var(--color-accent-1100);
+    border-radius: 0.25em;
   }
 </style>

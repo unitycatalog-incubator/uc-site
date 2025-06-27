@@ -4,6 +4,8 @@ import HeroBlogPost from "./HeroBlogPost.astro";
 import Footer from "./Footer.astro";
 import TableOfContents from "./TableOfContents.astro";
 import Contributors from "./Contributors.astro";
+import CtaSocial from "./ctaSocial.astro";
+import Subscribe from "./Subscribe.astro";
 import "../theme.css";
 
 interface Props {
@@ -22,6 +24,7 @@ interface Props {
 }
 
 const { title, authors, raw, logos, links, copyright } = Astro.props;
+const currentUrl = Astro.url.href;
 
 // Static placeholder data for TOC and contributors
 const contributors = authors;
@@ -50,7 +53,8 @@ const tocItems = lines
       <aside class="blog-sidebar">
         <TableOfContents items={tocItems} />
         <Contributors contributors={contributors} />
-        <!-- <SubscribeNewsletter /> -->
+        <Subscribe small={true} />
+        <CtaSocial currentUrl={currentUrl} title={title} />
       </aside>
       <main class="blog-main">
         <!-- Markdown Content -->
@@ -68,7 +72,7 @@ const tocItems = lines
 <style>
   .blog-post {
     padding-top: 10rem;
-    background: var(--color-neutral-950);
+    background: var(--color-neutral-0);
     color: var(--color-neutral-0);
   }
 
@@ -76,6 +80,10 @@ const tocItems = lines
     background: var(--color-neutral-0);
     padding: 4rem 0;
     max-width: 100%;
+    width: 100%;
+    max-width: 102rem;
+    margin-right: auto;
+    margin-left: auto;
   }
 
   .blog-content-container {
@@ -87,17 +95,15 @@ const tocItems = lines
     align-items: start;
     display: grid;
     padding-bottom: 4rem;
-    padding-left: 3rem;
-    padding-right: 8rem;
   }
 
   .blog-sidebar {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     position: sticky;
-    top: 2rem;
     align-self: start;
+    top: 1rem;
     height: fit-content;
   }
 
@@ -115,7 +121,7 @@ const tocItems = lines
     font-weight: 300;
     letter-spacing: 0.02em;
     color: var(--color-accent-1000);
-    padding-left: 5rem;
+    padding-right: 2rem;
   }
 
   /* Markdown Content Typography */
