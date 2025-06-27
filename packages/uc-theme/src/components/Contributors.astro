@@ -1,0 +1,64 @@
+---
+interface Contributor {
+  name: string;
+  title?: string;
+  photo?: unknown;
+}
+
+const { contributors } = Astro.props;
+---
+
+<div class="contributors">
+  <h3>Contributors</h3>
+  <ul>
+    {
+      contributors.map((c: Contributor) => (
+        <li class="contributor-item">
+          {/* {c.photo && (
+            <img src={c.photo as string} alt={c.name} class="contributor-photo" />
+          )} */}
+          <div>
+            <div class="contributor-name">{c.name}</div>
+            <div class="contributor-title">{c.title}</div>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .contributors {
+    margin-bottom: 2.5rem;
+  }
+  .contributors h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--color-black-222);
+  }
+  .contributors ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  .contributor-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .contributor-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .contributor-name {
+    font-weight: 600;
+    color: var(--color-black-222);
+  }
+  .contributor-title {
+    font-size: 0.95rem;
+    color: var(--color-neutral-950);
+  }
+</style>

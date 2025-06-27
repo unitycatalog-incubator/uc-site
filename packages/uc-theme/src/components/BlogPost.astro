@@ -1,0 +1,283 @@
+---
+import type { Logo, Link, Copyright } from "../types";
+import HeroBlogPost from "./HeroBlogPost.astro";
+import Footer from "./Footer.astro";
+import TableOfContents from "./TableOfContents.astro";
+import Contributors from "./Contributors.astro";
+import "../theme.css";
+
+interface Props {
+  title: string;
+  authors: Array<{
+    name: string;
+    title?: string | undefined;
+    photo?: unknown;
+  }>;
+  thumbnail?: unknown;
+  raw?: string;
+  // Footer props
+  logos: Logo[];
+  links: Link[];
+  copyright: Copyright;
+}
+
+const { title, authors, raw, logos, links, copyright } = Astro.props;
+
+// Static placeholder data for TOC and contributors
+const contributors = authors;
+
+// Extract ## headings from raw markdown for TOC, safely handle undefined
+const lines = typeof raw === "string" ? raw.split(/\r?\n/) : [];
+const tocItems = lines
+  .filter((line) => line.trim().startsWith("## "))
+  .map((line) => {
+    const text = line.replace(/^\s*## /, "").trim();
+    const slug = text
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-");
+    return { label: text, href: `#${slug}` };
+  });
+---
+
+<div class="blog-post">
+  <!-- Hero Section -->
+  <HeroBlogPost title={title} />
+
+  <!-- Blog Content Section -->
+  <section class="blog-content">
+    <div class="blog-content-container">
+      <aside class="blog-sidebar">
+        <TableOfContents items={tocItems} />
+        <Contributors contributors={contributors} />
+        <!-- <SubscribeNewsletter /> -->
+      </aside>
+      <main class="blog-main">
+        <!-- Markdown Content -->
+        <article class="blog-article">
+          <slot />
+        </article>
+      </main>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <Footer logos={logos} links={links} copyright={copyright} />
+</div>
+
+<style>
+  .blog-post {
+    padding: 10rem 0;
+    min-height: 100vh;
+    background: var(--color-neutral-950);
+    color: var(--color-neutral-0);
+  }
+
+  .blog-content {
+    background: var(--color-neutral-0);
+    padding: 4rem 0;
+    max-width: 100%;
+  }
+
+  .blog-content-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .blog-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    padding: 0 1rem;
+    position: sticky;
+    top: 2rem;
+    align-self: start;
+    height: fit-content;
+  }
+
+  .blog-main {
+    /* Main content styles */
+    margin-top: 8rem;
+    min-width: 0;
+  }
+
+  /* Article Content */
+  .blog-article {
+    line-height: 1.8;
+    font-size: 1.25rem;
+    color: var(--color-neutral-0);
+  }
+
+  /* Markdown Content Typography */
+  .blog-article :global(h1) {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 3rem 0 1.5rem 0;
+    color: var(--color-black);
+    line-height: 1.2;
+  }
+
+  .blog-article :global(h2) {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 2.5rem 0 1rem 0;
+    color: var(--color-black);
+    line-height: 1.3;
+  }
+
+  .blog-article :global(h3) {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 2rem 0 1rem 0;
+    color: var(--color-black);
+    line-height: 1.4;
+  }
+
+  .blog-article :global(h4) {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.75rem 0;
+    color: var(--color-black);
+  }
+
+  .blog-article :global(p) {
+    margin: 1.5rem 0;
+    color: var(--color-black);
+  }
+
+  .blog-article :global(ul),
+  .blog-article :global(ol) {
+    margin: 1.5rem 0;
+    padding-left: 1.5rem;
+  }
+
+  .blog-article :global(li) {
+    margin: 0.5rem 0;
+    color: var(--color-black);
+  }
+
+  .blog-article :global(blockquote) {
+    border-left: 4px solid var(--color-secondary-500);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: var(--color-black);
+  }
+
+  .blog-article :global(code) {
+    background: var(--color-neutral-900);
+    color: var(--color-secondary-500);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+    font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  }
+
+  .blog-article :global(pre) {
+    background: var(--color-neutral-900);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+    margin: 2rem 0;
+    border: 1px solid var(--color-links-yellow);
+  }
+
+  .blog-article :global(pre code) {
+    background: none;
+    padding: 0;
+    color: var(--color-neutral-200);
+  }
+
+  .blog-article :global(a) {
+    color: var(--color-links-yellow);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .blog-article :global(a:hover) {
+    color: var(--color-links-yellow);
+    text-decoration: underline;
+  }
+
+  .blog-article :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    margin: 2rem 0;
+  }
+
+  .blog-article :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background: var(--color-neutral-900);
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+
+  .blog-article :global(th),
+  .blog-article :global(td) {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-neutral-800);
+  }
+
+  .blog-article :global(th) {
+    background: var(--color-neutral-800);
+    font-weight: 600;
+    color: var(--color-neutral-0);
+  }
+
+  .blog-article :global(td) {
+    color: var(--color-neutral-200);
+  }
+
+  .blog-article :global(hr) {
+    border: none;
+    height: 1px;
+    background: var(--color-neutral-800);
+    margin: 3rem 0;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    .blog-content-container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 0 1rem;
+    }
+
+    .blog-sidebar {
+      position: static;
+      max-width: 100%;
+      margin-bottom: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .blog-content {
+      padding: 2rem 0;
+    }
+
+    .blog-article {
+      font-size: 1.125rem;
+    }
+
+    .blog-article :global(h1) {
+      font-size: 2.5rem;
+    }
+
+    .blog-article :global(h2) {
+      font-size: 2rem;
+    }
+
+    .blog-article :global(h3) {
+      font-size: 1.75rem;
+    }
+  }
+</style>

@@ -1,0 +1,74 @@
+---
+const { items } = Astro.props;
+
+// Type aliases for TOC items
+interface TocChild {
+  label: string;
+  href: string;
+}
+interface TocItem {
+  label: string;
+  href: string;
+  children?: TocChild[];
+}
+---
+
+<nav class="toc">
+  <h3>Table of Contents</h3>
+  <ul>
+    {
+      (items as TocItem[]).map((item) => (
+        <li>
+          <a href={item.href}>{item.label}</a>
+          {item.children && (
+            <ul>
+              {item.children.map((child) => (
+                <li>
+                  <a href={child.href}>{child.label}</a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  .toc {
+    margin-bottom: 2.5rem;
+    margin-top: 10rem;
+    padding: 0 0 2.5rem 0;
+  }
+  .toc h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #222;
+  }
+  .toc ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  .toc li {
+    margin-bottom: 0.5rem;
+  }
+  .toc a {
+    color: var(--color-black-222);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.2s;
+    padding: 0.15em 0.25em;
+    border-radius: 0.25em;
+  }
+  .toc a:hover {
+    color: var(--color-accent-1100);
+    text-decoration: underline;
+    background: none;
+  }
+  .toc ul ul {
+    margin-left: 1.25rem;
+    margin-top: 0.25rem;
+  }
+</style>

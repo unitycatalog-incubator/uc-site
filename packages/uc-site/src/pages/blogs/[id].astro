@@ -1,34 +1,41 @@
 ---
 import { getCollection, render, getEntries } from "astro:content";
-import { PageLayout } from "uc-theme/components";
+import { BlogPost, PageLayout } from "uc-theme/components";
 import { getBlogPublishedAt } from "uc-theme/blog";
+import homeData from "../../content/home.json";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
   return posts.map((post) => {
     const publishedAt = getBlogPublishedAt(post);
-
     return {
       params: { id: post.id },
-      props: {
-        post,
-        publishedAt,
-      },
+      props: { post, publishedAt },
     };
   });
 }
 
-const { post, publishedAt } = Astro.props;
+const { post } = Astro.props;
 const authors = await getEntries(post.data.authors);
 const { Content } = await render(post);
+
+const raw = typeof post.body === "string" ? post.body : "";
 ---
 
-<PageLayout title={post.data.title}>
-  <h1>{post.data.title}</h1>
-  <p>
-    Published on {publishedAt.toLocaleDateString()} by {
-      authors.map((author) => author.data.name).join(", ")
-    }
-  </p>
-  <Content />
+<PageLayout title={post.data.title} description={post.data.description}>
+  <BlogPost
+    title={post.data.title}
+    authors={authors.map((author) => ({
+      name: author.data.name,
+      ...(author.data.title && { title: author.data.title }),
+      ...(author.data.photo && { photo: author.data.photo }),
+    }))}
+    thumbnail={post.data.thumbnail}
+    raw={raw}
+    logos={homeData.footer.logos}
+    links={homeData.footer.links}
+    copyright={homeData.footer.copyright}
+  >
+    <Content />
+  </BlogPost>
 </PageLayout>

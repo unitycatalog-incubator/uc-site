@@ -11,3 +11,5 @@ export { default as Footer } from "./Footer.astro";
 export { default as FeaturedBlogCard } from "./FeaturedBlogCard.astro";
 export { default as BlogCard } from "./BlogCard.astro";
 export { default as Subscribe } from "./Subscribe.astro";
+export { default as BlogPost } from "./BlogPost.astro";
+export { default as HeroBlogPost } from "./HeroBlogPost.astro";
