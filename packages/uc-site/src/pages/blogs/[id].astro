@@ -28,7 +28,7 @@ const raw = typeof post.body === "string" ? post.body : "";
     authors={authors.map((author) => ({
       name: author.data.name,
       ...(author.data.title && { title: author.data.title }),
-      ...(author.data.photo && { photo: author.data.photo }),
+      ...(author.data.image && { image: author.data.image }),
     }))}
     thumbnail={post.data.thumbnail}
     raw={raw}

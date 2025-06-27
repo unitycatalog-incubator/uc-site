@@ -19,11 +19,39 @@ interface TocItem {
     {
       (items as TocItem[]).map((item) => (
         <li>
+          <span class="toc-icon">
+            <svg
+              width="1em"
+              height="1em"
+              viewBox="0 0 19 21"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.5 7.90193C19.5 9.05663 19.5 11.9434 17.5 13.0981L4.75 20.4593C2.75 21.614 0.25 20.1706 0.25 17.8612V3.13878C0.25 0.829379 2.75 -0.613993 4.75 0.540708L17.5 7.90193Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
           <a href={item.href}>{item.label}</a>
           {item.children && (
             <ul>
               {item.children.map((child) => (
                 <li>
+                  <span class="toc-icon">
+                    <svg
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 19 21"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M17.5 7.90193C19.5 9.05663 19.5 11.9434 17.5 13.0981L4.75 20.4593C2.75 21.614 0.25 20.1706 0.25 17.8612V3.13878C0.25 0.829379 2.75 -0.613993 4.75 0.540708L17.5 7.90193Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </span>
                   <a href={child.href}>{child.label}</a>
                 </li>
               ))}
@@ -39,7 +67,9 @@ interface TocItem {
   .toc {
     margin-bottom: 2.5rem;
     margin-top: 10rem;
-    padding: 0 0 2.5rem 0;
+    padding: 1rem 0 1rem 0;
+    border-bottom: 1px solid var(--color-black-icon);
+    border-top: 1px solid var(--color-black-icon);
   }
   .toc h3 {
     font-size: 1.1rem;
@@ -52,10 +82,20 @@ interface TocItem {
     padding-left: 0;
   }
   .toc li {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
     margin-bottom: 0.5rem;
+    color: var(--color-black-icon);
+  }
+  .toc-icon {
+    display: flex;
+    align-items: center;
+    color: var(--color-black-icon);
+    font-size: 0.5em;
   }
   .toc a {
-    color: var(--color-black-222);
+    color: var(--color-black-icon);
     text-decoration: none;
     font-size: 1rem;
     transition: color 0.2s;

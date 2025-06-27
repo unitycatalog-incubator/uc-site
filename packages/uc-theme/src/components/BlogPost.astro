@@ -11,7 +11,7 @@ interface Props {
   authors: Array<{
     name: string;
     title?: string | undefined;
-    photo?: unknown;
+    image?: string;
   }>;
   thumbnail?: unknown;
   raw?: string;
@@ -67,8 +67,7 @@ const tocItems = lines
 
 <style>
   .blog-post {
-    padding: 10rem 0;
-    min-height: 100vh;
+    padding-top: 10rem;
     background: var(--color-neutral-950);
     color: var(--color-neutral-0);
   }
@@ -80,20 +79,22 @@ const tocItems = lines
   }
 
   .blog-content-container {
+    grid-column-gap: 4rem;
+    grid-row-gap: 4rem;
+    grid-template-rows: auto;
+    grid-template-columns: 0.5fr 1fr;
+    grid-auto-columns: 1fr;
+    align-items: start;
     display: grid;
-    grid-template-columns: 1fr 3fr;
-    gap: 4rem;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
+    padding-bottom: 4rem;
+    padding-left: 3rem;
+    padding-right: 8rem;
   }
 
   .blog-sidebar {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3rem;
-    padding: 0 1rem;
     position: sticky;
     top: 2rem;
     align-self: start;
@@ -108,9 +109,13 @@ const tocItems = lines
 
   /* Article Content */
   .blog-article {
-    line-height: 1.8;
-    font-size: 1.25rem;
-    color: var(--color-neutral-0);
+    margin-bottom: 1rem;
+    font-size: 24px;
+    line-height: 44px;
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    color: var(--color-accent-1000);
+    padding-left: 5rem;
   }
 
   /* Markdown Content Typography */
@@ -150,10 +155,9 @@ const tocItems = lines
     color: var(--color-black);
   }
 
-  .blog-article :global(ul),
-  .blog-article :global(ol) {
-    margin: 1.5rem 0;
-    padding-left: 1.5rem;
+  .blog-article :global(ul) {
+    list-style-type: disc;
+    padding-left: 2rem;
   }
 
   .blog-article :global(li) {
@@ -260,10 +264,6 @@ const tocItems = lines
   }
 
   @media (max-width: 768px) {
-    .blog-content {
-      padding: 2rem 0;
-    }
-
     .blog-article {
       font-size: 1.125rem;
     }
