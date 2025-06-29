@@ -58,3 +58,21 @@ export interface Feature {
   icon: string;
   image: string;
 }
+
+export interface Author {
+  name: string;
+  title?: string;
+  image?: string;
+}
+
+export interface BlogPost {
+  title: string;
+  authors: Author[];
+  thumbnail?: unknown;
+  raw?: string;
+  postId?: string;
+}
+
+export interface RelatedBlogPosts {
+  currentPostId: string;
+}

@@ -15,4 +15,5 @@ export { default as BlogPost } from "./BlogPost.astro";
 export { default as HeroBlogPost } from "./HeroBlogPost.astro";
 export { default as TableOfContents } from "./TableOfContents.astro";
 export { default as Contributors } from "./Contributors.astro";
-export { default as ctaSocial } from "./HeroBlogPost.astro";
+export { default as CtaSocial } from "./CtaSocial.astro";
+export { default as RelatedBlogPosts } from "./RelatedBlogPosts.astro";

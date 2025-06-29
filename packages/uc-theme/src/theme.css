@@ -84,6 +84,11 @@
   --color-black-icon: #0009;
   --color-black-1010: #101828;
   --color-black-1020: #d0d5dd;
+  --color-black-last-block-section: #071a2e0d;
+
+  /*purple*/
+  --color-border-purple: #d6bbfb;
+  --color-box-shadow-purple: 0 1px 2px #1018280d, 0 0 0 4px #f4ebff;
 }
 
 body,

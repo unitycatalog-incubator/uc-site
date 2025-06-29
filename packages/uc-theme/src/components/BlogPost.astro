@@ -1,29 +1,22 @@
 ---
-import type { Logo, Link, Copyright } from "../types";
+import type { Logo, Link, Copyright, BlogPost } from "../types";
 import HeroBlogPost from "./HeroBlogPost.astro";
 import Footer from "./Footer.astro";
 import TableOfContents from "./TableOfContents.astro";
 import Contributors from "./Contributors.astro";
-import CtaSocial from "./ctaSocial.astro";
+import CtaSocial from "./CtaSocial.astro";
 import Subscribe from "./Subscribe.astro";
+import RelatedBlogPosts from "./RelatedBlogPosts.astro";
 import "../theme.css";
 
-interface Props {
-  title: string;
-  authors: Array<{
-    name: string;
-    title?: string | undefined;
-    image?: string;
-  }>;
-  thumbnail?: unknown;
-  raw?: string;
+interface Props extends BlogPost {
   // Footer props
   logos: Logo[];
   links: Link[];
   copyright: Copyright;
 }
 
-const { title, authors, raw, logos, links, copyright } = Astro.props;
+const { title, authors, raw, logos, links, copyright, postId } = Astro.props;
 const currentUrl = Astro.url.href;
 
 // Static placeholder data for TOC and contributors
@@ -65,12 +58,16 @@ const tocItems = lines
     </div>
   </section>
 
+  <!-- Related Blog Posts Section -->
+  {postId && <RelatedBlogPosts currentPostId={postId} />}
+
   <!-- Footer -->
   <Footer logos={logos} links={links} copyright={copyright} />
 </div>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
+    // Add copy buttons to code blocks
     document.querySelectorAll("pre").forEach((pre) => {
       // Avoid adding multiple buttons
       if (!pre.parentElement || !pre.parentNode) return;
@@ -98,6 +95,40 @@ const tocItems = lines
       // Insert the button after the <pre>
       wrapper.appendChild(btn);
     });
+
+    // Add gray background to last section
+    const h2Elements = document.querySelectorAll("h2");
+    if (h2Elements.length > 0) {
+      const lastH2 = h2Elements[h2Elements.length - 1];
+      if (lastH2) {
+        // Find all elements from the last h2 until the end of the article
+        const article = document.querySelector(".blog-article");
+        if (article) {
+          let currentElement = lastH2.nextElementSibling;
+          const elementsToStyle = [];
+
+          while (currentElement && currentElement.parentElement === article) {
+            elementsToStyle.push(currentElement);
+            currentElement = currentElement.nextElementSibling;
+          }
+
+          // Create a wrapper div for the entire last section
+          const wrapper = document.createElement("div");
+          wrapper.className = "last-section-wrapper";
+
+          // Move the last h2 into the wrapper
+          if (lastH2.parentNode) {
+            lastH2.parentNode.insertBefore(wrapper, lastH2);
+            wrapper.appendChild(lastH2);
+          }
+
+          // Move all elements after the last h2 into the wrapper
+          elementsToStyle.forEach((element) => {
+            wrapper.appendChild(element);
+          });
+        }
+      }
+    }
   });
 </script>
 
@@ -111,11 +142,6 @@ const tocItems = lines
   .blog-content {
     background: var(--color-neutral-0);
     padding: 4rem 0;
-    max-width: 100%;
-    width: 100%;
-    max-width: 102rem;
-    margin-right: auto;
-    margin-left: auto;
   }
 
   .blog-content-container {
@@ -125,6 +151,8 @@ const tocItems = lines
     align-items: start;
     display: grid;
     padding-bottom: 4rem;
+    max-width: 1500px;
+    margin: 0 auto;
   }
 
   .blog-sidebar {
@@ -135,6 +163,7 @@ const tocItems = lines
     align-self: start;
     top: 1rem;
     height: fit-content;
+    max-width: 350px;
   }
 
   .blog-main {
@@ -151,7 +180,6 @@ const tocItems = lines
     font-weight: 300;
     letter-spacing: 0.02em;
     color: var(--color-accent-1000);
-    padding-right: 2rem;
   }
 
   /* Markdown Content Typography */
@@ -188,7 +216,7 @@ const tocItems = lines
 
   .blog-article :global(p) {
     margin: 1.5rem 0;
-    color: var(--color-black);
+    color: var(--color-accent-1000);
   }
 
   .blog-article :global(ul) {
@@ -339,5 +367,13 @@ const tocItems = lines
   :global(.copy-btn:hover) {
     background: var(--color-secondary-700);
     color: var(--color-black);
+  }
+
+  /* Last section styling */
+  :global(.last-section-wrapper) {
+    background-color: var(--color-black-last-block-section);
+    border-radius: 1rem;
+    margin-top: 1rem;
+    padding: 2rem 2rem 1.5rem;
   }
 </style>
