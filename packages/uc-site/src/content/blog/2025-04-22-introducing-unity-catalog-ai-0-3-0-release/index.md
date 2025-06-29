@@ -153,7 +153,7 @@ The final set of improvements in Unity Catalog AI 0.3.0 focuses on refining the 
 
 ### Silenced Pydantic Warnings
 
-A small but significant improvement is the silencing of persistent Pydantic V2 warnings from LangChain API calls. While seemingly minor, this change improves the developer experience by eliminating noise in console outputs and logs:
+A small but significant improvement is the silencing of persistent Pydantic V2 warnings from LangChain API calls. While seemingly minor, this change improves the developer experience by eliminating noise in outputs and logs:
 
 ```py
 # No more distracting Pydantic warnings in your console output

@@ -1,0 +1,80 @@
+---
+interface Contributor {
+  name: string;
+  title?: string;
+  image?: string;
+}
+
+const { contributors } = Astro.props;
+---
+
+<div class="contributors">
+  <h3>Contributors</h3>
+  <ul>
+    {
+      contributors.map((c: Contributor) => (
+        <li class="contributor-item">
+          {c.image && (
+            <img
+              src={c.image}
+              alt={c.name}
+              class="contributor-photo"
+              width="40"
+              height="40"
+            />
+          )}
+          <div>
+            <div class="contributor-name">{c.name}</div>
+            <div class="contributor-title">{c.title}</div>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .contributors {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .contributors h3 {
+    font-size: 1.2rem;
+    line-height: 24px;
+    font-weight: 600;
+    color: var(--color-accent-1000);
+  }
+  .contributors ul {
+    list-style: disc;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .contributor-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .contributor-photo {
+    object-fit: cover;
+    border-radius: 100%;
+    width: 4rem;
+    min-width: 4rem;
+    height: 4rem;
+    min-height: 3rem;
+  }
+  .contributor-name {
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 30px;
+    color: var(--color-black-222);
+  }
+  .contributor-title {
+    font-size: 14px;
+    line-height: 21px;
+    color: var(--color-neutral-950);
+  }
+</style>

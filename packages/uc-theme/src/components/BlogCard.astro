@@ -68,10 +68,12 @@ const {
       overflow: clip;
     }
     .blog-content {
-      padding: 1.25rem;
+      grid-column-gap: 2rem;
+      flex-flow: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2.5rem 1.5rem;
       display: flex;
-      flex-direction: column;
-      flex: 1 1 auto;
     }
     .blog-content h3 {
       font-size: 1.5rem;
@@ -80,7 +82,7 @@ const {
       line-height: 1.2;
     }
     .blog-content p {
-      font-size: 1rem;
+      font-size: 1.25rem;
       margin-bottom: 1.5rem;
       color: var(--color-neutral-1000);
       flex: 1 1 auto;
