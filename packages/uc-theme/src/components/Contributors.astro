@@ -4,6 +4,9 @@ interface Contributor {
   title?: string;
   image?: string;
 }
+interface Props {
+  contributors: Contributor[];
+}
 
 const { contributors } = Astro.props;
 ---
@@ -12,20 +15,20 @@ const { contributors } = Astro.props;
   <h3>Contributors</h3>
   <ul>
     {
-      contributors.map((c: Contributor) => (
+      contributors.map((contributor) => (
         <li class="contributor-item">
-          {c.image && (
+          {contributor.image && (
             <img
-              src={c.image}
-              alt={c.name}
+              src={contributor.image}
+              alt={contributor.name}
               class="contributor-photo"
               width="40"
               height="40"
             />
           )}
           <div>
-            <div class="contributor-name">{c.name}</div>
-            <div class="contributor-title">{c.title}</div>
+            <div class="contributor-name">{contributor.name}</div>
+            <div class="contributor-title">{contributor.title}</div>
           </div>
         </li>
       ))

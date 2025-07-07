@@ -1,6 +1,4 @@
 ---
-const { items } = Astro.props;
-
 // Type aliases for TOC items
 interface TocChild {
   label: string;
@@ -11,13 +9,19 @@ interface TocItem {
   href: string;
   children?: TocChild[];
 }
+
+interface Props {
+  items: TocItem[];
+}
+
+const { items } = Astro.props;
 ---
 
 <nav class="toc">
   <h3 class="toc-title">Table of Contents</h3>
   <ul>
     {
-      (items as TocItem[]).map((item) => (
+      items.map((item) => (
         <li>
           <span class="toc-icon">
             <svg

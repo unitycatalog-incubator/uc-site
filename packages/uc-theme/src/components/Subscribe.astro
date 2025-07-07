@@ -1,6 +1,9 @@
 ---
-Astro.props.small = Astro.props.small ?? false;
-const small = Astro.props.small;
+interface Props {
+  small?: boolean;
+}
+
+const { small = false } = Astro.props;
 ---
 
 {
