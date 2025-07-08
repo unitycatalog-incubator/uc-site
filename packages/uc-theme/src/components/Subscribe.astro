@@ -157,7 +157,7 @@ const { small = false } = Astro.props;
     pointer-events: none;
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 768px) {
     .subscribe-section {
       padding-left: 2rem;
       padding-right: 2rem;
@@ -171,10 +171,13 @@ const { small = false } = Astro.props;
       max-width: 100%;
       gap: 1rem;
     }
+    .subscribe-section-small {
+      width: 100%;
+    }
   }
 
   .subscribe-section-small {
-    width: 350px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
