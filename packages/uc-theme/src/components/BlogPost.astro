@@ -1,0 +1,388 @@
+---
+import type { Logo, Link, Copyright, BlogPost } from "../types";
+import HeroBlogPost from "./HeroBlogPost.astro";
+import Footer from "./Footer.astro";
+import TableOfContents from "./TableOfContents.astro";
+import Contributors from "./Contributors.astro";
+import CtaSocial from "./CtaSocial.astro";
+import Subscribe from "./Subscribe.astro";
+import RelatedBlogPosts from "./RelatedBlogPosts.astro";
+import "../theme.css";
+
+interface Props extends BlogPost {
+  // Footer props
+  logos: Logo[];
+  links: Link[];
+  copyright: Copyright;
+}
+
+const { title, authors, raw, logos, links, copyright, postId } = Astro.props;
+const currentUrl = Astro.url.href;
+
+// Static placeholder data for TOC and contributors
+const contributors = authors;
+
+// Extract ## headings from raw markdown for TOC, safely handle undefined
+const lines = typeof raw === "string" ? raw.split(/\r?\n/) : [];
+const tocItems = lines
+  .filter((line) => line.trim().startsWith("## "))
+  .map((line) => {
+    const text = line.replace(/^\s*## /, "").trim();
+    const slug = text
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, "")
+      .replace(/\s+/g, "-");
+    return { label: text, href: `#${slug}` };
+  });
+---
+
+<div class="blog-post">
+  <!-- Hero Section -->
+  <HeroBlogPost title={title} />
+
+  <!-- Blog Content Section -->
+  <section class="blog-content">
+    <div class="blog-content-container">
+      <aside class="blog-sidebar">
+        <TableOfContents items={tocItems} />
+        <Contributors contributors={contributors} />
+        <Subscribe small={true} />
+        <CtaSocial currentUrl={currentUrl} title={title} />
+      </aside>
+      <main class="blog-main">
+        <!-- Markdown Content -->
+        <article class="blog-article">
+          <slot />
+        </article>
+      </main>
+    </div>
+  </section>
+
+  <!-- Related Blog Posts Section -->
+  {postId && <RelatedBlogPosts currentPostId={postId} />}
+
+  <!-- Footer -->
+  <Footer logos={logos} links={links} copyright={copyright} />
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Add copy buttons to code blocks
+    document.querySelectorAll("pre").forEach((pre) => {
+      // Avoid adding multiple buttons
+      if (!pre.parentElement || !pre.parentNode) return;
+      if (pre.parentElement.classList.contains("code-block-container")) return;
+
+      // Create a wrapper div
+      const wrapper = document.createElement("div");
+      wrapper.className = "code-block-container";
+      pre.parentNode.insertBefore(wrapper, pre);
+      wrapper.appendChild(pre);
+
+      // Create the button
+      const btn = document.createElement("button");
+      btn.textContent = "Copy Code";
+      btn.className = "copy-btn";
+      btn.addEventListener("click", () => {
+        const code = pre.querySelector("code");
+        if (code) {
+          navigator.clipboard.writeText(code.innerText);
+          btn.textContent = "Copied!";
+          setTimeout(() => (btn.textContent = "Copy Code"), 1200);
+        }
+      });
+
+      // Insert the button after the <pre>
+      wrapper.appendChild(btn);
+    });
+
+    // Add gray background to last section
+    const h2Elements = document.querySelectorAll("h2");
+    if (h2Elements.length > 0) {
+      const lastH2 = h2Elements[h2Elements.length - 1];
+      if (lastH2) {
+        // Find all elements from the last h2 until the end of the article
+        const article = document.querySelector(".blog-article");
+        if (article) {
+          let currentElement = lastH2.nextElementSibling;
+          const elementsToStyle = [];
+
+          while (currentElement && currentElement.parentElement === article) {
+            elementsToStyle.push(currentElement);
+            currentElement = currentElement.nextElementSibling;
+          }
+
+          // Create a wrapper div for the entire last section
+          const wrapper = document.createElement("div");
+          wrapper.className = "last-section-wrapper";
+
+          // Move the last h2 into the wrapper
+          if (lastH2.parentNode) {
+            lastH2.parentNode.insertBefore(wrapper, lastH2);
+            wrapper.appendChild(lastH2);
+          }
+
+          // Move all elements after the last h2 into the wrapper
+          elementsToStyle.forEach((element) => {
+            wrapper.appendChild(element);
+          });
+        }
+      }
+    }
+  });
+</script>
+
+<style>
+  .blog-post {
+    color: var(--color-neutral-0);
+  }
+
+  .blog-content {
+    background: var(--color-neutral-0);
+    padding: 4rem 0;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .blog-content-container {
+    grid-template-rows: auto;
+    grid-template-columns: 0.5fr 1fr;
+    grid-auto-columns: 1fr;
+    align-items: start;
+    display: grid;
+    padding-bottom: 4rem;
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+
+  .blog-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: sticky;
+    align-self: start;
+    top: -1.5rem;
+    height: fit-content;
+    max-width: 350px;
+  }
+
+  .blog-main {
+    /* Main content styles */
+    margin-top: 7rem;
+    min-width: 0;
+  }
+
+  /* Article Content */
+  .blog-article {
+    margin-bottom: 1rem;
+    font-size: 20px;
+    line-height: 37px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--color-accent-1000);
+  }
+
+  /* Markdown Content Typography */
+  .blog-article :global(h1) {
+    font-size: 3rem;
+    font-weight: 700;
+    margin: 3rem 0 1.5rem 0;
+    color: var(--color-black);
+    line-height: 1.2;
+  }
+
+  .blog-article :global(h2) {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 2.5rem 0 1rem 0;
+    color: var(--color-black);
+    line-height: 1.3;
+  }
+
+  .blog-article :global(h3) {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 2rem 0 1rem 0;
+    color: var(--color-black);
+    line-height: 1.4;
+  }
+
+  .blog-article :global(h4) {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.75rem 0;
+    color: var(--color-black);
+  }
+
+  .blog-article :global(p) {
+    margin: 1.5rem 0;
+    color: var(--color-accent-1000);
+  }
+
+  .blog-article :global(ul) {
+    list-style-type: disc;
+    padding-left: 2rem;
+  }
+
+  .blog-article :global(li) {
+    margin: 0.5rem 0;
+    color: var(--color-black);
+  }
+
+  .blog-article :global(blockquote) {
+    border-left: 4px solid var(--color-secondary-500);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: var(--color-black);
+  }
+
+  .blog-article :global(code) {
+    background: var(--color-neutral-900);
+    color: var(--color-secondary-500);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+    font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  }
+
+  .blog-article :global(pre) {
+    background: var(--color-neutral-900);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+    margin: 2rem 0;
+  }
+
+  .blog-article :global(pre code) {
+    background: none;
+    padding: 0;
+    color: var(--color-neutral-200);
+  }
+
+  .blog-article :global(a) {
+    color: var(--color-links-yellow);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .blog-article :global(a:hover) {
+    color: var(--color-links-yellow);
+    text-decoration: underline;
+  }
+
+  .blog-article :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.75rem;
+    margin: 2rem 0;
+  }
+
+  .blog-article :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background: var(--color-neutral-900);
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+
+  .blog-article :global(th),
+  .blog-article :global(td) {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--color-neutral-800);
+  }
+
+  .blog-article :global(th) {
+    background: var(--color-neutral-800);
+    font-weight: 600;
+    color: var(--color-neutral-0);
+  }
+
+  .blog-article :global(td) {
+    color: var(--color-neutral-200);
+  }
+
+  .blog-article :global(hr) {
+    border: none;
+    height: 1px;
+    background: var(--color-neutral-800);
+    margin: 3rem 0;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    .blog-content-container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding: 0 1rem;
+    }
+
+    .blog-sidebar {
+      position: static;
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .blog-content {
+      padding-top: 0;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    .blog-sidebar {
+      max-width: 100%;
+      max-width: 100%;
+    }
+
+    .blog-article {
+      font-size: 1.125rem;
+    }
+
+    .blog-article :global(h1) {
+      font-size: 2.5rem;
+    }
+
+    .blog-article :global(h2) {
+      font-size: 2rem;
+    }
+
+    .blog-article :global(h3) {
+      font-size: 1.75rem;
+    }
+  }
+  :global(.code-block-container) {
+    margin-bottom: 2.5rem;
+  }
+  :global(.copy-btn) {
+    width: 100%;
+    max-width: 300px;
+    background: var(--color-box-shadow-yellow);
+    color: var(--color-black);
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.8rem 0;
+    font-weight: 500;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px 0 var(--color-neutral-100);
+    font-family: inherit;
+    transition:
+      background 0.2s,
+      color 0.2s;
+  }
+  :global(.copy-btn:hover) {
+    background: var(--color-secondary-700);
+    color: var(--color-black);
+  }
+
+  /* Last section styling */
+  :global(.last-section-wrapper) {
+    background-color: var(--color-black-last-block-section);
+    border-radius: 1rem;
+    margin-top: 1rem;
+    padding: 2rem 2rem 1.5rem;
+  }
+</style>

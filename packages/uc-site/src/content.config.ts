@@ -21,13 +21,12 @@ const blog = defineCollection({
 
 const profiles = defineCollection({
   loader: file("./src/content/profiles/profiles.json"),
-  schema: ({ image }) =>
-    z.object({
-      id: z.string(),
-      name: z.string(),
-      title: z.string().optional(),
-      photo: image().optional(),
-    }),
+  schema: z.object({
+    id: z.string(),
+    name: z.string(),
+    title: z.string().optional(),
+    image: z.string().optional(),
+  }),
 });
 
 export const collections = {

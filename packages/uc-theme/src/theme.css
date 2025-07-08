@@ -47,6 +47,7 @@
   --color-secondary-800: #a38200;
   --color-secondary-900: #7a5f00;
   --color-secondary-950: #4c3900;
+  --color-links-yellow: #d09a00;
   --color-box-shadow-yellow: #ffbc00;
 
   /* Accent – Sky Blue (#00BFFF) */
@@ -79,6 +80,16 @@
   --color-neutral-950: #071a2e;
   --color-neutral-1000: #b6b6b6;
   --color-black: #000000;
+  --color-black-222: #222;
+  --color-black-icon: #0009;
+  --color-black-1010: #101828;
+  --color-black-1020: #d0d5dd;
+  --color-black-last-block-section: #071a2e0d;
+  --color-divider: #eaecf0;
+
+  /*purple*/
+  --color-border-purple: #d6bbfb;
+  --color-box-shadow-purple: 0 1px 2px #1018280d, 0 0 0 4px #f4ebff;
 }
 
 body,

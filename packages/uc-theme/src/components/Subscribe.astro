@@ -1,145 +1,248 @@
-<section class="subscribe-section">
-  <div class="cta-secondary_top-gradient"></div>
-  <h2 class="subscribe-title">
-    Subscribe to our newsletter for daily industry insights
-  </h2>
-  <div class="w-form">
-    <div class="w-form">
-      <form
-        id="wf-form-subscribe-form"
-        name="wf-form-subscribe-form"
-        data-name="subscribe form"
-        method="get"
-        class="subscribe-form"
-        data-wf-page-id="6685776b95cb6075291a8a93"
-        data-wf-element-id="bca75efd-5e40-ff5f-26e9-779f4ccb858b"
-        aria-label="subscribe form"
-      >
+---
+interface Props {
+  small?: boolean;
+}
+
+const { small = false } = Astro.props;
+---
+
+{
+  !small ? (
+    <section class="subscribe-section">
+      <div class="cta-secondary_top-gradient" />
+      <h2 class="subscribe-title">
+        Subscribe to our newsletter for daily industry insights
+      </h2>
+      <div class="w-form">
+        <div class="w-form">
+          <form
+            id="wf-form-subscribe-form"
+            name="wf-form-subscribe-form"
+            data-name="subscribe form"
+            method="get"
+            class="subscribe-form"
+            data-wf-page-id="6685776b95cb6075291a8a93"
+            data-wf-element-id="bca75efd-5e40-ff5f-26e9-779f4ccb858b"
+            aria-label="subscribe form"
+          >
+            <input
+              class="text-field w-input"
+              maxlength="256"
+              name="email"
+              data-name="email"
+              placeholder="Enter your email"
+              type="email"
+              id="email"
+              required
+            />
+            <input
+              type="submit"
+              data-wait="Please wait..."
+              class="button w-button"
+              value="Subscribe news"
+            />
+          </form>
+        </div>
+      </div>
+    </section>
+  ) : (
+    <section class="subscribe-section-small">
+      <h3 class="subscribe-title-small">Subscribe to our newsletter</h3>
+      <form class="subscribe-form-small">
         <input
-          class="text-field w-input"
+          class="text-field-small"
           maxlength="256"
           name="email"
-          data-name="email"
           placeholder="Enter your email"
           type="email"
-          id="email"
-          required=""
-        /><input
-          type="submit"
-          data-wait="Please wait..."
-          class="button w-button"
-          value="Subscribe news"
+          required
         />
+        <button type="submit" class="button-small">
+          Subscribe news
+        </button>
       </form>
-    </div>
-  </div>
-  <style>
+    </section>
+  )
+}
+<style>
+  .subscribe-section {
+    max-width: 100vw;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+  }
+  .subscribe-title {
+    z-index: 1;
+    color: var(--color-neutral-0);
+    font-size: 2.25rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: center;
+    margin-bottom: 3rem;
+    line-height: 1.2;
+    max-width: 700px;
+  }
+  .subscribe-form {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    gap: 0.5rem;
+  }
+  .text-field.w-input {
+    flex: 2 1 0%;
+    padding: 0.75rem 0.9375rem;
+    font-size: 1.35rem;
+    border: 1px solid var(--color-neutral-1000);
+    border-radius: 0.75rem;
+    outline: none;
+    transition: border 0.2s;
+    font-family: inherit;
+    height: 60px;
+    width: 420px;
+  }
+  .text-field.w-input::placeholder {
+    color: var(--color-neutral-1000);
+    opacity: 1;
+    font-size: 1rem;
+  }
+  .text-field.w-input:focus {
+    border-color: var(--color-box-shadow-yellow);
+  }
+  .button.w-button {
+    flex: 0 0 auto;
+    padding: 0 2.5rem;
+    font-size: 1.35rem;
+    font-weight: 400;
+    background: var(--color-box-shadow-yellow);
+    color: var(--color-black);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition:
+      background 0.2s,
+      color 0.2s;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    border-radius: 0.5rem;
+    width: 13rem;
+    padding: 0.75rem 1.75rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+  }
+  .button.w-button:hover {
+    background: var(--color-secondary-700);
+  }
+  .cta-secondary_top-gradient {
+    z-index: 0;
+    background-image: url("/images/subscribe_top-gradient.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
     .subscribe-section {
-      width: 100vw;
-      min-height: 320px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding-top: 7rem;
-      padding-bottom: 7rem;
-      box-sizing: border-box;
-      position: relative;
-      overflow: hidden;
+      padding-left: 2rem;
+      padding-right: 2rem;
     }
     .subscribe-title {
-      z-index: 1;
-      color: var(--color-neutral-0);
-      font-size: 2.25rem;
-      font-weight: 600;
-      line-height: 1.2;
-      text-align: center;
-      margin-bottom: 3rem;
-      line-height: 1.2;
-      max-width: 700px;
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
     }
     .subscribe-form {
-      display: flex;
-      flex-direction: row;
-      align-items: stretch;
-      justify-content: center;
+      flex-direction: column;
+      max-width: 100%;
+      gap: 1rem;
+    }
+    .subscribe-section-small {
       width: 100%;
-      max-width: 900px;
-      margin: 0 auto;
-      gap: 0.5rem;
     }
-    .text-field.w-input {
-      flex: 2 1 0%;
-      padding: 0.75rem 0.9375rem;
-      font-size: 1.35rem;
-      border: 1px solid var(--color-neutral-1000);
-      border-radius: 0.75rem;
-      outline: none;
-      transition: border 0.2s;
-      font-family: inherit;
-      height: 60px;
-      width: 420px;
-    }
-    .text-field.w-input::placeholder {
-      color: var(--color-neutral-1000);
-      opacity: 1;
-      font-size: 1rem;
-    }
-    .text-field.w-input:focus {
-      border-color: var(--color-box-shadow-yellow);
-    }
-    .button.w-button {
-      flex: 0 0 auto;
-      padding: 0 2.5rem;
-      font-size: 1.35rem;
-      font-weight: 400;
-      background: var(--color-box-shadow-yellow);
-      color: var(--color-black);
-      border-radius: 0.75rem;
-      cursor: pointer;
-      transition:
-        background 0.2s,
-        color 0.2s;
-      font-family: inherit;
-      display: flex;
-      align-items: center;
-      text-align: center;
-      border-radius: 0.5rem;
-      width: 13rem;
-      padding: 0.75rem 1.75rem;
-      font-size: 1.125rem;
-      font-weight: 500;
-    }
-    .button.w-button:hover {
-      background: var(--color-secondary-700);
-    }
-    .cta-secondary_top-gradient {
-      z-index: 0;
-      background-image: url("/images/subscribe_top-gradient.svg");
-      background-repeat: no-repeat;
-      background-size: cover;
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-    }
+  }
 
-    @media (max-width: 700px) {
-      .subscribe-section {
-        padding-left: 2rem;
-        padding-right: 2rem;
-      }
-      .subscribe-title {
-        font-size: 1.5rem;
-        margin-bottom: 2rem;
-      }
-      .subscribe-form {
-        flex-direction: column;
-        max-width: 100%;
-        gap: 1rem;
-      }
-    }
-  </style>
-</section>
+  .subscribe-section-small {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-divider);
+    border-top: 1px solid var(--color-divider);
+  }
+  .subscribe-title-small {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    color: var(--color-black-222);
+  }
+  .subscribe-form-small {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .text-field-small {
+    border-radius: 0.5rem;
+    height: auto;
+    min-height: 2.75rem;
+    margin-bottom: 0;
+    padding: 0.5rem 0.875rem;
+    width: 100%;
+    font-size: 1rem;
+    min-height: 2.75rem;
+    color: var(--color-black-1010);
+    border: 1px solid var(--color-black-1020);
+    background-color: var(--color-neutral-0);
+    outline: none;
+    font-family: inherit;
+  }
+  .text-field-small::placeholder {
+    color: var(--color-neutral-400);
+    font-size: 1.3rem;
+    line-height: 24px;
+    font-weight: 400;
+  }
+  .text-field-small:focus {
+    color: var(--color-black-1010);
+    border-color: var(--color-border-purple);
+    box-shadow: var(--color-box-shadow-purple);
+  }
+  .button-small {
+    text-align: center;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0.875rem;
+    font-size: 1.125rem;
+    font-weight: 500;
+    width: 100%;
+    background: var(--color-box-shadow-yellow);
+    color: var(--color-black);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    border: none;
+    transition:
+      background 0.2s,
+      color 0.2s;
+    min-height: 2.75rem;
+  }
+  .button-small:hover {
+    background: var(--color-secondary-700);
+  }
+</style>

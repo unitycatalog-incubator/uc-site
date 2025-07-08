@@ -2,36 +2,43 @@
   {
     "id": "denny-lee",
     "name": "Denny Lee",
-    "title": "Principal Developer Advocate at Databricks"
+    "title": "Principal Developer Advocate at Databricks",
+    "image": "/contributors/denny-lee.avif"
   },
   {
     "id": "tathagata-das",
     "name": "Tathagata Das",
-    "title": "Staff Software Engineer at Databricks"
+    "title": "Staff Software Engineer at Databricks",
+    "image": "/contributors/tathagata-das.avif"
   },
   {
     "id": "michelle-leon",
     "name": "Michelle Leon",
-    "title": "Product Lead at Databricks"
+    "title": "Product Lead at Databricks",
+    "image": "/contributors/michelle-leon.webp"
   },
   {
     "id": "ramesh-chandra",
     "name": "Ramesh Chandra",
-    "title": "Principal Software Engineer at Databricks"
+    "title": "Principal Software Engineer at Databricks",
+    "image": "/contributors/ramesh-chandra.webp"
   },
   {
     "id": "avril-aysha",
-    "name": "Avril Aysha"
+    "name": "Avril Aysha",
+    "image": "/contributors/avril-aysha.avif"
   },
   {
     "id": "ben-wilson",
     "name": "Ben Wilson",
-    "title": "Software Engineer"
+    "title": "Software Engineer",
+    "image": "/contributors/ben-wilson.jpeg"
   },
   {
     "id": "jules-damji",
     "name": "Jules S. Damji",
-    "title": "Technical Staff"
+    "title": "Technical Staff",
+    "image": "/contributors/jules-damji.jpeg"
   },
   {
     "id": "vladimir-kolovski",
@@ -45,21 +52,25 @@
   },
   {
     "id": "dipankar-kushari",
-    "name": "Dipankar Kushari"
+    "name": "Dipankar Kushari",
+    "image": "/contributors/dipankar-kushari.webp"
   },
   {
     "id": "matthew-powers",
     "name": "Matthew Powers",
-    "title": "CFA, Staff Developer Advocate"
+    "title": "CFA, Staff Developer Advocate",
+    "image": "/contributors/matthew-powers.webp"
   },
   {
     "id": "matt-tanner",
     "name": "Matt Tanner",
-    "title": "Advisor at Puppygraph"
+    "title": "Advisor at Puppygraph",
+    "image": "/contributors/matt-tanner.avif"
   },
   {
     "id": "danfeng-xu",
     "name": "Danfeng Xu",
-    "title": "Co-Founder, CTO at Puppygraph"
+    "title": "Co-Founder, CTO at Puppygraph",
+    "image": "/contributors/danfeng-xu.webp"
   }
 ]
