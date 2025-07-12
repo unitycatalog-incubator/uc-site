@@ -18,7 +18,7 @@
   "benefits": [
     {
       "title": "Interoperability",
-      "body": "Multimodal interface provides interoperability across lakehouse formats like Delta Lake, Apache IcebergTM, major cloud platforms, and various compute engines.",
+      "body": "Multimodal interface provides interoperability across lakehouse formats like Delta Lake, Apache Iceberg™, major cloud platforms, and various compute engines.",
       "icon": "icons/Interoperability.svg"
     },
     {
@@ -35,7 +35,7 @@
   "features": [
     {
       "title": "Interoperability across any format and engine",
-      "body": "Unity Catalog supports Delta Lake, Apache IcebergTM via UniForm, Parquet, CSV, JSON, and many other formats. It also implements the Iceberg REST Catalog APIs to interoperate with a broad ecosystem.",
+      "body": "Unity Catalog supports Delta Lake, Apache Iceberg™ via UniForm, Parquet, CSV, JSON, and many other formats. It also implements the Iceberg REST Catalog APIs to interoperate with a broad ecosystem.",
       "icon": "icons/Interoperability.svg",
       "image": "images/interoperability-cross.webp"
     },
