@@ -19,14 +19,16 @@ const { pageTitle, endorsements } = Astro.props;
           style={i < 3 ? "" : "display:none;"}
         >
           {card.icon ? (
-            <Image
-              src={card.icon}
-              alt={card.name + " logo"}
-              class="endorsement-icon"
-              width={100}
-              height={100}
-              loading="lazy"
-            />
+            <div class="endorsement-icon-container">
+              <Image
+                src={card.icon}
+                alt={card.name + " logo"}
+                class="endorsement-icon"
+                width={50}
+                height={50}
+                loading="lazy"
+              />
+            </div>
           ) : (
             <div class="endorsement-icon-placeholder" />
           )}
@@ -79,7 +81,7 @@ const { pageTitle, endorsements } = Astro.props;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
-      max-width: 1200px;
+      max-width: 1280px;
       margin: 0 auto;
       grid-auto-rows: 1fr;
     }
@@ -95,11 +97,18 @@ const { pageTitle, endorsements } = Astro.props;
       position: relative;
       height: 700px;
     }
-    .endorsement-icon {
-      max-width: 8rem;
+    .endorsement-icon-container {
+      width: 8rem;
       height: 3.125rem;
-      object-fit: contain;
       margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .endorsement-icon {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
       border-radius: 0.5rem;
     }
     .endorsement-quote {
