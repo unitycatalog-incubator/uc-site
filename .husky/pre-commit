@@ -1,7 +1,5 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
 
 # Add Homebrew to PATH for Git hooks
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
 
-pnpm lint-staged
+lint-staged
