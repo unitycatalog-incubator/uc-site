@@ -195,6 +195,19 @@ const { pageTitle, endorsements } = Astro.props;
         padding: 1rem;
       }
     }
+
+    @media (max-width: 768px) {
+      .endorsements-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .endorsement-card {
+        gap: 2rem;
+        padding: 30px;
+        height: auto;
+        min-height: 0;
+      }
+    }
     .feature-animate {
       opacity: 0;
       transform: translateY(80px);
@@ -209,20 +222,32 @@ const { pageTitle, endorsements } = Astro.props;
   </style>
   <script type="module" is:inline>
     let currentStart = 0;
-    const cardsPerPage = 3;
     const cards = Array.from(document.querySelectorAll(".endorsement-card"));
-    const totalPages = cards.length - 1;
+
+    function getCardsPerPage() {
+      return window.innerWidth <= 768 ? 1 : 3;
+    }
+
+    function getTotalPages() {
+      const cardsPerPage = getCardsPerPage();
+      return Math.max(0, cards.length - cardsPerPage);
+    }
 
     function showWindow(start) {
+      const cardsPerPage = getCardsPerPage();
       cards.forEach((card, i) => {
         card.style.display =
           i >= start && i < start + cardsPerPage ? "" : "none";
       });
+
+      // Adjust heights after showing/hiding cards
+      setTimeout(adjustMobileCardHeights, 50);
     }
 
     showWindow(currentStart);
 
     document.getElementById("endorsements-prev").onclick = () => {
+      const totalPages = getTotalPages();
       if (currentStart === 0) {
         currentStart = totalPages; // Jump to last testimonial
       } else {
@@ -231,6 +256,7 @@ const { pageTitle, endorsements } = Astro.props;
       showWindow(currentStart);
     };
     document.getElementById("endorsements-next").onclick = () => {
+      const totalPages = getTotalPages();
       if (currentStart === totalPages) {
         currentStart = 0; // Jump to first testimonial
       } else {
@@ -239,7 +265,51 @@ const { pageTitle, endorsements } = Astro.props;
       showWindow(currentStart);
     };
 
-    window.addEventListener("resize", () => showWindow(currentStart));
+    window.addEventListener("resize", () => {
+      const newCardsPerPage = getCardsPerPage();
+      const currentCardsPerPage = window.innerWidth <= 768 ? 1 : 3;
+
+      // Adjust currentStart if needed when switching between 1 and 3 cards
+      if (newCardsPerPage !== currentCardsPerPage) {
+        currentStart = Math.min(currentStart, getTotalPages());
+      }
+
+      showWindow(currentStart);
+      adjustMobileCardHeights();
+    });
+
+    function adjustMobileCardHeights() {
+      if (window.innerWidth <= 768) {
+        // Reset heights to auto to get natural heights
+        cards.forEach((card) => {
+          card.style.height = "auto";
+        });
+
+        // Find the tallest card
+        let maxHeight = 0;
+        cards.forEach((card) => {
+          if (card.style.display !== "none") {
+            const cardHeight = card.offsetHeight;
+            maxHeight = Math.max(maxHeight, cardHeight);
+          }
+        });
+
+        // Set all visible cards to the same height
+        cards.forEach((card) => {
+          if (card.style.display !== "none") {
+            card.style.height = maxHeight + "px";
+          }
+        });
+      } else {
+        // Reset to original heights for desktop
+        cards.forEach((card) => {
+          card.style.height = "";
+        });
+      }
+    }
+
+    // Initial height adjustment
+    setTimeout(adjustMobileCardHeights, 100);
   </script>
   <script is:inline>
     window.addEventListener("DOMContentLoaded", function () {
