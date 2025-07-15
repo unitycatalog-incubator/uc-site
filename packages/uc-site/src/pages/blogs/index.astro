@@ -28,6 +28,11 @@ const rest = posts.filter((post) => post !== featured);
 
 <PageLayout title="Blog">
   <div class="blog-hero">
+    <div class="featured-hero-background">
+      <div class="featured-hero-grid-bg"></div>
+      <div class="featured-hero-bottom-gradient"></div>
+      <div class="featured-hero-grain-bg"></div>
+    </div>
     <h1>Blog</h1>
     <p>The first multimodal open catalog for data and AI</p>
   </div>
@@ -135,6 +140,27 @@ const rest = posts.filter((post) => post !== featured);
     text-align: center;
     margin-top: 12rem;
   }
+
+  .featured-hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .featured-hero-grain-bg {
+    z-index: 1;
+    opacity: 0.08;
+    mix-blend-mode: normal;
+    background-image: url(/images/hero-star-background.png);
+    background-repeat: repeat;
+    position: absolute;
+    inset: 0;
+    bottom: 25rem;
+  }
+
   .blog-hero h1 {
     font-size: 3.75rem;
     font-weight: 700;
