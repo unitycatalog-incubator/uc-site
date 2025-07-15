@@ -8,7 +8,7 @@ const { features } = Astro.props;
   <div class="feature-details-grid">
     {
       features.map((feature: Feature, idx: number) => (
-        <div class={`feature-row${idx % 2 === 1 ? "reverse" : ""}`}>
+        <div class={`feature-row ${idx % 2 === 1 ? "reverse" : ""}`}>
           <div class="feature-left">
             <Image
               src={`/${feature.icon}`}
@@ -34,8 +34,8 @@ const { features } = Astro.props;
               src={`/${feature.image}`}
               alt={feature.title + " visual"}
               class="feature-image"
-              width={idx === 1 ? "1578" : "528"}
-              height={idx === 1 ? "1578" : "528"}
+              width="528"
+              height="528"
               loading="lazy"
             />
           </div>
@@ -130,6 +130,11 @@ const { features } = Astro.props;
       transform: none;
     }
 
+    @media (min-width: 1101px) {
+      .feature-row.reverse {
+        flex-direction: row-reverse;
+      }
+    }
     @media (max-width: 1100px) {
       .feature-row {
         flex-direction: column;
