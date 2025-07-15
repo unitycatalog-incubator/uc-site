@@ -174,14 +174,15 @@ const rest = posts.filter((post) => post !== featured);
     font-size: 1.25rem;
   }
   #blog-grid {
-    max-width: 1440px;
+    max-width: 1510px;
     margin-left: auto;
     margin-right: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 2rem;
+    gap: 1.5rem;
     margin-bottom: 2rem;
+    padding-right: 5%;
+    padding-left: 5%;
   }
   #pagination {
     display: flex;
@@ -222,7 +223,8 @@ const rest = posts.filter((post) => post !== featured);
     #blog-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
-      padding: 0 1.5rem;
+      padding-right: 5%;
+      padding-left: 5%;
     }
   }
 
