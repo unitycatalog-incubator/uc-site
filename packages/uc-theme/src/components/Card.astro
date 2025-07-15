@@ -138,6 +138,7 @@ const {
       align-items: flex-start;
       padding: 2.5rem 1.5rem;
       display: flex;
+      width: 100%;
     }
     .card-title {
       font-size: 1.125rem;
@@ -155,6 +156,7 @@ const {
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
+      width: 100%;
     }
     .card-meta-row {
       display: flex;
@@ -251,6 +253,12 @@ const {
     .benefit-card .card-gradient {
       border-bottom-left-radius: 0.625rem;
       border-bottom-right-radius: 0.625rem;
+    }
+    @media (max-width: 1200px) {
+      .benefit-card {
+        width: 100% !important;
+        flex: 1 !important;
+      }
     }
   </style>
 </div>
