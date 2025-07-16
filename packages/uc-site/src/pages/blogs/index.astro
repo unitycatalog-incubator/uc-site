@@ -43,7 +43,7 @@ const rest = posts.filter((post) => post !== featured);
       )
     }
   </section>
-  <section>
+  <section id="blog-section">
     <div id="blog-grid">
       {
         rest.map((post, i) => (
@@ -93,6 +93,9 @@ const rest = posts.filter((post) => post !== featured);
         prev.onclick = () => {
           currentPage = page - 1;
           renderPage(currentPage);
+          document
+            .getElementById("blog-section")
+            .scrollIntoView({ behavior: "smooth" });
         };
         pagination.appendChild(prev);
       }
@@ -107,6 +110,9 @@ const rest = posts.filter((post) => post !== featured);
         btn.onclick = () => {
           currentPage = i;
           renderPage(currentPage);
+          document
+            .getElementById("blog-section")
+            .scrollIntoView({ behavior: "smooth" });
         };
         pagination.appendChild(btn);
       }
@@ -120,6 +126,9 @@ const rest = posts.filter((post) => post !== featured);
         next.onclick = () => {
           currentPage = page + 1;
           renderPage(currentPage);
+          document
+            .getElementById("blog-section")
+            .scrollIntoView({ behavior: "smooth" });
         };
         pagination.appendChild(next);
       }
