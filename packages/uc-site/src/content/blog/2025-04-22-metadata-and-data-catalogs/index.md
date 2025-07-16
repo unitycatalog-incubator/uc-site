@@ -1,6 +1,7 @@
 ---
 title: Metadata and Data Catalogs
 category: guide
+description: This article explains what metadata is and how it is handled by a data catalog to make your data storage and queries more efficient and secure. The article gives an overview of metadata management and explains why a modern data catalog like Unity Catalog is better than legacy metadata management techniques.
 authors:
   - avril-aysha
 thumbnail: ./thumbnail.jpg

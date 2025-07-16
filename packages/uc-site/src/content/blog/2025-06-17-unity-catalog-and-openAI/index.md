@@ -1,6 +1,7 @@
 ---
 title: Unity Catalog and OpenAI
 category: guide
+description: This article explains how you can use Unity Catalog with OpenAI to build faster and safer AI workflows.
 authors:
   - avril-aysha
 thumbnail: ./thumbnail.jpg

@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 const {
   title,
-  excerpt,
+  description,
   date,
   url = "#",
   thumbnail,
@@ -20,7 +20,7 @@ const {
     <div class="featured-hero-content">
       <span class="featured-hero-badge">{badge}</span>
       <h2>{title}</h2>
-      <p class="featured-hero-desc">{excerpt}</p>
+      <p class="featured-hero-desc">{description}</p>
       <span class="featured-hero-date">{date}</span>
     </div>
     <div class="featured-hero-image">
@@ -112,7 +112,6 @@ const {
     align-items: flex-start;
     padding: 2.5rem 2rem;
     display: flex;
-    max-height: 445px;
   }
   .featured-hero-badge {
     background: var(--color-accent-1100);
@@ -134,6 +133,10 @@ const {
     line-height: 1.5;
     max-width: 90%;
     opacity: 0.9;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
   .featured-hero-date {
     color: var(--color-neutral-1000);
@@ -149,7 +152,6 @@ const {
     justify-content: center;
     max-width: 650px;
     min-height: 400px;
-    max-height: 445px;
     border-top-right-radius: 1.5rem;
     border-bottom-right-radius: 1.5rem;
   }

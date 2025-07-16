@@ -1,6 +1,7 @@
 ---
 title: Integrating Unity Catalog with PuppyGraph for Real-time Graph Analysis
 category: guide
+description: "At this year’s Data + AI Summit, Databricks made a groundbreaking announcement: the Unity Catalog is now open source. This pioneering catalog, available on GitHub, is the industry’s first to offer governance for data and AI across various clouds, data formats, and platforms"
 authors:
   - ramesh-chandra
   - michelle-leon

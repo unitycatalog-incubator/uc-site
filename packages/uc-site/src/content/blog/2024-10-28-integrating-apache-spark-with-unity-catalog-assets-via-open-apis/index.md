@@ -1,6 +1,7 @@
 ---
 title: Integrating Apache Spark™ with Unity Catalog Assets via Open APIs
 category: guide
+description: Unity Catalog as the Center of the Open Data Ecosystem
 authors:
   - dipankar-kushari
 thumbnail: ./thumbnail.jpg

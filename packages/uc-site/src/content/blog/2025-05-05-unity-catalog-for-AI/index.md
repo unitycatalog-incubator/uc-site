@@ -1,6 +1,7 @@
 ---
 title: Unity Catalog for AI
 category: guide
+description: This article explains how you can use Unity Catalog for AI use cases. Unity Catalog integrates with popular GenAI tools like LangChain, LlamaIndex, OpenAI, Anthropic, and many others to make it easy to manage data, functions, and access control across AI platforms.
 authors:
   - avril-aysha
 thumbnail: ./thumbnail.jpg

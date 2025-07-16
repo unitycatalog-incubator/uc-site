@@ -3,7 +3,7 @@ import Card from "./Card.astro";
 const {
   title,
   date,
-  excerpt,
+  description,
   url = "#",
   thumbnail,
   badge = "GUIDE",
@@ -13,7 +13,7 @@ const {
 <Card
   type="blog"
   title={title}
-  body={excerpt}
+  body={description}
   url={url}
   image={thumbnail}
   badge={badge}

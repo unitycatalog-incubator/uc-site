@@ -1,6 +1,7 @@
 ---
 title: Unity Catalog and LlamaIndex
 category: guide
+description: Using Unity Catalog with LlamaIndex helps you organize and use your data with AI. You can build LLM-powered systems while keeping your data safe and easy to manage.
 authors:
   - avril-aysha
 thumbnail: ./thumbnail.jpg

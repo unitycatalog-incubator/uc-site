@@ -24,6 +24,8 @@ posts.sort(
 );
 const featured = posts.find((post) => post.data.featured === true);
 const rest = posts.filter((post) => post !== featured);
+
+console.log(featured?.data.description);
 ---
 
 <PageLayout title="Blog">
@@ -41,7 +43,7 @@ const rest = posts.filter((post) => post !== featured);
       featured && (
         <FeaturedBlogCard
           title={featured.data.title}
-          excerpt={getExcerpt(featured.body || "")}
+          description={featured?.data.description}
           date={featured.data.date}
           url={featured.id ? `/blogs/${featured.id}` : "#"}
           thumbnail={featured.data.thumbnail}
@@ -57,7 +59,7 @@ const rest = posts.filter((post) => post !== featured);
         rest.map((post, i) => (
           <BlogCard
             title={post.data.title}
-            excerpt={getExcerpt(post.body || "")}
+            description={post.data.description}
             date={post.data.date}
             url={post.id ? `/blogs/${post.id}` : "#"}
             thumbnail={post.data.thumbnail}

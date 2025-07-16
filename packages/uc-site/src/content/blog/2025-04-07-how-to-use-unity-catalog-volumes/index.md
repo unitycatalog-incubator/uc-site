@@ -1,6 +1,7 @@
 ---
 title: How to use Unity Catalog Volumes
 category: guide
+description: Unity Catalog uses a universal namespace for consistent data access, offers secure access control, and supports both managed and external volumes. It integrates with Spark, MLflow, and other AI tools for seamless data and experiment management.
 authors:
   - avril-aysha
 thumbnail: ./thumbnail.jpg

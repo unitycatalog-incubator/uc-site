@@ -1,6 +1,7 @@
 ---
 title: Unity Catalog 101
 category: guide
+description: Unity Catalog is a data catalog for managing all your data and AI assets easily and securely. You can use Unity Catalog to organize your data assets, collaborate, manage data access, and ensure compliance with data regulations.
 authors:
   - avril-aysha
   - michelle-leon
