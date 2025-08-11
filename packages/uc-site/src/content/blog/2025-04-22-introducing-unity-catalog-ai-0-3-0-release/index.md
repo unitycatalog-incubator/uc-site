@@ -1,6 +1,7 @@
 ---
 title: Introducing Unity Catalog AI 0.3.0 Release
 category: guide
+description: As part of our continued steadfast commitment to build a robust, flexible, and developer-friendly data catalog platform, we are excited to announce the release of Unity Catalog AI 0.3.0.
 authors:
   - ben-wilson
   - jules-damji

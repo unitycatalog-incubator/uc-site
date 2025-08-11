@@ -1,6 +1,7 @@
 ---
 title: Using Unity Catalog with Apache Spark and Delta Lake
 category: guide
+description: Apache Spark and Delta Lake are leading open source technologies for working with big data in production.
 authors:
   - avril-aysha
 thumbnail: ./thumbnail.jpg

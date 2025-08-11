@@ -1,6 +1,7 @@
 ---
 title: What Is a Data Catalog and Why Do I Need One?
 category: guide
+description: A data catalog is a tool for easily and securely managing all your data and AI assets.
 authors:
   - avril-aysha
   - matthew-powers

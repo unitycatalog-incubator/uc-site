@@ -1,6 +1,6 @@
 ---
-import { Image } from "astro:assets";
 import type { Benefit } from "../types";
+import Card from "./Card.astro";
 const { benefits } = Astro.props;
 ---
 
@@ -8,21 +8,12 @@ const { benefits } = Astro.props;
   <div class="benefits-cards">
     {
       benefits.map((benefit: Benefit) => (
-        <div class="benefit-card">
-          <div class="benefit-icon">
-            {benefit.icon && (
-              <Image
-                src={`/${benefit.icon}`}
-                alt={benefit.title + " icon"}
-                width="48"
-                height="48"
-              />
-            )}
-          </div>
-          <h3 class="benefit-title">{benefit.title}</h3>
-          <p class="benefit-body">{benefit.body}</p>
-          <div class="benefit-gradient" />
-        </div>
+        <Card
+          type="benefit"
+          title={benefit.title}
+          body={benefit.body}
+          icon={benefit.icon || undefined}
+        />
       ))
     }
   </div>
@@ -34,103 +25,34 @@ const { benefits } = Astro.props;
       align-items: center;
       padding: 10rem 5rem;
       background: var(--color-neutral-950);
+      height: 100%;
     }
     .benefits-cards {
       display: flex;
       flex-direction: row;
       gap: 2rem;
       max-width: 1260px;
-      width: 100%;
+      height: 250px;
       justify-content: center;
     }
-    .benefit-card {
-      background: var(--color-neutral-900);
-      border-radius: 1.5rem;
-      padding: 2.5rem 2rem 2rem 2rem;
-      text-align: left;
-      position: relative;
+    .benefits-cards > * {
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-      overflow: hidden;
-      opacity: 0;
-      transform: translateY(80px);
-      transition:
-        opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .benefit-card.visible {
-      opacity: 1;
-      transform: none;
-    }
-    .benefit-icon {
-      margin-bottom: 1.5rem;
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .benefit-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      line-height: 1.2;
-      margin-bottom: 1rem;
-      color: var(--color-neutral-0);
-      font-family: inherit;
-    }
-    .benefit-body {
-      font-size: 1rem;
-      color: var(--color-neutral-1000);
-      font-weight: 400;
-      line-height: 1.5;
-      margin-bottom: 2.5rem;
-    }
-    .benefit-gradient {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 6px;
-      border-radius: 0 0 1.5rem 1.5rem;
-      background: linear-gradient(
-        90deg,
-        var(--color-primary-400) 0%,
-        var(--color-secondary-500) 100%
-      );
+      min-width: 0;
     }
     @media (max-width: 1200px) {
       .benefits-cards {
         flex-direction: column;
         gap: 2rem;
         align-items: center;
-        padding: 0 2rem;
+        height: 100%;
+        padding-left: 5%;
+        padding-right: 5%;
+        flex: 1;
       }
-      .benefit-card {
-        min-width: 0;
-        max-width: 100%;
+      .benefits-cards > * {
+        flex: 1;
         width: 100%;
       }
     }
   </style>
-  <script is:inline>
-    const cards = document.querySelectorAll(".benefit-card");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry, i) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.classList.add("visible");
-            }, i * 150); // stagger effect
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 },
-    );
-
-    cards.forEach((card) => observer.observe(card));
-  </script>
 </section>

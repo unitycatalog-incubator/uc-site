@@ -1,6 +1,7 @@
 ---
 title: Authentication and Authorization in Unity Catalog
 category: guide
+description: This article explains authentication and authorization in Unity Catalog, emphasizing their role in secure data governance. It provides a step-by-step guide to configuring Unity Catalog with external identity providers like Google Auth, ensuring centralized identity management, enhanced security, and scalability for modern data pipelines.
 authors:
   - avril-aysha
 thumbnail: ./thumbnail.jpg

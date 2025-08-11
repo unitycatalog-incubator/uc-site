@@ -1,1 +1,5 @@
+
+# Add Homebrew to PATH for Git hooks
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+
 lint-staged

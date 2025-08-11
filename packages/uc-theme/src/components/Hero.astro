@@ -126,7 +126,7 @@ const logoAnimations = logos.map((_, i) => ({
               alt="hero_logo"
               class="hero-logo-cloud"
               loading="lazy"
-              style={`position: absolute; top: ${pos.top}; ${pos.left ? `left: ${pos.left};` : `right: ${pos.right};`} width: ${pos.size ?? 50}px; height: ${pos.size ?? 50}px; animation-duration: ${anim.duration}; animation-delay: ${anim.delay}; animation-direction: ${anim.direction};`}
+              style={`position: absolute; top: ${pos.top}; ${pos.left ? `left: ${pos.left};` : `right: ${pos.right};`} --logo-size: ${pos.size ?? 50}px; animation-duration: ${anim.duration}; animation-delay: ${anim.delay}; animation-direction: ${anim.direction};`}
               width={pos.size ?? 50}
               height={pos.size ?? 50}
               loading="eager"
@@ -158,8 +158,8 @@ const logoAnimations = logos.map((_, i) => ({
         src="/images/uc-hero-image.webp"
         alt="Tables, AI Assets, Unstructured Data"
         class="uc-hero-image"
-        width={400}
-        height={400}
+        width={1164}
+        height={1164}
         loading="eager"
       />
     </div>
@@ -182,6 +182,8 @@ const logoAnimations = logos.map((_, i) => ({
       width: 100%;
       max-width: 100%;
       overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
     }
     .hero-logo-title {
       display: flex;
@@ -226,7 +228,7 @@ const logoAnimations = logos.map((_, i) => ({
       justify-content: center;
       width: 100%;
       max-width: 1200px;
-      margin-top: 3rem;
+      margin-top: 1rem;
       padding: 0 1rem;
       min-height: 600px;
     }
@@ -298,6 +300,8 @@ const logoAnimations = logos.map((_, i) => ({
       animation: float 15s linear infinite;
       transform-origin: center center;
       opacity: 0.9;
+      width: var(--logo-size, 50px);
+      height: var(--logo-size, 50px);
     }
 
     .hero-logo-cloud:hover {
@@ -325,12 +329,14 @@ const logoAnimations = logos.map((_, i) => ({
       inset: 0%;
     }
     .heroheader_grid-bg {
-      background-image: url(/images/hero_background_with_grid.svg);
-      background-position: 50% 100%;
+      background-image: url("/images/hero_background_with_grid.svg");
+      background-position: center bottom;
       background-repeat: no-repeat;
       background-size: cover;
       position: absolute;
-      inset: 0%;
+      inset: 0;
+      z-index: 0;
+      min-height: 100vh;
     }
 
     .heroheader_bottom-gradient {
@@ -352,6 +358,38 @@ const logoAnimations = logos.map((_, i) => ({
       }
     }
 
+    @media (max-width: 1000px) {
+      .hero-logo-cloud {
+        transform: scale(0.7);
+      }
+      .hero-image-stack {
+        transform: scale(0.7);
+      }
+      .hero-logo-cloud {
+        transform: scale(0.7);
+        width: calc(var(--logo-size, 50px) * 0.7);
+        height: calc(var(--logo-size, 50px) * 0.7);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-image-stack {
+        width: 120px;
+        height: 120px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        z-index: 3;
+      }
+      .hero-grid {
+        min-height: 360px;
+      }
+      .hero {
+        min-height: 480px;
+      }
+    }
+
     @media (max-width: 1024px) {
       .hero {
         padding: 4rem 1rem;
@@ -360,8 +398,8 @@ const logoAnimations = logos.map((_, i) => ({
 
       .hero-grid {
         display: flex;
-        align-items: center;
-        justify-content: center;
+        align-items: flex-end;
+        justify-content: end;
         width: 100%;
         max-width: 1400px;
         margin: 1rem auto;
@@ -381,7 +419,6 @@ const logoAnimations = logos.map((_, i) => ({
 
       .hero-image-stack {
         width: 100%;
-        max-width: 400px;
       }
 
       .hero-logo-cloud {

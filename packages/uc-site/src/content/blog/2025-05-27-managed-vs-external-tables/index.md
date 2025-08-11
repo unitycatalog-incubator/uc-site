@@ -1,6 +1,7 @@
 ---
 title: "Unity Catalog: Managed vs External Tables"
 category: guide
+description: This article explains the difference between managed and external tables and shows you how to work with both types of tables in Unity Catalog (UC).
 authors:
   - avril-aysha
 thumbnail: ./thumbnail.jpg

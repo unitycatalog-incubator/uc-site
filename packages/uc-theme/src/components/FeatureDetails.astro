@@ -8,74 +8,37 @@ const { features } = Astro.props;
   <div class="feature-details-grid">
     {
       features.map((feature: Feature, idx: number) => (
-        <div class="feature-row">
-          {idx === 1 ? (
-            <>
-              <div class="feature-right">
-                <Image
-                  src="/images/blur200.svg"
-                  alt="blur background"
-                  class="feature-blur-bg"
-                  width={100}
-                  height={100}
-                  loading="lazy"
-                />
-                <Image
-                  src={`/${feature.image}`}
-                  alt={feature.title + " visual"}
-                  class="feature-image"
-                  width="528"
-                  height="528"
-                  loading="lazy"
-                />
-              </div>
-              <div class="feature-left">
-                <Image
-                  src={`/${feature.icon}`}
-                  alt={feature.title + " icon"}
-                  class="feature-icon"
-                  width="56"
-                  height="56"
-                  loading="lazy"
-                />
-                <h3 class="feature-title feature-animate">{feature.title}</h3>
-                <p class="feature-body feature-animate">{feature.body}</p>
-              </div>
-            </>
-          ) : (
-            <>
-              <div class="feature-left">
-                <Image
-                  src={`/${feature.icon}`}
-                  alt={feature.title + " icon"}
-                  class="feature-icon"
-                  width="56"
-                  height="56"
-                  loading="lazy"
-                />
-                <h3 class="feature-title feature-animate">{feature.title}</h3>
-                <p class="feature-body feature-animate">{feature.body}</p>
-              </div>
-              <div class="feature-right">
-                <Image
-                  src="/images/blur200.svg"
-                  alt="blur background"
-                  class="feature-blur-bg"
-                  width={100}
-                  height={100}
-                  loading="lazy"
-                />
-                <Image
-                  src={`/${feature.image}`}
-                  alt={feature.title + " visual"}
-                  class="feature-image"
-                  width="528"
-                  height="528"
-                  loading="lazy"
-                />
-              </div>
-            </>
-          )}
+        <div class={`feature-row ${idx % 2 === 1 ? "reverse" : ""}`}>
+          <div class="feature-left">
+            <Image
+              src={`/${feature.icon}`}
+              alt={feature.title + " icon"}
+              class="feature-icon"
+              width="56"
+              height="56"
+              loading="lazy"
+            />
+            <h3 class="feature-title feature-animate">{feature.title}</h3>
+            <p class="feature-body feature-animate">{feature.body}</p>
+          </div>
+          <div class="feature-right">
+            <Image
+              src="/images/blur200.svg"
+              alt="blur background"
+              class="feature-blur-bg"
+              width={100}
+              height={100}
+              loading="lazy"
+            />
+            <Image
+              src={`/${feature.image}`}
+              alt={feature.title + " visual"}
+              class="feature-image"
+              width="528"
+              height="528"
+              loading="lazy"
+            />
+          </div>
         </div>
       ))
     }
@@ -85,6 +48,7 @@ const { features } = Astro.props;
       padding-top: 7rem;
       padding-bottom: 7rem;
       background: var(--color-neutral-950);
+      padding-left: 5%;
     }
     .feature-details-title {
       text-align: center;
@@ -165,15 +129,32 @@ const { features } = Astro.props;
       opacity: 1;
       transform: none;
     }
-    @media (max-width: 1050px) {
+
+    @media (min-width: 1101px) {
+      .feature-row.reverse {
+        flex-direction: row-reverse;
+      }
+    }
+    @media (max-width: 1100px) {
       .feature-row {
         flex-direction: column;
-        text-align: center;
+        align-items: flex-start;
+        padding-left: 5%;
+        padding-right: 5%;
       }
       .feature-left,
       .feature-right {
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
+        width: 100%;
+      }
+      .feature-image {
+        display: block;
+        margin: 2rem 0 0 0;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
       }
     }
   </style>

@@ -5,25 +5,6 @@ import BlogCard from "./BlogCard.astro";
 
 const { currentPostId } = Astro.props as RelatedBlogPosts;
 
-function getExcerpt(content: string) {
-  if (!content) return "";
-
-  // Get raw content string
-  const rawContent = typeof content === "string" ? content : "";
-
-  // Split content into lines and get first 3 non-empty lines
-  const lines = rawContent
-    .split(/\r?\n/)
-    .filter((line: string) => line.trim() !== "")
-    .slice(0, 3);
-
-  // Join the lines and limit to reasonable length
-  const excerpt = lines.join(" ").trim();
-
-  // Limit to 150 characters to prevent overly long excerpts
-  return excerpt.length > 150 ? excerpt.substring(0, 150) + "..." : excerpt;
-}
-
 // Get all blog posts
 const posts = await getCollection("blog");
 posts.sort(
@@ -44,7 +25,7 @@ const relatedPosts = posts
           {relatedPosts.map((post) => (
             <BlogCard
               title={post.data.title}
-              excerpt={getExcerpt(post.body || "")}
+              description={post.data.description}
               date={post.data.date}
               url={post.id ? `/blogs/${post.id}` : "#"}
               thumbnail={post.data.thumbnail}
@@ -89,7 +70,6 @@ const relatedPosts = posts
     grid-auto-columns: 1fr;
     place-items: stretch start;
     display: grid;
-    height: 600px;
     margin: 0 auto;
   }
 

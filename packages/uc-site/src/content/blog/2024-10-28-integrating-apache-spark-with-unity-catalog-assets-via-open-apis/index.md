@@ -1,6 +1,7 @@
 ---
 title: Integrating Apache Spark™ with Unity Catalog Assets via Open APIs
 category: guide
+description: Unity Catalog as the Center of the Open Data Ecosystem
 authors:
   - dipankar-kushari
 thumbnail: ./thumbnail.jpg
@@ -54,7 +55,6 @@ The [quickstart guide](https://docs.unitycatalog.io/quickstart/) provides comp
 
 1. To start the Unity Catalog server, clone the [Git repository](https://github.com/unitycatalog/unitycatalog.git), change into the unitycatalog directory, and run bin/start-uc-server. (Note that you need to have Java 17 installed on your machine to run the UC server.) Open a new terminal window to perform all of the subsequent commands.
 2. Configure server properties for cloud storage (_optional_). In this step, you’ll configure server properties that are required to perform CRUD operations on tables whose data is stored in the cloud. You can skip this step if you are only performing CRUD operations on tables whose data is stored locally:
-
    1. Open the etc/conf/server.properties file to add configuration. Change into the unitycatalog directory and run the following command:
 
    ```

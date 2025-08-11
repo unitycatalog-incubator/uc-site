@@ -1,6 +1,7 @@
 ---
 title: Unity Catalog 0.2 Introduces Models, MLflow and Apache Spark™ Integration, and support for External Identity Providers
 category: guide
+description: Since its launch in July 2024, Unity Catalog has rapidly grown with key features like external authentication, MLflow model support, Apache Spark integration, and a new UI, making it a powerful tool for unified data and AI governance.
 authors:
   - tathagata-das
   - denny-lee

@@ -19,14 +19,16 @@ const { pageTitle, endorsements } = Astro.props;
           style={i < 3 ? "" : "display:none;"}
         >
           {card.icon ? (
-            <Image
-              src={card.icon}
-              alt={card.name + " logo"}
-              class="endorsement-icon"
-              width={100}
-              height={100}
-              loading="lazy"
-            />
+            <div class="endorsement-icon-container">
+              <Image
+                src={card.icon}
+                alt={card.name + " logo"}
+                class="endorsement-icon"
+                width={50}
+                height={50}
+                loading="lazy"
+              />
+            </div>
           ) : (
             <div class="endorsement-icon-placeholder" />
           )}
@@ -63,7 +65,6 @@ const { pageTitle, endorsements } = Astro.props;
     .endorsements-section {
       background: var(--color-neutral-950);
       padding: 7rem 2rem;
-      max-height: 120vh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -80,7 +81,7 @@ const { pageTitle, endorsements } = Astro.props;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 2rem;
-      max-width: 1200px;
+      max-width: 1280px;
       margin: 0 auto;
       grid-auto-rows: 1fr;
     }
@@ -91,16 +92,22 @@ const { pageTitle, endorsements } = Astro.props;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      box-shadow: 0 4px 24px 0 #0002;
       min-height: 350px;
       position: relative;
       height: 700px;
     }
-    .endorsement-icon {
-      max-width: 8rem;
+    .endorsement-icon-container {
+      width: 8rem;
       height: 3.125rem;
-      object-fit: contain;
       margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .endorsement-icon {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
       border-radius: 0.5rem;
     }
     .endorsement-quote {
@@ -126,7 +133,6 @@ const { pageTitle, endorsements } = Astro.props;
     .endorsements-pagination {
       display: flex;
       justify-content: center;
-      gap: 1.5rem;
       margin-top: 2rem;
       gap: 3rem;
     }
@@ -172,19 +178,31 @@ const { pageTitle, endorsements } = Astro.props;
       }
     }
 
-    @media (max-width: 900px) {
-      .endorsements-section {
-        max-height: none;
-        padding: 3rem 1rem;
-      }
+    @media (max-width: 1201px) {
       .endorsements-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
       }
       .endorsement-card {
-        height: auto !important;
-        min-height: 120px;
-        padding: 1rem;
+        gap: 2rem;
+        padding: 30px;
+        min-height: 0;
+      }
+      .endorsement-quote {
+        font-weight: 500;
+        line-height: 1.75;
+        font-size: 1rem;
+      }
+    }
+    @media (max-width: 768px) {
+      .endorsements-grid {
+        grid-template-columns: 1fr;
+      }
+      .endorsement-card {
+        height: 400px;
+      }
+      .endorsement-quote {
+        font-size: 0.875rem;
       }
     }
     .feature-animate {
@@ -201,20 +219,32 @@ const { pageTitle, endorsements } = Astro.props;
   </style>
   <script type="module" is:inline>
     let currentStart = 0;
-    const cardsPerPage = 3;
     const cards = Array.from(document.querySelectorAll(".endorsement-card"));
-    const totalPages = cards.length - 1;
+
+    function getCardsPerPage() {
+      return window.innerWidth <= 768 ? 1 : window.innerWidth <= 1200 ? 2 : 3;
+    }
+
+    function getTotalPages() {
+      const cardsPerPage = getCardsPerPage();
+      return Math.max(0, cards.length - cardsPerPage);
+    }
 
     function showWindow(start) {
+      const cardsPerPage = getCardsPerPage();
       cards.forEach((card, i) => {
         card.style.display =
           i >= start && i < start + cardsPerPage ? "" : "none";
       });
+
+      // Adjust heights after showing/hiding cards
+      setTimeout(adjustMobileCardHeights, 50);
     }
 
     showWindow(currentStart);
 
     document.getElementById("endorsements-prev").onclick = () => {
+      const totalPages = getTotalPages();
       if (currentStart === 0) {
         currentStart = totalPages; // Jump to last testimonial
       } else {
@@ -223,6 +253,7 @@ const { pageTitle, endorsements } = Astro.props;
       showWindow(currentStart);
     };
     document.getElementById("endorsements-next").onclick = () => {
+      const totalPages = getTotalPages();
       if (currentStart === totalPages) {
         currentStart = 0; // Jump to first testimonial
       } else {
@@ -231,7 +262,53 @@ const { pageTitle, endorsements } = Astro.props;
       showWindow(currentStart);
     };
 
-    window.addEventListener("resize", () => showWindow(currentStart));
+    window.addEventListener("resize", () => {
+      const newCardsPerPage = getCardsPerPage();
+      const currentCardsPerPage =
+        window.innerWidth <= 768 ? 1 : window.innerWidth <= 1200 ? 2 : 3;
+
+      // Adjust currentStart if needed when switching between different card counts
+      if (newCardsPerPage !== currentCardsPerPage) {
+        currentStart = Math.min(currentStart, getTotalPages());
+      }
+
+      showWindow(currentStart);
+      adjustMobileCardHeights();
+    });
+
+    function adjustMobileCardHeights() {
+      if (window.innerWidth <= 768) {
+        // Do not set height in JS; let CSS handle it
+        cards.forEach((card) => {
+          card.style.height = "";
+        });
+      } else if (window.innerWidth <= 1201) {
+        // Equalize heights for 2-column layout
+        cards.forEach((card) => {
+          card.style.height = "700px";
+        });
+        let maxHeight = 0;
+        cards.forEach((card) => {
+          if (card.style.display !== "none") {
+            const cardHeight = card.offsetHeight;
+            maxHeight = Math.max(maxHeight, cardHeight);
+          }
+        });
+        cards.forEach((card) => {
+          if (card.style.display !== "none") {
+            card.style.height = maxHeight + "px";
+          }
+        });
+      } else {
+        // Reset to original heights for desktop
+        cards.forEach((card) => {
+          card.style.height = "";
+        });
+      }
+    }
+
+    // Initial height adjustment
+    setTimeout(adjustMobileCardHeights, 100);
   </script>
   <script is:inline>
     window.addEventListener("DOMContentLoaded", function () {

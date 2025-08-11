@@ -1,6 +1,7 @@
 ---
 title: Unity Catalog and LangChain
 category: guide
+description: The Unity Catalog AI library is built to integrate Unity Catalog with popular GenAI tools like LangChain, LlamaIndex, OpenAI, Anthropic, and many others to make it easy to manage data, functions, and access control across AI platforms.
 authors:
   - avril-aysha
 thumbnail: ./thumbnail.jpg
