@@ -43,12 +43,14 @@
   {
     "id": "vladimir-kolovski",
     "name": "Vladimir Kolovski",
-    "title": "Senior Staff Software Engineer"
+    "title": "Senior Staff Software Engineer",
+    "image": "/contributors/vladimir-kolovski.jpeg"
   },
   {
     "id": "sida-shen",
     "name": "Sida Shen",
-    "title": "Product Manager, CelerData"
+    "title": "Product Manager, CelerData",
+    "image": "/contributors/sida-shen.jpeg"
   },
   {
     "id": "dipankar-kushari",
