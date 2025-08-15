@@ -1,5 +1,5 @@
 ---
-title: Building an ML and AI Data Catalog with Unity Catalog and MLflow
+title: Better Customer-Facing Analytics with Unity Catalog and CelerData
 category: guide
 description: "Whether for business-facing martech, real-time dashboards for content creators, or real-time fraud detection, customer-facing analytics has become an ever-increasing priority for businesses everywhere. These use cases demand stringent performance service level agreements (SLAs), such as low latency and high concurrency, and to meet these performance needs, many organizations rely on proprietary data warehouses. This approach can deliver the desired speed and efficiency, but not without introducing a new set of costs and operational challenges. In this article, we’ll examine these unique challenges and explore a path forward toward greater agility and efficiency for customer-facing analytics."
 authors:
