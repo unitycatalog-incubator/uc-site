@@ -374,19 +374,143 @@ const logoAnimations = logos.map((_, i) => ({
 
     @media (max-width: 600px) {
       .hero-image-stack {
-        width: 120px;
-        height: 120px;
+        height: 250px;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
         position: absolute;
         z-index: 3;
       }
+      .uc-hero-image {
+        max-width: 250px;
+      }
       .hero-grid {
         min-height: 360px;
       }
       .hero {
         min-height: 480px;
+      }
+
+      /* Mobile logo positioning - spread logos around the hero image */
+      .hero-logo-cloud:nth-child(1) {
+        /* puppygraph.svg */
+        top: 20% !important;
+        left: 30% !important;
+      }
+      .hero-logo-cloud:nth-child(2) {
+        /* fivetran.svg */
+        top: 30% !important;
+        left: 20% !important;
+      }
+      .hero-logo-cloud:nth-child(3) {
+        /* starrocks.svg */
+        top: 20% !important;
+        left: 20% !important;
+      }
+      .hero-logo-cloud:nth-child(4) {
+        /* nvidia.svg */
+        top: 10% !important;
+        left: 15% !important;
+      }
+      .hero-logo-cloud:nth-child(5) {
+        /* aws.svg */
+        top: 25% !important;
+        left: 8% !important;
+      }
+
+      .hero-logo-cloud:nth-child(6) {
+        /* salesforce.svg */
+        top: 15% !important;
+        right: 30% !important;
+      }
+      .hero-logo-cloud:nth-child(7) {
+        /* tecton.svg */
+        top: 20% !important;
+        right: 5% !important;
+      }
+      .hero-logo-cloud:nth-child(8) {
+        /* langchain.svg */
+        top: 20% !important;
+        right: 18% !important;
+      }
+      .hero-logo-cloud:nth-child(9) {
+        /* confluence.svg */
+        top: 10% !important;
+        right: 15% !important;
+      }
+      .hero-logo-cloud:nth-child(10) {
+        /* dataframe.svg */
+        top: 30% !important;
+        right: 20% !important;
+      }
+
+      .hero-logo-cloud:nth-child(11) {
+        /* Informatica.svg */
+        top: 100% !important;
+        left: 10% !important;
+      }
+      .hero-logo-cloud:nth-child(12) {
+        /* azure.svg */
+        top: 80% !important;
+        left: 5% !important;
+      }
+      .hero-logo-cloud:nth-child(13) {
+        /* llama-index-logo.svg */
+        top: 80% !important;
+        left: 15% !important;
+      }
+      .hero-logo-cloud:nth-child(14) {
+        /* granica.svg */
+        top: 70% !important;
+        left: 8% !important;
+      }
+      .hero-logo-cloud:nth-child(15) {
+        /* dbt-labs.svg */
+        top: 70% !important;
+        left: 18% !important;
+      }
+
+      .hero-logo-cloud:nth-child(16) {
+        /* duckdb.svg */
+        top: 100% !important;
+        right: 10% !important;
+      }
+      .hero-logo-cloud:nth-child(17) {
+        /* databricks.svg */
+        top: 80% !important;
+        right: 15% !important;
+      }
+      .hero-logo-cloud:nth-child(18) {
+        /* google.svg */
+        top: 80% !important;
+        right: 2% !important;
+      }
+      .hero-logo-cloud:nth-child(19) {
+        /* unstructured.svg */
+        top: 70% !important;
+        right: 8% !important;
+      }
+      .hero-logo-cloud:nth-child(20) {
+        /* immuta.svg */
+        top: 70% !important;
+        right: 18% !important;
+      }
+
+      .hero-logo-cloud:nth-child(21) {
+        /* lancedb.svg */
+        top: 80% !important;
+        left: 25% !important;
+      }
+      .hero-logo-cloud:nth-child(22) {
+        /* apache.svg */
+        top: 80% !important;
+        right: 25% !important;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .uc-hero-image {
+        max-width: 200px;
       }
     }
 
