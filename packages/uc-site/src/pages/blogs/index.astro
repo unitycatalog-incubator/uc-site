@@ -5,6 +5,7 @@ import {
   BlogCard,
   Footer,
   Subscribe,
+  Search,
 } from "uc-theme/components";
 import { getCollection } from "astro:content";
 
@@ -44,6 +45,9 @@ const rest = posts.filter((post) => post !== featured);
     }
   </section>
   <section id="blog-section">
+    <div class="search-container">
+      <Search />
+    </div>
     <div id="blog-grid">
       {
         rest.map((post, i) => (
@@ -235,5 +239,10 @@ const rest = posts.filter((post) => post !== featured);
       gap: 1rem;
       padding: 0 1rem;
     }
+  }
+
+  /* Search Styles */
+  .search-container {
+    margin-bottom: 4rem;
   }
 </style>
