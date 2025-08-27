@@ -17,3 +17,4 @@ export { default as TableOfContents } from "./TableOfContents.astro";
 export { default as Contributors } from "./Contributors.astro";
 export { default as CtaSocial } from "./CtaSocial.astro";
 export { default as RelatedBlogPosts } from "./RelatedBlogPosts.astro";
+export { default as Search } from "./Search.astro";

@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import { ucTheme } from "uc-theme";
+import { ucTheme, searchPlugin } from "uc-theme";
 
 import netlify from "@astrojs/netlify";
 
@@ -41,5 +41,6 @@ export default defineConfig({
         ],
       },
     }),
+    searchPlugin(),
   ],
 });

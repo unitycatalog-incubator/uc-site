@@ -37,6 +37,12 @@ const raw = typeof post.body === "string" ? post.body : "";
     copyright={homeData.footer.copyright}
     postId={post.id}
   >
+    <!-- Hidden searchable content for better indexing -->
+    <div style="display: none;" data-pagefind-body>
+      {post.data.title}
+      {post.data.description}
+      {raw}
+    </div>
     <Content />
   </BlogPost>
 </PageLayout>

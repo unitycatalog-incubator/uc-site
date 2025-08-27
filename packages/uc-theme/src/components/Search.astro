@@ -1,0 +1,204 @@
+---
+import "@pagefind/default-ui/css/ui.css";
+---
+
+<div
+  class="relative mx-auto flex w-full max-w-4xl items-center justify-around px-4 py-[0.25em]"
+>
+  <div class="relative w-full max-w-2xl">
+    <!-- Inline Search Input -->
+    <div class="search-container">
+      {
+        import.meta.env.DEV ? (
+          <div class="rounded-lg border border-neutral-800 bg-neutral-900 p-4 text-center text-white">
+            <p>To view search results, run a production build:</p>
+            <p>
+              <code class="ml-2 rounded bg-neutral-800 px-2 py-1 text-white">
+                $ pnpm build && pnpm preview
+              </code>
+            </p>
+          </div>
+        ) : (
+          <div id="pagefind-ui" />
+        )
+      }
+    </div>
+  </div>
+</div>
+
+<script>
+  // Initialize Pagefind UI
+  if (typeof window !== "undefined" && !import.meta.env.DEV) {
+    const onIdle = window.requestIdleCallback || ((cb) => setTimeout(cb, 1));
+    onIdle(async () => {
+      try {
+        const { PagefindUI } = await import("@pagefind/default-ui");
+        new PagefindUI({
+          element: "#pagefind-ui",
+          baseUrl: "/",
+          bundlePath: "/pagefind/",
+          showImages: false,
+          processResult: (result) => {
+            // Only show results from blog pages
+            if (result.url && result.url.includes("/blogs/")) {
+              // Clean up the URL to ensure it works
+              let cleanUrl = result.url;
+
+              // Remove any .html extensions
+              cleanUrl = cleanUrl.replace(/\.html$/, "");
+
+              // Handle URLs with spaces (encode them properly)
+              cleanUrl = cleanUrl.replace(/\s+/g, "%20");
+
+              // Make sure the URL ends with a slash for blog posts
+              if (!cleanUrl.endsWith("/")) {
+                cleanUrl = cleanUrl + "/";
+              }
+
+              // Update the result URL
+              result.url = cleanUrl;
+
+              // Debug: log the URL to see what's happening
+              console.log("Search result URL:", result.url);
+
+              return result;
+            }
+            // Return null to hide non-blog results
+            return null;
+          },
+        });
+      } catch (error) {
+        console.warn("Pagefind UI could not be loaded:", error);
+      }
+    });
+  }
+</script>
+
+<style>
+  .search-container {
+    background: var(--color-neutral-900);
+    border: 1px solid var(--color-neutral-800);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: var(--color-neutral-50);
+    width: 100%;
+    transition: all 0.2s;
+    position: absolute;
+    top: -50px;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
+
+  .search-container:hover {
+    border: 1px solid var(--color-neutral-0);
+  }
+
+  kbd {
+    font-family: theme(fontFamily.sans) !important;
+  }
+</style>
+
+<style is:global>
+  /*
+   * Pagefind UI - Global
+   */
+  #pagefind-ui .pagefind-ui {
+    color: inherit;
+  }
+
+  /*
+   * Pagefind UI - Search
+   */
+
+  #pagefind-ui .pagefind-ui__search-input {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--color-neutral-0);
+    outline: none;
+  }
+  #pagefind-ui .pagefind-ui__form::before {
+    background-color: rgba(255, 255, 255, 0.75);
+  }
+  #pagefind-ui .pagefind-ui__search-input:focus {
+    background-color: rgba(255, 255, 255, 0.125);
+    border: 1px solid var(--color-neutral-0);
+  }
+  #pagefind-ui .pagefind-ui__search-input:focus::before {
+    background-color: white !important;
+  }
+  #pagefind-ui .pagefind-ui__search-input::placeholder {
+    opacity: 1;
+    color: rgba(255, 255, 255, 0.75);
+  }
+  #pagefind-ui .pagefind-ui__search-clear {
+    display: none;
+  }
+
+  /*
+   * Pagefind UI - Results
+   */
+  #pagefind-ui .pagefind-ui__message {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.75);
+  }
+  #pagefind-ui .pagefind-ui__result {
+    border: none;
+    background-color: #2c4b69;
+    padding: 16px;
+    border-radius: 8px;
+  }
+  #pagefind-ui .pagefind-ui__result + .pagefind-ui__result {
+    margin-top: 8px;
+  }
+  #pagefind-ui .pagefind-ui__result-inner {
+    margin-top: 0;
+  }
+  #pagefind-ui .pagefind-ui__result-title {
+    font-size: 16px;
+  }
+  #pagefind-ui .pagefind-ui__result-title .pagefind-ui__result-link {
+    color: rgba(255, 255, 255, 0.75);
+  }
+  #pagefind-ui .pagefind-ui__result-excerpt {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 16px;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    contain: content;
+    will-change: transform;
+    max-height: 3em;
+  }
+  #pagefind-ui .pagefind-ui__result mark {
+    background-color: transparent;
+    color: white;
+    font-weight: 600;
+  }
+  #pagefind-ui .pagefind-ui__result-nested {
+    width: 100%;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+  }
+  #pagefind-ui .pagefind-ui__button {
+    background-color: transparent;
+    color: inherit;
+  }
+  #pagefind-ui .pagefind-ui__button:hover,
+  #pagefind-ui .pagefind-ui__button:focus {
+    border-color: white;
+  }
+
+  #pagefind-ui {
+    max-height: calc(80vh - 16px * 2);
+    overflow-y: auto;
+  }
+
+  #pagefind-ui .pagefind-ui__results {
+    overflow: visible;
+    position: static;
+  }
+</style>
