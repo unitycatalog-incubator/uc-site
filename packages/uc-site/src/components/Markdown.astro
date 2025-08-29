@@ -1,15 +1,20 @@
 ---
-import type { MarkdownLayoutProps } from "astro";
+import type { MarkdownLayoutProps, ImageMetadata } from "astro";
 import { PageLayout } from "uc-theme/components";
 
 type Props = MarkdownLayoutProps<{
   title: string;
   description?: string;
+  image?: string | ImageMetadata;
 }>;
 
 const { frontmatter } = Astro.props;
 ---
 
-<PageLayout title={frontmatter.title} description={frontmatter.description}>
+<PageLayout
+  title={frontmatter.title}
+  description={frontmatter.description}
+  image={frontmatter.image}
+>
   <slot />
 </PageLayout>

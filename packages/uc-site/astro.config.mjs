@@ -4,6 +4,8 @@ import { ucTheme, searchPlugin } from "uc-theme";
 
 import netlify from "@astrojs/netlify";
 
+import sitemap from "@astrojs/sitemap";
+
 export default defineConfig({
   site: "https://uc-site-beta.netlify.app/",
   redirects: {
@@ -42,5 +44,6 @@ export default defineConfig({
       },
     }),
     searchPlugin(),
+    sitemap(),
   ],
 });
