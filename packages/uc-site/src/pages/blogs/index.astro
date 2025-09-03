@@ -9,7 +9,15 @@ import {
 } from "uc-theme/components";
 import { getCollection } from "astro:content";
 
-import homeData from "../../content/home.json";
+const homeEntries = await getCollection("home");
+const footerData = homeEntries.find((entry) => entry.data.type === "footer");
+const homeData = {
+  footer: {
+    logos: footerData?.data.logos || [],
+    links: footerData?.data.links || [],
+    copyright: footerData?.data.copyright || { text: "" },
+  },
+};
 
 const posts = await getCollection("blog");
 posts.sort(
