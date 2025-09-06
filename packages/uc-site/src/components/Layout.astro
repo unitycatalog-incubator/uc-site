@@ -1,4 +1,5 @@
 ---
+import { localizedHTML as favicons } from "astro-favicons/middleware";
 import type { ComponentProps } from "astro/types";
 import { Footer, PageLayout } from "uc-theme/components";
 
@@ -15,6 +16,7 @@ const { title, description, image } = Astro.props;
 
 <PageLayout title={title} description={description} image={image}>
   <Fragment name="head-last">
+    <Fragment set:html={favicons(Astro.currentLocale)} />
     <script
       defer
       data-domain="unitycatalog.io"
