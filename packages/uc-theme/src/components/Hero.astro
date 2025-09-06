@@ -1,17 +1,8 @@
 ---
 import { Image } from "astro:assets";
-import type { ButtonType } from "../types";
 import logo from "../../../uc-site/public/logo.svg";
 import Button from "./Button.astro";
 import "../theme.css";
-
-interface Props {
-  title: string;
-  subtitle: string;
-  buttons: ButtonType[];
-}
-
-const { title, subtitle, buttons } = Astro.props;
 
 const logos = [
   "puppygraph.svg",
@@ -93,20 +84,20 @@ const logoAnimations = logos.map((_, i) => ({
       height={80}
       loading="eager"
     />
-    <h1 class="hero-title">{title}</h1>
+    <h1 class="hero-title">Unity Catalog</h1>
   </div>
-  <p class="hero-subtitle">{subtitle}</p>
-  <div class={`hero-ctas${buttons.length === 2 ? " hero-ctas-two" : ""}`}>
-    {
-      buttons.map((btn, i) => (
-        <Button
-          label={btn.label}
-          url={btn.url}
-          style={i === 0 ? "github" : "slack"}
-          size="2"
-        />
-      ))
-    }
+  <p class="hero-subtitle">Industry's only universal catalog for data and AI</p>
+  <div class="hero-ctas">
+    <Button
+      label="View GitHub"
+      url="https://github.com/unitycatalog/unitycatalog"
+      style="github"
+    />
+    <Button
+      label="Join Slack Community"
+      url="https://go.unitycatalog.io/slack"
+      style="slack"
+    />
   </div>
 
   <div class="hero-grid">

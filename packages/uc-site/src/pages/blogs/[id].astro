@@ -3,16 +3,6 @@ import { getCollection, render, getEntries } from "astro:content";
 import { BlogPost, PageLayout } from "uc-theme/components";
 import { getBlogPublishedAt } from "uc-theme/blog";
 
-const homeEntries = await getCollection("home");
-const footerData = homeEntries.find((entry) => entry.data.type === "footer");
-const homeData = {
-  footer: {
-    logos: footerData?.data.logos || [],
-    links: footerData?.data.links || [],
-    copyright: footerData?.data.copyright || { text: "" },
-  },
-};
-
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
   return posts.map((post) => {
@@ -41,9 +31,6 @@ const raw = typeof post.body === "string" ? post.body : "";
     }))}
     thumbnail={post.data.thumbnail}
     raw={raw}
-    logos={homeData.footer.logos}
-    links={homeData.footer.links}
-    copyright={homeData.footer.copyright}
     postId={post.id}
   >
     <!-- Hidden searchable content for better indexing -->

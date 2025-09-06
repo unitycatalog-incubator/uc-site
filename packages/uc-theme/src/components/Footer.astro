@@ -1,43 +1,41 @@
 ---
 import { Image } from "astro:assets";
-import type { Logo, Link, Copyright } from "../types";
-interface Props {
-  logos: Logo[];
-  links: Link[];
-  copyright: Copyright;
-}
-const { logos, links, copyright } = Astro.props;
+import { config } from "virtual:uc-theme/config";
 ---
 
 <footer class="footer">
   <div class="footer-logos">
-    {
-      logos.map((logo, idx) => (
-        <>
-          <Image
-            src={logo.src}
-            alt={logo.alt}
-            class="footer-logo"
-            width={220}
-            height={56}
-            loading="lazy"
-          />
-          {idx < logos.length - 1 && <div class="footer-logo-divider" />}
-        </>
-      ))
-    }
+    <Image
+      src="/favicon.svg"
+      alt="Unity Catalog"
+      class="footer-logo"
+      width={220}
+      height={56}
+      loading="lazy"
+    />
+    <div class="footer-logo-divider"></div>
+    <Image
+      src="/logos/lfaidata-project-badge-sandbox-white.svg"
+      alt="LF AI & Data Sandbox Project"
+      class="footer-logo"
+      width={220}
+      height={56}
+      loading="lazy"
+    />
   </div>
   <nav class="footer-nav">
     {
-      links.map((link) => (
-        <a href={link.url} class="footer-link">
-          {link.label}
+      config.menus.footer.map((item) => (
+        <a href={item.url} class="footer-link">
+          {item.label}
         </a>
       ))
     }
   </nav>
   <div class="footer-divider"></div>
-  <div class="footer-copyright">{copyright.text}</div>
+  <div class="footer-copyright">
+    © 2025 Unity Catalog. All rights reserved.
+  </div>
   <style>
     .footer {
       background: var(--color-black);

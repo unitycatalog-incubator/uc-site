@@ -1,31 +1,26 @@
 ---
 import { Image } from "astro:assets";
-import type { ButtonType } from "../types";
 import Button from "./Button.astro";
-
-interface Props {
-  title: string;
-  body: string;
-  buttons: ButtonType[];
-}
-const { title, body, buttons } = Astro.props;
 ---
 
 <section class="cta-section">
   <div class="cta-gradient-top"></div>
-  <h2 class="cta-title feature-animate">{title}</h2>
-  <p class="cta-body feature-animate">{body}</p>
+  <h2 class="cta-title feature-animate">Get started today!</h2>
+  <p class="cta-body feature-animate">
+    View the GitHub repo or join the Unity Catalog open source community to view
+    more information on the roadmap.
+  </p>
   <div class="cta-buttons">
-    {
-      buttons.map((btn, i) => (
-        <Button
-          label={btn.label}
-          url={btn.url}
-          style={i === 0 ? "github" : "slack"}
-          size="2"
-        />
-      ))
-    }
+    <Button
+      label="View GitHub"
+      url="https://github.com/unitycatalog/unitycatalog"
+      style="github"
+    />
+    <Button
+      label="Join Slack Community"
+      url="https://go.unitycatalog.io/slack"
+      style="slack"
+    />
   </div>
   <Image
     src="/images/cta-section_underlay.svg"

@@ -9,110 +9,16 @@ import {
   Cta,
   Footer,
 } from "uc-theme/components";
-import { getCollection } from "astro:content";
-
-// Type definitions to match the component interfaces
-interface ButtonType {
-  label: string;
-  url: string;
-  style?: string;
-}
-
-interface Benefit {
-  title: string;
-  body: string;
-  icon?: string;
-}
-
-interface Feature {
-  title: string;
-  body: string;
-  icon: string;
-  image?: string;
-}
-
-interface Endorsement {
-  testimonial: string;
-  name: string;
-  title: string;
-  icon?: string;
-}
-
-const homeEntries = await getCollection("home");
-const indexData = homeEntries.find((entry) => entry.id === "index");
-const heroButtonsData = homeEntries.find(
-  (entry) => entry.data.type === "hero-buttons",
-);
-const benefitsData = homeEntries.find(
-  (entry) => entry.data.type === "benefits",
-);
-const featuresData = homeEntries.find(
-  (entry) => entry.data.type === "features",
-);
-const partnerEcosystemData = homeEntries.find(
-  (entry) => entry.data.type === "partner-ecosystem",
-);
-const endorsementsData = homeEntries.find(
-  (entry) => entry.data.type === "endorsements",
-);
-const ctaData = homeEntries.find((entry) => entry.data.type === "cta");
-const footerData = homeEntries.find((entry) => entry.data.type === "footer");
-
-const homeData = {
-  title: indexData?.data.title || "",
-  description: indexData?.data.description || "",
-  heroTitle: indexData?.data.heroTitle || "",
-  heroSubtitle: indexData?.data.heroSubtitle || "",
-  heroButtons: (heroButtonsData?.data.items || []) as ButtonType[],
-  benefits: (benefitsData?.data.items || []) as Benefit[],
-  features: (featuresData?.data.items || []) as Feature[],
-  partnerEcosystem: {
-    title: partnerEcosystemData?.data.title || "",
-    body: partnerEcosystemData?.data.body || "",
-    button: partnerEcosystemData?.data.button || { label: "", url: "" },
-  },
-  endorsements: {
-    pageTitle: endorsementsData?.data.pageTitle || "",
-    items: (endorsementsData?.data.items || []) as Endorsement[],
-  },
-  cta: {
-    title: ctaData?.data.title || "",
-    body: ctaData?.data.body || "",
-    buttons: (ctaData?.data.buttons || []) as ButtonType[],
-  },
-  footer: {
-    logos: footerData?.data.logos || [],
-    links: footerData?.data.links || [],
-    copyright: footerData?.data.copyright || { text: "" },
-  },
-};
 ---
 
-<PageLayout title={homeData.title} description={homeData.description}>
-  <Hero
-    title={homeData.heroTitle}
-    subtitle={homeData.heroSubtitle}
-    buttons={homeData.heroButtons}
-  />
-  <Benefits benefits={homeData.benefits} />
-  <FeatureDetails features={homeData.features} />
-  <PartnerEcosystem
-    title={homeData.partnerEcosystem.title}
-    body={homeData.partnerEcosystem.body}
-    button={homeData.partnerEcosystem.button}
-  />
-  <Endorsements
-    pageTitle={homeData.endorsements.pageTitle}
-    endorsements={homeData.endorsements.items}
-  />
-  <Cta
-    title={homeData.cta.title}
-    body={homeData.cta.body}
-    buttons={homeData.cta.buttons}
-  />
-  <Footer
-    logos={homeData.footer.logos}
-    links={homeData.footer.links}
-    copyright={homeData.footer.copyright}
-  />
+<PageLayout
+  description="Unity Catalog transforms how you manage and govern data, ensuring compatibility and control across diverse platforms and tools."
+>
+  <Hero />
+  <Benefits />
+  <FeatureDetails />
+  <PartnerEcosystem />
+  <Endorsements />
+  <Cta />
+  <Footer />
 </PageLayout>

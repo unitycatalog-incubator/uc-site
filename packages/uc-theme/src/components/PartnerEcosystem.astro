@@ -3,17 +3,6 @@ import { Image } from "astro:assets";
 import bgTop from "../../../uc-site/public/images/ecosystem_section_top-gradient.svg";
 import bg from "../../../uc-site/public/images/ecosystem-image.png";
 import Button from "./Button.astro";
-
-interface ButtonType {
-  label: string;
-  url: string;
-}
-interface Props {
-  title: string;
-  body: string;
-  button: ButtonType;
-}
-const { title, body, button } = Astro.props;
 ---
 
 <section class="partner-ecosystem" id="partner-ecosystem">
@@ -26,8 +15,15 @@ const { title, body, button } = Astro.props;
     loading="lazy"
   />
   <div class="partner-ecosystem-header">
-    <h2 class="partner-ecosystem-title feature-animate">{title}</h2>
-    <p class="partner-ecosystem-body feature-animate">{body}</p>
+    <h2 class="partner-ecosystem-title feature-animate">
+      Be future-ready with a broad and open ecosystem
+    </h2>
+    <p class="partner-ecosystem-body feature-animate">
+      Unity Catalog OSS, with its Universal interface, provides broad
+      interoperability across the modern data stack including all major cloud
+      platforms, compute engines, data and AI platforms as well as data catalog
+      and governance solutions.
+    </p>
   </div>
   <div class="partner-ecosystem-content">
     <div class="partner-ecosystem-image-wrap">
@@ -42,7 +38,12 @@ const { title, body, button } = Astro.props;
     </div>
   </div>
   <div class="partner-ecosystem-btn-wrap">
-    <Button label={button.label} url={button.url} style="slack" size="1" />
+    <Button
+      label="Join Slack Community"
+      url="https://go.unitycatalog.io/slack"
+      style="slack"
+      size="1"
+    />
   </div>
   <style>
     .partner-ecosystem-section {

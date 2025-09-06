@@ -1,21 +1,27 @@
 ---
-import type { Benefit } from "../types";
 import Card from "./Card.astro";
-const { benefits } = Astro.props;
 ---
 
 <section class="benefits-section">
   <div class="benefits-cards">
-    {
-      benefits.map((benefit: Benefit) => (
-        <Card
-          type="benefit"
-          title={benefit.title}
-          body={benefit.body}
-          icon={benefit.icon || undefined}
-        />
-      ))
-    }
+    <Card
+      type="benefit"
+      title="Interoperability"
+      body="Multimodal interface provides interoperability across lakehouse formats like Delta Lake, Apache Iceberg™, major cloud platforms, and various compute engines."
+      icon="icons/Interoperability.svg"
+    />
+    <Card
+      type="benefit"
+      title="Openness"
+      body="Open APIs and open source server offer maximum flexibility and customer choice by ensuring broad interoperability."
+      icon="icons/openness.svg"
+    />
+    <Card
+      type="benefit"
+      title="Unified Governance for data and AI"
+      body="Built-in governance and security for tabular, non-tabular data as well as AI assets such as Gen AI tools"
+      icon="icons/unified_governance.svg"
+    />
   </div>
   <style>
     .benefits-section {
