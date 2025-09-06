@@ -1,17 +1,16 @@
 ---
 import { Image } from "astro:assets";
-import bgTop from "../../../uc-site/public/images/ecosystem_section_top-gradient.svg";
-import bg from "../../../uc-site/public/images/ecosystem-image.png";
-import Button from "./Button.astro";
+import { Button } from "uc-theme/components";
 ---
 
 <section class="partner-ecosystem" id="partner-ecosystem">
   <div class="partner-ecosystem-gradient-top"></div>
   <Image
-    src={bgTop}
+    src="/images/ecosystem_section_top-gradient.svg"
     alt="section background"
     class="partner-ecosystem-bg"
     width={1400}
+    height={512}
     loading="lazy"
   />
   <div class="partner-ecosystem-header">
@@ -28,7 +27,7 @@ import Button from "./Button.astro";
   <div class="partner-ecosystem-content">
     <div class="partner-ecosystem-image-wrap">
       <Image
-        src={bg}
+        src="/images/ecosystem-image.png"
         alt="ecosystem visual"
         class="partner-ecosystem-image"
         width={2313}

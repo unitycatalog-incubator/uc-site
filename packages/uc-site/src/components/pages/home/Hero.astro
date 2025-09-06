@@ -1,8 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import logo from "../../../uc-site/public/uc-logo-glyph-white.svg";
-import Button from "./Button.astro";
-import "../theme.css";
+import { Button } from "uc-theme/components";
 
 const logos = [
   "puppygraph.svg",
@@ -77,7 +75,7 @@ const logoAnimations = logos.map((_, i) => ({
 <header class="hero">
   <div class="hero-logo-title">
     <Image
-      src={logo}
+      src="/uc-logo-glyph-white.svg"
       alt="Unity Catalog Logo"
       class="hero-logo"
       width={80}

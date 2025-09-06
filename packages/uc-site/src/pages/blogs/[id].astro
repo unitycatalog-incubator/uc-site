@@ -1,7 +1,7 @@
 ---
 import { getCollection, render, getEntries } from "astro:content";
-import { BlogPost } from "uc-theme/components";
 import { getBlogPublishedAt } from "uc-theme/blog";
+import BlogPost from "../../components/pages/blog/BlogPost.astro";
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
