@@ -14,7 +14,10 @@ export default defineConfig({
   },
   adapter: netlify(),
   integrations: [
-    favicons(),
+    favicons({
+      name: "Unity Catalog",
+      short_name: "Unity Catalog",
+    }),
     ucTheme({
       siteTitle: "Unity Catalog",
       defaultImage: "/images/default-image.jpg",
