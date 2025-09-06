@@ -1,9 +1,12 @@
 ---
 import { getCollection } from "astro:content";
-import type { RelatedBlogPosts } from "../types";
 import BlogCard from "./BlogCard.astro";
 
-const { currentPostId } = Astro.props as RelatedBlogPosts;
+interface Props {
+  currentPostId: string;
+}
+
+const { currentPostId } = Astro.props;
 
 // Get all blog posts
 const posts = await getCollection("blog");

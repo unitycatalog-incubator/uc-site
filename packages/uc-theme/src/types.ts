@@ -18,27 +18,3 @@ export interface ThemeConfig {
     footer: MenuItem[];
   };
 }
-
-export interface ButtonType {
-  label: string;
-  url: string;
-  style?: string;
-}
-
-export interface Author {
-  name: string;
-  title?: string;
-  image?: string;
-}
-
-export interface BlogPost {
-  title: string;
-  authors: Author[];
-  thumbnail?: unknown;
-  raw?: string;
-  postId?: string;
-}
-
-export interface RelatedBlogPosts {
-  currentPostId: string;
-}
