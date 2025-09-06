@@ -3,7 +3,6 @@ import { Image } from "astro:assets";
 
 interface Props {
   title: string;
-  body?: string | undefined;
   url?: string | undefined;
   icon?: string | undefined;
   image?: string | undefined;
@@ -13,16 +12,7 @@ interface Props {
   type: "blog" | "benefit";
 }
 
-const {
-  title,
-  body,
-  url,
-  icon,
-  image,
-  badge = "GUIDE",
-  date,
-  type,
-} = Astro.props;
+const { title, url, icon, image, badge = "GUIDE", date, type } = Astro.props;
 ---
 
 <div class={`card-container ${type}-card`}>
@@ -43,7 +33,11 @@ const {
             )}
             <div class="card-content">
               <h3 class="card-title">{title}</h3>
-              {body && <p class="card-body">{body}</p>}
+              {Astro.slots.has("default") && (
+                <p class="card-body">
+                  <slot />
+                </p>
+              )}
               <div class="card-meta-row">
                 <span class="card-label">{badge}</span>
                 {date && <span class="card-date">{date}</span>}
@@ -63,7 +57,11 @@ const {
               </div>
             )}
             <h3 class="card-title">{title}</h3>
-            {body && <p class="card-body">{body}</p>}
+            {Astro.slots.has("default") && (
+              <p class="card-body">
+                <slot />
+              </p>
+            )}
           </div>
         )}
       </a>
@@ -81,7 +79,11 @@ const {
         )}
         <div class="card-content">
           <h3 class="card-title">{title}</h3>
-          {body && <p class="card-body">{body}</p>}
+          {Astro.slots.has("default") && (
+            <p class="card-body">
+              <slot />
+            </p>
+          )}
           <div class="card-meta-row">
             <span class="card-label">{badge}</span>
             {date && <span class="card-date">{date}</span>}
@@ -101,7 +103,11 @@ const {
           </div>
         )}
         <h3 class="card-title">{title}</h3>
-        {body && <p class="card-body">{body}</p>}
+        {Astro.slots.has("default") && (
+          <p class="card-body">
+            <slot />
+          </p>
+        )}
       </div>
     )
   }
