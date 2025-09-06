@@ -1,6 +1,16 @@
 ---
 import { PageLayout, Button, Footer } from "uc-theme/components";
-import homeData from "../content/home.json";
+import { getCollection } from "astro:content";
+
+const homeEntries = await getCollection("home");
+const footerData = homeEntries.find((entry) => entry.data.type === "footer");
+const homeData = {
+  footer: {
+    logos: footerData?.data.logos || [],
+    links: footerData?.data.links || [],
+    copyright: footerData?.data.copyright || { text: "" },
+  },
+};
 ---
 
 <PageLayout title="Not Found">
