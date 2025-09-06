@@ -1,17 +1,16 @@
 ---
 import {
-  PageLayout,
   Hero,
   Benefits,
   FeatureDetails,
   PartnerEcosystem,
   Endorsements,
   Cta,
-  Footer,
 } from "uc-theme/components";
+import Layout from "../components/Layout.astro";
 ---
 
-<PageLayout
+<Layout
   description="Unity Catalog transforms how you manage and govern data, ensuring compatibility and control across diverse platforms and tools."
 >
   <Hero />
@@ -20,5 +19,4 @@ import {
   <PartnerEcosystem />
   <Endorsements />
   <Cta />
-  <Footer />
-</PageLayout>
+</Layout>

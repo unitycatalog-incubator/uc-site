@@ -1,13 +1,12 @@
 ---
 import {
-  PageLayout,
   FeaturedBlogCard,
   BlogCard,
-  Footer,
   Subscribe,
   Search,
 } from "uc-theme/components";
 import { getCollection } from "astro:content";
+import Layout from "../../components/Layout.astro";
 
 const posts = await getCollection("blog");
 posts.sort(
@@ -17,7 +16,7 @@ const featured = posts.find((post) => post.data.featured === true);
 const rest = posts.filter((post) => post !== featured);
 ---
 
-<PageLayout title="Blog">
+<Layout title="Blog">
   <div class="blog-hero">
     <div class="featured-hero-background">
       <div class="featured-hero-grid-bg"></div>
@@ -64,7 +63,6 @@ const rest = posts.filter((post) => post !== featured);
     </div>
     <div id="pagination"></div>
     <Subscribe />
-    <Footer />
   </section>
   <script type="module">
     const POSTS_PER_PAGE = 9;
@@ -133,7 +131,7 @@ const rest = posts.filter((post) => post !== featured);
     }
     renderPage(currentPage);
   </script>
-</PageLayout>
+</Layout>
 <style is:global>
   .blog-hero {
     text-align: center;

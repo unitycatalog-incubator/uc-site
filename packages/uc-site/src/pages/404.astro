@@ -1,8 +1,9 @@
 ---
-import { PageLayout, Button, Footer } from "uc-theme/components";
+import { Button } from "uc-theme/components";
+import Layout from "../components/Layout.astro";
 ---
 
-<PageLayout title="Not Found">
+<Layout title="Not Found">
   <div class="star-bg"></div>
   <div class="not-found">
     <h1>404</h1>
@@ -14,8 +15,7 @@ import { PageLayout, Button, Footer } from "uc-theme/components";
     </p>
     <Button url="/" size="1" style="slack" label="Go Home" />
   </div>
-  <Footer />
-</PageLayout>
+</Layout>
 
 <style>
   .star-bg {

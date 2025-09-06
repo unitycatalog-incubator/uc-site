@@ -12,7 +12,6 @@ interface Props {
 
 const { title, description, image } = Astro.props;
 
-const pageTitle = title ? `${title} | ${config.siteTitle}` : config.siteTitle;
 const imageUrl =
   !image || typeof image === "string"
     ? image
@@ -28,39 +27,20 @@ const imageUrl =
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
+    <title>{title ? `${title} | ${config.siteTitle}` : config.siteTitle}</title>
     {description && <meta name="description" content={description} />}
     <meta
       name="image"
       property="og:image"
-      content={new URL(imageUrl ? imageUrl : config.defaultImage, Astro.site)}
+      content={new URL(
+        imageUrl ? imageUrl : "/images/default-image.jpg",
+        Astro.site,
+      )}
     />
-    <meta property="og:title" content={pageTitle} />
-    {description && <meta property="og:description" content={description} />}
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
-    <meta property="og:site_name" content={config.siteTitle} />
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content={pageTitle} />
-    {
-      description && (
-        <meta property="twitter:description" content={description} />
-      )
-    }
-    <meta
-      property="twitter:image"
-      content={new URL(imageUrl ? imageUrl : config.defaultImage, Astro.site)}
-    />
-    <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Analytics -->
-    <script
-      defer
-      data-domain="unitycatalog.io"
-      src="https://plausible.io/js/script.js"></script>
     <slot name="head-last" />
   </head>
   <body class="text-neutral-0 bg-neutral-950">

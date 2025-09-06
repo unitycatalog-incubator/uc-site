@@ -1,7 +1,8 @@
 ---
 import { getCollection, render, getEntries } from "astro:content";
-import { BlogPost, PageLayout } from "uc-theme/components";
+import { BlogPost } from "uc-theme/components";
 import { getBlogPublishedAt } from "uc-theme/blog";
+import Layout from "../../components/Layout.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -21,7 +22,7 @@ const { Content } = await render(post);
 const raw = typeof post.body === "string" ? post.body : "";
 ---
 
-<PageLayout title={post.data.title} description={post.data.description}>
+<Layout title={post.data.title} description={post.data.description}>
   <BlogPost
     title={post.data.title}
     authors={authors.map((author) => ({
@@ -41,4 +42,4 @@ const raw = typeof post.body === "string" ? post.body : "";
     </div>
     <Content />
   </BlogPost>
-</PageLayout>
+</Layout>
