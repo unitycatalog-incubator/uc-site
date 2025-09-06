@@ -1,0 +1,7 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/uc-site" },
+    { "path": "./packages/uc-theme" }
+  ]
+}
