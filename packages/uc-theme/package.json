@@ -21,10 +21,10 @@
     "astro": "^5"
   },
   "dependencies": {
-    "@pagefind/default-ui": "^1.3.0",
-    "@tailwindcss/vite": "^4.1.11",
+    "@pagefind/default-ui": "^1.4.0",
+    "@tailwindcss/vite": "^4.1.13",
     "clsx": "^2.1.1",
-    "pagefind": "^1.3.0",
-    "tailwindcss": "^4.1.11"
+    "pagefind": "^1.4.0",
+    "tailwindcss": "^4.1.13"
   }
 }
