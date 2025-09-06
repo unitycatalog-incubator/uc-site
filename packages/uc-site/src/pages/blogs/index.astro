@@ -6,7 +6,7 @@ import {
   Search,
 } from "uc-theme/components";
 import { getCollection } from "astro:content";
-import Layout from "../../components/Layout.astro";
+import Layout from "../../layouts/Layout.astro";
 
 const posts = await getCollection("blog");
 posts.sort(
