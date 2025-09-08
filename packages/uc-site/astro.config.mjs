@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from "astro/config";
+import favicons from "astro-favicons";
 import { ucTheme, searchPlugin } from "uc-theme";
 
 import netlify from "@astrojs/netlify";
@@ -13,6 +14,10 @@ export default defineConfig({
   },
   adapter: netlify(),
   integrations: [
+    favicons({
+      name: "Unity Catalog",
+      short_name: "Unity Catalog",
+    }),
     ucTheme({
       siteTitle: "Unity Catalog",
       defaultImage: "/images/default-image.jpg",

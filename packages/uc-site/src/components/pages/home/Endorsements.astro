@@ -1,0 +1,433 @@
+---
+import { Image } from "astro:assets";
+
+const endorsements = [
+  {
+    testimonial:
+      "Microsoft is committed to the open-source community and empowering customers with choice. Databricks has been a strategic partner for years and it's great to see them open-sourcing Unity Catalog. We believe truly open standards with broad industry participation are in customers' best interests. Our collaboration with Databricks continues to elevate Microsoft Azure as the best choice for data and AI workloads.",
+    name: "Jessica Hawk",
+    title: "CVP Data, AI and Digital Applications, Microsoft",
+    icon: "/icons/azure.svg",
+  },
+  {
+    testimonial:
+      "AWS welcomes Databricks' move to open source Unity Catalog. AWS is committed to working with the industry on open source solutions that enable choice and interoperability for customers.",
+    name: "Chris Grusz",
+    title: "Managing Director of Technology Partnerships, AWS",
+    icon: "/icons/aws.svg",
+  },
+  {
+    testimonial:
+      "Google is committed to open, flexible solutions that empower customers to maximize the value of their data. Databricks' strategy to open up the Unity Catalog standard for data and AI aligns very well with our strategy.",
+    name: "Ritika Suri",
+    title: "Director, Data and AI Technology Partnerships, Google Cloud",
+    icon: "/icons/google.svg",
+  },
+  {
+    testimonial:
+      "Enterprise data is essential to developing accurate generative AI applications. NVIDIA works closely with our partner ecosystem to support open-source offerings like Databricks Unity Catalog, which can help customers curate efficient and powerful development pipelines.",
+    name: "Pat Lee",
+    title: "VP of Strategic Enterprise Partnerships, NVIDIA",
+    icon: "/icons/nvidia.svg",
+  },
+  {
+    testimonial:
+      "Salesforce Data Cloud is built from the ground up on Open Standards with Apache Parquet and Apache Iceberg. Our zero copy innovations enable customers to unlock data, derive insights and orchestrate actions across the Customer 360. Databricks' embrace of Apache Iceberg via UniForm and Unity Catalog addresses key interoperability challenges between Delta Lake and Iceberg. We are excited to have Databricks as a member of our Zero Copy Partner Network and look forward to joint innovations with the new open Unity Catalog, delivering compelling customer value in structured data, unstructured data and AI models.",
+    name: "Raveendrnathan Loganathan",
+    title: "Executive Vice President of Software Engineering at Salesforce",
+    icon: "/icons/salesforce.svg",
+  },
+  {
+    testimonial:
+      "Databricks's decision to open source Unity Catalog is an exciting development for the data and AI community. We're excited to partner with Databricks to integrate Unity Catalog with LangChain, which allows our shared users to build advanced agents using Unity Catalog functions as tools.",
+    name: "Harrison Chase",
+    title: "CEO & Founder, LangChain",
+    icon: "/icons/langchain.svg",
+  },
+  {
+    testimonial:
+      "Unstructured is the leading unstructured data ETL solution for LLMs - helping organizations transform their data from raw to RAG-ready. Our partnership with Unity Catalog OSS makes perfect sense, as we break down data silos and accelerate AI/ML development in enterprises. We are excited to partner with Databricks to develop this open standard for AI use cases and to standardize metadata for unstructured data – helping our customers operate at the cutting edge of AI.",
+    name: "Brian Raymond",
+    title: "CEO & Founder, UnstructuredIO",
+    icon: "/logos/unstructured.svg",
+  },
+  {
+    testimonial:
+      "At Eventual, we have built Daft, the leading open source distributed query engine for multimodal data. We believe that unifying compute for tabular and unstructured data is not enough and that a multimodal catalog is crucial to build GenAI data lakehouses. We are excited to partner with Databricks and other AI innovators to develop the Unity Catalog open standard for modern data+AI workloads.",
+    name: "Sammy Sidhu",
+    title: "CEO & Founder, Eventual Computing",
+    icon: "/icons/eventual.svg",
+  },
+  {
+    testimonial:
+      "At Granica, we champion data democratization and freedom from vendor lock-in. Our Safe Room technology ensures privacy, trust, and safety in generative AI workflows while supporting open standards like Unity Catalog, Delta Lake, and Apache Iceberg. Unity Catalog's vendor-neutral architecture and robust governance solutions align with our vision of providing customers with flexibility and control over their data. We are excited to contribute to this open ecosystem, driving innovation and enabling customers to seamlessly work with their data across best-of-breed platforms.",
+    name: "Rahul Ponnala",
+    title: "CEO & Co-Founder, Granica",
+    icon: "/icons/granica.svg",
+  },
+  {
+    testimonial:
+      "Open sourcing Unity Catalog is a pivotal step towards a more collaborative and innovative data ecosystem. By making this technology accessible, Databricks is fostering an environment where the entire community can contribute to and benefit from enhanced data governance and management capabilities. This move aligns with our vision at Onehouse and Apache XTable (Incubating) to support open format interoperability that drives progress and innovation for all.",
+    name: "Vinoth Chandar",
+    title: "CEO & Co-Founder, Onehouse",
+    icon: "/icons/onehouse.svg",
+  },
+  {
+    testimonial:
+      "Confluent's mission is to set data in motion and enable organizations to take advantage of their data everywhere. We're excited to see Databricks make a significant contribution to an open data ecosystem with Unity Catalog becoming open sourced. Tableflow on Confluent Cloud will enable easy delivery of real-time data to places like a data lake by turning data streams into Iceberg tables with a single click. By combining our industry-leading streaming capabilities with Databricks' robust data management solutions, customers will be able to put their data to work more effectively than ever.",
+    name: "Shaun Clowes",
+    title: "CPO, Confluent",
+    icon: "/icons/confluent.svg",
+  },
+  {
+    testimonial:
+      "Together, Databricks and dbt Cloud help users break down data silos to collaborate effectively, simplify ETL to lower TCO with Delta Lake, and unify governance with Unity Catalog. We are thrilled to announce our support for Unity Catalog OSS and the open APIs. This partnership underscores our commitment to providing a unified data experience, empowering our community to achieve greater insights and drive innovation.",
+    name: "Mark Porter",
+    title: "CTO, dbt Labs",
+    icon: "/icons/dbtlabs.svg",
+  },
+  {
+    testimonial:
+      "We are thrilled to see Databricks open source Unity Catalog as an open standard for data and AI. This move will provide our customers with greater choice and flexibility in their data ecosystem, ensuring seamless integration and maximizing interoperability with Fivetran's platform as they ingest critical data to Databricks.",
+    name: "Anjan Kundavaram",
+    title: "CPO, Fivetran",
+    icon: "/icons/fivetran.svg",
+  },
+  {
+    testimonial:
+      "The exposure of native access patterns within Unity Catalog has transformed how our business is able to streamline access to data and apply governance rules at scale - with no performance impact. Databricks continued investment in a community to accelerate services to make data controls easier to build allows our customers to govern with greater ease and manage the massive volume of new data consumers being onboarded in the age of AI.",
+    name: "Matthew Carroll",
+    title: "CEO, Immuta",
+    icon: "/icons/immuta.svg",
+  },
+  {
+    testimonial:
+      "We are excited to see the opportunity for our joint customers as Databricks open-sources Unity Catalog as an open standard for data and AI. With Unity Catalog OSS and the Informatica intelligent Data Management Cloud, customers can gain greater choice, flexibility and interoperability in their data ecosystems.",
+    name: "Brett Roscoe",
+    title: "GM and SVP Cloud Data Governance and Cloud Operations, Informatica",
+    icon: "/icons/informatica.svg",
+  },
+];
+---
+
+<section class="endorsements-section" id="endorsements-section">
+  <h2 class="endorsements-title feature-animate">
+    Endorsed by industry leaders and innovators
+  </h2>
+  <div class="endorsements-grid" id="endorsements-grid">
+    {
+      endorsements.map((card, i) => (
+        <div
+          class="endorsement-card"
+          data-index={i}
+          style={i < 3 ? "" : "display:none;"}
+        >
+          {card.icon ? (
+            <div class="endorsement-icon-container">
+              <Image
+                src={card.icon}
+                alt={card.name + " logo"}
+                class="endorsement-icon"
+                width={50}
+                height={50}
+                loading="lazy"
+              />
+            </div>
+          ) : (
+            <div class="endorsement-icon-placeholder" />
+          )}
+          <p class="endorsement-quote">"{card.testimonial}"</p>
+          <div class="endorsement-meta">
+            <div class="endorsement-name">{card.name}</div>
+            <div class="endorsement-title">{card.title}</div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <div class="endorsements-pagination">
+    <button id="endorsements-prev" aria-label="Previous">
+      <Image
+        src="/icons/arrow-left.svg"
+        alt="Previous"
+        width={24}
+        height={24}
+        loading="lazy"
+      />
+    </button>
+    <button id="endorsements-next" aria-label="Next">
+      <Image
+        src="/icons/arrow-right.svg"
+        alt="Next"
+        width={24}
+        height={24}
+        loading="lazy"
+      />
+    </button>
+  </div>
+</section>
+<style>
+  .endorsements-section {
+    background: var(--color-neutral-950);
+    padding: 7rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .endorsements-title {
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--color-neutral-0);
+    margin-bottom: 3rem;
+    max-width: 500px;
+  }
+  .endorsements-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    grid-auto-rows: 1fr;
+  }
+  .endorsement-card {
+    background: var(--color-neutral-0);
+    border-radius: 1.25rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 350px;
+    position: relative;
+    height: 700px;
+  }
+  .endorsement-icon-container {
+    width: 8rem;
+    height: 3.125rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .endorsement-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 0.5rem;
+  }
+  .endorsement-quote {
+    font-size: 1rem;
+    color: var(--color-neutral-900);
+    flex: 1;
+    font-weight: 500;
+    line-height: 1.75;
+  }
+  .endorsement-meta {
+    margin-top: auto;
+  }
+  .endorsement-name {
+    color: var(--color-neutral-900);
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+  .endorsement-title {
+    color: var(--color-neutral-500);
+    font-size: 0.875rem;
+  }
+  .endorsements-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 3rem;
+  }
+  .endorsements-pagination button {
+    background: var(--color-neutral-950);
+    border: 1.5px solid var(--color-primary-600);
+    border-radius: 100%;
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .endorsements-pagination button::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--conic-gradient);
+    border-radius: 50%;
+    z-index: -1;
+    transition: opacity 0.3s ease-out;
+    opacity: 0;
+    animation: spin 4s linear infinite;
+  }
+  .endorsements-pagination button:hover::before {
+    opacity: 1;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (max-width: 1201px) {
+    .endorsements-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .endorsement-card {
+      gap: 2rem;
+      padding: 30px;
+      min-height: 0;
+    }
+    .endorsement-quote {
+      font-weight: 500;
+      line-height: 1.75;
+      font-size: 1rem;
+    }
+  }
+  @media (max-width: 768px) {
+    .endorsements-grid {
+      grid-template-columns: 1fr;
+    }
+    .endorsement-card {
+      height: 400px;
+    }
+    .endorsement-quote {
+      font-size: 0.875rem;
+    }
+  }
+  .feature-animate {
+    opacity: 0;
+    transform: translateY(80px);
+    transition:
+      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .feature-animate.visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+<script type="module" is:inline>
+  let currentStart = 0;
+  const cards = Array.from(document.querySelectorAll(".endorsement-card"));
+
+  function getCardsPerPage() {
+    return window.innerWidth <= 768 ? 1 : window.innerWidth <= 1200 ? 2 : 3;
+  }
+
+  function getTotalPages() {
+    const cardsPerPage = getCardsPerPage();
+    return Math.max(0, cards.length - cardsPerPage);
+  }
+
+  function showWindow(start) {
+    const cardsPerPage = getCardsPerPage();
+    cards.forEach((card, i) => {
+      card.style.display = i >= start && i < start + cardsPerPage ? "" : "none";
+    });
+
+    // Adjust heights after showing/hiding cards
+    setTimeout(adjustMobileCardHeights, 50);
+  }
+
+  showWindow(currentStart);
+
+  document.getElementById("endorsements-prev").onclick = () => {
+    const totalPages = getTotalPages();
+    if (currentStart === 0) {
+      currentStart = totalPages; // Jump to last testimonial
+    } else {
+      currentStart = currentStart - 1;
+    }
+    showWindow(currentStart);
+  };
+  document.getElementById("endorsements-next").onclick = () => {
+    const totalPages = getTotalPages();
+    if (currentStart === totalPages) {
+      currentStart = 0; // Jump to first testimonial
+    } else {
+      currentStart = currentStart + 1;
+    }
+    showWindow(currentStart);
+  };
+
+  window.addEventListener("resize", () => {
+    const newCardsPerPage = getCardsPerPage();
+    const currentCardsPerPage =
+      window.innerWidth <= 768 ? 1 : window.innerWidth <= 1200 ? 2 : 3;
+
+    // Adjust currentStart if needed when switching between different card counts
+    if (newCardsPerPage !== currentCardsPerPage) {
+      currentStart = Math.min(currentStart, getTotalPages());
+    }
+
+    showWindow(currentStart);
+    adjustMobileCardHeights();
+  });
+
+  function adjustMobileCardHeights() {
+    if (window.innerWidth <= 768) {
+      // Do not set height in JS; let CSS handle it
+      cards.forEach((card) => {
+        card.style.height = "";
+      });
+    } else if (window.innerWidth <= 1201) {
+      // Equalize heights for 2-column layout
+      cards.forEach((card) => {
+        card.style.height = "700px";
+      });
+      let maxHeight = 0;
+      cards.forEach((card) => {
+        if (card.style.display !== "none") {
+          const cardHeight = card.offsetHeight;
+          maxHeight = Math.max(maxHeight, cardHeight);
+        }
+      });
+      cards.forEach((card) => {
+        if (card.style.display !== "none") {
+          card.style.height = maxHeight + "px";
+        }
+      });
+    } else {
+      // Reset to original heights for desktop
+      cards.forEach((card) => {
+        card.style.height = "";
+      });
+    }
+  }
+
+  // Initial height adjustment
+  setTimeout(adjustMobileCardHeights, 100);
+</script>
+<script is:inline>
+  window.addEventListener("DOMContentLoaded", function () {
+    const featureTexts = document.querySelectorAll(".feature-animate");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 },
+    );
+    featureTexts.forEach((el) => observer.observe(el));
+  });
+</script>

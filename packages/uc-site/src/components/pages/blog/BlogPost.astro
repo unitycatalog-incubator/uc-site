@@ -1,22 +1,23 @@
 ---
-import type { Logo, Link, Copyright, BlogPost } from "../types";
 import HeroBlogPost from "./HeroBlogPost.astro";
-import Footer from "./Footer.astro";
 import TableOfContents from "./TableOfContents.astro";
 import Contributors from "./Contributors.astro";
 import CtaSocial from "./CtaSocial.astro";
 import Subscribe from "./Subscribe.astro";
 import RelatedBlogPosts from "./RelatedBlogPosts.astro";
-import "../theme.css";
 
-interface Props extends BlogPost {
-  // Footer props
-  logos: Logo[];
-  links: Link[];
-  copyright: Copyright;
+interface Props {
+  title: string;
+  authors: Array<{
+    name: string;
+    title?: string;
+    image?: string;
+  }>;
+  raw: string;
+  postId: string;
 }
 
-const { title, authors, raw, logos, links, copyright, postId } = Astro.props;
+const { title, authors, raw, postId } = Astro.props as Props;
 const currentUrl = Astro.url.href;
 
 // Static placeholder data for TOC and contributors
@@ -60,9 +61,6 @@ const tocItems = lines
 
   <!-- Related Blog Posts Section -->
   {postId && <RelatedBlogPosts currentPostId={postId} />}
-
-  <!-- Footer -->
-  <Footer logos={logos} links={links} copyright={copyright} />
 </div>
 
 <script>

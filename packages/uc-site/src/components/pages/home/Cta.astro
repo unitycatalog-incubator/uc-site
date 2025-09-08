@@ -1,0 +1,179 @@
+---
+import { Image } from "astro:assets";
+import { Button } from "uc-theme/components";
+---
+
+<section class="cta-section">
+  <div class="cta-gradient-top"></div>
+  <h2 class="cta-title feature-animate">Get started today!</h2>
+  <p class="cta-body feature-animate">
+    View the GitHub repo or join the Unity Catalog open source community to view
+    more information on the roadmap.
+  </p>
+  <div class="cta-buttons">
+    <Button
+      label="View GitHub"
+      url="https://github.com/unitycatalog/unitycatalog"
+      style="github"
+    />
+    <Button
+      label="Join Slack Community"
+      url="https://go.unitycatalog.io/slack"
+      style="slack"
+    />
+  </div>
+  <Image
+    src="/images/cta-section_underlay.svg"
+    alt=""
+    class="cta-underlay"
+    aria-hidden="true"
+    width={100}
+    height={100}
+    loading="lazy"
+  />
+</section>
+<style>
+  .cta-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10rem 1rem 10rem 1rem;
+    background: none;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-underlay {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 100vw;
+    min-width: 800px;
+    min-height: 400px;
+    object-fit: cover;
+    object-position: bottom;
+    pointer-events: none;
+    z-index: 0;
+    user-select: none;
+  }
+  .cta-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-neutral-0);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    z-index: 3;
+  }
+  .cta-body {
+    color: var(--color-neutral-1000);
+    font-size: 1.35rem;
+    text-align: center;
+    max-width: 800px;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+    z-index: 1;
+  }
+  .cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    z-index: 1;
+  }
+  .cta-btn {
+    display: inline-block;
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 1rem 2.5rem;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    transition:
+      box-shadow 0.2s,
+      background 0.2s,
+      color 0.2s;
+    box-shadow: 0 2px 16px 0 var(--color-neutral-900);
+    border: none;
+    outline: none;
+    text-align: center;
+  }
+  .cta-btn-white {
+    background: var(--color-neutral-0);
+    color: var(--color-neutral-900);
+  }
+  .cta-btn-yellow {
+    background: var(--color-secondary-500);
+    color: var(--color-neutral-900);
+  }
+  .cta-btn:hover {
+    box-shadow: 0 4px 24px 0 var(--color-neutral-900);
+    filter: brightness(0.97);
+  }
+  .cta-gradient-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8rem;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      var(--color-neutral-950) 40%,
+      transparent 100%
+    );
+  }
+  @media (max-width: 600px) {
+    .cta-buttons {
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+    .cta-section {
+      padding: 3rem 1rem 3rem 1rem;
+    }
+    .cta-title {
+      font-size: 2rem;
+    }
+    .cta-body {
+      font-size: 1rem;
+    }
+    .cta-btn {
+      font-size: 1rem;
+      padding: 0.75rem 1.5rem;
+    }
+  }
+  .feature-animate {
+    opacity: 0;
+    transform: translateY(80px);
+    transition:
+      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .feature-animate.visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+<script is:inline>
+  window.addEventListener("DOMContentLoaded", function () {
+    const featureTexts = document.querySelectorAll(".feature-animate");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 },
+    );
+    featureTexts.forEach((el) => observer.observe(el));
+  });
+</script>

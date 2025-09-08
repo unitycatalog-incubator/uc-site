@@ -1,0 +1,27 @@
+---
+import { localizedHTML as favicons } from "astro-favicons/middleware";
+import type { ComponentProps } from "astro/types";
+import { Footer, PageLayout } from "uc-theme/components";
+
+type PageLayoutProps = ComponentProps<typeof PageLayout>;
+
+interface Props {
+  title?: PageLayoutProps["title"];
+  description?: PageLayoutProps["description"];
+  image?: PageLayoutProps["image"];
+}
+
+const { title, description, image } = Astro.props;
+---
+
+<PageLayout title={title} description={description} image={image}>
+  <Fragment name="head-last">
+    <Fragment set:html={favicons(Astro.currentLocale)} />
+    <script
+      defer
+      data-domain="unitycatalog.io"
+      src="https://plausible.io/js/script.js"></script>
+  </Fragment>
+  <slot />
+  <Footer />
+</PageLayout>

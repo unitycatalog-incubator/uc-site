@@ -1,23 +1,10 @@
 ---
-import {
-  PageLayout,
-  FeaturedBlogCard,
-  BlogCard,
-  Footer,
-  Subscribe,
-  Search,
-} from "uc-theme/components";
 import { getCollection } from "astro:content";
-
-const homeEntries = await getCollection("home");
-const footerData = homeEntries.find((entry) => entry.data.type === "footer");
-const homeData = {
-  footer: {
-    logos: footerData?.data.logos || [],
-    links: footerData?.data.links || [],
-    copyright: footerData?.data.copyright || { text: "" },
-  },
-};
+import { Search } from "uc-theme/components";
+import FeaturedBlogCard from "../../components/pages/blog/FeaturedBlogCard.astro";
+import BlogCard from "../../components/pages/blog/BlogCard.astro";
+import Subscribe from "../../components/pages/blog/Subscribe.astro";
+import Layout from "../../layouts/Layout.astro";
 
 const posts = await getCollection("blog");
 posts.sort(
@@ -27,7 +14,7 @@ const featured = posts.find((post) => post.data.featured === true);
 const rest = posts.filter((post) => post !== featured);
 ---
 
-<PageLayout title="Blog">
+<Layout title="Blog">
   <div class="blog-hero">
     <div class="featured-hero-background">
       <div class="featured-hero-grid-bg"></div>
@@ -74,80 +61,8 @@ const rest = posts.filter((post) => post !== featured);
     </div>
     <div id="pagination"></div>
     <Subscribe />
-    <Footer
-      logos={homeData.footer.logos}
-      links={homeData.footer.links}
-      copyright={homeData.footer.copyright}
-    />
   </section>
-  <script type="module">
-    const POSTS_PER_PAGE = 9;
-    const posts = Array.from(document.querySelectorAll("#blog-grid > *"));
-    const pagination = document.getElementById("pagination");
-    let currentPage = 1;
-    const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
-
-    function renderPage(page) {
-      posts.forEach((el, i) => {
-        el.style.display =
-          i >= (page - 1) * POSTS_PER_PAGE && i < page * POSTS_PER_PAGE
-            ? ""
-            : "none";
-      });
-      pagination.innerHTML = "";
-
-      // Previous arrow
-      if (page > 1) {
-        const prev = document.createElement("button");
-        prev.type = "button";
-        prev.innerHTML = "&larr;";
-        prev.className = "pagination-arrow";
-        prev.onclick = () => {
-          currentPage = page - 1;
-          renderPage(currentPage);
-          document
-            .getElementById("blog-section")
-            .scrollIntoView({ behavior: "smooth" });
-        };
-        pagination.appendChild(prev);
-      }
-
-      // Page numbers
-      for (let i = 1; i <= totalPages; i++) {
-        const btn = document.createElement("button");
-        btn.textContent = i;
-        btn.type = "button";
-        btn.className = "pagination-link" + (i === page ? " active" : "");
-        btn.disabled = i === page;
-        btn.onclick = () => {
-          currentPage = i;
-          renderPage(currentPage);
-          document
-            .getElementById("blog-section")
-            .scrollIntoView({ behavior: "smooth" });
-        };
-        pagination.appendChild(btn);
-      }
-
-      // Next arrow
-      if (page < totalPages) {
-        const next = document.createElement("button");
-        next.type = "button";
-        next.innerHTML = "&rarr;";
-        next.className = "pagination-arrow";
-        next.onclick = () => {
-          currentPage = page + 1;
-          renderPage(currentPage);
-          document
-            .getElementById("blog-section")
-            .scrollIntoView({ behavior: "smooth" });
-        };
-        pagination.appendChild(next);
-      }
-    }
-    renderPage(currentPage);
-  </script>
-</PageLayout>
+</Layout>
 <style is:global>
   .blog-hero {
     text-align: center;
@@ -254,3 +169,70 @@ const rest = posts.filter((post) => post !== featured);
     margin-bottom: 4rem;
   }
 </style>
+<script type="module">
+  const POSTS_PER_PAGE = 9;
+  const posts = Array.from(document.querySelectorAll("#blog-grid > *"));
+  const pagination = document.getElementById("pagination");
+  let currentPage = 1;
+  const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+
+  function renderPage(page) {
+    posts.forEach((el, i) => {
+      el.style.display =
+        i >= (page - 1) * POSTS_PER_PAGE && i < page * POSTS_PER_PAGE
+          ? ""
+          : "none";
+    });
+    pagination.innerHTML = "";
+
+    // Previous arrow
+    if (page > 1) {
+      const prev = document.createElement("button");
+      prev.type = "button";
+      prev.innerHTML = "&larr;";
+      prev.className = "pagination-arrow";
+      prev.onclick = () => {
+        currentPage = page - 1;
+        renderPage(currentPage);
+        document
+          .getElementById("blog-section")
+          .scrollIntoView({ behavior: "smooth" });
+      };
+      pagination.appendChild(prev);
+    }
+
+    // Page numbers
+    for (let i = 1; i <= totalPages; i++) {
+      const btn = document.createElement("button");
+      btn.textContent = i;
+      btn.type = "button";
+      btn.className = "pagination-link" + (i === page ? " active" : "");
+      btn.disabled = i === page;
+      btn.onclick = () => {
+        currentPage = i;
+        renderPage(currentPage);
+        document
+          .getElementById("blog-section")
+          .scrollIntoView({ behavior: "smooth" });
+      };
+      pagination.appendChild(btn);
+    }
+
+    // Next arrow
+    if (page < totalPages) {
+      const next = document.createElement("button");
+      next.type = "button";
+      next.innerHTML = "&rarr;";
+      next.className = "pagination-arrow";
+      next.onclick = () => {
+        currentPage = page + 1;
+        renderPage(currentPage);
+        document
+          .getElementById("blog-section")
+          .scrollIntoView({ behavior: "smooth" });
+      };
+      pagination.appendChild(next);
+    }
+  }
+  renderPage(currentPage);
+</script>
