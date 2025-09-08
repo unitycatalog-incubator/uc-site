@@ -187,7 +187,7 @@ This makes Unity Catalog the single source of truth for all of your data.
 
 ---
 
-### Unity Catalog is:
+## Unity Catalog is:
 
 - Fully open source
 - Built on open data formats

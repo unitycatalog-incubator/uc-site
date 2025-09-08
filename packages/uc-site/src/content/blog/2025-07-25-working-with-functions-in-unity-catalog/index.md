@@ -298,6 +298,6 @@ agent = ReActAgent.from_tools(tools, llm=llm, verbose=True)
 
 Read the [Unity Catalog AI guide](/blogs/unity-catalog-for-ai) for more on syntax and semantics.
 
-### Unity Catalog Functions
+## Unity Catalog Functions
 
 Storing your functions in Unity Catalog is a simple way to keep your logic organized, reusable, and secure. It helps teams avoid duplicating code, apply access controls easily, and build smarter AI and ML workflows Whether you're working in the CLI, using the API, or integrating with tools like LangChain and LlamaIndex, Unity Catalog makes it easy to share and scale your code.
