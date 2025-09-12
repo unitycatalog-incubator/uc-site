@@ -145,10 +145,11 @@ const { items, logo, buttons = [] } = Astro.props;
     left: 0;
     right: 0;
     width: 100%;
+    max-width: 90rem;
     background: transparent;
     z-index: 10;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     margin-left: auto;
     margin-right: auto;
     padding: 1rem 1rem;
@@ -177,10 +178,8 @@ const { items, logo, buttons = [] } = Astro.props;
     flex: 1;
     justify-content: space-between;
     align-items: center;
-    margin-left: 1.5rem;
     display: flex;
     position: static;
-    max-width: 90rem;
   }
 
   /* Navigation Sections */
@@ -195,9 +194,9 @@ const { items, logo, buttons = [] } = Astro.props;
     flex: 1;
     padding-left: 2rem;
     justify-content: left;
-    font-size: 1rem;
-    font-weight: 600;
     font-family: var(--font-display);
+    font-size: 1rem;
+    line-height: 1.5;
   }
 
   .nav-right {
@@ -211,7 +210,7 @@ const { items, logo, buttons = [] } = Astro.props;
     color: var(--color-neutral-0);
     text-decoration: none;
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 1rem;
     transition: color 0.2s;
   }
 
