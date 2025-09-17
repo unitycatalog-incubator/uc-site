@@ -1,4 +1,6 @@
 ---
+import { getEntries } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 import HeroBlogPost from "./HeroBlogPost.astro";
 import TableOfContents from "./TableOfContents.astro";
 import Contributors from "./Contributors.astro";
@@ -7,23 +9,16 @@ import Subscribe from "./Subscribe.astro";
 import RelatedBlogPosts from "./RelatedBlogPosts.astro";
 
 interface Props {
-  title: string;
-  authors: Array<{
-    name: string;
-    title?: string;
-    image?: string;
-  }>;
-  raw: string;
-  postId: string;
+  post: CollectionEntry<"blog">;
+  relatedPosts: CollectionEntry<"blog">[];
 }
 
-const { title, authors, raw, postId } = Astro.props as Props;
+const { post, relatedPosts } = Astro.props;
+const authors = await getEntries(post.data.authors);
 const currentUrl = Astro.url.href;
 
-// Static placeholder data for TOC and contributors
-const contributors = authors;
-
 // Extract ## headings from raw markdown for TOC, safely handle undefined
+const raw = post.body ?? "";
 const lines = typeof raw === "string" ? raw.split(/\r?\n/) : [];
 const tocItems = lines
   .filter((line) => line.trim().startsWith("## "))
@@ -39,16 +34,16 @@ const tocItems = lines
 
 <div class="blog-post">
   <!-- Hero Section -->
-  <HeroBlogPost title={title} />
+  <HeroBlogPost title={post.data.title} />
 
   <!-- Blog Content Section -->
   <section class="blog-content">
     <div class="blog-content-container">
       <aside class="blog-sidebar">
         <TableOfContents items={tocItems} />
-        <Contributors contributors={contributors} />
+        <Contributors contributors={authors} />
         <Subscribe small={true} />
-        <CtaSocial currentUrl={currentUrl} title={title} />
+        <CtaSocial currentUrl={currentUrl} title={post.data.title} />
       </aside>
       <main class="blog-main">
         <!-- Markdown Content -->
@@ -60,7 +55,7 @@ const tocItems = lines
   </section>
 
   <!-- Related Blog Posts Section -->
-  {postId && <RelatedBlogPosts currentPostId={postId} />}
+  {relatedPosts.length > 0 && <RelatedBlogPosts posts={relatedPosts} />}
 </div>
 
 <script>

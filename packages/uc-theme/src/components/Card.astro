@@ -1,11 +1,14 @@
 ---
 import { Image } from "astro:assets";
+import type { ComponentProps } from "astro/types";
+
+type AstroImage = ComponentProps<typeof Image>["src"];
 
 interface Props {
   title: string;
   url?: string | undefined;
-  icon?: string | undefined;
-  image?: string | undefined;
+  icon?: AstroImage | undefined;
+  image?: AstroImage | undefined;
   badge?: string | undefined;
   date?: string | undefined;
   description?: string | undefined;
@@ -21,8 +24,8 @@ const { title, url, icon, image, badge = "GUIDE", date, type } = Astro.props;
       <a href={url} class="card-link">
         {type === "blog" ? (
           <>
-            {image && (
-              <Image
+            {typeof image === "string" ? (
+              <img
                 class="card-image"
                 src={image}
                 alt={title}
@@ -30,6 +33,17 @@ const { title, url, icon, image, badge = "GUIDE", date, type } = Astro.props;
                 height={720}
                 loading="lazy"
               />
+            ) : (
+              !!image && (
+                <Image
+                  class="card-image"
+                  src={image}
+                  alt={title}
+                  width={1239}
+                  height={720}
+                  loading="lazy"
+                />
+              )
             )}
             <div class="card-content">
               <h3 class="card-title">{title}</h3>
@@ -48,12 +62,21 @@ const { title, url, icon, image, badge = "GUIDE", date, type } = Astro.props;
           <div class="card-content">
             {icon && (
               <div class="card-icon">
-                <Image
-                  src={`/${icon}`}
-                  alt={title + " icon"}
-                  width="48"
-                  height="48"
-                />
+                {typeof icon === "string" ? (
+                  <img
+                    src={icon}
+                    alt={title + " icon"}
+                    width="48"
+                    height="48"
+                  />
+                ) : (
+                  <Image
+                    src={icon}
+                    alt={title + " icon"}
+                    width="48"
+                    height="48"
+                  />
+                )}
               </div>
             )}
             <h3 class="card-title">{title}</h3>
@@ -67,8 +90,8 @@ const { title, url, icon, image, badge = "GUIDE", date, type } = Astro.props;
       </a>
     ) : type === "blog" ? (
       <>
-        {image && (
-          <Image
+        {typeof image === "string" ? (
+          <img
             class="card-image"
             src={image}
             alt={title}
@@ -76,6 +99,17 @@ const { title, url, icon, image, badge = "GUIDE", date, type } = Astro.props;
             height={720}
             loading="lazy"
           />
+        ) : (
+          !!image && (
+            <Image
+              class="card-image"
+              src={image}
+              alt={title}
+              width={1239}
+              height={720}
+              loading="lazy"
+            />
+          )
         )}
         <div class="card-content">
           <h3 class="card-title">{title}</h3>
@@ -94,12 +128,21 @@ const { title, url, icon, image, badge = "GUIDE", date, type } = Astro.props;
       <div class="card-content">
         {icon && (
           <div class="card-icon">
-            <Image
-              src={`/${icon}`}
-              alt={title + " icon"}
-              width="48"
-              height="48"
-            />
+            {typeof icon === "string" ? (
+              <img
+                src={`/${icon}`}
+                alt={title + " icon"}
+                width="48"
+                height="48"
+              />
+            ) : (
+              <Image
+                src={`/${icon}`}
+                alt={title + " icon"}
+                width="48"
+                height="48"
+              />
+            )}
           </div>
         )}
         <h3 class="card-title">{title}</h3>

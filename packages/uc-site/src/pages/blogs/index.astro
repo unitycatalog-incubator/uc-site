@@ -46,16 +46,7 @@ const rest = posts.filter((post) => post !== featured);
     <div id="blog-grid">
       {
         rest.map((post, i) => (
-          <BlogCard
-            title={post.data.title}
-            description={post.data.description}
-            date={post.data.date}
-            url={post.id ? `/blogs/${post.id}` : "#"}
-            thumbnail={post.data.thumbnail}
-            badge="GUIDE"
-            featured={post.data.featured}
-            data-index={i}
-          />
+          <BlogCard post={post} badge="GUIDE" data-index={i} />
         ))
       }
     </div>

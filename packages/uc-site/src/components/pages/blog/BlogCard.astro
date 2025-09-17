@@ -1,21 +1,22 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import { Card } from "uc-theme/components";
 
-const {
-  title,
-  date,
-  description,
-  url = "#",
-  thumbnail,
-  badge = "GUIDE",
-} = Astro.props;
+interface Props {
+  post: CollectionEntry<"blog">;
+  badge: string;
+}
+
+const { post, badge } = Astro.props;
 ---
 
 <Card
   type="blog"
-  title={title}
-  url={url}
-  image={thumbnail}
+  title={post.data.title}
+  url={`/blogs/${post.id}`}
+  image={post.data.thumbnail}
   badge={badge}
-  date={date}>{description}</Card
+  date={post.data.date}
 >
+  {post.data.description}
+</Card>

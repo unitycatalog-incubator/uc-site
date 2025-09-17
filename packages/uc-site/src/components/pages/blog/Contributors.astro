@@ -1,11 +1,8 @@
 ---
-interface Contributor {
-  name: string;
-  title?: string;
-  image?: string;
-}
+import type { CollectionEntry } from "astro:content";
+
 interface Props {
-  contributors: Contributor[];
+  contributors: CollectionEntry<"profiles">[];
 }
 
 const { contributors } = Astro.props;
@@ -17,18 +14,18 @@ const { contributors } = Astro.props;
     {
       contributors.map((contributor) => (
         <li class="contributor-item">
-          {contributor.image && (
+          {contributor.data.image && (
             <img
-              src={contributor.image}
-              alt={contributor.name}
+              src={contributor.data.image}
+              alt={contributor.data.name}
               class="contributor-photo"
               width="40"
               height="40"
             />
           )}
           <div>
-            <div class="contributor-name">{contributor.name}</div>
-            <div class="contributor-title">{contributor.title}</div>
+            <div class="contributor-name">{contributor.data.name}</div>
+            <div class="contributor-title">{contributor.data.title}</div>
           </div>
         </li>
       ))
