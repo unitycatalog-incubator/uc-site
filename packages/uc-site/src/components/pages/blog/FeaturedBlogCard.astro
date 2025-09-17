@@ -1,13 +1,12 @@
 ---
 import { Image } from "astro:assets";
-const {
-  title,
-  description,
-  date,
-  url = "#",
-  thumbnail,
-  badge = "GUIDE",
-} = Astro.props;
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
 ---
 
 <div class="featured-hero">
@@ -16,19 +15,19 @@ const {
     <div class="featured-hero-bottom-gradient"></div>
     <div class="featured-hero-grain-bg"></div>
   </div>
-  <a href={url || "#"} class="featured-hero-card">
+  <a href={post.id ? `/blogs/${post.id}` : "#"} class="featured-hero-card">
     <div class="featured-hero-content">
-      <span class="featured-hero-badge">{badge}</span>
-      <h2>{title}</h2>
-      <p class="featured-hero-desc">{description}</p>
-      <span class="featured-hero-date">{date}</span>
+      <span class="featured-hero-badge">{post.data.category}</span>
+      <h2>{post.data.title}</h2>
+      <p class="featured-hero-desc">{post.data.description}</p>
+      <span class="featured-hero-date">{post.data.date}</span>
     </div>
     <div class="featured-hero-image">
       {
-        thumbnail && (
+        post.data.thumbnail && (
           <Image
-            src={thumbnail}
-            alt={title}
+            src={post.data.thumbnail}
+            alt={post.data.title}
             width={2133}
             height={1200}
             loading="eager"

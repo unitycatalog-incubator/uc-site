@@ -24,31 +24,19 @@ const rest = posts.filter((post) => post !== featured);
     <h1>Blog</h1>
     <p>The first multimodal open catalog for data and AI</p>
   </div>
-  <section>
-    {
-      featured && (
-        <FeaturedBlogCard
-          title={featured.data.title}
-          description={featured?.data.description}
-          date={featured.data.date}
-          url={featured.id ? `/blogs/${featured.id}` : "#"}
-          thumbnail={featured.data.thumbnail}
-          badge="GUIDE"
-          featured={featured.data.featured}
-        />
-      )
-    }
-  </section>
+  {
+    featured && (
+      <section>
+        <FeaturedBlogCard post={featured} />
+      </section>
+    )
+  }
   <section id="blog-section">
     <div class="search-container">
       <Search />
     </div>
     <div id="blog-grid">
-      {
-        rest.map((post, i) => (
-          <BlogCard post={post} badge="GUIDE" data-index={i} />
-        ))
-      }
+      {rest.map((post, i) => <BlogCard post={post} data-index={i} />)}
     </div>
     <div id="pagination"></div>
     <Subscribe />
