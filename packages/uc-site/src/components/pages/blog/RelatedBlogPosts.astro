@@ -12,7 +12,7 @@ const { posts } = Astro.props;
 <section class="related-posts-section">
   <div class="related-posts-container">
     <div class="related-posts-grid">
-      {posts.map((post) => <BlogCard post={post} badge="GUIDE" />)}
+      {posts.map((post) => <BlogCard post={post} />)}
     </div>
   </div>
 </section>
