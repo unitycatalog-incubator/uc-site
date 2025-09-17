@@ -1,4 +1,5 @@
 ---
+import clsx from "clsx";
 import { Image } from "astro:assets";
 import type { ComponentProps } from "astro/types";
 
@@ -13,36 +14,54 @@ interface Props {
   date?: string | undefined;
   description?: string | undefined;
   type: "blog" | "benefit";
+  isFeatured?: boolean | undefined;
 }
 
-const { title, url, icon, image, badge = "GUIDE", date, type } = Astro.props;
+const {
+  title,
+  url,
+  icon,
+  image,
+  badge = "GUIDE",
+  date,
+  type,
+  isFeatured,
+} = Astro.props;
 ---
 
-<div class={`card-container ${type}-card`}>
+<div
+  class={clsx("card-container", `${type}-card`, {
+    "card-isFeatured": isFeatured,
+  })}
+>
   {
     url ? (
       <a href={url} class="card-link">
         {type === "blog" ? (
           <>
             {typeof image === "string" ? (
-              <img
-                class="card-image"
-                src={image}
-                alt={title}
-                width={1239}
-                height={720}
-                loading="lazy"
-              />
-            ) : (
-              !!image && (
-                <Image
-                  class="card-image"
+              <div class="card-image">
+                <img
                   src={image}
                   alt={title}
                   width={1239}
                   height={720}
                   loading="lazy"
+                  class="image"
                 />
+              </div>
+            ) : (
+              !!image && (
+                <div class="card-image">
+                  <Image
+                    src={image}
+                    alt={title}
+                    width={1239}
+                    height={720}
+                    loading="lazy"
+                    class="image"
+                  />
+                </div>
               )
             )}
             <div class="card-content">
@@ -91,24 +110,28 @@ const { title, url, icon, image, badge = "GUIDE", date, type } = Astro.props;
     ) : type === "blog" ? (
       <>
         {typeof image === "string" ? (
-          <img
-            class="card-image"
-            src={image}
-            alt={title}
-            width={1239}
-            height={720}
-            loading="lazy"
-          />
-        ) : (
-          !!image && (
-            <Image
-              class="card-image"
+          <div class="card-image">
+            <img
               src={image}
               alt={title}
               width={1239}
               height={720}
               loading="lazy"
+              class="image"
             />
+          </div>
+        ) : (
+          !!image && (
+            <div class="card-image">
+              <Image
+                src={image}
+                alt={title}
+                width={1239}
+                height={720}
+                loading="lazy"
+                class="image"
+              />
+            </div>
           )
         )}
         <div class="card-content">
@@ -179,7 +202,6 @@ const { title, url, icon, image, badge = "GUIDE", date, type } = Astro.props;
     text-decoration: none;
     display: flex;
     flex-direction: column;
-    height: 100%;
   }
   .card-content {
     grid-column-gap: 2rem;
@@ -233,10 +255,13 @@ const { title, url, icon, image, badge = "GUIDE", date, type } = Astro.props;
   .card-image {
     border-radius: 1rem;
     object-fit: cover;
-    height: 15rem;
-    width: 100%;
     overflow-clip-margin: content-box;
     overflow: clip;
+    line-height: 0;
+  }
+  .card-image .image {
+    max-width: 100%;
+    min-height: 15rem;
   }
   .card-icon {
     margin-bottom: 1.5rem;
@@ -313,6 +338,45 @@ const { title, url, icon, image, badge = "GUIDE", date, type } = Astro.props;
     .benefit-card {
       width: 100% !important;
       flex: 1 !important;
+    }
+  }
+  @media (min-width: 768px) {
+    /* Featured cards */
+    .card-isFeatured {
+      padding: 0;
+    }
+    .card-isFeatured .card-gradient {
+      display: none;
+    }
+    .card-isFeatured .card-link {
+      flex-direction: row;
+    }
+    .card-isFeatured .card-image {
+      order: 2;
+      flex: 0 0 50%;
+    }
+    .card-isFeatured .card-content {
+      order: 1;
+      flex: 1;
+    }
+    .card-isFeatured .card-title {
+      font-size: 1.8rem;
+    }
+    .card-isFeatured .card-body {
+      font-size: 1.15rem;
+    }
+    .card-isFeatured .card-label {
+      font-size: 0.75rem;
+      padding: 0.625rem;
+    }
+    .card-isFeatured .card-date {
+      font-size: 0.875rem;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .card-isFeatured .card-image {
+      flex: 0 0 calc((7 / 12) * 100%);
     }
   }
 </style>

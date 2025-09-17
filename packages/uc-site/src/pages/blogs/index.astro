@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import { Search } from "uc-theme/components";
-import FeaturedBlogCard from "../../components/pages/blog/FeaturedBlogCard.astro";
 import BlogCard from "../../components/pages/blog/BlogCard.astro";
 import Subscribe from "../../components/pages/blog/Subscribe.astro";
 import Layout from "../../layouts/Layout.astro";
@@ -27,7 +26,7 @@ const rest = posts.filter((post) => post !== featured);
   {
     featured && (
       <section>
-        <FeaturedBlogCard post={featured} />
+        <BlogCard post={featured} isFeatured />
       </section>
     )
   }

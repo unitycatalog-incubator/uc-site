@@ -4,9 +4,10 @@ import { Card } from "uc-theme/components";
 
 interface Props {
   post: CollectionEntry<"blog">;
+  isFeatured?: boolean;
 }
 
-const { post } = Astro.props;
+const { post, isFeatured } = Astro.props;
 ---
 
 <Card
@@ -16,6 +17,7 @@ const { post } = Astro.props;
   image={post.data.thumbnail}
   badge={post.data.category}
   date={post.data.date}
+  isFeatured={isFeatured}
 >
   {post.data.description}
 </Card>
