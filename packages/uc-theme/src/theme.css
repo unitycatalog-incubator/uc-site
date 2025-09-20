@@ -107,11 +107,6 @@
   --spacing-xl: 1.875rem;
   --spacing-xxl: 3.75rem;
   --spacing-xxxl: 6.25rem;
-
-  --screen-sm: 576px;
-  --screen-md: 768px;
-  --screen-lg: 992px;
-  --screen-xl: 1200px;
 }
 
 body,

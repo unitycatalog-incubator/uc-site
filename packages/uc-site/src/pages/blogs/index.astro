@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { Search } from "uc-theme/components";
+import { Search, Section } from "uc-theme/components";
 import BlogCard from "../../components/pages/blog/BlogCard.astro";
 import Subscribe from "../../components/pages/blog/Subscribe.astro";
 import Layout from "../../layouts/Layout.astro";
@@ -14,7 +14,7 @@ const rest = posts.filter((post) => post !== featured);
 ---
 
 <Layout title="Blog">
-  <div class="blog-hero">
+  <!-- <div class="blog-hero">
     <div class="featured-hero-background">
       <div class="featured-hero-grid-bg"></div>
       <div class="featured-hero-bottom-gradient"></div>
@@ -22,24 +22,31 @@ const rest = posts.filter((post) => post !== featured);
     </div>
     <h1>Blog</h1>
     <p>The first multimodal open catalog for data and AI</p>
-  </div>
+  </div> -->
   {
     featured && (
-      <section>
+      <Section
+        padding="lg"
+        variant="hero"
+        title="Blog"
+        subtitle="The first multimodal open catalog for data and AI"
+      >
         <BlogCard post={featured} isFeatured />
-      </section>
+      </Section>
     )
   }
-  <section id="blog-section">
+  <div id="blog-section">
     <div class="search-container">
       <Search />
     </div>
-    <div id="blog-grid">
-      {rest.map((post, i) => <BlogCard post={post} data-index={i} />)}
-    </div>
-    <div id="pagination"></div>
+    <Section>
+      <div id="blog-grid">
+        {rest.map((post, i) => <BlogCard post={post} data-index={i} />)}
+      </div>
+      <div id="pagination"></div>
+    </Section>
     <Subscribe />
-  </section>
+  </div>
 </Layout>
 <style is:global>
   .blog-hero {

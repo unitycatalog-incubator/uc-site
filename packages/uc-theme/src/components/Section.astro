@@ -1,0 +1,92 @@
+---
+import { undefined } from "astro:schema";
+import clsx from "clsx";
+
+interface Props {
+  children: unknown;
+  variant?: "hero" | undefined;
+  title?: string;
+  subtitle?: string;
+  padding?: "xl" | "lg" | "md" | "sm" | "none" | undefined;
+  id?: string;
+  className?: string;
+}
+
+const { variant, title, subtitle, padding = "md", id, className } = Astro.props;
+
+const TitleElement = variant === "hero" ? "h1" : "h2";
+---
+
+<section
+  id={id}
+  class={clsx(
+    {
+      "py-8": padding === "sm",
+      "py-8 sm:py-16": padding === "md",
+      "py-8 sm:py-24": padding === "lg",
+      "py-8 sm:py-40": padding === "xl",
+    },
+    className,
+  )}
+>
+  <div
+    class="mx-auto px-4 sm:w-[var(--breakpoint-sm)] md:w-[var(--breakpoint-md)] lg:w-[var(--breakpoint-lg)] xl:w-[var(--breakpoint-xl)]"
+  >
+    {
+      (title || subtitle) && (
+        <div
+          class={clsx("text-center", {
+            ["mb-20"]: variant === "hero",
+            ["mb-12"]: !variant,
+          })}
+        >
+          {title && (
+            <TitleElement
+              class={clsx("font-bold", {
+                ["text-6xl"]: variant === "hero",
+                ["text-xl"]: !variant,
+                ["mb-8"]: !!subtitle && variant === "hero",
+                ["mb-4"]: !!subtitle && !variant,
+              })}
+            >
+              {title}
+            </TitleElement>
+          )}
+          {subtitle && (
+            <p
+              class={clsx({
+                ["text-xl"]: variant === "hero",
+                ["text-lg"]: !variant,
+              })}
+            >
+              {subtitle}
+            </p>
+          )}
+        </div>
+      )
+    }
+    <slot />
+  </div>
+</section>
+<style>
+  .padding-sm {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  .padding-md {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  .padding-lg {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+  .padding-xl {
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+  }
+
+  .header {
+    text-align: center;
+  }
+</style>
