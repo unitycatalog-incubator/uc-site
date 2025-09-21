@@ -30,17 +30,19 @@ const rest = posts.filter((post) => post !== featured);
         variant="hero"
         title="Blog"
         subtitle="The first multimodal open catalog for data and AI"
+        className="hero-bg after:bg-[url(/images/hero-star-backgroundd.png)] after:absolute after:top-0 after:left-0 after:w-full after:h-full after:opacity-[0.08] after:z-0"
       >
-        <BlogCard post={featured} isFeatured />
+        <BlogCard post={featured} isFeatured className="relative z-1" />
       </Section>
     )
   }
   <div id="blog-section">
-    <div class="search-container">
-      <Search />
-    </div>
     <Section>
-      <div id="blog-grid">
+      <Search className="mb-16" />
+      <div
+        id="blog-grid"
+        class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3"
+      >
         {rest.map((post, i) => <BlogCard post={post} data-index={i} />)}
       </div>
       <div id="pagination"></div>
@@ -49,58 +51,10 @@ const rest = posts.filter((post) => post !== featured);
   </div>
 </Layout>
 <style is:global>
-  .blog-hero {
-    text-align: center;
-    margin-top: 12rem;
-  }
-
-  .featured-hero-background {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
-
-  .featured-hero-grain-bg {
-    z-index: 1;
-    opacity: 0.08;
-    mix-blend-mode: normal;
-    background-image: url(/images/hero-star-background.png);
-    background-repeat: repeat;
-    position: absolute;
-    inset: 0;
-    bottom: 25rem;
-  }
-
-  .blog-hero h1 {
-    font-size: 3.75rem;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
-    color: var(--color-neutral-0);
-  }
-  .blog-hero p {
-    color: var(--color-neutral-0);
-    margin-top: 2rem;
-    font-size: 1.25rem;
-  }
-  #blog-grid {
-    max-width: 1510px;
-    margin-left: auto;
-    margin-right: auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-    padding-right: 5%;
-    padding-left: 5%;
-  }
   #pagination {
     display: flex;
     justify-content: center;
-    margin-bottom: 10rem;
+    margin-top: 2rem;
     gap: 1.5rem;
   }
   #pagination .pagination-link,
@@ -130,28 +84,6 @@ const rest = posts.filter((post) => post !== featured);
     border: none;
     font-weight: 600;
     pointer-events: none;
-  }
-
-  @media (max-width: 1024px) {
-    #blog-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      padding-right: 5%;
-      padding-left: 5%;
-    }
-  }
-
-  @media (max-width: 768px) {
-    #blog-grid {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      padding: 0 1rem;
-    }
-  }
-
-  /* Search Styles */
-  .search-container {
-    margin-bottom: 4rem;
   }
 </style>
 <script type="module">

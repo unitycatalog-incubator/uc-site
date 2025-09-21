@@ -15,6 +15,7 @@ interface Props {
   description?: string | undefined;
   type: "blog" | "benefit";
   isFeatured?: boolean | undefined;
+  className?: string | undefined;
 }
 
 const {
@@ -26,13 +27,19 @@ const {
   date,
   type,
   isFeatured,
+  className,
 } = Astro.props;
 ---
 
 <div
-  class={clsx("card-container", `${type}-card`, {
-    "card-isFeatured": isFeatured,
-  })}
+  class={clsx(
+    "card-container",
+    `${type}-card`,
+    {
+      "card-isFeatured": isFeatured,
+    },
+    className,
+  )}
 >
   {
     url ? (
@@ -261,7 +268,6 @@ const {
   }
   .card-image .image {
     max-width: 100%;
-    min-height: 15rem;
   }
   .card-icon {
     margin-bottom: 1.5rem;
@@ -340,7 +346,7 @@ const {
       flex: 1 !important;
     }
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     /* Featured cards */
     .card-isFeatured {
       padding: 0;
@@ -354,6 +360,10 @@ const {
     .card-isFeatured .card-image {
       order: 2;
       flex: 0 0 50%;
+    }
+    .card-isFeatured .image {
+      min-width: 100%;
+      min-height: 100%;
     }
     .card-isFeatured .card-content {
       order: 1;

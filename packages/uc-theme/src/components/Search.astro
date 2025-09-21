@@ -1,9 +1,19 @@
 ---
+import clsx from "clsx";
 import "@pagefind/default-ui/css/ui.css";
+
+interface Props {
+  className?: string | undefined;
+}
+
+const { className } = Astro.props;
 ---
 
 <div
-  class="relative mx-auto flex w-full max-w-4xl items-center justify-around px-4 py-[0.25em]"
+  class={clsx(
+    "relative mx-auto flex w-full max-w-4xl items-center justify-around px-4 py-[0.25em]",
+    className,
+  )}
 >
   <div class="relative w-full max-w-2xl">
     <!-- Inline Search Input -->
@@ -83,11 +93,7 @@ import "@pagefind/default-ui/css/ui.css";
     color: var(--color-neutral-50);
     width: 100%;
     transition: all 0.2s;
-    position: absolute;
-    top: -50px;
-    left: 0;
-    right: 0;
-    z-index: 1;
+    position: relative;
   }
 
   .search-container:hover {
