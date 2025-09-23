@@ -198,6 +198,13 @@ const logoAnimations = logos.map((_, i) => ({
     margin-top: 5rem;
     margin-bottom: 5rem;
     z-index: 1;
+    border-radius: 100%;
+    /* max-width: 25rem; */
+    /* max-height: 25rem; */
+    box-shadow: 0 0 100px #ffbc004d;
+    transform: translateY(3rem);
+    opacity: 0;
+    animation: swoopUp 1.5s forwards;
   }
 
   .hero-bg-svg {
@@ -234,7 +241,8 @@ const logoAnimations = logos.map((_, i) => ({
     max-width: 400px;
     z-index: 3;
     border-radius: 50%;
-    box-shadow: 0 0 100px rgba(var(--color-box-shadow-yellow), 0.3);
+    animation: swoopUp 1.5s forwards;
+    animation-delay: 0.2s;
   }
 
   .hero-logos {
@@ -486,6 +494,13 @@ const logoAnimations = logos.map((_, i) => ({
       width: 100%;
       margin: 0;
       max-width: none;
+    }
+  }
+
+  @keyframes swoopUp {
+    to {
+      transform: translateY(0px);
+      opacity: 1;
     }
   }
 </style>
