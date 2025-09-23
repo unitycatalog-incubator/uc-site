@@ -1,9 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import clsx from "clsx";
 
 interface Props {
   children: unknown;
-  variant?: "hero" | "hero-home" | undefined;
+  variant?: "hero" | "hero-home" | "glow-top" | undefined;
   padding?: "xl" | "lg" | "md" | "sm" | "none" | undefined;
   id?: string;
   className?: string;
@@ -23,7 +24,8 @@ const hasSubtitle = Astro.slots.has("subtitle");
       "py-8 sm:py-16": padding === "md",
       "py-8 sm:py-24": padding === "lg",
       "py-8 sm:py-40": padding === "xl",
-      ["relative"]: variant === "hero" || variant === "hero-home",
+      ["relative"]:
+        variant === "hero" || variant === "hero-home" || variant === "glow-top",
     },
     className,
   )}
@@ -34,20 +36,19 @@ const hasSubtitle = Astro.slots.has("subtitle");
     {
       (hasTitle || hasSubtitle) && (
         <div
-          class={clsx("text-center text-white", {
+          class={clsx("mx-auto max-w-[48rem] text-center text-white", {
             ["mb-20"]: variant === "hero" || variant === "hero-home",
-            ["mb-12"]: !variant,
+            ["mb-12"]: variant !== "hero" && variant !== "hero-home",
           })}
         >
           {hasTitle && (
             <div
-              class={clsx("font-bold", {
-                ["text-6xl"]: variant === "hero" || variant === "hero-home",
-                ["text-xl"]: !variant,
-                ["mb-8"]:
-                  !!hasSubtitle &&
-                  (variant === "hero" || variant === "hero-home"),
-                ["mb-4"]: !!hasSubtitle && !variant,
+              class={clsx("mx-auto max-w-[36rem]", {
+                ["text-6xl font-bold"]:
+                  variant === "hero" || variant === "hero-home",
+                ["text-4xl font-medium"]:
+                  variant !== "hero" && variant !== "hero-home",
+                ["mb-8"]: !!hasSubtitle,
               })}
             >
               <slot name="title" />
@@ -55,9 +56,9 @@ const hasSubtitle = Astro.slots.has("subtitle");
           )}
           {hasSubtitle && (
             <div
-              class={clsx({
-                ["text-xl"]: variant === "hero" || variant === "hero-home",
-                ["text-lg"]: !variant,
+              class={clsx("text-xl", {
+                ["text-neutral-1000"]:
+                  variant !== "hero" && variant !== "hero-home",
               })}
             >
               <slot name="subtitle" />
@@ -75,6 +76,18 @@ const hasSubtitle = Astro.slots.has("subtitle");
           <div class="bg-grid" />
           <div class="bg-gradient" />
         </>
+      )
+    }
+    {
+      variant === "glow-top" && (
+        <Image
+          src="/images/ecosystem_section_top-gradient.svg"
+          alt="section background"
+          class="bg-glow-top"
+          width={1400}
+          height={512}
+          loading="lazy"
+        />
       )
     }
   </div>
@@ -123,5 +136,16 @@ const hasSubtitle = Astro.slots.has("subtitle");
     height: 5rem;
     position: absolute;
     inset: auto 0% 0%;
+  }
+
+  .bg-glow-top {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    z-index: -1;
+    pointer-events: none;
+    user-select: none;
   }
 </style>
