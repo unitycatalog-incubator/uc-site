@@ -1,17 +1,33 @@
 ---
+import clsx from "clsx";
+
 interface Props {
   label?: string;
   url: string;
-  style?: string; // e.g., 'github', 'slack', 'linkedin'
+  style?: "github" | "slack" | "linkedin" | undefined;
   fullWidth?: boolean;
   size?: "1" | "2" | "many";
+  className?: string | undefined;
 }
-const { label, url, style = "", fullWidth = false, size = "2" } = Astro.props;
+const {
+  label,
+  url,
+  style,
+  fullWidth = false,
+  size = "2",
+  className,
+} = Astro.props;
 ---
 
 <a
   href={url}
-  class={`btn ${style} ${fullWidth ? "full-width" : ""} size-${size}`}
+  class={clsx(
+    "btn",
+    `size-${size}`,
+    { ["full-width"]: !!fullWidth },
+    style,
+    className,
+  )}
 >
   <slot>{label}</slot>
 </a>
@@ -24,7 +40,8 @@ const { label, url, style = "", fullWidth = false, size = "2" } = Astro.props;
     padding: 0.75rem 1.75rem;
     font-weight: 400;
     text-align: center;
-    display: flex;
+    display: flex-inline;
+    justify-content: center;
     align-items: center;
     grid-column-gap: 0.75rem;
     grid-row-gap: 0.75rem;
@@ -72,6 +89,7 @@ const { label, url, style = "", fullWidth = false, size = "2" } = Astro.props;
   }
 
   .btn.full-width {
+    display: flex;
     width: 100%;
   }
 
