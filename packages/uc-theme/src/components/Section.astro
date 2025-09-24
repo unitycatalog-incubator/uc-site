@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 interface Props {
   children: unknown;
-  variant?: "hero" | "hero-home" | "glow-top" | undefined;
+  variant?: "hero" | "hero-home" | "glow-top" | "grid-bottom" | undefined;
   padding?: "xl" | "lg" | "md" | "sm" | "none" | undefined;
   id?: string;
   className?: string;
@@ -24,8 +24,7 @@ const hasSubtitle = Astro.slots.has("subtitle");
       "py-8 sm:py-16": padding === "md",
       "py-8 sm:py-24": padding === "lg",
       "py-8 sm:py-40": padding === "xl",
-      ["relative"]:
-        variant === "hero" || variant === "hero-home" || variant === "glow-top",
+      ["relative"]: !!variant,
     },
     className,
   )}
@@ -90,6 +89,7 @@ const hasSubtitle = Astro.slots.has("subtitle");
         />
       )
     }
+    {variant === "grid-bottom" && <div class="bg-grid-big" />}
   </div>
 </section>
 <style>
@@ -147,5 +147,15 @@ const hasSubtitle = Astro.slots.has("subtitle");
     z-index: -1;
     pointer-events: none;
     user-select: none;
+  }
+
+  .bg-grid-big {
+    z-index: -1;
+    background-image: url(/images/cta-section_underlay.svg);
+    background-position: 50% 40%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    inset: 0%;
   }
 </style>
