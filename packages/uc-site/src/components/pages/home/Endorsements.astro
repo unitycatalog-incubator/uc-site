@@ -112,7 +112,7 @@ const endorsements = [
 ---
 
 <Section id="endorsements-section">
-  <h2 slot="title" class="feature-animate">
+  <h2 slot="title" class="animation-fadeUp">
     Endorsed by industry leaders <br class="max-sm:hidden" />and innovators
   </h2>
   <div class="endorsements-grid" id="endorsements-grid">
@@ -296,17 +296,6 @@ const endorsements = [
       font-size: 0.875rem;
     }
   }
-  .feature-animate {
-    opacity: 0;
-    transform: translateY(80px);
-    transition:
-      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .feature-animate.visible {
-    opacity: 1;
-    transform: none;
-  }
 </style>
 <script type="module" is:inline>
   let currentStart = 0;
@@ -399,21 +388,4 @@ const endorsements = [
 
   // Initial height adjustment
   setTimeout(adjustMobileCardHeights, 100);
-</script>
-<script is:inline>
-  window.addEventListener("DOMContentLoaded", function () {
-    const featureTexts = document.querySelectorAll(".feature-animate");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 },
-    );
-    featureTexts.forEach((el) => observer.observe(el));
-  });
 </script>

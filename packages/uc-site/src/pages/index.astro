@@ -18,3 +18,34 @@ import Layout from "../layouts/Layout.astro";
   <Endorsements />
   <Cta />
 </Layout>
+<style is:global>
+  .animation-fadeUp {
+    opacity: 0;
+    transform: translateY(80px);
+    transition:
+      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .animation-fadeUp.visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+<script is:inline>
+  window.addEventListener("DOMContentLoaded", function () {
+    const featureTexts = document.querySelectorAll(".animation-fadeUp");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 },
+    );
+    featureTexts.forEach((el) => observer.observe(el));
+  });
+</script>

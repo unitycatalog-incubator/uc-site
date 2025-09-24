@@ -4,10 +4,10 @@ import { Button, Section } from "uc-theme/components";
 ---
 
 <Section padding="lg" variant="glow-top">
-  <h2 slot="title" class="feature-animate">
+  <h2 slot="title" class="animation-fadeUp">
     Be future-ready with a broad<br class="max-sm:hidden" />and open ecosystem
   </h2>
-  <p slot="subtitle" class="feature-animate">
+  <p slot="subtitle" class="animation-fadeUp">
     Unity Catalog OSS, with its Universal interface, provides broad
     interoperability across the modern data stack including all major cloud
     platforms, compute engines, data and AI platforms as well as data catalog
@@ -32,18 +32,6 @@ import { Button, Section } from "uc-theme/components";
 </Section>
 
 <style>
-  .feature-animate {
-    opacity: 0;
-    transform: translateY(80px);
-    transition:
-      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .feature-animate.visible {
-    opacity: 1;
-    transform: none;
-  }
-
   @media (max-width: 900px) {
     .partner-ecosystem-header {
       padding: 0 1rem;
@@ -55,20 +43,3 @@ import { Button, Section } from "uc-theme/components";
     }
   }
 </style>
-<script is:inline>
-  window.addEventListener("DOMContentLoaded", function () {
-    const featureTexts = document.querySelectorAll(".feature-animate");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 },
-    );
-    featureTexts.forEach((el) => observer.observe(el));
-  });
-</script>
