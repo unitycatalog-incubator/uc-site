@@ -13,7 +13,7 @@ const { contributors } = Astro.props;
   <h3 class="mb-4 font-semibold">Contributors</h3>
   <ul class="flex list-none flex-col gap-4">
     {
-      contributors.map((contributor, i) => (
+      contributors.map((contributor) => (
         <li class="flex items-center gap-4">
           {contributor.data.image && (
             <Image
