@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
@@ -8,72 +9,30 @@ interface Props {
 const { contributors } = Astro.props;
 ---
 
-<div class="contributors">
-  <h3>Contributors</h3>
-  <ul>
+<div>
+  <h3 class="mb-4 font-semibold">Contributors</h3>
+  <ul class="flex list-none flex-col gap-4">
     {
-      contributors.map((contributor) => (
-        <li class="contributor-item">
+      contributors.map((contributor, i) => (
+        <li class="flex items-center gap-4">
           {contributor.data.image && (
-            <img
+            <Image
               src={contributor.data.image}
-              alt={contributor.data.name}
-              class="contributor-photo"
-              width="40"
-              height="40"
+              alt={`Photo of ${contributor.data.name}`}
+              class="overflow-hidden rounded-full"
+              densities={[1, 2]}
+              width="48"
+              height="48"
             />
           )}
           <div>
-            <div class="contributor-name">{contributor.data.name}</div>
-            <div class="contributor-title">{contributor.data.title}</div>
+            <div class="font-semibold">{contributor.data.name}</div>
+            {contributor.data.title && (
+              <div class="text-sm">{contributor.data.title}</div>
+            )}
           </div>
         </li>
       ))
     }
   </ul>
 </div>
-
-<style>
-  .contributors {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-    width: 100%;
-  }
-  .contributors h3 {
-    font-size: 1rem;
-    line-height: 1.5;
-    font-weight: 600;
-    color: var(--color-accent-1000);
-  }
-  .contributors ul {
-    list-style: disc;
-    display: flex;
-    flex-direction: column;
-  }
-  .contributor-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-  .contributor-photo {
-    object-fit: cover;
-    border-radius: 100%;
-    width: 4rem;
-    min-width: 4rem;
-    height: 4rem;
-    min-height: 3rem;
-  }
-  .contributor-name {
-    font-size: 1rem;
-    line-height: 1.5;
-    color: var(--color-black-222);
-  }
-  .contributor-title {
-    font-size: 0.875rem;
-    line-height: 1.5;
-    color: var(--color-neutral-950);
-  }
-</style>

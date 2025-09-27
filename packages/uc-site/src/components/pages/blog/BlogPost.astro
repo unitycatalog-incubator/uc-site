@@ -1,7 +1,7 @@
 ---
 import { getEntries } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-import HeroBlogPost from "./HeroBlogPost.astro";
+import { Section } from "uc-theme/components";
 import TableOfContents from "./TableOfContents.astro";
 import Contributors from "./Contributors.astro";
 import CtaSocial from "./CtaSocial.astro";
@@ -33,26 +33,29 @@ const tocItems = lines
 ---
 
 <div class="blog-post">
-  <!-- Hero Section -->
-  <HeroBlogPost title={post.data.title} />
-
-  <!-- Blog Content Section -->
-  <section class="blog-content">
-    <div class="blog-content-container">
-      <aside class="blog-sidebar">
+  <Section padding="xl" variant="grid-bottom">
+    <h1 slot="title">{post.data.title}</h1>
+  </Section>
+  <Section padding="xl" variant="white">
+    <div class="grid gap-8 md:grid-cols-[minmax(320px,_1fr)_8fr] md:gap-12">
+      <aside class="flex flex-col gap-8 self-start md:sticky md:top-0">
+        <div class="border-divider border-t-1"></div>
         <TableOfContents items={tocItems} />
+        <div class="border-divider border-t-1"></div>
         <Contributors contributors={authors} />
-        <Subscribe small={true} />
+        <div class="border-divider border-t-1"></div>
+        <div>
+          <h3 class="mb-4 font-semibold">Subscribe to our newsletter</h3>
+          <Subscribe direction="vertical" />
+        </div>
+        <div class="border-divider border-t-1"></div>
         <CtaSocial currentUrl={currentUrl} title={post.data.title} />
       </aside>
-      <main class="blog-main">
-        <!-- Markdown Content -->
-        <article class="blog-article" data-pagefind-body>
-          <slot />
-        </article>
-      </main>
+      <article class="blog-article" data-pagefind-body>
+        <slot />
+      </article>
     </div>
-  </section>
+  </Section>
 
   <!-- Related Blog Posts Section -->
   {relatedPosts.length > 0 && <RelatedBlogPosts posts={relatedPosts} />}
@@ -126,45 +129,6 @@ const tocItems = lines
 </script>
 
 <style>
-  .blog-post {
-    color: var(--color-neutral-0);
-  }
-
-  .blog-content {
-    background: var(--color-neutral-0);
-    padding: 4rem 0;
-    padding-left: 5%;
-    padding-right: 5%;
-  }
-
-  .blog-content-container {
-    grid-template-rows: auto;
-    grid-template-columns: 0.4fr 1fr;
-    grid-auto-columns: 1fr;
-    align-items: start;
-    display: grid;
-    padding-bottom: 4rem;
-    max-width: 1500px;
-    margin: 0 auto;
-  }
-
-  .blog-sidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: sticky;
-    align-self: start;
-    top: -1.5rem;
-    height: fit-content;
-    max-width: 350px;
-  }
-
-  .blog-main {
-    /* Main content styles */
-    margin-top: 3rem;
-    min-width: 0;
-  }
-
   /* Article Content */
   .blog-article {
     margin-bottom: 1rem;
@@ -311,12 +275,6 @@ const tocItems = lines
       gap: 2rem;
       padding: 0 1rem;
     }
-
-    .blog-sidebar {
-      position: static;
-      width: 100%;
-      margin-bottom: 2rem;
-    }
   }
 
   @media (max-width: 1200px) {
@@ -324,10 +282,6 @@ const tocItems = lines
       padding-top: 0;
       padding-left: 1rem;
       padding-right: 1rem;
-    }
-    .blog-sidebar {
-      max-width: 100%;
-      max-width: 100%;
     }
   }
   @media (max-width: 768px) {

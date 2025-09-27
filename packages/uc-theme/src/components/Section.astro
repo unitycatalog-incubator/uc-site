@@ -4,7 +4,13 @@ import clsx from "clsx";
 
 interface Props {
   children: unknown;
-  variant?: "hero" | "hero-home" | "glow-top" | "grid-bottom" | undefined;
+  variant?:
+    | "hero"
+    | "hero-home"
+    | "glow-top"
+    | "grid-bottom"
+    | "white"
+    | undefined;
   padding?: "xl" | "lg" | "md" | "sm" | "none" | undefined;
   id?: string;
   className?: string;
@@ -14,6 +20,7 @@ const { variant, padding = "md", id, className } = Astro.props;
 
 const hasTitle = Astro.slots.has("title");
 const hasSubtitle = Astro.slots.has("subtitle");
+const hasContent = Astro.slots.has("default");
 ---
 
 <section
@@ -24,7 +31,8 @@ const hasSubtitle = Astro.slots.has("subtitle");
       "py-8 sm:py-16": padding === "md",
       "py-8 sm:py-24": padding === "lg",
       "py-8 sm:py-40": padding === "xl",
-      ["relative"]: !!variant,
+      "bg-white text-accent-1000": variant === "white",
+      relative: variant !== "white" && variant !== undefined,
     },
     className,
   )}
@@ -36,13 +44,15 @@ const hasSubtitle = Astro.slots.has("subtitle");
       (hasTitle || hasSubtitle) && (
         <div
           class={clsx("mx-auto max-w-[48rem] text-center text-white", {
-            ["mb-20"]: variant === "hero" || variant === "hero-home",
-            ["mb-12"]: variant !== "hero" && variant !== "hero-home",
+            ["mb-20"]:
+              hasContent && (variant === "hero" || variant === "hero-home"),
+            ["mb-12"]:
+              hasContent && variant !== "hero" && variant !== "hero-home",
           })}
         >
           {hasTitle && (
             <div
-              class={clsx("mx-auto max-w-[36rem]", {
+              class={clsx("mx-auto", {
                 ["text-6xl font-bold"]:
                   variant === "hero" || variant === "hero-home",
                 ["text-4xl font-medium"]:

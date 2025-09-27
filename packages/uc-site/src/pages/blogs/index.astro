@@ -34,7 +34,16 @@ const rest = posts.filter((post) => post !== featured);
       </div>
       <div id="pagination"></div>
     </Section>
-    <Subscribe />
+    <Section variant="glow-top" padding="lg">
+      <h2 slot="title">
+        Subscribe to our newsletter for daily <br
+          class="max-sm:hidden"
+        />industry insights
+      </h2>
+      <div class="mx-auto max-w-[480px]">
+        <Subscribe direction="horizontal" />
+      </div>
+    </Section>
   </div>
 </Layout>
 <style is:global>

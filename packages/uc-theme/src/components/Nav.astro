@@ -1,11 +1,14 @@
 ---
+import type { ComponentProps } from "astro/types";
 import type { MenuItem } from "../types";
 import Button from "./Button.astro";
 
+type ButtonProps = ComponentProps<typeof Button>;
+
 interface NavButton {
-  label: string;
-  url: string;
-  style: string; // e.g., 'github', 'slack', 'linkedin'
+  label: ButtonProps["label"];
+  url: ButtonProps["url"];
+  variant: ButtonProps["variant"];
 }
 
 interface Props {
@@ -66,12 +69,7 @@ const { items, logo, buttons = [] } = Astro.props;
       {
         buttons.length > 0 ? (
           buttons.map((btn) => (
-            <Button
-              label={btn.label}
-              url={btn.url}
-              style={btn.style}
-              size="many"
-            />
+            <Button label={btn.label} url={btn.url} variant={btn.variant} />
           ))
         ) : (
           <slot name="buttons" />
@@ -123,9 +121,8 @@ const { items, logo, buttons = [] } = Astro.props;
             <Button
               label={btn.label}
               url={btn.url}
-              style={btn.style}
+              variant={btn.variant}
               fullWidth={true}
-              size="many"
             />
           ))
       }
