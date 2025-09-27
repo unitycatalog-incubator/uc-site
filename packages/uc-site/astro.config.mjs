@@ -33,11 +33,17 @@ export default defineConfig({
           {
             label: "View GitHub",
             url: "https://github.com/unitycatalog/unitycatalog",
+            variant: "secondary",
           },
-          { label: "Join Slack", url: "https://go.unitycatalog.io/slack" },
+          {
+            label: "Join Slack",
+            url: "https://go.unitycatalog.io/slack",
+            variant: "primary",
+          },
           {
             label: "Join LinkedIn",
             url: "https://www.linkedin.com/company/unitycatalog/",
+            variant: "tertiary",
           },
         ],
         footer: [

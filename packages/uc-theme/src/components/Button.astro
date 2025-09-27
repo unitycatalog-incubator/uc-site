@@ -1,86 +1,45 @@
 ---
+import clsx from "clsx";
+
 interface Props {
-  label?: string;
-  url: string;
-  style?: string; // e.g., 'github', 'slack', 'linkedin'
-  fullWidth?: boolean;
-  size?: "1" | "2" | "many";
+  type?: "button" | "submit" | undefined;
+  label?: string | undefined;
+  url?: string | undefined;
+  variant?: "primary" | "secondary" | "tertiary" | undefined;
+  fullWidth?: boolean | undefined;
+  className?: string | undefined;
 }
-const { label, url, style = "", fullWidth = false, size = "2" } = Astro.props;
+
+const {
+  type,
+  label,
+  url,
+  variant = "primary",
+  fullWidth,
+  className,
+} = Astro.props;
+
+const classes = clsx(
+  "appearance-none min-h-[50px] text-lg py-3 px-7 font-medium justify-center items-center rounded-md text-neutral-950 cursor-pointer transition-colors",
+  {
+    "flex w-full": fullWidth,
+    "inline-flex": !fullWidth,
+    "bg-box-shadow-yellow hover:bg-secondary-700": variant === "primary",
+    "bg-neutral-50 hover:bg-neutral-200": variant === "secondary",
+    "text-white bg-primary-1000 hover:bg-primary-700": variant === "tertiary",
+  },
+  className,
+);
 ---
 
-<a
-  href={url}
-  class={`btn ${style} ${fullWidth ? "full-width" : ""} size-${size}`}
->
-  <slot>{label}</slot>
-</a>
-
-<style>
-  .btn {
-    font-size: 1.125rem;
-    line-height: 1.5;
-    border-radius: 0.5rem;
-    padding: 0.75rem 1.75rem;
-    font-weight: 400;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    grid-column-gap: 0.75rem;
-    grid-row-gap: 0.75rem;
-  }
-
-  .btn.size-2 {
-    display: flex;
-    padding: 0.75rem 1.75rem;
-    align-items: center;
-    justify-content: center;
-    grid-column-gap: 1rem;
-    height: 100%;
-    min-width: fit-content;
-    flex-shrink: 0;
-    grid-row-gap: 1rem;
-    flex-grow: 1;
-    flex-wrap: wrap;
-  }
-
-  .btn.github {
-    background: var(--color-neutral-0);
-    color: var(--color-neutral-950);
-  }
-
-  .btn.slack {
-    background: var(--color-box-shadow-yellow);
-    color: var(--color-neutral-950);
-  }
-
-  .btn.linkedin {
-    background: var(--color-primary-1000);
-    color: var(--color-neutral-0);
-  }
-
-  .btn.github:hover {
-    background: var(--color-neutral-200);
-  }
-
-  .btn.slack:hover {
-    background: var(--color-secondary-700);
-  }
-
-  .btn.linkedin:hover {
-    background: var(--color-primary-700);
-  }
-
-  .btn.full-width {
-    width: 100%;
-  }
-
-  @media (max-width: 1024px) {
-    .btn.size-2 {
-      width: 100% !important;
-      min-width: 0 !important;
-      flex-grow: 0 !important;
-      flex-shrink: 1 !important;
-    }
-  }
-</style>
+{
+  url ? (
+    <a href={url} class={classes}>
+      <slot>{label}</slot>
+    </a>
+  ) : (
+    <button type={type} class={classes}>
+      <slot>{label}</slot>
+    </button>
+  )
+}

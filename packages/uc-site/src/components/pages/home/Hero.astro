@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import { Button } from "uc-theme/components";
+import { Button, Section } from "uc-theme/components";
 
 const logos = [
   "puppygraph.svg",
@@ -72,32 +72,33 @@ const logoAnimations = logos.map((_, i) => ({
 }));
 ---
 
-<header class="hero">
-  <div class="hero-logo-title">
+<Section variant="hero-home" padding="xl">
+  <h1 class="title" slot="title">
     <Image
       src="/uc-logo-glyph-white.svg"
       alt="Unity Catalog Logo"
-      class="hero-logo"
+      class="title-logo"
       width={80}
       height={80}
       loading="eager"
     />
-    <h1 class="hero-title">Unity Catalog</h1>
-  </div>
-  <p class="hero-subtitle">Industry's only universal catalog for data and AI</p>
+    Unity Catalog
+  </h1>
+  <p slot="subtitle">Industry's only universal catalog for data and AI</p>
   <div class="hero-ctas">
     <Button
       label="View GitHub"
       url="https://github.com/unitycatalog/unitycatalog"
-      style="github"
+      variant="secondary"
+      className="min-w-[245px]"
     />
     <Button
       label="Join Slack Community"
       url="https://go.unitycatalog.io/slack"
-      style="slack"
+      variant="primary"
+      className="min-w-[245px]"
     />
   </div>
-
   <div class="hero-grid">
     <div class="hero-logos">
       {
@@ -153,52 +154,17 @@ const logoAnimations = logos.map((_, i) => ({
       />
     </div>
   </div>
-  <div class="heroheader_background">
-    <div class="heroheader_grain-bg"></div>
-    <div class="heroheader_grid-bg"></div>
-    <div class="heroheader_bottom-gradient"></div>
-  </div>
-</header>
+</Section>
 <style>
-  .hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 2rem 1rem;
-    padding-top: 12rem;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-    position: relative;
-    min-height: 100vh;
-  }
-  .hero-logo-title {
+  .title {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    margin-bottom: 1rem;
   }
-  .hero-logo {
-    z-index: 3;
+  .title-logo {
     height: 72px;
     width: 72px;
-  }
-  .hero-title {
-    z-index: 3;
-    font-size: 3.75rem;
-    font-weight: 500;
-    color: var(--color-neutral-0);
-    margin: 0;
-    letter-spacing: 1px;
-  }
-  .hero-subtitle {
-    z-index: 3;
-    font-size: 1.25rem;
-    color: var(--color-neutral-200);
-    margin: 0 0 1.5rem;
   }
   .hero-ctas {
     display: flex;
@@ -207,6 +173,10 @@ const logoAnimations = logos.map((_, i) => ({
     align-items: center;
     width: 100%;
     max-width: 525px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -2rem;
+    margin-bottom: 2rem;
   }
 
   /* Grid */
@@ -216,10 +186,8 @@ const logoAnimations = logos.map((_, i) => ({
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-width: 1200px;
-    margin-top: 1rem;
     padding: 0 1rem;
-    min-height: 600px;
+    margin-bottom: -5rem;
   }
 
   .hero-image-stack {
@@ -229,11 +197,12 @@ const logoAnimations = logos.map((_, i) => ({
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
     z-index: 1;
-    margin: 2rem 0;
     border-radius: 100%;
-    max-width: 25rem;
-    max-height: 25rem;
+    /* max-width: 25rem; */
+    /* max-height: 25rem; */
     box-shadow: 0 0 100px #ffbc004d;
     transform: translateY(3rem);
     opacity: 0;
@@ -299,6 +268,7 @@ const logoAnimations = logos.map((_, i) => ({
     opacity: 0.9;
     width: var(--logo-size, 50px);
     height: var(--logo-size, 50px);
+    z-index: 2;
   }
 
   .hero-logo-cloud:hover {
@@ -314,38 +284,6 @@ const logoAnimations = logos.map((_, i) => ({
     inset: 0%;
   }
 
-  .heroheader_grain-bg {
-    z-index: 1;
-    opacity: 0.08;
-    mix-blend-mode: normal;
-    background-image: url(/images/hero-star-background.png);
-    background-position: 100% 100%;
-    background-repeat: repeat;
-    background-size: auto;
-    position: absolute;
-    inset: 0%;
-  }
-  .heroheader_grid-bg {
-    background-image: url("/images/hero_background_with_grid.svg");
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    min-height: 100vh;
-  }
-
-  .heroheader_bottom-gradient {
-    background-image: linear-gradient(
-      180deg,
-      transparent,
-      var(--color-neutral-950)
-    );
-    height: 5rem;
-    position: absolute;
-    inset: auto 0% 0%;
-  }
   @keyframes float {
     from {
       transform: rotate(0deg) translateX(12px) rotate(0deg);

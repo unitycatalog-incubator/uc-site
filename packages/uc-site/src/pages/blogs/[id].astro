@@ -1,39 +1,29 @@
 ---
-import { getCollection, render, getEntries } from "astro:content";
-import { getBlogPublishedAt } from "uc-theme/blog";
+import { getCollection, render } from "astro:content";
 import BlogPost from "../../components/pages/blog/BlogPost.astro";
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
+
   return posts.map((post) => {
-    const publishedAt = getBlogPublishedAt(post);
+    const relatedPosts = posts.filter((p) => p.id !== post.id).slice(0, 3);
+
     return {
       params: { id: post.id },
-      props: { post, publishedAt },
+      props: { post, relatedPosts },
     };
   });
 }
 
-const { post } = Astro.props;
-const authors = await getEntries(post.data.authors);
+const { post, relatedPosts } = Astro.props;
 const { Content } = await render(post);
 
 const raw = typeof post.body === "string" ? post.body : "";
 ---
 
 <Layout title={post.data.title} description={post.data.description}>
-  <BlogPost
-    title={post.data.title}
-    authors={authors.map((author) => ({
-      name: author.data.name,
-      ...(author.data.title && { title: author.data.title }),
-      ...(author.data.image && { image: author.data.image }),
-    }))}
-    thumbnail={post.data.thumbnail}
-    raw={raw}
-    postId={post.id}
-  >
+  <BlogPost post={post} relatedPosts={relatedPosts}>
     <!-- Hidden searchable content for better indexing -->
     <div style="display: none;" data-pagefind-body>
       {post.data.title}

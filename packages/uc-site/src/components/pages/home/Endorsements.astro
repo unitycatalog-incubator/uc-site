@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import { Section } from "uc-theme/components";
 
 const endorsements = [
   {
@@ -110,9 +111,9 @@ const endorsements = [
 ];
 ---
 
-<section class="endorsements-section" id="endorsements-section">
-  <h2 class="endorsements-title feature-animate">
-    Endorsed by industry leaders and innovators
+<Section id="endorsements-section">
+  <h2 slot="title" class="animation-fadeUp">
+    Endorsed by industry leaders <br class="max-sm:hidden" />and innovators
   </h2>
   <div class="endorsements-grid" id="endorsements-grid">
     {
@@ -165,23 +166,8 @@ const endorsements = [
       />
     </button>
   </div>
-</section>
+</Section>
 <style>
-  .endorsements-section {
-    background: var(--color-neutral-950);
-    padding: 7rem 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .endorsements-title {
-    text-align: center;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--color-neutral-0);
-    margin-bottom: 3rem;
-    max-width: 500px;
-  }
   .endorsements-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -310,17 +296,6 @@ const endorsements = [
       font-size: 0.875rem;
     }
   }
-  .feature-animate {
-    opacity: 0;
-    transform: translateY(80px);
-    transition:
-      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .feature-animate.visible {
-    opacity: 1;
-    transform: none;
-  }
 </style>
 <script type="module" is:inline>
   let currentStart = 0;
@@ -413,21 +388,4 @@ const endorsements = [
 
   // Initial height adjustment
   setTimeout(adjustMobileCardHeights, 100);
-</script>
-<script is:inline>
-  window.addEventListener("DOMContentLoaded", function () {
-    const featureTexts = document.querySelectorAll(".feature-animate");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 },
-    );
-    featureTexts.forEach((el) => observer.observe(el));
-  });
 </script>

@@ -1,3 +1,8 @@
+import type { ComponentProps } from "astro/types";
+import Button from "./components/Button.astro";
+
+type ButtonProps = ComponentProps<typeof Button>;
+
 export interface MenuItem {
   label: string;
   url: string;
@@ -13,7 +18,7 @@ export interface ThemeConfig {
     /** Header menu */
     header: MenuItem[];
     /** Header menu - CTAs */
-    headerCtas: MenuItem[];
+    headerCtas: (MenuItem & { variant: ButtonProps["variant"] })[];
     /** Footer menu */
     footer: MenuItem[];
   };

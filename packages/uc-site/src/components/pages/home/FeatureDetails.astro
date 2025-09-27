@@ -1,5 +1,7 @@
 ---
 import { Image } from "astro:assets";
+import clsx from "clsx";
+import { Section } from "uc-theme/components";
 
 const features = [
   {
@@ -23,66 +25,49 @@ const features = [
 ];
 ---
 
-<section class="feature-details-section" id="features">
-  <div class="feature-details-grid">
-    {
-      features.map((feature, i) => (
-        <div class={`feature-row ${i % 2 === 1 ? "reverse" : ""}`}>
-          <div class="feature-left">
-            <Image
-              src={`/${feature.icon}`}
-              alt={feature.title + " icon"}
-              class="feature-icon"
-              width="56"
-              height="56"
-              loading="lazy"
-            />
-            <h3 class="feature-title feature-animate">{feature.title}</h3>
-            <p class="feature-body feature-animate">{feature.body}</p>
-          </div>
-          <div class="feature-right">
-            <Image
-              src="/images/blur200.svg"
-              alt="blur background"
-              class="feature-blur-bg"
-              width={100}
-              height={100}
-              loading="lazy"
-            />
-            <Image
-              src={`/${feature.image}`}
-              alt={feature.title + " visual"}
-              class="feature-image"
-              width="528"
-              height="528"
-              loading="lazy"
-            />
-          </div>
+{
+  features.map((feature, i) => (
+    <Section padding="lg">
+      <div
+        class={clsx("feature-row", {
+          ["reverse"]: i % 2 === 1,
+        })}
+      >
+        <div class="feature-left">
+          <Image
+            src={`/${feature.icon}`}
+            alt={feature.title + " icon"}
+            class="feature-icon"
+            width="56"
+            height="56"
+            loading="lazy"
+          />
+          <h3 class="feature-title animation-fadeUp">{feature.title}</h3>
+          <p class="feature-body animation-fadeUp">{feature.body}</p>
         </div>
-      ))
-    }
-  </div>
-</section>
+        <div class="feature-right">
+          <Image
+            src="/images/blur200.svg"
+            alt="blur background"
+            class="feature-blur-bg"
+            width={100}
+            height={100}
+            loading="lazy"
+          />
+          <Image
+            src={`/${feature.image}`}
+            alt={feature.title + " visual"}
+            class="feature-image"
+            width="528"
+            height="528"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </Section>
+  ))
+}
 <style>
-  .feature-details-section {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
-    background: var(--color-neutral-950);
-    padding-left: 5%;
-  }
-  .feature-details-title {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: var(--color-neutral-0);
-  }
-  .feature-details-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 14rem;
-    max-width: 1260px;
-    margin: 0 auto;
-  }
   .feature-row {
     display: flex;
     align-items: center;
@@ -137,18 +122,6 @@ const features = [
     user-select: none;
     z-index: 1;
   }
-  .feature-animate {
-    opacity: 0;
-    transform: translateY(80px);
-    transition:
-      opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .feature-animate.visible {
-    opacity: 1;
-    transform: none;
-  }
-
   @media (min-width: 1101px) {
     .feature-row.reverse {
       flex-direction: row-reverse;
@@ -176,20 +149,3 @@ const features = [
     }
   }
 </style>
-<script is:inline>
-  window.addEventListener("DOMContentLoaded", function () {
-    const featureTexts = document.querySelectorAll(".feature-animate");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 },
-    );
-    featureTexts.forEach((el) => observer.observe(el));
-  });
-</script>
