@@ -6,9 +6,9 @@ import Button from "./Button.astro";
 type ButtonProps = ComponentProps<typeof Button>;
 
 interface NavButton {
-  label: ButtonProps["label"];
-  url: ButtonProps["url"];
-  variant: ButtonProps["variant"];
+  label: ButtonProps["children"];
+  href: ButtonProps["href"];
+  color: ButtonProps["color"];
 }
 
 interface Props {
@@ -59,7 +59,7 @@ const { items, logo, buttons = [] } = Astro.props;
     <div class="nav-center">
       {
         items.map((item) => (
-          <a class="nav-link" href={item.url}>
+          <a class="nav-link" href={item.href}>
             {item.label}
           </a>
         ))
@@ -69,7 +69,9 @@ const { items, logo, buttons = [] } = Astro.props;
       {
         buttons.length > 0 ? (
           buttons.map((btn) => (
-            <Button label={btn.label} url={btn.url} variant={btn.variant} />
+            <Button href={btn.href} color={btn.color}>
+              {btn.label}
+            </Button>
           ))
         ) : (
           <slot name="buttons" />
@@ -108,7 +110,7 @@ const { items, logo, buttons = [] } = Astro.props;
     <div class="nav-mobile-links">
       {
         items.map((item) => (
-          <a class="nav-mobile-link" href={item.url} @click="open = false">
+          <a class="nav-mobile-link" href={item.href} @click="open = false">
             {item.label}
           </a>
         ))
@@ -118,12 +120,9 @@ const { items, logo, buttons = [] } = Astro.props;
       {
         buttons.length > 0 &&
           buttons.map((btn) => (
-            <Button
-              label={btn.label}
-              url={btn.url}
-              variant={btn.variant}
-              fullWidth={true}
-            />
+            <Button href={btn.href} color={btn.color} fullWidth={true}>
+              {btn.label}
+            </Button>
           ))
       }
     </div>
