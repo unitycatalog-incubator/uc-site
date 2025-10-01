@@ -72,16 +72,37 @@ const {
               )
             )}
             <div class="card-content">
-              <h3 class="card-title">{title}</h3>
-              {Astro.slots.has("default") && (
-                <p class="card-body">
-                  <slot />
-                </p>
+              {isFeatured ? (
+                <>
+                  <div class="card-toprow">
+                    <span class="card-label">{badge}</span>
+                  </div>
+                  <h3 class="card-title">{title}</h3>
+                  {Astro.slots.has("default") && (
+                    <p class="card-body">
+                      <slot />
+                    </p>
+                  )}
+                  {date && (
+                    <div class="card-bottomrow">
+                      <span class="card-date">{date}</span>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <>
+                  <h3 class="card-title">{title}</h3>
+                  {Astro.slots.has("default") && (
+                    <p class="card-body">
+                      <slot />
+                    </p>
+                  )}
+                  <div class="card-meta-row">
+                    <span class="card-label">{badge}</span>
+                    {date && <span class="card-date">{date}</span>}
+                  </div>
+                </>
               )}
-              <div class="card-meta-row">
-                <span class="card-label">{badge}</span>
-                {date && <span class="card-date">{date}</span>}
-              </div>
             </div>
           </>
         ) : (
@@ -142,16 +163,37 @@ const {
           )
         )}
         <div class="card-content">
-          <h3 class="card-title">{title}</h3>
-          {Astro.slots.has("default") && (
-            <p class="card-body">
-              <slot />
-            </p>
+          {isFeatured ? (
+            <>
+              <div class="card-toprow">
+                <span class="card-label">{badge}</span>
+              </div>
+              <h3 class="card-title">{title}</h3>
+              {Astro.slots.has("default") && (
+                <p class="card-body">
+                  <slot />
+                </p>
+              )}
+              {date && (
+                <div class="card-bottomrow">
+                  <span class="card-date">{date}</span>
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              <h3 class="card-title">{title}</h3>
+              {Astro.slots.has("default") && (
+                <p class="card-body">
+                  <slot />
+                </p>
+              )}
+              <div class="card-meta-row">
+                <span class="card-label">{badge}</span>
+                {date && <span class="card-date">{date}</span>}
+              </div>
+            </>
           )}
-          <div class="card-meta-row">
-            <span class="card-label">{badge}</span>
-            {date && <span class="card-date">{date}</span>}
-          </div>
         </div>
       </>
     ) : (
@@ -220,6 +262,7 @@ const {
     margin-bottom: 1rem;
     line-height: 1.2;
   }
+  /* Title remains un-clamped; body handles truncation */
   .card-body {
     font-size: 1rem;
     margin-bottom: 1rem;
@@ -364,8 +407,11 @@ const {
       order: 1;
       flex: 1;
     }
+    .card-isFeatured .card-toprow {
+      margin-bottom: 1rem;
+    }
     .card-isFeatured .card-title {
-      font-size: 1.8rem;
+      font-size: 1.875rem;
     }
     .card-isFeatured .card-body {
       font-size: 1.15rem;
