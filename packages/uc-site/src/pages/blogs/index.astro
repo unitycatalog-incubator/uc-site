@@ -2,7 +2,6 @@
 import { getCollection } from "astro:content";
 import { Search, Section } from "uc-theme/components";
 import BlogCard from "../../components/pages/blog/BlogCard.astro";
-import Subscribe from "../../components/pages/blog/Subscribe.astro";
 import Layout from "../../layouts/Layout.astro";
 
 const posts = await getCollection("blog");
@@ -33,16 +32,6 @@ const rest = posts.filter((post) => post !== featured);
         {rest.map((post, i) => <BlogCard post={post} data-index={i} />)}
       </div>
       <div id="pagination"></div>
-    </Section>
-    <Section variant="glow-top" padding="lg">
-      <h2 slot="title">
-        Subscribe to our newsletter for daily <br
-          class="max-sm:hidden"
-        />industry insights
-      </h2>
-      <div class="mx-auto max-w-[480px]">
-        <Subscribe direction="horizontal" />
-      </div>
     </Section>
   </div>
 </Layout>
