@@ -44,7 +44,7 @@ const hasContent = Astro.slots.has("default");
       (hasTitle || hasSubtitle) && (
         <div
           class={clsx("mx-auto max-w-[48rem] text-center text-white", {
-            ["mb-20"]:
+            ["mb-20 mt-20"]:
               hasContent && (variant === "hero" || variant === "hero-home"),
             ["mb-12"]:
               hasContent && variant !== "hero" && variant !== "hero-home",
