@@ -36,7 +36,9 @@ const tocItems = lines
     <h1 slot="title">{post.data.title}</h1>
   </Section>
   <Section padding="xl" variant="white">
-    <div class="grid gap-8 md:grid-cols-[minmax(320px,_1fr)_8fr] md:gap-12">
+    <div
+      class="mx-auto grid max-w-7xl gap-8 md:grid-cols-[minmax(320px,_1fr)_8fr] md:gap-12"
+    >
       <aside class="flex flex-col gap-8 self-start md:sticky md:top-0">
         <div class="border-divider border-t-1"></div>
         <TableOfContents items={tocItems} />
@@ -126,11 +128,13 @@ const tocItems = lines
   /* Article Content */
   .blog-article {
     margin-bottom: 1rem;
-    font-size: 20px;
-    line-height: 37px;
+    font-size: clamp(1rem, 0.9rem + 0.7vw, 1.25rem);
+    line-height: clamp(1.6, 1.4 + 0.4vw, 2.1);
     font-weight: 400;
     letter-spacing: 0.02em;
     color: var(--color-accent-1000);
+    width: 100%;
+    overflow: hidden;
   }
 
   /* Markdown Content Typography */
@@ -223,10 +227,13 @@ const tocItems = lines
   }
 
   .blog-article :global(img) {
+    display: block;
+    width: 100%;
     max-width: 100%;
     height: auto;
     border-radius: 0.75rem;
     margin: 2rem 0;
+    object-fit: contain; /* Ensure images scale properly */
   }
 
   .blog-article :global(table) {
@@ -264,35 +271,27 @@ const tocItems = lines
 
   /* Responsive Design */
   @media (max-width: 1200px) {
-    .blog-content-container {
-      grid-template-columns: 1fr;
-      gap: 2rem;
+    .blog-article {
       padding: 0 1rem;
     }
   }
 
-  @media (max-width: 1200px) {
-    .blog-content {
-      padding-top: 0;
-      padding-left: 1rem;
-      padding-right: 1rem;
+  @media (max-width: 768px) {
+    .blog-article {
+      padding: 0 0.5rem;
     }
   }
   @media (max-width: 768px) {
-    .blog-article {
-      font-size: 1.125rem;
-    }
-
     .blog-article :global(h1) {
-      font-size: 2.5rem;
+      font-size: clamp(1.8rem, 1.2rem + 2.5vw, 2.5rem);
     }
 
     .blog-article :global(h2) {
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 1.1rem + 2vw, 2rem);
     }
 
     .blog-article :global(h3) {
-      font-size: 1.75rem;
+      font-size: clamp(1.25rem, 1rem + 1.5vw, 1.75rem);
     }
   }
   :global(.code-block-container) {
