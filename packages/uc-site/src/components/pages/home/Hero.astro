@@ -309,12 +309,13 @@ const logoAnimations = logos.map((_, i) => ({
 
   @media (max-width: 600px) {
     .hero-image-stack {
-      height: 250px;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      position: absolute;
-      z-index: 3;
+      width: 350px;
+      height: 350px;
+      z-index: 0;
+      opacity: 0;
+      border-radius: 0;
+      box-shadow: none;
+      transform-origin: center center;
     }
     .uc-hero-image {
       max-width: 250px;
@@ -329,7 +330,7 @@ const logoAnimations = logos.map((_, i) => ({
     /* Mobile logo positioning - spread logos around the hero image */
     .hero-logo-cloud:nth-child(1) {
       /* puppygraph.svg */
-      top: 20% !important;
+      top: 15% !important;
       left: 30% !important;
     }
     .hero-logo-cloud:nth-child(2) {
@@ -376,12 +377,12 @@ const logoAnimations = logos.map((_, i) => ({
     .hero-logo-cloud:nth-child(10) {
       /* dataframe.svg */
       top: 30% !important;
-      right: 20% !important;
+      right: 15% !important;
     }
 
     .hero-logo-cloud:nth-child(11) {
       /* Informatica.svg */
-      top: 100% !important;
+      top: 48% !important;
       left: 10% !important;
     }
     .hero-logo-cloud:nth-child(12) {
@@ -396,7 +397,7 @@ const logoAnimations = logos.map((_, i) => ({
     }
     .hero-logo-cloud:nth-child(14) {
       /* granica.svg */
-      top: 70% !important;
+      top: 65% !important;
       left: 8% !important;
     }
     .hero-logo-cloud:nth-child(15) {
@@ -407,7 +408,7 @@ const logoAnimations = logos.map((_, i) => ({
 
     .hero-logo-cloud:nth-child(16) {
       /* duckdb.svg */
-      top: 100% !important;
+      top: 48% !important;
       right: 10% !important;
     }
     .hero-logo-cloud:nth-child(17) {
@@ -427,7 +428,7 @@ const logoAnimations = logos.map((_, i) => ({
     }
     .hero-logo-cloud:nth-child(20) {
       /* immuta.svg */
-      top: 70% !important;
+      top: 66% !important;
       right: 18% !important;
     }
 
@@ -449,7 +450,7 @@ const logoAnimations = logos.map((_, i) => ({
     }
   }
 
-  @media (max-width: 1024px) {
+  @media (min-width: 451px) and (max-width: 1024px) {
     .hero {
       padding: 4rem 1rem;
       margin-top: 10rem;
@@ -478,6 +479,16 @@ const logoAnimations = logos.map((_, i) => ({
 
     .hero-image-stack {
       width: 100%;
+      size: 350px;
+      z-index: 0;
+      opacity: 1;
+      border-radius: 0;
+      box-shadow: none;
+      transform-origin: center center;
+    }
+
+    .uc-hero-image {
+      width: 270px;
     }
 
     .hero-logo-cloud {
