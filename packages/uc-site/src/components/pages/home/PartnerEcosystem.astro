@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import { Button, Section } from "uc-theme/components";
+import { Button } from "uc-theme/components";
+import Section from "../../Section.astro";
 ---
 
 <Section padding="lg" variant="glow-top">
@@ -22,11 +23,9 @@ import { Button, Section } from "uc-theme/components";
     loading="lazy"
   />
   <div class="flex justify-center">
-    <Button
-      label="Join Slack Community"
-      url="https://go.unitycatalog.io/slack"
-      variant="primary"
-    />
+    <Button href="https://go.unitycatalog.io/slack" color="primary"
+      >Join Slack Community</Button
+    >
   </div>
 </Section>
 

@@ -26,7 +26,7 @@ import { config } from "virtual:uc-theme/config";
   <nav class="footer-nav">
     {
       config.menus.footer.map((item) => (
-        <a href={item.url} class="footer-link">
+        <a href={item.href} class="footer-link">
           {item.label}
         </a>
       ))

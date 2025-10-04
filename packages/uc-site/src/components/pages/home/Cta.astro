@@ -1,5 +1,6 @@
 ---
-import { Button, Section } from "uc-theme/components";
+import { Button } from "uc-theme/components";
+import Section from "../../Section.astro";
 ---
 
 <Section padding="xl" variant="grid-bottom">
@@ -12,16 +13,14 @@ import { Button, Section } from "uc-theme/components";
     class="mx-auto mb-9 flex max-w-[525px] flex-col justify-center gap-4 md:flex-row"
   >
     <Button
-      label="View GitHub"
-      url="https://github.com/unitycatalog/unitycatalog"
-      variant="secondary"
-      className="min-w-[245px]"
-    />
+      href="https://github.com/unitycatalog/unitycatalog"
+      color="secondary"
+      className="min-w-[245px]">View GitHub</Button
+    >
     <Button
-      label="Join Slack Community"
-      url="https://go.unitycatalog.io/slack"
-      variant="primary"
-      className="min-w-[245px]"
-    />
+      href="https://go.unitycatalog.io/slack"
+      color="primary"
+      className="min-w-[245px]">Join Slack Community</Button
+    >
   </div>
 </Section>
