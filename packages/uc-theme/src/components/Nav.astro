@@ -120,7 +120,7 @@ const { items, logo, buttons = [] } = Astro.props;
       {
         buttons.length > 0 &&
           buttons.map((btn) => (
-            <Button href={btn.href} color={btn.color} fullWidth={true}>
+            <Button href={btn.href} color={btn.color} isFullWidth={true}>
               {btn.label}
             </Button>
           ))

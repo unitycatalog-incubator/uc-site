@@ -23,7 +23,7 @@ const { direction } = Astro.props;
     />
     <Button
       type="submit"
-      fullWidth={direction === "vertical"}
+      isFullWidth={direction === "vertical"}
       className={clsx({
         "flex-0 min-w-[150px]": direction === "horizontal",
       })}>Submit</Button

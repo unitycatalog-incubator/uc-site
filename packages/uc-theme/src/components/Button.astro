@@ -14,18 +14,18 @@ interface Props {
   /** Specify HTML button type */
   type?: "button" | "submit" | undefined;
   /** Whether the button should be full width or not */
-  fullWidth?: boolean | undefined;
+  isFullWidth?: boolean | undefined;
   /** Additional HTML classname to add */
   className?: string | undefined;
 }
 
-const { type, href, color = "primary", fullWidth, className } = Astro.props;
+const { type, href, color = "primary", isFullWidth, className } = Astro.props;
 
 const cx = clsx(
   "appearance-none min-h-[50px] text-lg py-3 px-7 font-medium justify-center items-center rounded-md text-neutral-950 cursor-pointer transition-colors",
   {
-    "flex w-full": fullWidth,
-    "inline-flex": !fullWidth,
+    "flex w-full": isFullWidth,
+    "inline-flex": !isFullWidth,
     "bg-box-shadow-yellow hover:bg-secondary-700": color === "primary",
     "bg-neutral-50 hover:bg-neutral-200": color === "secondary",
     "text-white bg-primary-1000 hover:bg-primary-700": color === "tertiary",
