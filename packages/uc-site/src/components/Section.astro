@@ -1,0 +1,169 @@
+---
+import { Image } from "astro:assets";
+import type { ComponentProps } from "astro/types";
+import clsx from "clsx";
+import { Section as ThemeSection } from "uc-theme/components";
+
+interface Props {
+  /* Section padding */
+  padding?: ComponentProps<typeof ThemeSection>["padding"] | undefined;
+  /* Style variation */
+  variant?:
+    | "hero"
+    | "hero-home"
+    | "glow-top"
+    | "grid-bottom"
+    | "white"
+    | undefined;
+  /* HTML ID */
+  id?: string | undefined;
+  /* Class name */
+  className?: string | undefined;
+}
+
+const { padding, variant, id, className } = Astro.props;
+
+const hasTitle = Astro.slots.has("title");
+const hasSubtitle = Astro.slots.has("subtitle");
+const hasContent = Astro.slots.has("default");
+---
+
+<ThemeSection
+  id={id}
+  padding={padding}
+  className={clsx(
+    {
+      "text-accent-1000 bg-white": variant === "white",
+      relative: variant !== "white" && variant !== undefined,
+    },
+    className,
+  )}
+>
+  {
+    (hasTitle || hasSubtitle) && (
+      <div
+        class={clsx("mx-auto max-w-[48rem] text-center text-white", {
+          ["mb-20"]:
+            hasContent && (variant === "hero" || variant === "hero-home"),
+          ["mb-12"]:
+            hasContent && variant !== "hero" && variant !== "hero-home",
+        })}
+      >
+        {hasTitle && (
+          <div
+            class={clsx("mx-auto", {
+              ["text-6xl font-bold"]:
+                variant === "hero" || variant === "hero-home",
+              ["text-4xl font-medium"]:
+                variant !== "hero" && variant !== "hero-home",
+              ["mb-8"]: !!hasSubtitle,
+            })}
+          >
+            <slot name="title" />
+          </div>
+        )}
+        {hasSubtitle && (
+          <div
+            class={clsx("text-xl", {
+              ["text-neutral-1000"]:
+                variant !== "hero" && variant !== "hero-home",
+            })}
+          >
+            <slot name="subtitle" />
+          </div>
+        )}
+      </div>
+    )
+  }
+  <slot />
+  {variant === "hero" && <div class="bg-multi-gradient" />}
+  {
+    variant === "hero-home" && (
+      <>
+        <div class="bg-stars" />
+        <div class="bg-grid" />
+        <div class="bg-gradient" />
+      </>
+    )
+  }
+  {
+    variant === "glow-top" && (
+      <Image
+        src="/images/ecosystem_section_top-gradient.svg"
+        alt="section background"
+        class="bg-glow-top"
+        width={1400}
+        height={512}
+        loading="lazy"
+      />
+    )
+  }
+  {variant === "grid-bottom" && <div class="bg-grid-big" />}
+</ThemeSection>
+<style>
+  .bg-stars {
+    z-index: -2;
+    opacity: 0.08;
+    mix-blend-mode: normal;
+    background-image: url(/images/section-bg-stars.png);
+    background-position: 100% 100%;
+    background-repeat: repeat;
+    background-size: auto;
+    position: absolute;
+    inset: 0%;
+  }
+
+  .bg-grid {
+    z-index: -3;
+    position: absolute;
+    background-image: url(/images/section-bg-grid.svg);
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    inset: 0%;
+  }
+
+  .bg-multi-gradient {
+    z-index: -1;
+    position: absolute;
+    background-image: url(/images/section-bg-gradient.svg);
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    mix-blend-mode: difference;
+    height: 100%;
+    inset: auto 0% 0%;
+  }
+
+  .bg-gradient {
+    background-image: linear-gradient(
+      180deg,
+      transparent,
+      var(--color-neutral-950)
+    );
+    height: 5rem;
+    position: absolute;
+    inset: auto 0% 0%;
+  }
+
+  .bg-glow-top {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    z-index: -1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .bg-grid-big {
+    z-index: -1;
+    background-image: url(/images/cta-section_underlay.svg);
+    background-position: 50% 40%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    inset: 0%;
+  }
+</style>
