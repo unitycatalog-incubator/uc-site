@@ -105,7 +105,7 @@ Example:
       const button = this.querySelector("button");
       const content = this.querySelector("[aria-hidden]");
 
-      toggle.addEventListener("click", (e) => {
+      button.addEventListener("click", (e) => {
         if (button.getAttribute("aria-expanded") === "false") {
           button.setAttribute("aria-expanded", "true");
           content.setAttribute("aria-hidden", "false");
