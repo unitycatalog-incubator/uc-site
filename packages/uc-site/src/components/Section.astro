@@ -7,6 +7,8 @@ import { Section as ThemeSection } from "uc-theme/components";
 interface Props {
   /* Section padding */
   padding?: ComponentProps<typeof ThemeSection>["padding"] | undefined;
+  /* Adds additional padding to the top of the section to account for the floating header nav. */
+  isFirst?: boolean | undefined;
   /* Style variation */
   variant?:
     | "hero"
@@ -21,7 +23,7 @@ interface Props {
   className?: string | undefined;
 }
 
-const { padding, variant, id, className } = Astro.props;
+const { padding, isFirst, variant, id, className } = Astro.props;
 
 const hasTitle = Astro.slots.has("title");
 const hasSubtitle = Astro.slots.has("subtitle");
@@ -39,6 +41,7 @@ const hasContent = Astro.slots.has("default");
     className,
   )}
 >
+  {isFirst && <div class="h-[60px] xl:h-[84px]" />}
   {
     (hasTitle || hasSubtitle) && (
       <div
