@@ -25,6 +25,18 @@ export default defineConfig({
 });
 ```
 
+### Referencing the theme configuration
+
+If you'd like to reference the theme configuration (menus, site title, etc), you'll want to add the following file to the root of your Astro site:
+
+```ts
+// virtual.d.ts
+declare module "virtual:uc-theme/config" {
+  import type { ThemeConfig } from "uc-theme/types";
+  export const config: ThemeConfig;
+}
+```
+
 ## Configuration
 
 | Property           | Type       | Required | Description                                                   |

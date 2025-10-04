@@ -1,8 +1,6 @@
 ---
 import { getImage } from "astro:assets";
-import { localizedHTML as favicons } from "astro-favicons/middleware";
 import { config } from "virtual:uc-theme/config";
-import Nav from "./Nav.astro";
 import "../theme.css";
 
 interface Props {
@@ -41,33 +39,12 @@ const imageUrl =
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <Fragment set:html={favicons(Astro.currentLocale)} />
     <slot name="head-last" />
   </head>
   <body class="text-neutral-0 bg-neutral-950">
     <slot name="body-first" />
     <main>
-      <header>
-        <Nav items={config.menus.header} buttons={config.menus.headerCtas}>
-          <span
-            slot="logo"
-            style="display: flex; align-items: center; gap: 0.5rem;"
-          >
-            <a
-              href="/"
-              style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none;"
-            >
-              <img
-                src="/uc-logo.svg"
-                alt="Unity Catalog Logo"
-                style="height: 36px;"
-              />
-            </a>
-          </span>
-        </Nav>
-      </header>
       <slot />
-      <slot name="body-last" />
     </main>
   </body>
 </html>

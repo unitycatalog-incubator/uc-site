@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from "astro/config";
+import favicons from "astro-favicons";
 import { ucTheme } from "uc-theme";
 import netlify from "@astrojs/netlify";
 
@@ -44,6 +45,10 @@ const config = {
           { label: "Documentation", href: "https://go.unitycatalog.io/docs" },
         ],
       },
+    }),
+    favicons({
+      name: "Unity Catalog",
+      short_name: "Unity Catalog",
     }),
   ],
 };
