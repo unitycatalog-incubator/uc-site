@@ -18,11 +18,14 @@
   "author": "jakebellacera",
   "license": "Apache-2.0",
   "peerDependencies": {
-    "astro": "^5"
+    "astro": "^5",
+    "astro-favicons": "^3"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
     "@pagefind/default-ui": "^1.4.0",
     "@tailwindcss/vite": "^4.1.13",
+    "astro-favicons": "^3.1.5",
     "clsx": "^2.1.1",
     "pagefind": "^1.4.0",
     "tailwindcss": "^4.1.13"

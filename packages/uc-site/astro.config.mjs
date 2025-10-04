@@ -1,23 +1,14 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import favicons from "astro-favicons";
-import { ucTheme, searchPlugin } from "uc-theme";
-
+import { ucTheme } from "uc-theme";
 import netlify from "@astrojs/netlify";
 
-import sitemap from "@astrojs/sitemap";
-
-export default defineConfig({
+const config = {
   site: "https://uc-site-beta.netlify.app/",
   redirects: {
     "/blog": "/blogs",
   },
-  adapter: netlify(),
   integrations: [
-    favicons({
-      name: "Unity Catalog",
-      short_name: "Unity Catalog",
-    }),
     ucTheme({
       siteTitle: "Unity Catalog",
       defaultImage: "/images/default-image.jpg",
@@ -54,7 +45,11 @@ export default defineConfig({
         ],
       },
     }),
-    searchPlugin(),
-    sitemap(),
   ],
-});
+};
+
+export default defineConfig(
+  import.meta.env.NETLIFY === "true"
+    ? { ...config, adapter: netlify() }
+    : config,
+);
