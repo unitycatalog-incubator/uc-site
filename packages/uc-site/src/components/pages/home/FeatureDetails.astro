@@ -25,9 +25,9 @@ const features = [
 ];
 ---
 
-{
-  features.map((feature, i) => (
-    <Section padding="lg">
+<Section id="features" padding="lg">
+  {
+    features.map((feature, i) => (
       <div
         class={clsx("feature-row", {
           ["reverse"]: i % 2 === 1,
@@ -64,9 +64,9 @@ const features = [
           />
         </div>
       </div>
-    </Section>
-  ))
-}
+    ))
+  }
+</Section>
 <style>
   .feature-row {
     display: flex;
@@ -104,8 +104,8 @@ const features = [
     text-align: right;
   }
   .feature-image {
-    width: 528px !important;
-    height: 528px !important;
+    width: 528px;
+    height: 528px;
     object-fit: cover;
     display: block;
     position: relative;
