@@ -29,6 +29,9 @@ const {
   isFeatured,
   className,
 } = Astro.props;
+const imageSizes = "(min-width: 1200px) 58vw, (min-width: 1024px) 50vw, 100vw";
+const imageLoading = isFeatured ? "eager" : "lazy";
+const imageFetchPriority = isFeatured ? "high" : "auto";
 ---
 
 <div
@@ -53,7 +56,10 @@ const {
                   alt={title}
                   width={1239}
                   height={720}
-                  loading="lazy"
+                  loading={imageLoading}
+                  decoding="async"
+                  sizes={imageSizes}
+                  fetchpriority={imageFetchPriority}
                   class="image"
                 />
               </div>
@@ -65,7 +71,10 @@ const {
                     alt={title}
                     width={1239}
                     height={720}
-                    loading="lazy"
+                    loading={imageLoading}
+                    decoding="async"
+                    sizes={imageSizes}
+                    fetchpriority={imageFetchPriority}
                     class="image"
                   />
                 </div>
@@ -115,6 +124,8 @@ const {
                     alt={title + " icon"}
                     width="48"
                     height="48"
+                    loading="lazy"
+                    decoding="async"
                   />
                 ) : (
                   <Image
@@ -122,6 +133,8 @@ const {
                     alt={title + " icon"}
                     width="48"
                     height="48"
+                    loading="lazy"
+                    decoding="async"
                   />
                 )}
               </div>
@@ -144,7 +157,10 @@ const {
               alt={title}
               width={1239}
               height={720}
-              loading="lazy"
+              loading={imageLoading}
+              decoding="async"
+              sizes={imageSizes}
+              fetchpriority={imageFetchPriority}
               class="image"
             />
           </div>
@@ -156,7 +172,10 @@ const {
                 alt={title}
                 width={1239}
                 height={720}
-                loading="lazy"
+                loading={imageLoading}
+                decoding="async"
+                sizes={imageSizes}
+                fetchpriority={imageFetchPriority}
                 class="image"
               />
             </div>
@@ -206,9 +225,18 @@ const {
                 alt={title + " icon"}
                 width="48"
                 height="48"
+                loading="lazy"
+                decoding="async"
               />
             ) : (
-              <Image src={icon} alt={title + " icon"} width="48" height="48" />
+              <Image
+                src={icon}
+                alt={title + " icon"}
+                width="48"
+                height="48"
+                loading="lazy"
+                decoding="async"
+              />
             )}
           </div>
         )}
