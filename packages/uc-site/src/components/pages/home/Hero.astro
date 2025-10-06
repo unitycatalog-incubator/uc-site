@@ -115,7 +115,7 @@ const logoAnimations = logos.map((_, i) => ({
               alt="hero_logo"
               class="hero-logo-cloud"
               loading="lazy"
-              style={`position: absolute; top: ${pos.top}; ${pos.left ? `left: ${pos.left};` : `right: ${pos.right};`} --logo-size: ${pos.size ?? 50}px; animation-duration: ${anim.duration}; animation-delay: ${anim.delay}; animation-direction: ${anim.direction};`}
+              style={`--logo-top: ${pos.top}; ${pos.left ? `--logo-left: ${pos.left}; --logo-right: auto;` : `--logo-right: ${pos.right}; --logo-left: auto;`} --logo-size: ${pos.size ?? 50}px; animation-duration: ${anim.duration}; animation-delay: ${anim.delay}; animation-direction: ${anim.direction};`}
               width={pos.size ?? 50}
               height={pos.size ?? 50}
               loading="eager"
@@ -270,6 +270,15 @@ const logoAnimations = logos.map((_, i) => ({
     z-index: 2;
   }
 
+  /* Desktop positioning using CSS custom properties */
+  @media (min-width: 601px) {
+    .hero-logo-cloud {
+      top: var(--logo-top, 50%);
+      left: var(--logo-left, 50%);
+      right: var(--logo-right, auto);
+    }
+  }
+
   .hero-logo-cloud:hover {
     transform: scale(1.1);
     box-shadow: 0 4px 24px 0 var(--color-neutral-800);
@@ -327,119 +336,141 @@ const logoAnimations = logos.map((_, i) => ({
     }
 
     /* Mobile logo positioning - spread logos around the hero image */
-    .hero-logo-cloud:nth-child(1) {
+    .hero-logos .hero-logo-cloud:nth-child(1) {
       /* puppygraph.svg */
-      top: 15% !important;
-      left: 30% !important;
+      top: 15%;
+      left: 30%;
+      right: auto;
     }
-    .hero-logo-cloud:nth-child(2) {
+    .hero-logos .hero-logo-cloud:nth-child(2) {
       /* fivetran.svg */
-      top: 30% !important;
-      left: 20% !important;
+      top: 30%;
+      left: 20%;
+      right: auto;
     }
-    .hero-logo-cloud:nth-child(3) {
+    .hero-logos .hero-logo-cloud:nth-child(3) {
       /* starrocks.svg */
-      top: 20% !important;
-      left: 20% !important;
+      top: 20%;
+      left: 20%;
+      right: auto;
     }
-    .hero-logo-cloud:nth-child(4) {
+    .hero-logos .hero-logo-cloud:nth-child(4) {
       /* nvidia.svg */
-      top: 10% !important;
-      left: 15% !important;
+      top: 10%;
+      left: 15%;
+      right: auto;
     }
-    .hero-logo-cloud:nth-child(5) {
+    .hero-logos .hero-logo-cloud:nth-child(5) {
       /* aws.svg */
-      top: 25% !important;
-      left: 8% !important;
+      top: 25%;
+      left: 8%;
+      right: auto;
     }
 
-    .hero-logo-cloud:nth-child(6) {
+    .hero-logos .hero-logo-cloud:nth-child(6) {
       /* salesforce.svg */
-      top: 15% !important;
-      right: 30% !important;
+      top: 15%;
+      left: auto;
+      right: 30%;
     }
-    .hero-logo-cloud:nth-child(7) {
+    .hero-logos .hero-logo-cloud:nth-child(7) {
       /* tecton.svg */
-      top: 20% !important;
-      right: 5% !important;
+      top: 20%;
+      left: auto;
+      right: 5%;
     }
-    .hero-logo-cloud:nth-child(8) {
+    .hero-logos .hero-logo-cloud:nth-child(8) {
       /* langchain.svg */
-      top: 20% !important;
-      right: 18% !important;
+      top: 20%;
+      left: auto;
+      right: 18%;
     }
-    .hero-logo-cloud:nth-child(9) {
+    .hero-logos .hero-logo-cloud:nth-child(9) {
       /* confluence.svg */
-      top: 10% !important;
-      right: 15% !important;
+      top: 10%;
+      left: auto;
+      right: 15%;
     }
-    .hero-logo-cloud:nth-child(10) {
+    .hero-logos .hero-logo-cloud:nth-child(10) {
       /* dataframe.svg */
-      top: 30% !important;
-      right: 15% !important;
+      top: 30%;
+      left: auto;
+      right: 15%;
     }
 
-    .hero-logo-cloud:nth-child(11) {
+    .hero-logos .hero-logo-cloud:nth-child(11) {
       /* Informatica.svg */
-      top: 48% !important;
-      left: 10% !important;
+      top: 48%;
+      left: 10%;
+      right: auto;
     }
-    .hero-logo-cloud:nth-child(12) {
+    .hero-logos .hero-logo-cloud:nth-child(12) {
       /* azure.svg */
-      top: 80% !important;
-      left: 5% !important;
+      top: 80%;
+      left: 5%;
+      right: auto;
     }
-    .hero-logo-cloud:nth-child(13) {
+    .hero-logos .hero-logo-cloud:nth-child(13) {
       /* llama-index-logo.svg */
-      top: 80% !important;
-      left: 15% !important;
+      top: 80%;
+      left: 15%;
+      right: auto;
     }
-    .hero-logo-cloud:nth-child(14) {
+    .hero-logos .hero-logo-cloud:nth-child(14) {
       /* granica.svg */
-      top: 65% !important;
-      left: 8% !important;
+      top: 65%;
+      left: 8%;
+      right: auto;
     }
-    .hero-logo-cloud:nth-child(15) {
+    .hero-logos .hero-logo-cloud:nth-child(15) {
       /* dbt-labs.svg */
-      top: 70% !important;
-      left: 18% !important;
+      top: 70%;
+      left: 18%;
+      right: auto;
     }
 
-    .hero-logo-cloud:nth-child(16) {
+    .hero-logos .hero-logo-cloud:nth-child(16) {
       /* duckdb.svg */
-      top: 48% !important;
-      right: 10% !important;
+      top: 48%;
+      left: auto;
+      right: 10%;
     }
-    .hero-logo-cloud:nth-child(17) {
+    .hero-logos .hero-logo-cloud:nth-child(17) {
       /* databricks.svg */
-      top: 80% !important;
-      right: 15% !important;
+      top: 80%;
+      left: auto;
+      right: 15%;
     }
-    .hero-logo-cloud:nth-child(18) {
+    .hero-logos .hero-logo-cloud:nth-child(18) {
       /* google.svg */
-      top: 80% !important;
-      right: 2% !important;
+      top: 80%;
+      left: auto;
+      right: 2%;
     }
-    .hero-logo-cloud:nth-child(19) {
+    .hero-logos .hero-logo-cloud:nth-child(19) {
       /* unstructured.svg */
-      top: 70% !important;
-      right: 8% !important;
+      top: 70%;
+      left: auto;
+      right: 8%;
     }
-    .hero-logo-cloud:nth-child(20) {
+    .hero-logos .hero-logo-cloud:nth-child(20) {
       /* immuta.svg */
-      top: 66% !important;
-      right: 18% !important;
+      top: 66%;
+      left: auto;
+      right: 18%;
     }
 
-    .hero-logo-cloud:nth-child(21) {
+    .hero-logos .hero-logo-cloud:nth-child(21) {
       /* lancedb.svg */
-      top: 80% !important;
-      left: 25% !important;
+      top: 80%;
+      left: 25%;
+      right: auto;
     }
-    .hero-logo-cloud:nth-child(22) {
+    .hero-logos .hero-logo-cloud:nth-child(22) {
       /* apache.svg */
-      top: 80% !important;
-      right: 25% !important;
+      top: 80%;
+      left: auto;
+      right: 25%;
     }
   }
 
