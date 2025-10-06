@@ -29,7 +29,7 @@ const config = {
           },
           {
             label: "Join Slack",
-            href: "https://go.unitycatalog.io/slack",
+            href: "https://join.slack.com/t/unitycatalog/shared_invite/zt-3f93k8flt-Ent43H6MQQYNN52Ca_eRMQ",
             color: "primary",
           },
           {

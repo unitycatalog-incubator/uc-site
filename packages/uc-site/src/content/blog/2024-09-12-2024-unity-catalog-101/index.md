@@ -667,4 +667,4 @@ If you'd like to join the Unity Catalog project, here are some ideas to get you 
 - Contribute documentation pages to help other developers use Unity Catalog
 - Write a blog about your Unity Catalog use case and share it with fellow developers and industry experts
 
-[Join our Slack community](https://go.unitycatalog.io/slack) to get started. See you there!
+[Join our Slack community](https://join.slack.com/t/unitycatalog/shared_invite/zt-3f93k8flt-Ent43H6MQQYNN52Ca_eRMQ) to get started. See you there!
