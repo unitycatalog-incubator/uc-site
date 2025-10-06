@@ -72,6 +72,7 @@ const features = [
     display: flex;
     align-items: center;
     gap: 3rem;
+    margin-bottom: 10rem;
   }
   .feature-left {
     flex: 1;
@@ -104,8 +105,7 @@ const features = [
     text-align: right;
   }
   .feature-image {
-    width: 528px;
-    height: 528px;
+    width: 100%;
     object-fit: cover;
     display: block;
     position: relative;
@@ -144,8 +144,27 @@ const features = [
       display: block;
       margin: 2rem 0 0 0;
       width: 100%;
-      max-width: 100%;
+      max-width: 33rem;
       height: auto;
     }
   }
 </style>
+
+<script>
+  // Apply special styles to the third (last) feature image
+  document.addEventListener("DOMContentLoaded", function () {
+    const featureImages = document.querySelectorAll(".feature-image");
+    const lastFeatureImage = featureImages[
+      featureImages.length - 1
+    ] as HTMLElement;
+
+    if (lastFeatureImage) {
+      lastFeatureImage.style.width = "135%";
+      lastFeatureImage.style.minWidth = "36rem";
+      lastFeatureImage.style.maxWidth = "45rem";
+      lastFeatureImage.style.marginLeft = "-5rem";
+      lastFeatureImage.style.marginRight = "-5rem";
+      lastFeatureImage.style.display = "block";
+    }
+  });
+</script>
