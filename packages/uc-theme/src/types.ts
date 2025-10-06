@@ -5,7 +5,7 @@ type ButtonProps = ComponentProps<typeof Button>;
 
 export interface MenuItem {
   label: string;
-  url: string;
+  href: string;
 }
 
 export interface ThemeConfig {
@@ -18,7 +18,7 @@ export interface ThemeConfig {
     /** Header menu */
     header: MenuItem[];
     /** Header menu - CTAs */
-    headerCtas: (MenuItem & { variant: ButtonProps["variant"] })[];
+    headerCtas: (MenuItem & { color: ButtonProps["color"] })[];
     /** Footer menu */
     footer: MenuItem[];
   };

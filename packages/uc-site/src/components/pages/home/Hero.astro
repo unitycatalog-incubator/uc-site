@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import { Button, Section } from "uc-theme/components";
+import { Button } from "uc-theme/components";
+import Section from "../../Section.astro";
 
 const logos = [
   "puppygraph.svg",
@@ -72,7 +73,7 @@ const logoAnimations = logos.map((_, i) => ({
 }));
 ---
 
-<Section variant="hero-home" padding="xl">
+<Section variant="hero-home" padding="xl" isFirst>
   <h1 class="title" slot="title">
     <Image
       src="/uc-logo-glyph-white.svg"
@@ -87,17 +88,15 @@ const logoAnimations = logos.map((_, i) => ({
   <p slot="subtitle">Industry's only universal catalog for data and AI</p>
   <div class="hero-ctas">
     <Button
-      label="View GitHub"
-      url="https://github.com/unitycatalog/unitycatalog"
-      variant="secondary"
-      className="min-w-[245px]"
-    />
+      href="https://github.com/unitycatalog/unitycatalog"
+      color="secondary"
+      className="min-w-[245px]">View GitHub</Button
+    >
     <Button
-      label="Join Slack Community"
-      url="https://go.unitycatalog.io/slack"
-      variant="primary"
-      className="min-w-[245px]"
-    />
+      href="https://go.unitycatalog.io/slack"
+      color="primary"
+      className="min-w-[245px]">Join Slack Community</Button
+    >
   </div>
   <div class="hero-grid">
     <div class="hero-logos">

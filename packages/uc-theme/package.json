@@ -11,6 +11,7 @@
   },
   "exports": {
     ".": "./src/index.ts",
+    "./types": "./src/types.ts",
     "./blog": "./src/blog/index.ts",
     "./components": "./src/components/index.ts"
   },
@@ -21,6 +22,7 @@
     "astro": "^5"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
     "@pagefind/default-ui": "^1.4.0",
     "@tailwindcss/vite": "^4.1.13",
     "clsx": "^2.1.1",

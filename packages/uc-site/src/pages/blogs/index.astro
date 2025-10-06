@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
-import { Search, Section } from "uc-theme/components";
+import { Search } from "uc-theme/components";
+import Section from "../../components/Section.astro";
 import BlogCard from "../../components/pages/blog/BlogCard.astro";
 import Layout from "../../layouts/Layout.astro";
 
@@ -15,7 +16,7 @@ const rest = posts.filter((post) => post !== featured);
 <Layout title="Blog">
   {
     featured && (
-      <Section padding="lg" variant="hero">
+      <Section padding="lg" variant="hero" isFirst>
         <h1 slot="title">Blog</h1>
         <p slot="subtitle">The first multimodal open catalog for data and AI</p>
         <BlogCard post={featured} isFeatured className="relative z-1" />

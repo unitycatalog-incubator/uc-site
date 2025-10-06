@@ -1,7 +1,6 @@
 ---
 import { getImage } from "astro:assets";
 import { config } from "virtual:uc-theme/config";
-import Nav from "./Nav.astro";
 import "../theme.css";
 
 interface Props {
@@ -45,27 +44,7 @@ const imageUrl =
   <body class="text-neutral-0 bg-neutral-950">
     <slot name="body-first" />
     <main>
-      <header>
-        <Nav items={config.menus.header} buttons={config.menus.headerCtas}>
-          <span
-            slot="logo"
-            style="display: flex; align-items: center; gap: 0.5rem;"
-          >
-            <a
-              href="/"
-              style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none;"
-            >
-              <img
-                src="/uc-logo.svg"
-                alt="Unity Catalog Logo"
-                style="height: 36px;"
-              />
-            </a>
-          </span>
-        </Nav>
-      </header>
       <slot />
-      <slot name="body-last" />
     </main>
   </body>
 </html>

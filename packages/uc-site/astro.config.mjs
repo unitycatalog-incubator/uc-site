@@ -1,60 +1,60 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import favicons from "astro-favicons";
-import { ucTheme, searchPlugin } from "uc-theme";
-
+import { ucTheme } from "uc-theme";
 import netlify from "@astrojs/netlify";
 
-import sitemap from "@astrojs/sitemap";
-
-export default defineConfig({
+const config = {
   site: "https://uc-site-beta.netlify.app/",
   redirects: {
     "/blog": "/blogs",
   },
-  adapter: netlify(),
   integrations: [
-    favicons({
-      name: "Unity Catalog",
-      short_name: "Unity Catalog",
-    }),
     ucTheme({
       siteTitle: "Unity Catalog",
       defaultImage: "/images/default-image.jpg",
       menus: {
         header: [
-          { label: "Features", url: "/#features" },
-          { label: "Partner Ecosystem", url: "/#partner-ecosystem" },
-          { label: "API", url: "https://go.unitycatalog.io/apidocs" },
-          { label: "Documentation", url: "https://go.unitycatalog.io/docs" },
-          { label: "Blogs", url: "/blogs" },
+          { label: "Features", href: "/#features" },
+          { label: "Partner Ecosystem", href: "/#partner-ecosystem" },
+          { label: "API", href: "https://go.unitycatalog.io/apidocs" },
+          { label: "Documentation", href: "https://go.unitycatalog.io/docs" },
+          { label: "Blogs", href: "/blogs" },
         ],
         headerCtas: [
           {
             label: "View GitHub",
-            url: "https://github.com/unitycatalog/unitycatalog",
-            variant: "secondary",
+            href: "https://github.com/unitycatalog/unitycatalog",
+            color: "secondary",
           },
           {
             label: "Join Slack",
-            url: "https://go.unitycatalog.io/slack",
-            variant: "primary",
+            href: "https://go.unitycatalog.io/slack",
+            color: "primary",
           },
           {
             label: "Join LinkedIn",
-            url: "https://www.linkedin.com/company/unitycatalog/",
-            variant: "tertiary",
+            href: "https://www.linkedin.com/company/unitycatalog/",
+            color: "tertiary",
           },
         ],
         footer: [
-          { label: "Features", url: "/#features" },
-          { label: "Partner Ecosystem", url: "/#partner-ecosystem" },
-          { label: "API", url: "https://go.unitycatalog.io/apidocs" },
-          { label: "Documentation", url: "https://go.unitycatalog.io/docs" },
+          { label: "Features", href: "/#features" },
+          { label: "Partner Ecosystem", href: "/#partner-ecosystem" },
+          { label: "API", href: "https://go.unitycatalog.io/apidocs" },
+          { label: "Documentation", href: "https://go.unitycatalog.io/docs" },
         ],
       },
     }),
-    searchPlugin(),
-    sitemap(),
+    favicons({
+      name: "Unity Catalog",
+      short_name: "Unity Catalog",
+    }),
   ],
-});
+};
+
+export default defineConfig(
+  import.meta.env.NETLIFY === "true"
+    ? { ...config, adapter: netlify() }
+    : config,
+);

@@ -17,7 +17,6 @@ export const themePlugin = (config: ThemeConfig): AstroIntegration => {
                 "virtual:uc-theme/config",
                 `export const config = ${JSON.stringify(config)}`,
               ),
-              // @ts-expect-error -- Astro plugin config doesn't seem right
               tailwindcss(),
             ],
           },
