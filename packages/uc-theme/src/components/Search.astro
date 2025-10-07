@@ -93,7 +93,12 @@ const { className } = Astro.props;
     color: var(--color-neutral-50);
     width: 100%;
     transition: all 0.2s;
-    position: relative;
+    position: absolute;
+    top: -50px;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    overflow: visible;
   }
 
   .search-container:hover {
@@ -200,11 +205,26 @@ const { className } = Astro.props;
 
   #pagefind-ui {
     max-height: calc(80vh - 16px * 2);
-    overflow-y: auto;
+    overflow: visible;
+    position: relative;
   }
 
   #pagefind-ui .pagefind-ui__results {
-    overflow: visible;
     position: static;
+    background: var(--color-neutral-900);
+    border: 1px solid var(--color-neutral-800);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    max-height: 60vh;
+    overflow-y: auto;
+    margin-top: 0;
+  }
+
+  #blog-section {
+    overflow: visible;
+  }
+
+  #blog-section > * {
+    overflow: visible;
   }
 </style>
