@@ -16,7 +16,6 @@ const { post, relatedPosts } = Astro.props;
 const authors = await getEntries(post.data.authors);
 const currentUrl = Astro.url.href;
 
-// Extract ## headings from raw markdown for TOC, safely handle undefined
 const raw = post.body ?? "";
 const lines = typeof raw === "string" ? raw.split(/\r?\n/) : [];
 const tocItems = lines
@@ -53,25 +52,20 @@ const tocItems = lines
     </div>
   </Section>
 
-  <!-- Related Blog Posts Section -->
   {relatedPosts.length > 0 && <RelatedBlogPosts posts={relatedPosts} />}
 </div>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    // Add copy buttons to code blocks
     document.querySelectorAll("pre").forEach((pre) => {
-      // Avoid adding multiple buttons
       if (!pre.parentElement || !pre.parentNode) return;
       if (pre.parentElement.classList.contains("code-block-container")) return;
 
-      // Create a wrapper div
       const wrapper = document.createElement("div");
       wrapper.className = "code-block-container";
       pre.parentNode.insertBefore(wrapper, pre);
       wrapper.appendChild(pre);
 
-      // Create the button
       const btn = document.createElement("button");
       btn.textContent = "Copy Code";
       btn.className = "copy-btn";
@@ -84,16 +78,13 @@ const tocItems = lines
         }
       });
 
-      // Insert the button after the <pre>
       wrapper.appendChild(btn);
     });
 
-    // Add gray background to last section
     const h2Elements = document.querySelectorAll("h2");
     if (h2Elements.length > 0) {
       const lastH2 = h2Elements[h2Elements.length - 1];
       if (lastH2) {
-        // Find all elements from the last h2 until the end of the article
         const article = document.querySelector(".blog-article");
         if (article) {
           let currentElement = lastH2.nextElementSibling;
@@ -104,17 +95,14 @@ const tocItems = lines
             currentElement = currentElement.nextElementSibling;
           }
 
-          // Create a wrapper div for the entire last section
           const wrapper = document.createElement("div");
           wrapper.className = "last-section-wrapper";
 
-          // Move the last h2 into the wrapper
           if (lastH2.parentNode) {
             lastH2.parentNode.insertBefore(wrapper, lastH2);
             wrapper.appendChild(lastH2);
           }
 
-          // Move all elements after the last h2 into the wrapper
           elementsToStyle.forEach((element) => {
             wrapper.appendChild(element);
           });
@@ -125,7 +113,6 @@ const tocItems = lines
 </script>
 
 <style>
-  /* Article Content */
   .blog-article {
     margin-bottom: 1rem;
     font-weight: 400;
@@ -135,9 +122,8 @@ const tocItems = lines
     overflow: hidden;
   }
 
-  /* Markdown Content Typography */
   .blog-article :global(h1) {
-    font-size: var(--text-5xl); /* 3rem (48px) - closest to 3rem */
+    font-size: var(--text-5xl);
     font-weight: 700;
     margin: 3rem 0 1.5rem 0;
     color: var(--color-black);
@@ -145,7 +131,7 @@ const tocItems = lines
   }
 
   .blog-article :global(h2) {
-    font-size: var(--text-4xl); /* 2.25rem (36px) - closest to 2.5rem */
+    font-size: var(--text-4xl);
     font-weight: 600;
     margin: 2.5rem 0 1rem 0;
     color: var(--color-black);
@@ -153,7 +139,7 @@ const tocItems = lines
   }
 
   .blog-article :global(h3) {
-    font-size: var(--text-3xl); /* 1.875rem (30px) - closest to 2rem */
+    font-size: var(--text-3xl);
     font-weight: 600;
     margin: 2rem 0 1rem 0;
     color: var(--color-black);
@@ -161,7 +147,7 @@ const tocItems = lines
   }
 
   .blog-article :global(h4) {
-    font-size: var(--text-2xl); /* 1.5rem (24px) - matches exactly */
+    font-size: var(--text-2xl);
     font-weight: 600;
     margin: 1.5rem 0 0.75rem 0;
     color: var(--color-black);
@@ -195,7 +181,7 @@ const tocItems = lines
     color: var(--color-secondary-500);
     padding: 0.25rem 0.5rem;
     border-radius: 0.25rem;
-    font-size: var(--text-sm); /* 0.875rem (14px) - matches 0.875em */
+    font-size: var(--text-sm);
     font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
   }
 
@@ -231,7 +217,7 @@ const tocItems = lines
     height: auto;
     border-radius: 0.75rem;
     margin: 2rem 0;
-    object-fit: contain; /* Ensure images scale properly */
+    object-fit: contain;
   }
 
   .blog-article :global(table) {
@@ -267,7 +253,6 @@ const tocItems = lines
     margin: 3rem 0;
   }
 
-  /* Responsive Design */
   @media (max-width: 1200px) {
     .blog-article {
       padding: 0 1rem;
@@ -281,15 +266,15 @@ const tocItems = lines
   }
   @media (max-width: 768px) {
     .blog-article :global(h1) {
-      font-size: var(--text-4xl); /* 2.25rem (36px) - closest to 2.5rem */
+      font-size: var(--text-4xl);
     }
 
     .blog-article :global(h2) {
-      font-size: var(--text-3xl); /* 1.875rem (30px) - closest to 2rem */
+      font-size: var(--text-3xl);
     }
 
     .blog-article :global(h3) {
-      font-size: var(--text-2xl); /* 1.5rem (24px) - closest to 1.75rem */
+      font-size: var(--text-2xl);
     }
   }
   :global(.code-block-container) {
@@ -304,7 +289,7 @@ const tocItems = lines
     border-radius: 0.75rem;
     padding: 0.8rem 0;
     font-weight: 500;
-    font-size: var(--text-2xl); /* 1.5rem (24px) - matches exactly */
+    font-size: var(--text-2xl);
     cursor: pointer;
     box-shadow: 0 2px 8px 0 var(--color-neutral-100);
     font-family: inherit;
@@ -317,7 +302,6 @@ const tocItems = lines
     color: var(--color-black);
   }
 
-  /* Last section styling */
   :global(.last-section-wrapper) {
     background-color: var(--color-black-last-block-section);
     border-radius: 1rem;
