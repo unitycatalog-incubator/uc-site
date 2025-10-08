@@ -291,7 +291,7 @@ Unity Catalog is an open-source project with a growing community that loves to c
 To join the Unity Catalog project:
 
 - [Star the repo](https://github.com/unitycatalog/unitycatalog) on GitHub
-- [Join our Slack](https://go.unitycatalog.io/slack) to meet the team
+- [Join our Slack](https://join.slack.com/t/unitycatalog/shared_invite/zt-3f93k8flt-Ent43H6MQQYNN52Ca_eRMQ) to meet the team
 - Check out the [Good First Issues](https://github.com/unitycatalog/unitycatalog/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22) in the GitHub repo
 
 Check out the [Good First Issues](https://github.com/unitycatalog/unitycatalog/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22) in the GitHub repo

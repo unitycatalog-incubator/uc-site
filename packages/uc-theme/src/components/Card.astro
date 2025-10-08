@@ -29,6 +29,9 @@ const {
   isFeatured,
   className,
 } = Astro.props;
+const imageSizes = "(min-width: 1200px) 58vw, (min-width: 1024px) 50vw, 100vw";
+const imageLoading = isFeatured ? "eager" : "lazy";
+const imageFetchPriority = isFeatured ? "high" : "auto";
 ---
 
 <div
@@ -53,7 +56,10 @@ const {
                   alt={title}
                   width={1239}
                   height={720}
-                  loading="lazy"
+                  loading={imageLoading}
+                  decoding="async"
+                  sizes={imageSizes}
+                  fetchpriority={imageFetchPriority}
                   class="image"
                 />
               </div>
@@ -65,23 +71,47 @@ const {
                     alt={title}
                     width={1239}
                     height={720}
-                    loading="lazy"
+                    loading={imageLoading}
+                    decoding="async"
+                    sizes={imageSizes}
+                    fetchpriority={imageFetchPriority}
                     class="image"
                   />
                 </div>
               )
             )}
             <div class="card-content">
-              <h3 class="card-title">{title}</h3>
-              {Astro.slots.has("default") && (
-                <p class="card-body">
-                  <slot />
-                </p>
+              {isFeatured ? (
+                <>
+                  <div class="card-toprow">
+                    <span class="card-label">{badge}</span>
+                  </div>
+                  <h3 class="card-title">{title}</h3>
+                  {Astro.slots.has("default") && (
+                    <p class="card-body">
+                      <slot />
+                    </p>
+                  )}
+                  {date && (
+                    <div class="card-bottomrow">
+                      <span class="card-date">{date}</span>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <>
+                  <h3 class="card-title">{title}</h3>
+                  {Astro.slots.has("default") && (
+                    <p class="card-body">
+                      <slot />
+                    </p>
+                  )}
+                  <div class="card-meta-row">
+                    <span class="card-label">{badge}</span>
+                    {date && <span class="card-date">{date}</span>}
+                  </div>
+                </>
               )}
-              <div class="card-meta-row">
-                <span class="card-label">{badge}</span>
-                {date && <span class="card-date">{date}</span>}
-              </div>
             </div>
           </>
         ) : (
@@ -94,6 +124,8 @@ const {
                     alt={title + " icon"}
                     width="48"
                     height="48"
+                    loading="lazy"
+                    decoding="async"
                   />
                 ) : (
                   <Image
@@ -101,6 +133,8 @@ const {
                     alt={title + " icon"}
                     width="48"
                     height="48"
+                    loading="lazy"
+                    decoding="async"
                   />
                 )}
               </div>
@@ -123,7 +157,10 @@ const {
               alt={title}
               width={1239}
               height={720}
-              loading="lazy"
+              loading={imageLoading}
+              decoding="async"
+              sizes={imageSizes}
+              fetchpriority={imageFetchPriority}
               class="image"
             />
           </div>
@@ -135,23 +172,47 @@ const {
                 alt={title}
                 width={1239}
                 height={720}
-                loading="lazy"
+                loading={imageLoading}
+                decoding="async"
+                sizes={imageSizes}
+                fetchpriority={imageFetchPriority}
                 class="image"
               />
             </div>
           )
         )}
         <div class="card-content">
-          <h3 class="card-title">{title}</h3>
-          {Astro.slots.has("default") && (
-            <p class="card-body">
-              <slot />
-            </p>
+          {isFeatured ? (
+            <>
+              <div class="card-toprow">
+                <span class="card-label">{badge}</span>
+              </div>
+              <h3 class="card-title">{title}</h3>
+              {Astro.slots.has("default") && (
+                <p class="card-body">
+                  <slot />
+                </p>
+              )}
+              {date && (
+                <div class="card-bottomrow">
+                  <span class="card-date">{date}</span>
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              <h3 class="card-title">{title}</h3>
+              {Astro.slots.has("default") && (
+                <p class="card-body">
+                  <slot />
+                </p>
+              )}
+              <div class="card-meta-row">
+                <span class="card-label">{badge}</span>
+                {date && <span class="card-date">{date}</span>}
+              </div>
+            </>
           )}
-          <div class="card-meta-row">
-            <span class="card-label">{badge}</span>
-            {date && <span class="card-date">{date}</span>}
-          </div>
         </div>
       </>
     ) : (
@@ -164,9 +225,18 @@ const {
                 alt={title + " icon"}
                 width="48"
                 height="48"
+                loading="lazy"
+                decoding="async"
               />
             ) : (
-              <Image src={icon} alt={title + " icon"} width="48" height="48" />
+              <Image
+                src={icon}
+                alt={title + " icon"}
+                width="48"
+                height="48"
+                loading="lazy"
+                decoding="async"
+              />
             )}
           </div>
         )}
@@ -220,6 +290,7 @@ const {
     margin-bottom: 1rem;
     line-height: 1.2;
   }
+  /* Title remains un-clamped; body handles truncation */
   .card-body {
     font-size: 1rem;
     margin-bottom: 1rem;
@@ -337,8 +408,8 @@ const {
   }
   @media (max-width: 1200px) {
     .benefit-card {
-      width: 100% !important;
-      flex: 1 !important;
+      width: 100%;
+      flex: 1;
     }
   }
   @media (min-width: 1024px) {
@@ -364,8 +435,11 @@ const {
       order: 1;
       flex: 1;
     }
+    .card-isFeatured .card-toprow {
+      margin-bottom: 1rem;
+    }
     .card-isFeatured .card-title {
-      font-size: 1.8rem;
+      font-size: 1.875rem;
     }
     .card-isFeatured .card-body {
       font-size: 1.15rem;

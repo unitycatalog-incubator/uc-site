@@ -42,21 +42,15 @@ const { posts } = Astro.props;
   }
 
   .related-posts-grid {
-    grid-column-gap: 2rem;
-    grid-row-gap: 2rem;
-    grid-template-rows: auto;
-    grid-template-columns: 1.5fr 1.5fr 1.5fr;
-    grid-auto-columns: 1fr;
-    place-items: stretch start;
     display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
     margin: 0 auto;
   }
 
   @media (max-width: 1024px) {
     .related-posts-grid {
       grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      height: auto;
     }
   }
 
@@ -66,12 +60,8 @@ const { posts } = Astro.props;
     }
 
     .related-posts-grid {
-      display: flex;
-      flex-flow: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 1.5rem;
+      grid-template-columns: 1fr;
+      gap: 1rem;
     }
   }
 </style>
