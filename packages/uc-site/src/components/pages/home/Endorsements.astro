@@ -129,8 +129,8 @@ const endorsements = [
                 src={card.icon}
                 alt={card.name + " logo"}
                 class="endorsement-icon"
-                width={50}
-                height={50}
+                width={80}
+                height={80}
                 loading="lazy"
               />
             </div>
@@ -194,12 +194,15 @@ const endorsements = [
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    padding: 0;
   }
   .endorsement-icon {
-    width: 100%;
     height: 100%;
+    width: auto;
     object-fit: contain;
     border-radius: 0.5rem;
+    margin-left: 0;
+    margin-right: auto;
   }
   .endorsement-quote {
     font-size: 1rem;
@@ -278,6 +281,7 @@ const endorsements = [
       gap: 2rem;
       padding: 30px;
       min-height: 0;
+      height: 750px;
     }
     .endorsement-quote {
       font-weight: 500;
@@ -290,7 +294,7 @@ const endorsements = [
       grid-template-columns: 1fr;
     }
     .endorsement-card {
-      height: 400px;
+      height: 550px;
     }
     .endorsement-quote {
       font-size: 0.875rem;
@@ -357,31 +361,19 @@ const endorsements = [
 
   function adjustMobileCardHeights() {
     if (window.innerWidth <= 768) {
-      // Do not set height in JS; let CSS handle it
+      // Set fixed height for mobile - reduced height to save vertical space
       cards.forEach((card) => {
-        card.style.height = "";
+        card.style.height = "550px";
       });
     } else if (window.innerWidth <= 1201) {
-      // Equalize heights for 2-column layout
+      // Set fixed height for tablet - medium height
       cards.forEach((card) => {
-        card.style.height = "700px";
-      });
-      let maxHeight = 0;
-      cards.forEach((card) => {
-        if (card.style.display !== "none") {
-          const cardHeight = card.offsetHeight;
-          maxHeight = Math.max(maxHeight, cardHeight);
-        }
-      });
-      cards.forEach((card) => {
-        if (card.style.display !== "none") {
-          card.style.height = maxHeight + "px";
-        }
+        card.style.height = "750px";
       });
     } else {
-      // Reset to original heights for desktop
+      // Set fixed height for desktop - smallest height
       cards.forEach((card) => {
-        card.style.height = "";
+        card.style.height = "700px";
       });
     }
   }
