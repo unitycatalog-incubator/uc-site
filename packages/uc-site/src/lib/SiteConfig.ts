@@ -1,5 +1,5 @@
 import type { ComponentProps } from "astro/types";
-import Button from "./components/Button.astro";
+import { Button } from "astro-orbit/components";
 
 type ButtonProps = ComponentProps<typeof Button>;
 
@@ -8,7 +8,7 @@ export interface MenuItem {
   href: string;
 }
 
-export interface ThemeConfig {
+export interface SiteConfig {
   /** Site title */
   siteTitle: string;
   /** Default image to display on pages which don't have an `image` */

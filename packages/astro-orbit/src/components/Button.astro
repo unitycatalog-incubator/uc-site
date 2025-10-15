@@ -1,6 +1,4 @@
 ---
-import clsx from "clsx";
-
 /**
  * Interactive button
  */
@@ -21,7 +19,7 @@ interface Props {
 
 const { type, href, color = "primary", isFullWidth, className } = Astro.props;
 
-const cx = clsx(
+const cx = [
   "appearance-none min-h-[50px] text-lg py-3 px-7 font-medium justify-center items-center rounded-md text-neutral-950 cursor-pointer transition-colors",
   {
     "flex w-full": isFullWidth,
@@ -31,16 +29,16 @@ const cx = clsx(
     "text-white bg-primary-1000 hover:bg-primary-700": color === "tertiary",
   },
   className,
-);
+];
 ---
 
 {
   href ? (
-    <a href={href} class={cx}>
+    <a href={href} class:list={cx}>
       <slot />
     </a>
   ) : (
-    <button type={type} class={cx}>
+    <button type={type} class:list={cx}>
       <slot />
     </button>
   )

@@ -1,6 +1,6 @@
 import { defineCollection, z, reference } from "astro:content";
 import { glob } from "astro/loaders";
-import { blogLoader } from "uc-theme/blog";
+import { blogLoader } from "./lib/blogLoader";
 
 const blog = defineCollection({
   loader: blogLoader({

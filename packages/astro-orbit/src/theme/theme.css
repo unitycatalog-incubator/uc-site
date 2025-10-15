@@ -4,7 +4,8 @@
  * Astro pages are included by default, but we need to explicitly include the
  * theme's components directory
  */
-@source "./components";
+
+@source "../components";
 
 @theme {
   /*
@@ -107,36 +108,4 @@
   --spacing-xl: 1.875rem;
   --spacing-xxl: 3.75rem;
   --spacing-xxxl: 6.25rem;
-}
-
-body,
-main,
-.markdown-content {
-  font-family: var(--font-sans);
-}
-
-:root {
-  --padding-left: 5%;
-  --padding-right: 5%;
-  --conic-gradient: conic-gradient(from 0deg, #f43ba6, #ffbc00, #f43ba6);
-}
-
-/* Only style the main page scrollbar */
-html::-webkit-scrollbar,
-body::-webkit-scrollbar {
-  width: 12px;
-}
-html::-webkit-scrollbar-thumb,
-body::-webkit-scrollbar-thumb {
-  background: var(--color-box-shadow-yellow);
-  border-radius: 6px;
-}
-html::-webkit-scrollbar-track,
-body::-webkit-scrollbar-track {
-  display: none;
-  background: var(--color-neutral-950);
-}
-
-*:not(html):not(body)::-webkit-scrollbar {
-  display: none;
 }
