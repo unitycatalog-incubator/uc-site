@@ -8,13 +8,7 @@ interface Props {
   /** URL to link to - if set, this will configure the button as a link */
   href?: string | undefined;
   /** Button color */
-  color?:
-    | "primary"
-    | "secondary"
-    | "tertiary"
-    | "neutral"
-    | "white"
-    | undefined;
+  color?: "primary" | "secondary" | "accent" | "neutral" | "white" | undefined;
   /** Specify HTML button type */
   type?: "button" | "submit" | undefined;
   /** Whether the button should be full width or not */
@@ -34,8 +28,8 @@ const cx = [
       color === "primary",
     "text-secondary-button-text bg-secondary-500 hover:brightness-[90%]":
       color === "secondary",
-    "text-tertiary-button-text bg-tertiary-500 hover:brightness-[90%]":
-      color === "tertiary",
+    "text-accent-button-text bg-accent-500 hover:brightness-[90%]":
+      color === "accent",
     "text-neutral-button-text bg-neutral-500 hover:brightness-[90%]":
       color === "neutral",
     "text-white-button-text bg-neutral-50 hover:brightness-[90%]":
