@@ -1,0 +1,52 @@
+---
+/**
+ * Interactive button
+ */
+interface Props {
+  /** Button label/contents */
+  children: unknown;
+  /** URL to link to - if set, this will configure the button as a link */
+  href?: string | undefined;
+  /** Button color */
+  color?: "primary" | "secondary" | "accent" | "neutral" | "white" | undefined;
+  /** Specify HTML button type */
+  type?: "button" | "submit" | undefined;
+  /** Whether the button should be full width or not */
+  isFullWidth?: boolean | undefined;
+  /** Additional HTML classname to add */
+  className?: string | undefined;
+}
+
+const { type, href, color = "primary", isFullWidth, className } = Astro.props;
+
+const cx = [
+  "appearance-none min-h-[50px] text-lg py-3 px-7 font-medium justify-center items-center rounded-md cursor-pointer transition-colors",
+  {
+    "flex w-full": isFullWidth,
+    "inline-flex": !isFullWidth,
+    "text-primary-button-text bg-primary-500 hover:brightness-[90%]":
+      color === "primary",
+    "text-secondary-button-text bg-secondary-500 hover:brightness-[90%]":
+      color === "secondary",
+    "text-accent-button-text bg-accent-500 hover:brightness-[90%]":
+      color === "accent",
+    "text-neutral-button-text bg-neutral-500 hover:brightness-[90%]":
+      color === "neutral",
+    "text-white-button-text bg-neutral-50 hover:brightness-[90%]":
+      color === "white",
+  },
+  className,
+];
+---
+
+{
+  href ? (
+    <a href={href} class:list={cx}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class:list={cx}>
+      <slot />
+    </button>
+  )
+}

@@ -1,5 +1,4 @@
 ---
-import clsx from "clsx";
 import { Image } from "astro:assets";
 import type { ComponentProps } from "astro/types";
 
@@ -35,14 +34,14 @@ const imageFetchPriority = isFeatured ? "high" : "auto";
 ---
 
 <div
-  class={clsx(
+  class:list={[
     "card-container",
     `${type}-card`,
     {
       "card-isFeatured": isFeatured,
     },
     className,
-  )}
+  ]}
 >
   {
     url ? (

@@ -1,8 +1,11 @@
 // @ts-check
+import netlify from "@astrojs/netlify";
+import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 import favicons from "astro-favicons";
-import { ucTheme } from "uc-theme";
-import netlify from "@astrojs/netlify";
+import { plugin as configPlugin } from "plugin-config";
+import { plugin as themePlugin } from "plugin-theme";
+import { searchPlugin } from "./src/lib/searchPlugin";
 
 const config = {
   site: "https://uc-site-beta.netlify.app/",
@@ -10,46 +13,52 @@ const config = {
     "/blog": "/blogs",
   },
   integrations: [
-    ucTheme({
-      siteTitle: "Unity Catalog",
-      defaultImage: "/images/default-image.jpg",
-      menus: {
-        header: [
-          { label: "Features", href: "/#features" },
-          { label: "Partner Ecosystem", href: "/#partner-ecosystem" },
-          { label: "API", href: "https://go.unitycatalog.io/apidocs" },
-          { label: "Documentation", href: "https://go.unitycatalog.io/docs" },
-          { label: "Blogs", href: "/blogs" },
-        ],
-        headerCtas: [
-          {
-            label: "View GitHub",
-            href: "https://github.com/unitycatalog/unitycatalog",
-            color: "secondary",
-          },
-          {
-            label: "Join Slack",
-            href: "https://join.slack.com/t/unitycatalog/shared_invite/zt-3f93k8flt-Ent43H6MQQYNN52Ca_eRMQ",
-            color: "primary",
-          },
-          {
-            label: "Join LinkedIn",
-            href: "https://www.linkedin.com/company/unitycatalog/",
-            color: "tertiary",
-          },
-        ],
-        footer: [
-          { label: "Features", href: "/#features" },
-          { label: "Partner Ecosystem", href: "/#partner-ecosystem" },
-          { label: "API", href: "https://go.unitycatalog.io/apidocs" },
-          { label: "Documentation", href: "https://go.unitycatalog.io/docs" },
-        ],
+    themePlugin(),
+    configPlugin({
+      name: "config",
+      config: {
+        siteTitle: "Unity Catalog",
+        defaultImage: "/images/default-image.jpg",
+        menus: {
+          header: [
+            { label: "Features", href: "/#features" },
+            { label: "Partner Ecosystem", href: "/#partner-ecosystem" },
+            { label: "API", href: "https://go.unitycatalog.io/apidocs" },
+            { label: "Documentation", href: "https://go.unitycatalog.io/docs" },
+            { label: "Blogs", href: "/blogs" },
+          ],
+          headerCtas: [
+            {
+              label: "View GitHub",
+              href: "https://github.com/unitycatalog/unitycatalog",
+              color: "white",
+            },
+            {
+              label: "Join Slack",
+              href: "https://join.slack.com/t/unitycatalog/shared_invite/zt-3f93k8flt-Ent43H6MQQYNN52Ca_eRMQ",
+              color: "secondary",
+            },
+            {
+              label: "Join LinkedIn",
+              href: "https://www.linkedin.com/company/unitycatalog/",
+              color: "primary",
+            },
+          ],
+          footer: [
+            { label: "Features", href: "/#features" },
+            { label: "Partner Ecosystem", href: "/#partner-ecosystem" },
+            { label: "API", href: "https://go.unitycatalog.io/apidocs" },
+            { label: "Documentation", href: "https://go.unitycatalog.io/docs" },
+          ],
+        },
       },
     }),
     favicons({
       name: "Unity Catalog",
       short_name: "Unity Catalog",
     }),
+    sitemap(),
+    searchPlugin(),
   ],
 };
 

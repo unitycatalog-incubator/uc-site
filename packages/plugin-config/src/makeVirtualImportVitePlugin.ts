@@ -2,7 +2,7 @@ import type { AstroConfig } from "astro";
 
 type VitePlugin = NonNullable<AstroConfig["vite"]["plugins"]>[number];
 
-export const makeViteVirtualImportPlugin = (
+export const makeVirtualImportVitePlugin = (
   pluginName: string,
   importName: string,
   contents: string,

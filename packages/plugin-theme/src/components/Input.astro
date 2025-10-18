@@ -1,6 +1,4 @@
 ---
-import clsx from "clsx";
-
 interface Props {
   type: "email" | "number" | "text";
   name: string;
@@ -21,9 +19,9 @@ const { type, name, value, placeholder, isFullWidth, id, className } =
   value={value}
   placeholder={placeholder}
   id={id}
-  class={clsx(
-    "appearance-none text-neutral-950 border-1 border-neutral-300 bg-white rounded-md min-h-[50px] text-lg py-3 px-7 font-medium",
+  class:list={[
+    "border-1 min-h-[50px] appearance-none rounded-md border-neutral-300 bg-white px-7 py-3 text-lg font-medium text-neutral-950",
     { "flex w-full": isFullWidth, "inline-flex": !isFullWidth },
     className,
-  )}
+  ]}
 />

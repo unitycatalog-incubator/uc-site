@@ -1,30 +1,61 @@
 ---
-import type { ComponentProps } from "astro/types";
+import { getImage } from "astro:assets";
 import { localizedHTML as favicons } from "astro-favicons/middleware";
-import { PageLayout } from "uc-theme/components";
+import { config } from "virtual:config";
+import "plugin-theme/theme.css";
 import Header from "../components/pages/Header.astro";
 import Footer from "../components/pages/Footer.astro";
-
-type PageLayoutProps = ComponentProps<typeof PageLayout>;
+import "./theme.css";
 
 interface Props {
-  title?: PageLayoutProps["title"];
-  description?: PageLayoutProps["description"];
-  image?: PageLayoutProps["image"];
+  title?: string | undefined;
+  description?: string | undefined;
+  image?: string | Parameters<typeof getImage>[0]["src"] | undefined;
 }
 
 const { title, description, image } = Astro.props;
+
+const imageUrl =
+  !image || typeof image === "string"
+    ? image
+    : (await getImage({ src: image })).src;
 ---
 
-<PageLayout title={title} description={description} image={image}>
-  <Fragment slot="head-last">
+<html lang="en">
+  <head>
+    <slot name="head-first" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title ? `${title} | ${config.siteTitle}` : config.siteTitle}</title>
+    {description && <meta name="description" content={description} />}
+    <meta
+      name="image"
+      property="og:image"
+      content={new URL(
+        imageUrl ? imageUrl : "/images/default-image.jpg",
+        Astro.site,
+      )}
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <Fragment set:html={favicons(Astro.currentLocale)} />
     <script
       defer
       data-domain="unitycatalog.io"
       src="https://plausible.io/js/script.js"></script>
-  </Fragment>
-  <Header />
-  <slot />
-  <Footer />
-</PageLayout>
+    <slot name="head-last" />
+  </head>
+  <body class="text-neutral-0 bg-neutral-950">
+    <slot name="body-first" />
+    <main>
+      <Header />
+      <slot />
+      <Footer />
+    </main>
+  </body>
+</html>

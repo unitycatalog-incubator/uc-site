@@ -5,7 +5,7 @@ import type { AstroIntegration, AstroIntegrationLogger } from "astro";
 
 export const searchPlugin = (): AstroIntegration => {
   return {
-    name: "delta-lake-search-plugin",
+    name: "uc-site-search",
     hooks: {
       "astro:build:done": async ({ dir, logger }) => {
         if (process.env.NODE_ENV === "development") return;
