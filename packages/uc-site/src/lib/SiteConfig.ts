@@ -1,5 +1,5 @@
 import type { ComponentProps } from "astro/types";
-import { Button } from "astro-orbit/components";
+import { Button } from "plugin-theme/components";
 
 type ButtonProps = ComponentProps<typeof Button>;
 

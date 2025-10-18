@@ -11,7 +11,7 @@ interface PluginOptions {
 export const plugin = (options: PluginOptions): AstroIntegration => {
   const { name, config } = options;
   return {
-    name: "uc-theme",
+    name: "plugin-config",
     hooks: {
       "astro:config:setup": ({ updateConfig }) => {
         // Expose theme config as a virtual import via vite plugin

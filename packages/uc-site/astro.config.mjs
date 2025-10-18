@@ -2,9 +2,9 @@
 import netlify from "@astrojs/netlify";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
-import { astroConfig } from "astro-config";
-import { plugin as astroOrbit } from "astro-orbit";
 import favicons from "astro-favicons";
+import { plugin as configPlugin } from "plugin-config";
+import { plugin as themePlugin } from "plugin-theme";
 import { searchPlugin } from "./src/lib/searchPlugin";
 
 const config = {
@@ -13,8 +13,8 @@ const config = {
     "/blog": "/blogs",
   },
   integrations: [
-    astroOrbit(),
-    astroConfig({
+    themePlugin(),
+    configPlugin({
       name: "config",
       config: {
         siteTitle: "Unity Catalog",
