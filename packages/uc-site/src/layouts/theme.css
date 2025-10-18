@@ -35,7 +35,7 @@
   --color-secondary-950: #482100;
   --color-secondary-button-text: black;
 
-  /* Accent – Sky Blue (#b39bded) */
+  /* Accent – Sky Blue (#00bfff) */
   --color-accent-50: #e5f9ff;
   --color-accent-100: #b3edff;
   --color-accent-200: #80e0ff;
@@ -65,7 +65,7 @@
   --color-neutral-900: #122a42;
   --color-neutral-950: #071a2e;
   --color-neutral-1000: #b6b6b6;
-  --color-netural-button-text: white;
+  --color-neutral-button-text: white;
 
   --color-links-yellow: #d09a00;
   --color-black-last-block-section: #071a2e0d;
