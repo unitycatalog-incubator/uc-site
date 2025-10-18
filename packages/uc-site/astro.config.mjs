@@ -31,17 +31,17 @@ const config = {
             {
               label: "View GitHub",
               href: "https://github.com/unitycatalog/unitycatalog",
-              color: "secondary",
+              color: "white",
             },
             {
               label: "Join Slack",
               href: "https://go.unitycatalog.io/slack",
-              color: "primary",
+              color: "secondary",
             },
             {
               label: "Join LinkedIn",
               href: "https://www.linkedin.com/company/unitycatalog/",
-              color: "tertiary",
+              color: "primary",
             },
           ],
           footer: [

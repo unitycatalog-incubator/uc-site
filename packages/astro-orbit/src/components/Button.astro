@@ -8,7 +8,13 @@ interface Props {
   /** URL to link to - if set, this will configure the button as a link */
   href?: string | undefined;
   /** Button color */
-  color?: "primary" | "secondary" | "tertiary" | undefined;
+  color?:
+    | "primary"
+    | "secondary"
+    | "tertiary"
+    | "neutral"
+    | "white"
+    | undefined;
   /** Specify HTML button type */
   type?: "button" | "submit" | undefined;
   /** Whether the button should be full width or not */
@@ -20,13 +26,20 @@ interface Props {
 const { type, href, color = "primary", isFullWidth, className } = Astro.props;
 
 const cx = [
-  "appearance-none min-h-[50px] text-lg py-3 px-7 font-medium justify-center items-center rounded-md text-neutral-950 cursor-pointer transition-colors",
+  "appearance-none min-h-[50px] text-lg py-3 px-7 font-medium justify-center items-center rounded-md cursor-pointer transition-colors",
   {
     "flex w-full": isFullWidth,
     "inline-flex": !isFullWidth,
-    "bg-box-shadow-yellow hover:bg-secondary-700": color === "primary",
-    "bg-neutral-50 hover:bg-neutral-200": color === "secondary",
-    "text-white bg-primary-1000 hover:bg-primary-700": color === "tertiary",
+    "text-primary-button-text bg-primary-500 hover:brightness-[90%]":
+      color === "primary",
+    "text-secondary-button-text bg-secondary-500 hover:brightness-[90%]":
+      color === "secondary",
+    "text-tertiary-button-text bg-tertiary-500 hover:brightness-[90%]":
+      color === "tertiary",
+    "text-neutral-button-text bg-neutral-500 hover:brightness-[90%]":
+      color === "neutral",
+    "text-white-button-text bg-neutral-50 hover:brightness-[90%]":
+      color === "white",
   },
   className,
 ];
