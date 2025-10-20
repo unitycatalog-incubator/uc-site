@@ -54,11 +54,35 @@ importers:
         specifier: ^8.45.0
         version: 8.45.0(eslint@9.36.0(jiti@2.6.0))(typescript@5.9.3)
 
+  packages/plugin-config:
+    dependencies:
+      astro:
+        specifier: ^5.14.1
+        version: 5.14.1(@netlify/blobs@10.0.11)(@types/node@24.6.1)(jiti@2.6.0)(lightningcss@1.30.1)(rollup@4.52.3)(typescript@5.9.3)(yaml@2.8.1)
+
+  packages/plugin-theme:
+    dependencies:
+      '@tailwindcss/vite':
+        specifier: ^4.1.13
+        version: 4.1.13(vite@6.3.6(@types/node@24.6.1)(jiti@2.6.0)(lightningcss@1.30.1)(yaml@2.8.1))
+      astro:
+        specifier: ^5.14.1
+        version: 5.14.1(@netlify/blobs@10.0.11)(@types/node@24.6.1)(jiti@2.6.0)(lightningcss@1.30.1)(rollup@4.52.3)(typescript@5.9.3)(yaml@2.8.1)
+      tailwindcss:
+        specifier: ^4.1.13
+        version: 4.1.13
+
   packages/uc-site:
     dependencies:
       '@astrojs/netlify':
         specifier: ^6.5.11
         version: 6.5.11(@types/node@24.6.1)(astro@5.14.1(@netlify/blobs@10.0.11)(@types/node@24.6.1)(jiti@2.6.0)(lightningcss@1.30.1)(rollup@4.52.3)(typescript@5.9.3)(yaml@2.8.1))(jiti@2.6.0)(lightningcss@1.30.1)(rollup@4.52.3)(yaml@2.8.1)
+      '@astrojs/sitemap':
+        specifier: ^3.6.0
+        version: 3.6.0
+      '@pagefind/default-ui':
+        specifier: ^1.4.0
+        version: 1.4.0
       astro:
         specifier: ^5.14.1
         version: 5.14.1(@netlify/blobs@10.0.11)(@types/node@24.6.1)(jiti@2.6.0)(lightningcss@1.30.1)(rollup@4.52.3)(typescript@5.9.3)(yaml@2.8.1)
@@ -71,36 +95,15 @@ importers:
       pagefind:
         specifier: ^1.4.0
         version: 1.4.0
+      plugin-config:
+        specifier: workspace:*
+        version: link:../plugin-config
+      plugin-theme:
+        specifier: workspace:*
+        version: link:../plugin-theme
       sharp:
         specifier: ^0.34.4
         version: 0.34.4
-      uc-theme:
-        specifier: workspace:*
-        version: link:../uc-theme
-
-  packages/uc-theme:
-    dependencies:
-      '@astrojs/sitemap':
-        specifier: ^3.6.0
-        version: 3.6.0
-      '@pagefind/default-ui':
-        specifier: ^1.4.0
-        version: 1.4.0
-      '@tailwindcss/vite':
-        specifier: ^4.1.13
-        version: 4.1.13(vite@6.3.6(@types/node@24.6.1)(jiti@2.6.0)(lightningcss@1.30.1)(yaml@2.8.1))
-      astro:
-        specifier: ^5
-        version: 5.14.1(@netlify/blobs@10.0.11)(@types/node@24.6.1)(jiti@2.6.0)(lightningcss@1.30.1)(rollup@4.52.3)(typescript@5.9.3)(yaml@2.8.1)
-      clsx:
-        specifier: ^2.1.1
-        version: 2.1.1
-      pagefind:
-        specifier: ^1.4.0
-        version: 1.4.0
-      tailwindcss:
-        specifier: ^4.1.13
-        version: 4.1.13
 
 packages:
 

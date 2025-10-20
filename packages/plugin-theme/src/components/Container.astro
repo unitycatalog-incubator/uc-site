@@ -6,8 +6,6 @@
  * and will adjust depending on the screen size.
  */
 
-import clsx from "clsx";
-
 interface Props {
   /* Content */
   children: unknown;
@@ -20,10 +18,10 @@ const { id, className } = Astro.props;
 
 <div
   id={id}
-  class={clsx(
+  class:list={[
     "mx-auto px-4 sm:w-[var(--breakpoint-sm)] md:w-[var(--breakpoint-md)] lg:w-[var(--breakpoint-lg)] xl:w-[var(--breakpoint-xl)]",
     className,
-  )}
+  ]}
 >
   <slot />
 </div>

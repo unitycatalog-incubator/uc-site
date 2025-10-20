@@ -10,11 +10,14 @@
   },
   "dependencies": {
     "@astrojs/netlify": "^6.5.11",
+    "@astrojs/sitemap": "^3.6.0",
+    "@pagefind/default-ui": "^1.4.0",
     "astro": "^5.14.1",
     "astro-favicons": "^3.1.5",
     "clsx": "^2.1.1",
     "pagefind": "^1.4.0",
-    "sharp": "^0.34.4",
-    "uc-theme": "workspace:*"
+    "plugin-config": "workspace:*",
+    "plugin-theme": "workspace:*",
+    "sharp": "^0.34.4"
   }
 }

@@ -1,5 +1,4 @@
 ---
-import clsx from "clsx";
 import Container from "./Container.astro";
 
 interface Props {
@@ -28,7 +27,7 @@ const {
 
 <section
   id={id}
-  class={clsx(
+  class:list={[
     {
       "py-8": padding === "sm",
       "py-8 sm:py-16": padding === "md",
@@ -36,7 +35,7 @@ const {
       "py-8 sm:py-40": padding === "xl",
     },
     className,
-  )}
+  ]}
 >
   <Container id={idContainer} className={classNameContainer}>
     <slot />
