@@ -39,11 +39,11 @@ const tocItems = lines
       class="mx-auto grid max-w-7xl gap-8 md:grid-cols-[minmax(320px,_1fr)_8fr] md:gap-12"
     >
       <aside class="flex flex-col gap-8 self-start md:sticky md:top-0">
-        <div class="border-divider border-t-1"></div>
+        <div class="border-t-1 border-divider"></div>
         <TableOfContents items={tocItems} />
-        <div class="border-divider border-t-1"></div>
+        <div class="border-t-1 border-divider"></div>
         <Contributors contributors={authors} />
-        <div class="border-divider border-t-1"></div>
+        <div class="border-t-1 border-divider"></div>
         <CtaSocial currentUrl={currentUrl} title={post.data.title} />
       </aside>
       <article class="blog-article text-xl leading-[2.3rem]" data-pagefind-body>

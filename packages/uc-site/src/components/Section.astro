@@ -35,7 +35,7 @@ const hasContent = Astro.slots.has("default");
   padding={padding}
   className={clsx(
     {
-      "text-accent-1000 bg-white": variant === "white",
+      "bg-white text-accent-1000": variant === "white",
       relative: variant !== "white" && variant !== undefined,
     },
     className,
