@@ -17,7 +17,7 @@
     "clsx": "^2.1.1",
     "pagefind": "^1.4.0",
     "plugin-config": "workspace:*",
-    "plugin-theme": "workspace:*",
+    "astro-orbit": "^1.0.0",
     "sharp": "^0.34.4"
   }
 }

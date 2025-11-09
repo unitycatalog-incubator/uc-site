@@ -1,7 +1,4 @@
 {
   "files": [],
-  "references": [
-    { "path": "./packages/uc-site" },
-    { "path": "./packages/uc-theme" }
-  ]
+  "references": [{ "path": "./packages/uc-site" }]
 }

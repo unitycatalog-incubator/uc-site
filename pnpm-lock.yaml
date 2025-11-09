@@ -89,6 +89,9 @@ importers:
       astro-favicons:
         specifier: ^3.1.5
         version: 3.1.5(astro@5.14.7(@netlify/blobs@10.1.0)(@types/node@24.9.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.5)(typescript@5.9.3)(yaml@2.8.1))
+      astro-orbit:
+        specifier: ^1.0.0
+        version: 1.0.0(astro@5.14.7(@netlify/blobs@10.1.0)(@types/node@24.9.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.5)(typescript@5.9.3)(yaml@2.8.1))(vite@6.4.1(@types/node@24.9.1)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1))
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -98,9 +101,6 @@ importers:
       plugin-config:
         specifier: workspace:*
         version: link:../plugin-config
-      plugin-theme:
-        specifier: workspace:*
-        version: link:../plugin-theme
       sharp:
         specifier: ^0.34.4
         version: 0.34.4
@@ -1597,6 +1597,11 @@ packages:
     resolution: {integrity: sha512-XFEW0Yk0sSfFu7WAT5wJ61atbT16YpO3y5n/ooxtys1/Uuv0v2XmMFw8OUrxnykmstUKoa+XjqUw22ph9cFn7A==}
     peerDependencies:
       astro: '>= 4.0.0'
+
+  astro-orbit@1.0.0:
+    resolution: {integrity: sha512-px8FT7wToLmH4eNGL+r0QL/+pGIuu81RkLmbHzPo819tSKNbyMlHv2i1SVe8GdJwsDe9SVRSIGKlshCdmFrSog==}
+    peerDependencies:
+      astro: ^5.0.0
 
   astro@5.14.7:
     resolution: {integrity: sha512-vdZmRN2MFf60ZTjFkZNrQQkrmeeZzTI1c6N3ZRQN55rPGHjywM2VplJwJ68q496DfpaoDoAroDBpdm+eTgHUtQ==}
@@ -6229,6 +6234,14 @@ snapshots:
       astro: 5.14.7(@netlify/blobs@10.1.0)(@types/node@24.9.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.5)(typescript@5.9.3)(yaml@2.8.1)
       favilib: 1.0.5
       ultrahtml: 1.6.0
+
+  astro-orbit@1.0.0(astro@5.14.7(@netlify/blobs@10.1.0)(@types/node@24.9.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.5)(typescript@5.9.3)(yaml@2.8.1))(vite@6.4.1(@types/node@24.9.1)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1)):
+    dependencies:
+      '@tailwindcss/vite': 4.1.15(vite@6.4.1(@types/node@24.9.1)(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.1))
+      astro: 5.14.7(@netlify/blobs@10.1.0)(@types/node@24.9.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.5)(typescript@5.9.3)(yaml@2.8.1)
+      tailwindcss: 4.1.15
+    transitivePeerDependencies:
+      - vite
 
   astro@5.14.7(@netlify/blobs@10.1.0)(@types/node@24.9.1)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.52.5)(typescript@5.9.3)(yaml@2.8.1):
     dependencies:
