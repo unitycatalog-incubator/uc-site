@@ -13,7 +13,6 @@ export default [
       "**/dist",
       "**/.astro",
       "pnpm-lock.yaml",
-      "pnpm-workspace.yaml",
       "**/node_modules/**",
     ],
   },

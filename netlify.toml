@@ -1,3 +1,3 @@
 [build]
-  publish = "packages/uc-site/dist"
-  command = "pnpm --filter uc-site build"
+  publish = "dist"
+  command = "pnpm build"
