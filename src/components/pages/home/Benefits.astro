@@ -1,0 +1,30 @@
+---
+import { Card } from "astro-orbit/components";
+import Section from "../../Section.astro";
+---
+
+<Section padding="xl">
+  <div class="grid gap-8 lg:grid-cols-3">
+    <Card
+      type="benefit"
+      title="Interoperability"
+      icon="icons/Interoperability.svg"
+    >
+      Multimodal interface provides interoperability across lakehouse formats
+      like Delta Lake, Apache Iceberg™, major cloud platforms, and various
+      compute engines.
+    </Card>
+    <Card type="benefit" title="Openness" icon="icons/openness.svg">
+      Open APIs and open source server offer maximum flexibility and customer
+      choice by ensuring broad interoperability.
+    </Card>
+    <Card
+      type="benefit"
+      title="Unified Governance for data and AI"
+      icon="icons/unified_governance.svg"
+    >
+      Built-in governance and security for tabular, non-tabular data as well as
+      AI assets such as Gen AI tools</Card
+    >
+  </div>
+</Section>

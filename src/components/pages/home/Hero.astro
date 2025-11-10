@@ -1,0 +1,566 @@
+---
+import { Image } from "astro:assets";
+import { Button } from "astro-orbit/components";
+import Section from "../../Section.astro";
+
+const logos = [
+  "puppygraph.svg",
+  "fivetran.svg",
+  "starrocks.svg",
+  "nvidia.svg",
+  "aws.svg",
+  "salesforce.svg",
+  "tecton.svg",
+  "langchain.svg",
+  "confluence.svg",
+  "dataframe.svg",
+  "Informatica.svg",
+  "azure.svg",
+  "llama-index-logo.svg",
+  "granica.svg",
+  "dbt-labs.svg",
+  "duckdb.svg",
+  "databricks.svg",
+  "google.svg",
+  "unstructured.svg",
+  "immuta.svg",
+  "lancedb.svg",
+  "apache.svg",
+];
+
+const logoPositions = [
+  // Top left quadrant
+  { top: "30%", left: "15%", size: 70 }, // puppygraph.svg
+  { top: "25%", left: "0%", size: 50 }, // fivetran.svg
+  { top: "30%", left: "25%", size: 50 }, // starrocks.svg
+  { top: "20%", left: "20%", size: 50 }, // nvidia.svg
+  { top: "40%", left: "10%", size: 50 }, // aws.svg
+
+  // Top right quadrant
+  { top: "20%", right: "15%", size: 70 }, // salesforce.svg
+  { top: "25%", right: "8%", size: 50 }, // tecton.svg
+  { top: "25%", right: "25%", size: 50 }, // langchain.svg
+  { top: "20%", right: "0%", size: 50 }, // confluence.svg
+  { top: "40%", right: "12%", size: 50 }, // dataframe.svg
+
+  // Bottom left quadrant
+  { top: "70%", left: "15%", size: 70 }, // Informatica.svg
+  { top: "50%", left: "18%", size: 50 }, // azure.svg
+  { top: "65%", left: "25%", size: 50 }, // llama-index-logo.svg
+  { top: "60%", left: "10%", size: 50 }, // granica.svg
+  { top: "45%", left: "25%", size: 50 }, // dbt-labs.svg
+
+  // Bottom right quadrant
+  { top: "40%", right: "20%", size: 70 }, // duckdb.svg
+  { top: "55%", right: "8%", size: 50 }, // databricks.svg
+  { top: "65%", right: "25%", size: 50 }, // google.svg
+  { top: "60%", right: "18%", size: 50 }, // unstructured.svg
+  { top: "68%", right: "12%", size: 50 }, // immuta.svg
+
+  // Center left and right
+  { top: "45%", left: "0%", size: 70 }, // lancedb.svg
+  { top: "45%", right: "0%", size: 70 }, // apache.svg
+];
+
+function seededRandom(seed: number): number {
+  var x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+const logoAnimations = logos.map((_, i) => ({
+  duration: "15s",
+  delay: "1s",
+  direction: seededRandom(i + 200) > 0.5 ? "normal" : "reverse",
+}));
+---
+
+<Section variant="hero-home" padding="xl" isFirst>
+  <h1 class="title" slot="title">
+    <Image
+      src="/uc-logo-glyph-white.svg"
+      alt="Unity Catalog Logo"
+      class="title-logo"
+      width={80}
+      height={80}
+      loading="eager"
+    />
+    Unity Catalog
+  </h1>
+  <p slot="subtitle">Industry's only universal catalog for data and AI</p>
+  <div class="hero-ctas">
+    <Button
+      href="https://github.com/unitycatalog/unitycatalog"
+      color="white"
+      className="min-w-[245px]">View GitHub</Button
+    >
+    <Button
+      href="https://join.slack.com/t/unitycatalog/shared_invite/zt-3f93k8flt-Ent43H6MQQYNN52Ca_eRMQ"
+      color="secondary"
+      className="min-w-[245px]">Join Slack Community</Button
+    >
+  </div>
+  <div class="hero-grid">
+    <div class="hero-logos">
+      {
+        logos.map((logo, i) => {
+          const pos = logoPositions[i];
+          const anim = logoAnimations[i] || {
+            duration: "15s",
+            delay: "0s",
+            direction: "normal",
+          };
+          if (!pos) return null;
+          return (
+            <Image
+              src={`/logos/${logo}`}
+              alt="hero_logo"
+              class="hero-logo-cloud"
+              loading="lazy"
+              style={`--logo-top: ${pos.top}; ${pos.left ? `--logo-left: ${pos.left}; --logo-right: auto;` : `--logo-right: ${pos.right}; --logo-left: auto;`} --logo-size: ${pos.size ?? 50}px; animation-duration: ${anim.duration}; animation-delay: ${anim.delay}; animation-direction: ${anim.direction};`}
+              width={pos.size ?? 50}
+              height={pos.size ?? 50}
+              loading="eager"
+            />
+          );
+        })
+      }
+    </div>
+    <div class="hero-image-stack">
+      <Image
+        src="/images/hero_background.svg"
+        alt="hero_background"
+        class="hero-bg-svg"
+        width={800}
+        height={600}
+        aria-hidden="true"
+        loading="eager"
+      />
+      <Image
+        src="/images/hero_background.svg"
+        alt="hero_background"
+        class="hero-bg-svg-2"
+        width={800}
+        height={600}
+        aria-hidden="true"
+        loading="eager"
+      />
+      <Image
+        src="/images/uc-hero-image.webp"
+        alt="Tables, AI Assets, Unstructured Data"
+        class="uc-hero-image"
+        width={1164}
+        height={1164}
+        loading="eager"
+      />
+    </div>
+  </div>
+</Section>
+<style>
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    white-space: nowrap;
+  }
+  .title-logo {
+    height: 72px;
+    width: 72px;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 525px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -2rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Grid */
+  .hero-grid {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0 1rem;
+    margin-bottom: -5rem;
+  }
+
+  .hero-image-stack {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    z-index: 1;
+    border-radius: 100%;
+    /* max-width: 25rem; */
+    /* max-height: 25rem; */
+    box-shadow: 0 0 100px #ffbc004d;
+    transform: translateY(3rem);
+    opacity: 0;
+    animation: swoopUp 1.5s forwards;
+  }
+
+  .hero-bg-svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 200%;
+    max-width: 70rem;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.7;
+  }
+
+  .hero-bg-svg-2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    max-width: 70rem;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    pointer-events: none;
+    user-select: none;
+    filter: blur(0px) brightness(1.7);
+    opacity: 0.7;
+  }
+
+  .uc-hero-image {
+    position: relative;
+    max-width: 400px;
+    z-index: 3;
+    border-radius: 50%;
+    animation: swoopUp 1.5s forwards;
+    animation-delay: 0.2s;
+  }
+
+  .hero-logos {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .hero-logo-cloud {
+    background: var(--color-neutral-0);
+    border-radius: 50%;
+    box-shadow: 0 2px 12px 0 var(--color-neutral-900);
+    object-fit: cover;
+    padding: 6px;
+    transition: transform 0.2s;
+    position: absolute;
+    animation: float 15s linear infinite;
+    transform-origin: center center;
+    opacity: 0.9;
+    width: var(--logo-size, 50px);
+    height: var(--logo-size, 50px);
+    z-index: 2;
+  }
+
+  /* Desktop positioning using CSS custom properties */
+  @media (min-width: 601px) {
+    .hero-logo-cloud {
+      top: var(--logo-top, 50%);
+      left: var(--logo-left, 50%);
+      right: var(--logo-right, auto);
+    }
+  }
+
+  .hero-logo-cloud:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 24px 0 var(--color-neutral-800);
+    animation-play-state: paused;
+  }
+
+  .heroheader_background {
+    z-index: -1;
+    background-color: var(--base-color-brand--dark-blue);
+    position: absolute;
+    inset: 0%;
+  }
+
+  @keyframes float {
+    from {
+      transform: rotate(0deg) translateX(12px) rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg) translateX(12px) rotate(-360deg);
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .hero-logo-cloud {
+      transform: scale(0.7);
+    }
+    .hero-image-stack {
+      transform: scale(0.7);
+    }
+    .hero-logo-cloud {
+      transform: scale(0.7);
+      width: calc(var(--logo-size, 50px) * 0.7);
+      height: calc(var(--logo-size, 50px) * 0.7);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero-image-stack {
+      width: 350px;
+      height: 350px;
+      z-index: 0;
+      opacity: 0;
+      border-radius: 0;
+      box-shadow: none;
+      transform-origin: center center;
+    }
+    .uc-hero-image {
+      max-width: 250px;
+    }
+    .hero-grid {
+      min-height: 360px;
+    }
+    .hero {
+      min-height: 480px;
+    }
+
+    /* Mobile logo positioning - spread logos around the hero image */
+    .hero-logos .hero-logo-cloud:nth-child(1) {
+      /* puppygraph.svg */
+      top: 15%;
+      left: 30%;
+      right: auto;
+    }
+    .hero-logos .hero-logo-cloud:nth-child(2) {
+      /* fivetran.svg */
+      top: 30%;
+      left: 20%;
+      right: auto;
+    }
+    .hero-logos .hero-logo-cloud:nth-child(3) {
+      /* starrocks.svg */
+      top: 20%;
+      left: 20%;
+      right: auto;
+    }
+    .hero-logos .hero-logo-cloud:nth-child(4) {
+      /* nvidia.svg */
+      top: 10%;
+      left: 15%;
+      right: auto;
+    }
+    .hero-logos .hero-logo-cloud:nth-child(5) {
+      /* aws.svg */
+      top: 25%;
+      left: 8%;
+      right: auto;
+    }
+
+    .hero-logos .hero-logo-cloud:nth-child(6) {
+      /* salesforce.svg */
+      top: 15%;
+      left: auto;
+      right: 30%;
+    }
+    .hero-logos .hero-logo-cloud:nth-child(7) {
+      /* tecton.svg */
+      top: 20%;
+      left: auto;
+      right: 5%;
+    }
+    .hero-logos .hero-logo-cloud:nth-child(8) {
+      /* langchain.svg */
+      top: 20%;
+      left: auto;
+      right: 18%;
+    }
+    .hero-logos .hero-logo-cloud:nth-child(9) {
+      /* confluence.svg */
+      top: 10%;
+      left: auto;
+      right: 15%;
+    }
+    .hero-logos .hero-logo-cloud:nth-child(10) {
+      /* dataframe.svg */
+      top: 30%;
+      left: auto;
+      right: 15%;
+    }
+
+    .hero-logos .hero-logo-cloud:nth-child(11) {
+      /* Informatica.svg */
+      top: 48%;
+      left: 10%;
+      right: auto;
+    }
+    .hero-logos .hero-logo-cloud:nth-child(12) {
+      /* azure.svg */
+      top: 80%;
+      left: 5%;
+      right: auto;
+    }
+    .hero-logos .hero-logo-cloud:nth-child(13) {
+      /* llama-index-logo.svg */
+      top: 80%;
+      left: 15%;
+      right: auto;
+    }
+    .hero-logos .hero-logo-cloud:nth-child(14) {
+      /* granica.svg */
+      top: 65%;
+      left: 8%;
+      right: auto;
+    }
+    .hero-logos .hero-logo-cloud:nth-child(15) {
+      /* dbt-labs.svg */
+      top: 70%;
+      left: 18%;
+      right: auto;
+    }
+
+    .hero-logos .hero-logo-cloud:nth-child(16) {
+      /* duckdb.svg */
+      top: 48%;
+      left: auto;
+      right: 10%;
+    }
+    .hero-logos .hero-logo-cloud:nth-child(17) {
+      /* databricks.svg */
+      top: 80%;
+      left: auto;
+      right: 15%;
+    }
+    .hero-logos .hero-logo-cloud:nth-child(18) {
+      /* google.svg */
+      top: 80%;
+      left: auto;
+      right: 2%;
+    }
+    .hero-logos .hero-logo-cloud:nth-child(19) {
+      /* unstructured.svg */
+      top: 70%;
+      left: auto;
+      right: 8%;
+    }
+    .hero-logos .hero-logo-cloud:nth-child(20) {
+      /* immuta.svg */
+      top: 66%;
+      left: auto;
+      right: 18%;
+    }
+
+    .hero-logos .hero-logo-cloud:nth-child(21) {
+      /* lancedb.svg */
+      top: 80%;
+      left: 25%;
+      right: auto;
+    }
+    .hero-logos .hero-logo-cloud:nth-child(22) {
+      /* apache.svg */
+      top: 80%;
+      left: auto;
+      right: 25%;
+    }
+  }
+
+  @media (max-width: 450px) {
+    .title {
+      font-size: 2rem;
+      gap: 0.5rem;
+    }
+    .title-logo {
+      height: 48px;
+      width: 48px;
+    }
+    .uc-hero-image {
+      max-width: 200px;
+    }
+  }
+
+  @media (min-width: 451px) and (max-width: 1024px) {
+    .title {
+      font-size: 2.5rem;
+      gap: 0.75rem;
+    }
+    .title-logo {
+      height: 64px;
+      width: 64px;
+    }
+    .hero {
+      padding: 4rem 1rem;
+      margin-top: 10rem;
+    }
+
+    .hero-grid {
+      display: flex;
+      align-items: flex-end;
+      justify-content: end;
+      width: 100%;
+      max-width: 1400px;
+      margin: 1rem auto;
+      padding: 0 1rem;
+      min-height: 500px;
+    }
+    .hero-logo-title {
+      gap: 0.5rem;
+    }
+    .hero-title {
+      font-size: 2.5rem;
+    }
+    .hero-logo {
+      height: 60px;
+      width: 60px;
+    }
+
+    .hero-image-stack {
+      width: 100%;
+      size: 350px;
+      z-index: 0;
+      opacity: 1;
+      border-radius: 0;
+      box-shadow: none;
+      transform-origin: center center;
+    }
+
+    .uc-hero-image {
+      width: 270px;
+    }
+
+    .hero-logo-cloud {
+      transform: scale(0.7);
+    }
+
+    .hero-ctas {
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    .hero-ctas .btn {
+      width: 100%;
+      margin: 0;
+      max-width: none;
+    }
+  }
+
+  @keyframes swoopUp {
+    to {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+  }
+</style>

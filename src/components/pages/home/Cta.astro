@@ -1,0 +1,26 @@
+---
+import { Button } from "astro-orbit/components";
+import Section from "../../Section.astro";
+---
+
+<Section padding="xl" variant="grid-bottom">
+  <h2 slot="title" class="animation-fadeUp">Get started today!</h2>
+  <p slot="subtitle" class="animation-fadeUp">
+    View the GitHub repo or join the Unity Catalog open source community to view
+    more information on the roadmap.
+  </p>
+  <div
+    class="mx-auto mb-9 flex max-w-[525px] flex-col justify-center gap-4 md:flex-row"
+  >
+    <Button
+      href="https://github.com/unitycatalog/unitycatalog"
+      color="white"
+      className="min-w-[245px]">View GitHub</Button
+    >
+    <Button
+      href="https://join.slack.com/t/unitycatalog/shared_invite/zt-3f93k8flt-Ent43H6MQQYNN52Ca_eRMQ"
+      color="secondary"
+      className="min-w-[245px]">Join Slack Community</Button
+    >
+  </div>
+</Section>

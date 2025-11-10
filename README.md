@@ -8,7 +8,7 @@ Install dependencies with [pnpm](https://pnpm.io/) and start the [Astro](https:/
 
 ```sh
 pnpm install
-pnpm --filter uc-site dev
+pnpm dev
 ```
 
 ### Building for production
@@ -16,8 +16,8 @@ pnpm --filter uc-site dev
 You can run `build` then run `preview` to build and serve a production build of the site locally:
 
 ```sh
-pnpm --filter uc-site build
-pnpm --filter uc-site preview
+pnpm build
+pnpm preview
 ```
 
 ### Updating production

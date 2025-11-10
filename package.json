@@ -1,13 +1,14 @@
 {
   "name": "uc-site",
-  "version": "1.0.0",
   "private": true,
-  "description": "",
-  "main": "index.js",
   "engines": {
     "node": ">=22.19.0"
   },
   "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
     "format": "prettier --write .",
@@ -24,6 +25,18 @@
   "author": "",
   "license": "Apache-2.0",
   "packageManager": "pnpm@10.15.1+sha512.34e538c329b5553014ca8e8f4535997f96180a1d0f614339357449935350d924e22f8614682191264ec33d1462ac21561aff97f6bb18065351c162c7e8f6de67",
+  "dependencies": {
+    "@astrojs/netlify": "^6.5.13",
+    "@astrojs/sitemap": "^3.6.0",
+    "@pagefind/default-ui": "^1.4.0",
+    "astro": "^5.14.7",
+    "astro-favicons": "^3.1.5",
+    "clsx": "^2.1.1",
+    "pagefind": "^1.4.0",
+    "astro-config": "^0.2.1",
+    "astro-orbit": "^1.0.0",
+    "sharp": "^0.34.4"
+  },
   "devDependencies": {
     "@eslint/js": "^9.38.0",
     "@typescript-eslint/parser": "^8.46.2",

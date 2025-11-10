@@ -25,11 +25,9 @@ confirm
 echo "Starting upgrade process..."
 
 # Upgrade astro first
-cd packages/uc-site
 pnpm dlx @astrojs/upgrade
 
 # Upgrade remaining packages
-cd ../../
 pnpm --recursive upgrade --latest
 
 echo "✅ Upgrade process completed! Please verify that things work as expected."

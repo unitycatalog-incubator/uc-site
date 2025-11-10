@@ -1,0 +1,25 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Card } from "astro-orbit/components";
+
+interface Props {
+  post: CollectionEntry<"blog">;
+  isFeatured?: boolean;
+  className?: string;
+}
+
+const { post, isFeatured, className } = Astro.props;
+---
+
+<Card
+  type="blog"
+  title={post.data.title}
+  url={`/blogs/${post.id}`}
+  image={post.data.thumbnail}
+  badge={post.data.category}
+  date={post.data.date}
+  isFeatured={isFeatured}
+  className={className}
+>
+  {post.data.description}
+</Card>
