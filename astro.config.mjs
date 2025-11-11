@@ -4,7 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
 import favicons from "astro-favicons";
 import astroConfig from "astro-config";
-import { plugin as astroOrbit } from "astro-orbit";
+import astroOrbit from "astro-orbit";
 import { searchPlugin } from "./src/lib/searchPlugin";
 
 const config = {
